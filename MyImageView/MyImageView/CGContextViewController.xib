@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CGContextViewController" customModule="MyImageView" customModuleProvider="target">
+            <connections>
+                <outlet property="label1" destination="a6j-pH-HbF" id="AWZ-wu-wAg"/>
+                <outlet property="stepper1" destination="Imu-w2-QKZ" id="xn1-d8-DAq"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Imu-w2-QKZ">
+                    <rect key="frame" x="153" y="518" width="94" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="94" id="4eB-iO-WZA"/>
+                        <constraint firstAttribute="height" constant="29" id="vJQ-qk-oZW"/>
+                    </constraints>
+                    <connections>
+                        <action selector="stepperValueChanged:" destination="-1" eventType="valueChanged" id="iL0-pa-OsZ"/>
+                    </connections>
+                </stepper>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6j-pH-HbF">
+                    <rect key="frame" x="278" y="522" width="243" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="243" id="fOB-wa-NkY"/>
+                        <constraint firstAttribute="height" constant="21" id="iLt-2I-Zif"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iZ-Mc-rW0">
+                    <rect key="frame" x="0.0" y="555" width="600" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.24060837765957446" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="4kn-Vs-4ec"/>
+                        <constraint firstAttribute="width" constant="46" id="CcY-S2-ffD"/>
+                    </constraints>
+                    <state key="normal" title="Test"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="CcY-S2-ffD"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="button1Tapped:" destination="-1" eventType="touchUpInside" id="hCk-2N-7Ci"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="5iZ-Mc-rW0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="13q-FO-ERk"/>
+                <constraint firstItem="Imu-w2-QKZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-100" id="BYQ-Kx-niM"/>
+                <constraint firstItem="a6j-pH-HbF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="100" id="CrK-82-sj1"/>
+                <constraint firstItem="5iZ-Mc-rW0" firstAttribute="top" secondItem="a6j-pH-HbF" secondAttribute="bottom" constant="12" id="Fx3-LZ-IPy"/>
+                <constraint firstAttribute="bottom" secondItem="5iZ-Mc-rW0" secondAttribute="bottom" constant="15" id="Pqs-Z4-WNz"/>
+                <constraint firstItem="5iZ-Mc-rW0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Tu2-01-RuU"/>
+                <constraint firstAttribute="trailing" secondItem="5iZ-Mc-rW0" secondAttribute="trailing" id="bYi-qP-KMf"/>
+                <constraint firstItem="5iZ-Mc-rW0" firstAttribute="top" secondItem="Imu-w2-QKZ" secondAttribute="bottom" constant="8" id="hTH-3i-htv"/>
+                <constraint firstItem="5iZ-Mc-rW0" firstAttribute="top" secondItem="Imu-w2-QKZ" secondAttribute="bottom" constant="8" id="iAO-3W-gwB"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="iAO-3W-gwB"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

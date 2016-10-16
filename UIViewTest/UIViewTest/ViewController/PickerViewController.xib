@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PickerViewController" customModule="UIViewTest" customModuleProvider="target">
+            <connections>
+                <outlet property="pickerView" destination="Odq-aq-A7A" id="eLO-Od-N2w"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Odq-aq-A7A">
+                    <rect key="frame" x="0.0" y="39" width="600" height="216"/>
+                </pickerView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6l6-tx-tb8">
+                    <rect key="frame" x="281" y="556" width="39" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="39" id="sv8-aE-eFW"/>
+                    </constraints>
+                    <state key="normal" title="Test2"/>
+                    <connections>
+                        <action selector="button2Tapped:" destination="-1" eventType="touchUpInside" id="is7-5Q-0Gh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkQ-6k-hTp">
+                    <rect key="frame" x="282" y="518" width="36" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="KFJ-Dp-dUg"/>
+                    </constraints>
+                    <state key="normal" title="Test1"/>
+                    <connections>
+                        <action selector="button1Tapped:" destination="-1" eventType="touchUpInside" id="T9B-DU-kfe"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="CkQ-6k-hTp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ahc-eC-NbS"/>
+                <constraint firstItem="6l6-tx-tb8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EpK-rG-kap"/>
+                <constraint firstItem="Odq-aq-A7A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WtU-MY-7oj"/>
+                <constraint firstItem="Odq-aq-A7A" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="39" id="abh-CE-H9c"/>
+                <constraint firstAttribute="bottom" secondItem="6l6-tx-tb8" secondAttribute="bottom" constant="14" id="dpR-xN-kLI"/>
+                <constraint firstItem="6l6-tx-tb8" firstAttribute="top" secondItem="CkQ-6k-hTp" secondAttribute="bottom" constant="8" id="w7J-Jn-RqA"/>
+                <constraint firstAttribute="trailing" secondItem="Odq-aq-A7A" secondAttribute="trailing" id="zes-1G-Ndg"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
