@@ -154,7 +154,6 @@ class UNTestClassAdvance
         }
     }
     
-    
     // クラスのキャスト
     func test3() {
         class Test3P1 {
@@ -220,7 +219,39 @@ class UNTestClassAdvance
         
 //        var c3 : Test3C1 = p1     // 子クラス変数に親クラスのインスタンスは入れない
 //        var g2 : Test3G1 = p1     // 孫クラス変数に親クラスのインスタンスは入れない
+    }
+    
+    /**
+     *
+     */
+    func test4() {
+        let car:Car = Car(numberOfPersons:6, numberOfTires:4)
+        car._print()
+    }
+}
+
+
+/**
+ * イニシャライザの中でスーパークラスのイニシャライザを呼び出す必要がある
+ */
+class Vehicle {
+    var numberOfPersons : Int
+    init (numberOfPersons : Int) {
+        self.numberOfPersons = numberOfPersons
+    }
+}
+
+class Car : Vehicle {
+    var numberOfTires: Int
+    init (numberOfPersons : Int, numberOfTires : Int) {
+        self.numberOfTires = numberOfTires
         
+        // スーパークラスの指定イニシャライザを呼び出す
+        super.init(numberOfPersons: numberOfPersons)
+    }
+    
+    func _print() {
+        print("persons:" + String(numberOfPersons) + " tires:" + String(numberOfTires))
     }
 }
 

@@ -34,11 +34,17 @@ class UNTestOptional {
     // declear variables
     var optInt : Int?
     var optStr : String?
+    var int1 : Int
+    var str1 : String
     
     // init
     init(){
         optInt = nil
         optStr = nil
+//        int1 = nil      // Nil cannnot be assigned to type 'int'
+//        str1 = nil      // エラー
+        int1 = 100      // nilは代入できない。型に合わせた値を代入すること。
+        str1 = "hoge"
     }
 
     

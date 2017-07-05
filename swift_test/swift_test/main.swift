@@ -86,12 +86,14 @@ func testClass2(_ mode:Int) {
         class1.test2()
     case 3:
         class1.test3()
+    case 4:
+        class1.test4()
     default:
         break
     }
 }
 
-func testFunc(_ mode:Int) {
+func testFunc(_  mode:Int) {
     print("test_func mode:\(mode)")
     
     let func1 = UNTestFunc()
@@ -106,6 +108,19 @@ func testFunc(_ mode:Int) {
         func1.test4()
     case 5:
         func1.test5()
+    default:
+        break
+    }
+}
+
+func testFuncObj(_  mode: Int) {
+    print("test_func_obj mode:\(mode)")
+    
+    let funcObj1 = UNTestFuncObj()
+    
+    switch mode {
+    case 1:
+        funcObj1.test1()
     default:
         break
     }
@@ -346,10 +361,52 @@ func testException(_ mode:Int) {
     }
 }
 
+func testRandom(_ mode:Int) {
+    
+    let randTest = UNTestRandom()
+    
+    switch mode {
+    case 1:
+        randTest.test1()
+    default:
+        break
+    }
+}
+
+// クロージャー
+func testClosure(mode:Int) {
+    let closure = UNTestClosure()
+    
+    switch mode {
+    case 1:
+        closure.test1()
+    case 2:
+        closure.test2()
+    default:
+        break
+    }
+}
+
+// キャスト
+func testClassCast(mode:Int) {
+    let cast = UNTestCast()
+    
+    switch mode {
+    case 1:
+        cast.test1()
+    case 2:
+        cast.test2()
+    case 3:
+        cast.test3()
+    default:
+        break
+    }
+}
+
 /*
  * コンソールでユーザーの入力を取得する
  *
- *  hoge.1 みたいに [コマンド名].[モード番号] で返す
+ *  hoge 1 みたいに [コマンド名] [モード番号] で返す
  */
 func getInput() -> (name:String, mode:Int) {
     print("\nplease input test name! ")
@@ -359,7 +416,7 @@ func getInput() -> (name:String, mode:Int) {
     let strData = NSString(data: inputData, encoding: 4)!  // 4->NSUTF8StringEncoding
     let command = strData.trimmingCharacters(in: CharacterSet.newlines)
     
-    let splited = command.components(separatedBy: ".")
+    let splited = command.components(separatedBy: " ")
     if splited.count >= 2 {
         if let testNo = Int(splited[1]) {
             return (splited[0], testNo)
@@ -369,6 +426,8 @@ func getInput() -> (name:String, mode:Int) {
     return (command, 1)
 }
 
+
+// main
 // プリプロセッサーテスト
 hoge1()
 
@@ -379,12 +438,14 @@ while !breakWhile {
     switch command.name {
         case "basis":
             testBasis(command.mode)
+        case "cast":
+            testClassCast(mode: command.mode)
         case "class":
             testClass()
         case "class2":
             testClass2(command.mode)
-        case "func":
-            testFunc(command.mode)
+        case "closure":
+            testClosure(mode: command.mode)
         case "array":
             testArray(command.mode)
         case "dic":
@@ -399,6 +460,10 @@ while !breakWhile {
             testExtension()
         case "filter":
             testArray(5)
+        case "func":
+            testFunc(command.mode)
+        case "funcobj":
+            testFuncObj(command.mode)
         case "nsclass":
             fallthrough
         case "ns":
@@ -433,6 +498,8 @@ while !breakWhile {
             testGenerics(command.mode)
         case "overload":
             testOverload(1)
+        case "rand":
+            testRandom(command.mode)
         case "exit":
             breakWhile = true
         default:
