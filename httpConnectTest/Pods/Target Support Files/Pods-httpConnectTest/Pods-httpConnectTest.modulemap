@@ -1,0 +1,6 @@
+framework module Pods_httpConnectTest {
+  umbrella header "Pods-httpConnectTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

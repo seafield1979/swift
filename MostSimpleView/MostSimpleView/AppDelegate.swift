@@ -17,13 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        window = UIWindow(frame:UIScreen.mainScreen().bounds)
+        window = UIWindow(frame:UIScreen.main.bounds)
         
         // 最初に表示されるViewControllerを生成
         let viewController = UIViewController()
-        viewController.view.backgroundColor = UIColor.whiteColor()
+        viewController.view.backgroundColor = UIColor.white
         
         // なにも表示されないのはあれなので Hello World ラベルを表示
         let label1 : UILabel = UILabel(frame: CGRect(x:50, y:100, width:100, height: 50))

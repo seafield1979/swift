@@ -26,16 +26,16 @@ class GestureViewController2: UIViewController {
     
 // MARK:タップジェスチャー
     // Viewの色を変更するジェスチャー用のメソッド
-    func changeViewColor(gestureRecognizer: UITapGestureRecognizer){
+    func changeViewColor(_ gestureRecognizer: UITapGestureRecognizer){
         // タップされた view を取得する
         let view : UIView? = gestureRecognizer.view!
         
         // タップviewの色を変える (White <=> Black)
-        if(view!.backgroundColor  == UIColor.whiteColor()) {
-            view!.backgroundColor = UIColor.blackColor()
+        if(view!.backgroundColor  == UIColor.white) {
+            view!.backgroundColor = UIColor.black
         }
         else {
-            view!.backgroundColor = UIColor.whiteColor()
+            view!.backgroundColor = UIColor.white
         }
     }
     
@@ -45,17 +45,17 @@ class GestureViewController2: UIViewController {
         
         // Viewを追加
         self.tapView1 = UIView(frame: CGRect(x:0, y:topY, width:100, height:100))
-        tapView1!.backgroundColor = UIColor.whiteColor()
+        tapView1!.backgroundColor = UIColor.white
         self.view.addSubview(tapView1!)
         
         self.tapView2 = UIView(frame: CGRect(x:100, y:topY, width:100, height:100))
-        tapView2!.backgroundColor = UIColor.blackColor()
+        tapView2!.backgroundColor = UIColor.black
         self.view.addSubview(tapView2!)
         
         
         // viewのジェスチャーを有効化
-        self.tapView1!.userInteractionEnabled = true
-        self.tapView2!.userInteractionEnabled = true
+        self.tapView1!.isUserInteractionEnabled = true
+        self.tapView2!.isUserInteractionEnabled = true
         
         //ジェスチャーを作成
         let recognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.changeViewColor(_:)));
@@ -81,46 +81,46 @@ class GestureViewController2: UIViewController {
         // left
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
         swipeLeft.numberOfTouchesRequired = 1
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.swipeView?.addGestureRecognizer(swipeLeft)
         
         // right
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
         swipeRight.numberOfTouchesRequired = 1
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.swipeView?.addGestureRecognizer(swipeRight)
         
         // up
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
         swipeUp.numberOfTouchesRequired = 1
-        swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
         self.swipeView?.addGestureRecognizer(swipeUp)
         
         // down
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
         swipeDown.numberOfTouchesRequired = 1
-        swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
         self.swipeView?.addGestureRecognizer(swipeDown)
     }
     
     /**
      * スワイプ
      */
-    func swiped(gesture: UIGestureRecognizer) {
+    func swiped(_ gesture: UIGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             
             switch swipeGesture.direction {
-            case UISwipeGestureRecognizerDirection.Left:
+            case UISwipeGestureRecognizerDirection.left:
                 // 左
                 self.label1.text = "Left"
-            case UISwipeGestureRecognizerDirection.Right:
+            case UISwipeGestureRecognizerDirection.right:
                 // 右
                 self.label1.text = "Right"
-            case UISwipeGestureRecognizerDirection.Up:
+            case UISwipeGestureRecognizerDirection.up:
                 // 上
                 self.label1.text = "Up"
-            case UISwipeGestureRecognizerDirection.Down:
+            case UISwipeGestureRecognizerDirection.down:
                 // 下
                 self.label1.text = "Down"
             default:
@@ -138,7 +138,7 @@ class GestureViewController2: UIViewController {
           public var velocity: CGFloat  // 加速度
      
      */
-    func pinchGesture(gesture: UIGestureRecognizer) {
+    func pinchGesture(_ gesture: UIGestureRecognizer) {
         if let pinchGesture = gesture as? UIPinchGestureRecognizer {
             label1.text = String(format: "%.4f", pinchGesture.scale)
 //            label1.text = String(format: "%.4f", pinchGesture.velocity)
@@ -165,21 +165,21 @@ class GestureViewController2: UIViewController {
      */
     // 長押し時に呼ばれるメソッド
     // 注意点として長押し開始、長押し時にカーソル移動、長押し完了時にそれぞれ呼ばれる
-    func longPressGesture(gesture: UIGestureRecognizer) {
+    func longPressGesture(_ gesture: UIGestureRecognizer) {
         if let pressGesture = gesture as? UILongPressGestureRecognizer
         {
             // 押し始めの一回だけ pressGesture.state == UIGestureRecognizerState.Began になる
-            if pressGesture.state == UIGestureRecognizerState.Began {
+            if pressGesture.state == UIGestureRecognizerState.began {
                             }
             switch (pressGesture.state) {
-            case UIGestureRecognizerState.Began:
+            case UIGestureRecognizerState.began:
                 let view : UIView? = gesture.view!
-                view?.backgroundColor = UIColor.redColor()
-            case UIGestureRecognizerState.Changed:
+                view?.backgroundColor = UIColor.red
+            case UIGestureRecognizerState.changed:
                 label1.text = "moving"
                 
-            case UIGestureRecognizerState.Ended:
-                gesture.view!.backgroundColor = UIColor.blackColor()
+            case UIGestureRecognizerState.ended:
+                gesture.view!.backgroundColor = UIColor.black
                 
             default:
                 break;
@@ -191,11 +191,11 @@ class GestureViewController2: UIViewController {
         
         // Viewを追加
         self.tapView1 = UIView(frame: CGRect(x:0, y:topY, width:100, height:100))
-        tapView1!.backgroundColor = UIColor.blackColor()
+        tapView1!.backgroundColor = UIColor.black
         self.view.addSubview(tapView1!)
         
         self.tapView2 = UIView(frame: CGRect(x:100, y:topY, width:100, height:100))
-        tapView2!.backgroundColor = UIColor.blackColor()
+        tapView2!.backgroundColor = UIColor.black
         self.view.addSubview(tapView2!)
        
         //ジェスチャーを作成
@@ -222,18 +222,18 @@ class GestureViewController2: UIViewController {
 
      
      */
-    func dragGesture(gesture : UIGestureRecognizer) {
+    func dragGesture(_ gesture : UIGestureRecognizer) {
         if let gestureDrag = gesture as? UIPanGestureRecognizer {
             // ドラッグ移動量を取得
-            let move : CGPoint = gestureDrag.translationInView(gesture.view!)
+            let move : CGPoint = gestureDrag.translation(in: gesture.view!)
             label1.text = String(format: "%.4f %.4f", move.y,move.x)
             
             // 移動をクリアする（枚フレームごとの移動量を参照できる）
-            gestureDrag.setTranslation(CGPointZero,inView: self.view)
+            gestureDrag.setTranslation(CGPoint.zero,in: self.view)
             
             // View移動
             let frame = gesture.view!.frame
-            gesture.view!.frame = CGRectMake(frame.origin.x + move.x, frame.origin.y + move.y, frame.size.width, frame.size.height)
+            gesture.view!.frame = CGRect(x: frame.origin.x + move.x, y: frame.origin.y + move.y, width: frame.size.width, height: frame.size.height)
         }
     }
     
@@ -243,11 +243,11 @@ class GestureViewController2: UIViewController {
         
         // Viewを追加
         self.tapView1 = UIView(frame: CGRect(x:0, y:topY, width:100, height:100))
-        tapView1!.backgroundColor = UIColor.blackColor()
+        tapView1!.backgroundColor = UIColor.black
         self.view.addSubview(tapView1!)
         
         self.tapView2 = UIView(frame: CGRect(x:100, y:topY, width:100, height:100))
-        tapView2!.backgroundColor = UIColor.blackColor()
+        tapView2!.backgroundColor = UIColor.black
         self.view.addSubview(tapView2!)
         
         //ジェスチャーを作成
@@ -264,32 +264,32 @@ class GestureViewController2: UIViewController {
     }
     
     enum testMode {
-        case Tap
-        case Swipe
-        case Pinch
-        case LongPress
-        case Drag
+        case tap
+        case swipe
+        case pinch
+        case longPress
+        case drag
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let mode = testMode.Pinch
+        let mode = testMode.pinch
         
         switch mode {
-        case .Tap:
+        case .tap:
             // タップのジェスチャーを追加
             self.addTapGesture()
-        case .Swipe:
+        case .swipe:
             // スワイプのジェスチャーを追加
             self.addSwipeGesture()
-        case .Pinch:
+        case .pinch:
             // ピンチイン＆アウト
             self.addPinchGesture()
-        case .LongPress:
+        case .longPress:
             // 長押しジェスチャーを追加
             self.addLognPressGesture()
-        case .Drag:
+        case .drag:
             self.addDragGesture()
         }
     }

@@ -24,48 +24,48 @@ class ButtonViewController: UIViewController {
     var buttonTypes : [UIButton]?
     var buttonImg : UIButton?
     
-    func tappedButton(sender: AnyObject) {
+    func tappedButton(_ sender: AnyObject) {
 //        if let button = sender as? UIButton {
 //            button.selected = !(button.selected)
 //        }
         print("button tapped")
     }
     
-    func touchDown(button: UIButton?) {
-        button!.setTitle("hoge", forState: .Normal)
+    func touchDown(_ button: UIButton?) {
+        button!.setTitle("hoge", for: UIControlState())
     }
 
     // UIColor から UIImageを作成する
-    func createImageFromUIColor(color: UIColor) -> UIImage {
+    func createImageFromUIColor(_ color: UIColor) -> UIImage {
         // 1x1のbitmapを作成
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
         // bitmapを塗りつぶし
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, rect)
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
         // UIImageに変換
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
     
-    func createButton(pos : CGPoint) -> UIButton {
+    func createButton(_ pos : CGPoint) -> UIButton {
         let button = UIButton()
         //表示されるテキスト
-        button.setTitle("Tap Me!", forState: .Normal)
+        button.setTitle("Tap Me!", for: UIControlState())
         
         //テキストの色
-        button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        button.setTitleColor(UIColor.blue, for: UIControlState())
         
         //タップした状態のテキスト
-        button.setTitle("Tapped!", forState: .Highlighted)
+        button.setTitle("Tapped!", for: .highlighted)
         
         //タップした状態の色
-        button.setTitleColor(UIColor.redColor(), forState: .Highlighted)
+        button.setTitleColor(UIColor.red, for: .highlighted)
         
         //サイズ
-        button.frame = CGRectMake(pos.x, pos.y, 300, 50)
+        button.frame = CGRect(x: pos.x, y: pos.y, width: 300, height: 50)
         
         //タグ番号
         button.tag = 1
@@ -74,9 +74,9 @@ class ButtonViewController: UIViewController {
         button.frame.origin = CGPoint(x: pos.x, y: pos.y)
         
         //背景色(通常時、ハイライト時、選択時)
-        button.setBackgroundImage(createImageFromUIColor(UIColor.whiteColor()), forState: UIControlState.Normal)
-        button.setBackgroundImage(createImageFromUIColor(UIColor.grayColor()), forState: UIControlState.Highlighted)
-        button.setBackgroundImage(createImageFromUIColor(UIColor.orangeColor()), forState: UIControlState.Selected)
+        button.setBackgroundImage(createImageFromUIColor(UIColor.white), for: UIControlState())
+        button.setBackgroundImage(createImageFromUIColor(UIColor.gray), for: UIControlState.highlighted)
+        button.setBackgroundImage(createImageFromUIColor(UIColor.orange), for: UIControlState.selected)
 
         //角丸
         button.layer.cornerRadius = 10
@@ -85,20 +85,20 @@ class ButtonViewController: UIViewController {
         button.layer.borderWidth = 1
         
         //ボタンをタップした時に実行するメソッドを指定
-        button.addTarget(self,action: #selector(self.tappedButton(_:)), forControlEvents:.TouchUpInside)
+        button.addTarget(self,action: #selector(self.tappedButton(_:)), for:.touchUpInside)
         //button.addTarget(self,action: #selector(self.touchDown(_:)), forControlEvents:.TouchDown)
         
         return button
     }
     
     // シンプルなボタンを作成
-    func createButton2(pos : CGPoint, title : String) -> UIButton
+    func createButton2(_ pos : CGPoint, title : String) -> UIButton
     {
-        let button = UIButton(frame: CGRectMake(pos.x, pos.y, 100, 30))
-        button.setTitle(title, forState: UIControlState.Normal)
-        button.setTitleColor( UIColor.blackColor(), forState: UIControlState.Normal)
+        let button = UIButton(frame: CGRect(x: pos.x, y: pos.y, width: 100, height: 30))
+        button.setTitle(title, for: UIControlState())
+        button.setTitleColor( UIColor.black, for: UIControlState())
 //        button.setTitleColor( UIColor.grayColor(), forState: UIControlState.Highlighted)
-        button.addTarget(self,action: #selector(self.tappedButton(_:)), forControlEvents:.TouchUpInside)
+        button.addTarget(self,action: #selector(self.tappedButton(_:)), for:.touchUpInside)
         return button
     }
     
@@ -109,24 +109,24 @@ class ButtonViewController: UIViewController {
     //      InfoLight
     //      InfoDark
     //      ContactAdd
-    func createButtonType(pos : CGPoint, type : UIButtonType) -> UIButton
+    func createButtonType(_ pos : CGPoint, type : UIButtonType) -> UIButton
     {
         let button = UIButton(type: type)
-        button.frame = CGRectMake(pos.x, pos.y, 50, 50)
-        button.addTarget(self,action: #selector(self.tappedButton(_:)), forControlEvents:.TouchUpInside)
+        button.frame = CGRect(x: pos.x, y: pos.y, width: 50, height: 50)
+        button.addTarget(self,action: #selector(self.tappedButton(_:)), for:.touchUpInside)
         
         return button
     }
     
     // 画像つき
-    func createButtonImage(pos: CGPoint, filename : String, filename_hl : String) -> UIButton
+    func createButtonImage(_ pos: CGPoint, filename : String, filename_hl : String) -> UIButton
     {
-        let button = UIButton(frame: CGRectMake(pos.x, pos.y, 100, 50))
+        let button = UIButton(frame: CGRect(x: pos.x, y: pos.y, width: 100, height: 50))
         
-        button.setBackgroundImage( UIImage(named: filename), forState: .Normal)
-        button.setBackgroundImage( UIImage(named: filename_hl), forState: .Highlighted)
+        button.setBackgroundImage( UIImage(named: filename), for: UIControlState())
+        button.setBackgroundImage( UIImage(named: filename_hl), for: .highlighted)
         
-        button.addTarget(self,action: #selector(self.tappedButton(_:)), forControlEvents:.TouchUpInside)
+        button.addTarget(self,action: #selector(self.tappedButton(_:)), for:.touchUpInside)
         return button
     }
     
@@ -136,17 +136,17 @@ class ButtonViewController: UIViewController {
         
         var posY : CGFloat = 100.0
         // ボタンを生成
-        self.button1 = createButton(CGPointMake(0.0, posY))
+        self.button1 = createButton(CGPoint(x: 0.0, y: posY))
         self.view.addSubview(button1!)
         
         posY += 70.0
         // ボタンを生成
-        self.button2 = createButton(CGPointMake(0.0, posY))
+        self.button2 = createButton(CGPoint(x: 0.0, y: posY))
         self.view.addSubview(button2!)
         
         posY += 70.0
         // ボタンを生成
-        self.button3 = createButton2(CGPointMake(0.0, posY), title : "hoge")
+        self.button3 = createButton2(CGPoint(x: 0.0, y: posY), title : "hoge")
         self.view.addSubview(button3!)
         
         posY += 70.0
@@ -157,25 +157,25 @@ class ButtonViewController: UIViewController {
             let type : UIButtonType
             switch index {
             case 1:
-                type = .ContactAdd
+                type = .contactAdd
             case 2:
-                type = .DetailDisclosure
+                type = .detailDisclosure
             case 3:
-                type = .InfoLight
+                type = .infoLight
             case 4:
                 fallthrough
             default:
-                type = .InfoDark
+                type = .infoDark
             }
                 
-            let button = createButtonType(CGPointMake(CGFloat(index) * 50.0, posY), type:type)
+            let button = createButtonType(CGPoint(x: CGFloat(index) * 50.0, y: posY), type:type)
             self.view.addSubview(button)
             self.buttonTypes?.append(button)
         }
         
         posY += 70.0
         // 画像ボタンを生成
-        self.buttonImg = createButtonImage(CGPointMake(50.0, posY), filename: "image/hoge.png", filename_hl: "image/hoge_hl.png")
+        self.buttonImg = createButtonImage(CGPoint(x: 50.0, y: posY), filename: "image/hoge.png", filename_hl: "image/hoge_hl.png")
         self.view.addSubview(self.buttonImg!)
     }
 }

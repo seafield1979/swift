@@ -17,16 +17,16 @@ class GestureViewController: UIViewController {
     
     
     // Viewの色を変更するジェスチャー用のメソッド
-    func changeViewColor(gestureRecognizer: UITapGestureRecognizer){
+    func changeViewColor(_ gestureRecognizer: UITapGestureRecognizer){
         // タップされた view を取得する
         let view : UIView? = gestureRecognizer.view!
         
         // タップviewの色を変える (Red <=> Blue)
-        if(view!.backgroundColor  == UIColor.redColor()) {
-            view!.backgroundColor = UIColor.blueColor()
+        if(view!.backgroundColor  == UIColor.red) {
+            view!.backgroundColor = UIColor.blue
         }
         else {
-            view!.backgroundColor = UIColor.redColor()
+            view!.backgroundColor = UIColor.red
         }
 
     }
@@ -35,16 +35,16 @@ class GestureViewController: UIViewController {
         
         // Viewを追加
         self.gestureView = UIView(frame: CGRect(x:0, y:20, width:100, height:100))
-        gestureView!.backgroundColor = UIColor.redColor()
+        gestureView!.backgroundColor = UIColor.red
         self.view.addSubview(gestureView!)
         
         self.gestureView2 = UIView(frame: CGRect(x:100, y:20, width:100, height:100))
-        gestureView2!.backgroundColor = UIColor.blueColor()
+        gestureView2!.backgroundColor = UIColor.blue
         self.view.addSubview(gestureView2!)
 
         
         // Viewにタッチイベントを追加
-        self.gestureView!.userInteractionEnabled = true
+        self.gestureView!.isUserInteractionEnabled = true
         
         //ジェスチャーを作成
         let recognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.changeViewColor(_:)));

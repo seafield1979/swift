@@ -12,16 +12,16 @@ extension UIView {
     func image() -> UIImage {
         var image: UIImage!
         
-        UIGraphicsBeginImageContextWithOptions(frame.size, false, UIScreen.mainScreen().scale)
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, UIScreen.main.scale)
         
         if let context = UIGraphicsGetCurrentContext() {
-            CGContextTranslateCTM(context, -frame.origin.x, -frame.origin.y)
+            context.translateBy(x: -frame.origin.x, y: -frame.origin.y)
             
             if let scrollView = self as? UIScrollView {
-                CGContextTranslateCTM(context, -scrollView.contentOffset.x, -scrollView.contentOffset.y)
+                context.translateBy(x: -scrollView.contentOffset.x, y: -scrollView.contentOffset.y)
             }
             
-            layer.renderInContext(context)
+            layer.render(in: context)
             image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
         } else {
@@ -40,10 +40,10 @@ extension UIView {
         let context = UIGraphicsGetCurrentContext()
         
         // 対象のview内の描画をcontextに複写する.
-        self.layer.renderInContext(context!)
+        self.layer.render(in: context!)
         
         // 現在のcontextのビットマップをUIImageとして取得.
-        let capturedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let capturedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         // contextを閉じる.
         UIGraphicsEndImageContext()

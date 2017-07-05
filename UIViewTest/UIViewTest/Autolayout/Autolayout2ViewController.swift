@@ -37,14 +37,14 @@ class Autolayout2ViewController: UIViewController {
     override func loadView() {
         // スクリーンと同じサイズのUIViewを生成して viewに設定
         // これで画面サイズの異なるデバイスでも画面サイズとviewのサイズが一致する
-        self.view = UIView(frame: UIScreen.mainScreen().bounds)
+        self.view = UIView(frame: UIScreen.main.bounds)
     }
     
     // addConstraint で１つづつ制約を追加
     func createView1() -> UIView
     {
         let view1 = UIView()
-        view1.backgroundColor = .redColor()
+        view1.backgroundColor = .red
         
         view.addSubview(view1)
         
@@ -53,10 +53,10 @@ class Autolayout2ViewController: UIViewController {
         // Top
         let topConstraint = NSLayoutConstraint(
             item: view1,
-            attribute: .Top,
-            relatedBy: .Equal,
+            attribute: .top,
+            relatedBy: .equal,
             toItem: self.view,
-            attribute: .Top,
+            attribute: .top,
             multiplier: 1.0,
             constant: 10
         )
@@ -64,10 +64,10 @@ class Autolayout2ViewController: UIViewController {
         // Left
         let leftConstraint = NSLayoutConstraint(
             item: view1,
-            attribute: .Left,
-            relatedBy: .Equal,
+            attribute: .left,
+            relatedBy: .equal,
             toItem: self.view,
-            attribute: .Left,
+            attribute: .left,
             multiplier: 1.0,
             constant: 10
         )
@@ -75,10 +75,10 @@ class Autolayout2ViewController: UIViewController {
         // Width
         let widthConstraint = NSLayoutConstraint(
             item: view1,
-            attribute: .Width,
-            relatedBy: .Equal,
+            attribute: .width,
+            relatedBy: .equal,
             toItem: self.view,
-            attribute: .Width,
+            attribute: .width,
             multiplier: 0,
             constant: 100
         )
@@ -86,10 +86,10 @@ class Autolayout2ViewController: UIViewController {
         // Heigth
         let heightConstraint = NSLayoutConstraint(
             item: view1,
-            attribute: .Height,
-            relatedBy: .Equal,
+            attribute: .height,
+            relatedBy: .equal,
             toItem: self.view,
-            attribute: .Height,
+            attribute: .height,
             multiplier: 0,
             constant: 100
         )
@@ -106,7 +106,7 @@ class Autolayout2ViewController: UIViewController {
     func createView2() -> UIView
     {
         let view1 = UIView()
-        view1.backgroundColor = .orangeColor()
+        view1.backgroundColor = .orange
         
         view.addSubview(view1)
         
@@ -116,39 +116,39 @@ class Autolayout2ViewController: UIViewController {
         view.addConstraints([
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Top,
-                relatedBy: .Equal,
+                attribute: .top,
+                relatedBy: .equal,
                 toItem: self.view,
-                attribute: .Top,
+                attribute: .top,
                 multiplier: 1.0,
                 constant: 120
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Left,
-                relatedBy: .Equal,
+                attribute: .left,
+                relatedBy: .equal,
                 toItem: self.view,
-                attribute: .Left,
+                attribute: .left,
                 multiplier: 1.0,
                 constant: 10
             ),
         
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Width,
-                relatedBy: .Equal,
+                attribute: .width,
+                relatedBy: .equal,
                 toItem: self.view,
-                attribute: .Width,
+                attribute: .width,
                 multiplier: 0,
                 constant: 100
             ),
         
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Height,
-                relatedBy: .Equal,
+                attribute: .height,
+                relatedBy: .equal,
                 toItem: self.view,
-                attribute: .Height,
+                attribute: .height,
                 multiplier: 0,
                 constant: 100
             )]
@@ -157,10 +157,10 @@ class Autolayout2ViewController: UIViewController {
     }
     
     // 指定のViewを基準にした制約のViewを作成
-    func createView3(baseView : UIView) -> UIView
+    func createView3(_ baseView : UIView) -> UIView
     {
         let view1 = UIView()
-        view1.backgroundColor = .orangeColor()
+        view1.backgroundColor = .orange
         
         view.addSubview(view1)
         
@@ -170,37 +170,37 @@ class Autolayout2ViewController: UIViewController {
         view.addConstraints([
             NSLayoutConstraint(
                 item: view1,
-                attribute: .CenterY,  // 中心(垂直)
-                relatedBy: .Equal,
+                attribute: .centerY,  // 中心(垂直)
+                relatedBy: .equal,
                 toItem: baseView,
-                attribute: .CenterY,
+                attribute: .centerY,
                 multiplier: 1.0,
                 constant: 0  // オフセット
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .CenterX,  // 中心(水平)
-                relatedBy: .Equal,
+                attribute: .centerX,  // 中心(水平)
+                relatedBy: .equal,
                 toItem: baseView,
-                attribute: .CenterX,
+                attribute: .centerX,
                 multiplier: 1.0,
                 constant: 0 // オフセット
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Width,
-                relatedBy: .Equal,
+                attribute: .width,
+                relatedBy: .equal,
                 toItem: baseView,
-                attribute: .Width,
+                attribute: .width,
                 multiplier: 0.2,    // 親の幅の割合
                 constant: 0
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Height,
-                relatedBy: .Equal,
+                attribute: .height,
+                relatedBy: .equal,
                 toItem: baseView,
-                attribute: .Height,
+                attribute: .height,
                 multiplier: 0.2,    // 親の高さの割合
                 constant:0
             )]
@@ -209,10 +209,10 @@ class Autolayout2ViewController: UIViewController {
     }
     
     // 指定のViewと同じサイズ
-    func createView4(baseView :UIView) -> UIView
+    func createView4(_ baseView :UIView) -> UIView
     {
         let view1 = UIView()
-        view1.backgroundColor = .yellowColor()
+        view1.backgroundColor = .yellow
         
         view.addSubview(view1)
         
@@ -222,37 +222,37 @@ class Autolayout2ViewController: UIViewController {
         view.addConstraints([
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Top,
-                relatedBy: .Equal,
+                attribute: .top,
+                relatedBy: .equal,
                 toItem: self.view,
-                attribute: .Top,
+                attribute: .top,
                 multiplier: 1.0,
                 constant: 10  // オフセット
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Left,
-                relatedBy: .Equal,
+                attribute: .left,
+                relatedBy: .equal,
                 toItem: self.view,
-                attribute: .Left,
+                attribute: .left,
                 multiplier: 1.0,
                 constant: 220 // オフセット
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Width,
-                relatedBy: .Equal,
+                attribute: .width,
+                relatedBy: .equal,
                 toItem: baseView,
-                attribute: .Width,
+                attribute: .width,
                 multiplier: 1.0,
                 constant: 0
             ),
             NSLayoutConstraint(
                 item: view1,
-                attribute: .Height,
-                relatedBy: .Equal,
+                attribute: .height,
+                relatedBy: .equal,
                 toItem: baseView,
-                attribute: .Height,
+                attribute: .height,
                 multiplier: 1.0,
                 constant:0
             )]
@@ -263,7 +263,7 @@ class Autolayout2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .whiteColor()
+        self.view.backgroundColor = .white
         
         self.view1 = createView1()
         self.view2 = createView2()

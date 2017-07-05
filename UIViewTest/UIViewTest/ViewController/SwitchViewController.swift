@@ -16,32 +16,32 @@ class SwitchViewController: UIViewController {
     var switch4 : UISwitch?
     
     @IBOutlet var labels: [UILabel]!
-    @IBAction func switchValueChanged(sender: AnyObject)
+    @IBAction func switchValueChanged(_ sender: AnyObject)
     {
         if let _switch = sender as? UISwitch {
-            labels[_switch.tag - 1].text = _switch.on ? "On" : "Off"
+            labels[_switch.tag - 1].text = _switch.isOn ? "On" : "Off"
             
         }
     }
 
-    func createSwitch(pos : CGPoint) -> UISwitch
+    func createSwitch(_ pos : CGPoint) -> UISwitch
     {
-        let _switch = UISwitch(frame: CGRectMake(pos.x,pos.y,100,30))
+        let _switch = UISwitch(frame: CGRect(x: pos.x,y: pos.y,width: 100,height: 30))
         
         // Offの時の背景色
-        _switch.tintColor = .grayColor()
+        _switch.tintColor = .gray
         
         // Onの時の背景色
-        _switch.onTintColor = .blueColor()
+        _switch.onTintColor = .blue
         
         // ●の色
         _switch.thumbTintColor = UIColor.hexStr("FFA73F", alpha: 1.0)
         
         // 初期状態(OFF)
-        _switch.on = false
+        _switch.isOn = false
         
         // 値が変更された時のイベント追加
-        _switch.addTarget(self, action: #selector(self.switchValueChanged(_:)), forControlEvents: .ValueChanged)
+        _switch.addTarget(self, action: #selector(self.switchValueChanged(_:)), for: .valueChanged)
         
         return _switch
     }
@@ -50,16 +50,16 @@ class SwitchViewController: UIViewController {
         super.viewDidLoad()
         
         // ラベルのテキストを変更
-        for (index,label) in labels.enumerate() {
+        for (index,label) in labels.enumerated() {
             label.text = "hoge \(index)"
         }
         
         // switchを追加
-        switch4 = createSwitch(CGPointMake(180.0, switch3.frame.origin.y + 50.0))
+        switch4 = createSwitch(CGPoint(x: 180.0, y: switch3.frame.origin.y + 50.0))
         switch4!.tag = 4
         self.view.addSubview(switch4!)
         
-        let label = UILabel(frame: CGRectMake(switch4!.frame.origin.x + 100, switch4!.frame.origin.y, 100, 30))
+        let label = UILabel(frame: CGRect(x: switch4!.frame.origin.x + 100, y: switch4!.frame.origin.y, width: 100, height: 30))
         label.text = "hoge"
         labels.append(label)
         self.view.addSubview(label)

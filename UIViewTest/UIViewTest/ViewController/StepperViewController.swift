@@ -15,14 +15,14 @@ class StepperViewController: UIViewController {
     @IBOutlet weak var label1: UILabel!
     var stepper2 : UIStepper?
     
-    @IBAction func stepperValueChanged(sender: AnyObject)
+    @IBAction func stepperValueChanged(_ sender: AnyObject)
     {
         if let stepper = sender as? UIStepper {
             slider1.value = Float(stepper.value)
             label1.text = stepper.value.description
         }
     }
-    @IBAction func sliderValueChanged(sender: AnyObject)
+    @IBAction func sliderValueChanged(_ sender: AnyObject)
     {
         if let slider = sender as? UISlider {
             stepper1.value = Double(slider.value)
@@ -31,9 +31,9 @@ class StepperViewController: UIViewController {
     }
     
     // コードでUIStepperを作成する
-    func createStepper(pos : CGPoint) -> UIStepper
+    func createStepper(_ pos : CGPoint) -> UIStepper
     {
-        let stepper = UIStepper(frame: CGRectMake(pos.x, pos.y, 100, 30))
+        let stepper = UIStepper(frame: CGRect(x: pos.x, y: pos.y, width: 100, height: 30))
         
         // 最小値
         stepper.minimumValue = 0.0
@@ -44,9 +44,9 @@ class StepperViewController: UIViewController {
         // 現在の値
         stepper.value = 0.0
         // 色
-        stepper.tintColor = .redColor()
+        stepper.tintColor = .red
         // 値変更時のイベント登録
-        stepper.addTarget(self, action: #selector(self.stepperValueChanged(_:)), forControlEvents: .ValueChanged)
+        stepper.addTarget(self, action: #selector(self.stepperValueChanged(_:)), for: .valueChanged)
         
         return stepper
     }
@@ -60,7 +60,7 @@ class StepperViewController: UIViewController {
         
         slider1.value = Float(stepper1.value)
         
-        stepper2 = createStepper(CGPointMake(150, label1.frame.origin.y + 50.0))
+        stepper2 = createStepper(CGPoint(x: 150, y: label1.frame.origin.y + 50.0))
         self.view.addSubview(stepper2!)
     }
 }

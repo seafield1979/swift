@@ -33,30 +33,30 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     var pickerView2 : UIPickerView?
     
     // 表示する値の配列.
-    private let myValues: NSArray = ["その一","その二","その三","その四"]
-    private let myValues2: NSArray = ["大江","朝日","西川"]
+    fileprivate let myValues: NSArray = ["その一","その二","その三","その四"]
+    fileprivate let myValues2: NSArray = ["大江","朝日","西川"]
 
     
-    @IBAction func button1Tapped(sender: AnyObject) {
+    @IBAction func button1Tapped(_ sender: AnyObject) {
         // 選択されているインデックスを取得する
-        print("picker1:" + pickerView.selectedRowInComponent(0).description)
+        print("picker1:" + pickerView.selectedRow(inComponent: 0).description)
         
-        print("picker2.1:" + pickerView2!.selectedRowInComponent(0).description)
-        print("picker2.2:" + pickerView2!.selectedRowInComponent(1).description)
+        print("picker2.1:" + pickerView2!.selectedRow(inComponent: 0).description)
+        print("picker2.2:" + pickerView2!.selectedRow(inComponent: 1).description)
         
     }
-    @IBAction func button2Tapped(sender: AnyObject) {
+    @IBAction func button2Tapped(_ sender: AnyObject) {
     }
     
     enum PickerType : Int{
-        case Single = 1
-        case Double = 2
+        case single = 1
+        case double = 2
     }
     
     // UIPickerViewを生成する
-    func createPickerView(pos : CGPoint) -> UIPickerView
+    func createPickerView(_ pos : CGPoint) -> UIPickerView
     {
-        let pickerView = UIPickerView(frame: CGRectMake(pos.x, pos.y, 420.0, 200.0))
+        let pickerView = UIPickerView(frame: CGRect(x: pos.x, y: pos.y, width: 420.0, height: 200.0))
         
         // Delegateを設定する.
         pickerView.delegate = self
@@ -76,8 +76,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
      pickerに表示する列数を返すデータソースメソッド.
      (実装必須)
      */
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        if pickerView.tag == PickerType.Single.rawValue {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView.tag == PickerType.single.rawValue {
             return 1
         }
         else {
@@ -88,8 +88,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
      pickerに表示する行数を返すデータソースメソッド.
      (実装必須)
      */
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView.tag == PickerType.Single.rawValue {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.tag == PickerType.single.rawValue {
             return myValues.count
         }
         else {
@@ -106,8 +106,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     /*
      pickerに表示する値を返すデリゲートメソッド.
      */
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView.tag == PickerType.Single.rawValue {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == PickerType.single.rawValue {
             return myValues[row] as? String
         }
         else {
@@ -123,10 +123,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     /*
      pickerが選択された際に呼ばれるデリゲートメソッド.
      */
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print("row: \(row)")
         
-        if pickerView.tag == PickerType.Single.rawValue {
+        if pickerView.tag == PickerType.single.rawValue {
             print("value: \(myValues[row])")
         }
         else {
@@ -148,8 +148,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // DataSourceを設定する.
         pickerView.dataSource = self
         
-        pickerView2 = createPickerView(CGPointMake(0, 300))
-        pickerView2!.tag = PickerType.Double.rawValue
+        pickerView2 = createPickerView(CGPoint(x: 0, y: 300))
+        pickerView2!.tag = PickerType.double.rawValue
         view.addSubview(pickerView2!)
     }
 }

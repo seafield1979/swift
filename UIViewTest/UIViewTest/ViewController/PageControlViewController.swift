@@ -29,22 +29,22 @@ class PageControlViewController: UIViewController, UIScrollViewDelegate{
     
     let pageMax = 6
     
-    @IBAction func prevButtonTapped(sender: AnyObject) {
+    @IBAction func prevButtonTapped(_ sender: AnyObject) {
         pageCtrl1.currentPage -= 1
         pageChanged(pageCtrl1.currentPage)
     }
-    @IBAction func nextButtonTapped(sender: AnyObject) {
+    @IBAction func nextButtonTapped(_ sender: AnyObject) {
         pageCtrl1.currentPage += 1
         pageChanged(pageCtrl1.currentPage)
     }
     
-    @IBAction func pageControlChanged(sender: AnyObject) {
+    @IBAction func pageControlChanged(_ sender: AnyObject) {
         if let pageControl = sender as? UIPageControl {
             pageChanged(pageControl.currentPage)
         }
     }
     
-    func pageChanged(page : Int) {
+    func pageChanged(_ page : Int) {
         print(page)
         
         // ScrollViewの表示をスクロールする
@@ -55,8 +55,8 @@ class PageControlViewController: UIViewController, UIScrollViewDelegate{
     }
     
     // ソースコードだけでUIPageControlを生成
-    func createPageControl(pos : CGPoint) -> UIPageControl{
-        let pageControl = UIPageControl(frame: CGRectMake(pos.x, pos.y, 200, 30))
+    func createPageControl(_ pos : CGPoint) -> UIPageControl{
+        let pageControl = UIPageControl(frame: CGRect(x: pos.x, y: pos.y, width: 200, height: 30))
         
         // ページ数
         pageControl.numberOfPages = 3
@@ -65,13 +65,13 @@ class PageControlViewController: UIViewController, UIScrollViewDelegate{
         pageControl.currentPage = 0
         
         // 現在のページを示す●の色
-        pageControl.currentPageIndicatorTintColor = .yellowColor()
+        pageControl.currentPageIndicatorTintColor = .yellow
         
         // ページを示す●の色
-        pageControl.pageIndicatorTintColor = .blueColor()
+        pageControl.pageIndicatorTintColor = .blue
         
         // ページが変更された時のイベントを登録
-        pageControl.addTarget(self, action: #selector(self.pageControlChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        pageControl.addTarget(self, action: #selector(self.pageControlChanged(_:)), for: UIControlEvents.valueChanged)
         
         return pageControl
     }
@@ -80,14 +80,14 @@ class PageControlViewController: UIViewController, UIScrollViewDelegate{
     func createScrollView() -> UIScrollView
     {
         // UIScrollViewを作成
-        let scrollView = UIScrollView( frame: CGRectMake( 0,0, self.view.frame.size.width, self.view.frame.size.height))
+        let scrollView = UIScrollView( frame: CGRect( x: 0,y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         
-        scrollView.contentSize = CGSizeMake(view.frame.size.width * CGFloat(pageMax), view.frame.size.height)
+        scrollView.contentSize = CGSize(width: view.frame.size.width * CGFloat(pageMax), height: view.frame.size.height)
         
-        scrollView.backgroundColor = .blueColor()
+        scrollView.backgroundColor = .blue
         
         // ページごとのスクロールにする
-        scrollView.pagingEnabled = true;
+        scrollView.isPagingEnabled = true;
         
         // ステータスバータップでトップにスクロールする機能をOFFにする
         scrollView.scrollsToTop = false;
@@ -97,12 +97,12 @@ class PageControlViewController: UIViewController, UIScrollViewDelegate{
         
         // ScrollViewにページごとのViewを貼り付ける
         for index in 0..<pageMax {
-            let viewTemp = UIView(frame: CGRectMake(CGFloat(index) * view.frame.size.width, 0, view.frame.size.width, view.frame.size.height))
+            let viewTemp = UIView(frame: CGRect(x: CGFloat(index) * view.frame.size.width, y: 0, width: view.frame.size.width, height: view.frame.size.height))
             viewTemp.backgroundColor = UIColor(red: 0.4 + CGFloat(index) * 0.1, green: 0, blue: 0, alpha: 1.0)
             
             // test
-            let view1 = UIView(frame: CGRectMake(0,20,100,100))
-            view1.backgroundColor = .whiteColor()
+            let view1 = UIView(frame: CGRect(x: 0,y: 20,width: 100,height: 100))
+            view1.backgroundColor = .white
             viewTemp.addSubview(view1)
 
             scrollView.addSubview(viewTemp)
@@ -118,13 +118,13 @@ class PageControlViewController: UIViewController, UIScrollViewDelegate{
         scrollView = createScrollView()
         self.view.addSubview(scrollView!)
         
-        let pageControl = createPageControl(CGPointMake(100, view.frame.size.height))
+        let pageControl = createPageControl(CGPoint(x: 100, y: view.frame.size.height))
         self.view.addSubview(pageControl)
     }
     
 // MARK: UIScrollViewDelegate
     // スクロール時の処理（スクロール中に毎フレーム呼ばれる）
-    func scrollViewDidScroll( scrollView: UIScrollView) {
+    func scrollViewDidScroll( _ scrollView: UIScrollView) {
         // 現在のページ数を UIPageControl に設定
         pageCtrl1.currentPage = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         

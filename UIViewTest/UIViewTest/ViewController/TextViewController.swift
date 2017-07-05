@@ -17,16 +17,16 @@ class TextViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var label1: UILabel!
     var textField2 : UITextField?
     
-    @IBAction func textChanged(sender: AnyObject)
+    @IBAction func textChanged(_ sender: AnyObject)
     {
         if let textField = sender as? UITextField {
             label1.text = textField.text
         }
     }
     
-    func createTextField(pos : CGPoint) -> UITextField
+    func createTextField(_ pos : CGPoint) -> UITextField
     {
-        let textField = UITextField(frame: CGRectMake(pos.x, pos.y, 200, 50))
+        let textField = UITextField(frame: CGRect(x: pos.x, y: pos.y, width: 200, height: 50))
         
         // テキスト
         textField.text = ""
@@ -45,7 +45,7 @@ class TextViewController: UIViewController, UITextFieldDelegate {
           .NumberPad：テンキー
           .PhonePad：電話番号用
         */
-        textField.keyboardType = .Default
+        textField.keyboardType = .default
         
         // キーボードのReturnキーの表示
         /* .returnKeyTypeプロパティに UIReturnKeyType の値を設定する
@@ -59,22 +59,22 @@ class TextViewController: UIViewController, UITextFieldDelegate {
          .Done：「Done」
          .EmergencyCall：「EmergencyCall」
         */
-        textField.returnKeyType = .Done
+        textField.returnKeyType = .done
  
         // フォントを設定
-        textField.font = UIFont(name:"HiraKakuProN-W3", size:UIFont.labelFontSize())
+        textField.font = UIFont(name:"HiraKakuProN-W3", size:UIFont.labelFontSize)
         
         // テキストの色
-        textField.textColor = .blackColor()
+        textField.textColor = .black
         
         // 枠のスタイル　(None, Line, Bezel, RoundedRect)
-        textField.borderStyle = .RoundedRect
+        textField.borderStyle = .roundedRect
         
         // テキストの寄せる方向 (Left, Right, Center)
-        textField.textAlignment = .Left
+        textField.textAlignment = .left
         
         // クリアボタン (Never, Always, WhileEditing, UnlessEditing)
-        textField.clearButtonMode = .UnlessEditing
+        textField.clearButtonMode = .unlessEditing
         
         // デリゲートを指定（通常ViewControllerで処理するのでself)
         textField.delegate = self
@@ -89,7 +89,7 @@ class TextViewController: UIViewController, UITextFieldDelegate {
         textField1.delegate = self
         
         // コードで追加
-        textField2 = createTextField(CGPointMake(50, 200))
+        textField2 = createTextField(CGPoint(x: 50, y: 200))
         self.view.addSubview(textField2!)
     }
     
@@ -97,7 +97,7 @@ class TextViewController: UIViewController, UITextFieldDelegate {
     // テキストフィールドを編集する直前に呼び出される
     // ret: true 処理が進む(キーボードが出てくる)
     //      false 処理が進まない(キーボードが出てこない)
-    func textFieldShouldBeginEditing(textField : UITextField) -> Bool
+    func textFieldShouldBeginEditing(_ textField : UITextField) -> Bool
     {
         print("textFieldShouldBeginEditing")
         return true
@@ -105,26 +105,26 @@ class TextViewController: UIViewController, UITextFieldDelegate {
     
     // テキストフィールドの編集が終了する直前に呼び出される
     // ret:
-    func textFieldShouldEndEditing(textField : UITextField) -> Bool
+    func textFieldShouldEndEditing(_ textField : UITextField) -> Bool
     {
         print("textFieldShouldEndEditing")
         return true
     }
     
     // テキストフィールドを編集する直後に呼び出される
-    func textFieldDidBeginEditing(textField: UITextField)
+    func textFieldDidBeginEditing(_ textField: UITextField)
     {
         print("textFieldDidBeginEditing")
     }
     
     // テキストフィールドの編集が終了する直後に呼び出される
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         print("textFieldDidEndEditing")
     }
     
     // Returnボタンがタップされた時に呼ばれる
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         print("textFieldShouldReturn")
         textField.resignFirstResponder()
@@ -133,7 +133,7 @@ class TextViewController: UIViewController, UITextFieldDelegate {
     
     // クリアボタンがタップされた時に呼ばれる
     // 自動でクリアしたい場合はtrueを返す
-    func textFieldShouldClear(textField: UITextField) -> Bool
+    func textFieldShouldClear(_ textField: UITextField) -> Bool
     {
         print("textFieldShouldClear")
         textField.text = ""

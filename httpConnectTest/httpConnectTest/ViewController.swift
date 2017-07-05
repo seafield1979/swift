@@ -77,7 +77,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     func testAsynchronous() {
         // create the url-request
         let urlString = testURL
-        let request = NSMutableURLRequest(url: URL(string: urlString)!)
+        var request = URLRequest(url: URL(string: urlString)!)
         
         // set the method(HTTP-GET)
         request.httpMethod = "GET"
@@ -88,13 +88,27 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             {
                 // サブスレッドで textView1にアクセスすると落ちるのでメインスレッドで処理する
                 self.dispatch_async_main {
-                    let result = NSString(data: data!, encoding: String.Encoding.utf8)!
+                    let result = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!
                     self.textView1.text = result as String
                 }
             } else {
                 print(error)
             }
         })
+        
+//        let task = URLSession.shared.dataTask(with: request! ) { data, response, error in
+//            if let data = data, let response = response {
+//                print(response)
+//                do {
+//                    let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+//                    print(json)
+//                } catch {
+//                    print("Serialize Error")
+//                }
+//            } else {
+//                print(error ?? "Error")
+//            }
+//        }
         task.resume()
     }
     
@@ -154,10 +168,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         manager.responseSerializer = AFHTTPResponseSerializer()
         let param:Dictionary<String, String> = ["param1" : "value1", "param2" : "value2"]
         
+//        manager.post(testPostURL, parameters: param, success: <#T##((AFHTTPRequestOperation, Any) -> Void)?##((AFHTTPRequestOperation, Any) -> Void)?##(AFHTTPRequestOperation, Any) -> Void#>, failure: <#T##((AFHTTPRequestOperation?, Error) -> Void)?##((AFHTTPRequestOperation?, Error) -> Void)?##(AFHTTPRequestOperation?, Error) -> Void#>)
+        
         manager.post(testPostURL, parameters: param,
-                     success: {
-                        (operation: AFHTTPRequestOperation!, responsedObject:AnyObject!) in
-                        let str : NSString = NSString(data:responsedObject as! Data, encoding:String.Encoding.utf8)!
+                     success:
+            {
+                        (operation, responsedObject) in
+                        let str : NSString = NSString(data:responsedObject as! Data, encoding:String.Encoding.utf8.rawValue)!
                         print("response: \(str)")
 
             }, failure: {
@@ -172,14 +189,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let manager = AFHTTPRequestOperationManager()
         manager.requestSerializer = AFJSONRequestSerializer()
         
+
         manager.get(testJsonURL, parameters: nil,
-                    success: {(operation: AFHTTPRequestOperation!, responsedObject: AnyObject!) in
+                    success: {(operation:AFHTTPRequestOperation, responsedObject: Any) in
                         print("Success!!")
                         
                         // responsedObject を表示。ただ、Dictionary型なので存在しない要素にアクセスしようとしようとすると落ちる
+                        let responce:Dictionary = responsedObject as! Dictionary<String,String>
                         print(responsedObject)
-                        print(responsedObject["a"])
-                        print(responsedObject["b"])
+                        print(responce["a"] ?? "nil")
+                        print(responce["b"] ?? "nil")
                         // print(responsedObject[0])        // 落ちる
                         
                         // SwiftyJSONオブジェクトに変換
@@ -206,22 +225,21 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                  "dic1" : ["key1" : "123", "key2" : "hoge"]] as [String : Any]
         
         manager.post(testJsonURL2, parameters: param,
-                    success: {(operation: AFHTTPRequestOperation!, responsedObject: AnyObject!) in
+                    success: {(operation: AFHTTPRequestOperation!, responsedObject: Any) in
                         print("Success!!")
-                        let str : NSString = NSString(data:responsedObject as! Data, encoding:String.Encoding.utf8)!
+                        let str : NSString = NSString(data:responsedObject as! Data, encoding:String.Encoding.utf8.rawValue)!
                         print("response: \(str)")
                         
                         // print(responsedObject["param1"]);  responsedObjectはJSONオブジェクトになっていないのでエラー
 
                         // SwiftyJSONオブジェクトに変換
                         // phpが返すのは json_encode したJSON文字列
-                        if let response = responsedObject {
-                            let json = JSON(data:response as! Data)
+                            let json = JSON(responsedObject)
                             print(json["param1"])
                             print(json["param2"])
                             print(json["array1"])
                             print(json[0])           // 落ちない
-                        }
+                        
             },
                     failure: {(operation, error) in
                         print("Error!!")
@@ -240,21 +258,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 "array1" : [1,2,3,4,5],
                                 "dic1" : ["key1" : "123", "key2" : "hoge"]] as [String : Any]
         
+//        manager.post(<#T##URLString: String##String#>, parameters: <#T##Any?#>, success: <#T##((AFHTTPRequestOperation, Any) -> Void)?##((AFHTTPRequestOperation, Any) -> Void)?##(AFHTTPRequestOperation, Any) -> Void#>, failure: <#T##((AFHTTPRequestOperation?, Error) -> Void)?##((AFHTTPRequestOperation?, Error) -> Void)?##(AFHTTPRequestOperation?, Error) -> Void#>)
         manager.post(testJsonURL3, parameters: param,
-                     success: {(operation: AFHTTPRequestOperation!, responsedObject: AnyObject!) in
+                     success: {(operation: AFHTTPRequestOperation, responsedObject: Any) in
                         print("Success!!")
-                        
-                        print(responsedObject["param1"]);
                         
                         // SwiftyJSONオブジェクトに変換
                         // phpが返すのは json_encode したJSON文字列
-                        if let response = responsedObject {
-                            let json = JSON(response)
-                            print(json["param1"])
-                            print(json["param2"])
-                            print(json["array1"])
-                            print(json["dic1"])
-                        }
+                        let json = JSON(responsedObject)
+                        print(json["param1"])
+                        print(json["param2"])
+                        print(json["array1"])
+                        print(json["dic1"])
+                        
             },
                      failure: {(operation, error) in
                         print("Error!!")

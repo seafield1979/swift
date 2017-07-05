@@ -11,24 +11,24 @@ import UIKit
 class LabelViewController: UIViewController {
 
     // シンプルなラベルを作成
-    func createLabel(pos : CGPoint, title : String) -> UILabel
+    func createLabel(_ pos : CGPoint, title : String) -> UILabel
     {
-        let label = UILabel(frame:CGRectMake(pos.x, pos.y, 100, 30))
+        let label = UILabel(frame:CGRect(x: pos.x, y: pos.y, width: 100, height: 30))
         label.text = title
         return label
     }
     
     // いろいろ設定したラベルを作成
-    func createLabel2(pos : CGPoint, title : String) -> UILabel
+    func createLabel2(_ pos : CGPoint, title : String) -> UILabel
     {
-        let label = UILabel(frame:CGRectMake(pos.x, pos.y, 200, 30))
+        let label = UILabel(frame:CGRect(x: pos.x, y: pos.y, width: 200, height: 30))
         label.text = title
         
         // テキスト中央寄せ
-        label.textAlignment = NSTextAlignment.Center
+        label.textAlignment = NSTextAlignment.center
         
         // テキストの色
-        label.textColor = UIColor.blueColor()
+        label.textColor = UIColor.blue
         
         // テキストのフォント
         /*
@@ -51,7 +51,7 @@ class LabelViewController: UIViewController {
          UIFont(name:"ArialHebew", size:UIFont.labelFontSize())
         */
         //label.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
-        label.font = UIFont(name:"HiraKakuProN-W3", size:UIFont.labelFontSize())
+        label.font = UIFont(name:"HiraKakuProN-W3", size:UIFont.labelFontSize)
         
         // 背景色
         //label.backgroundColor = UIColor.grayColor()
@@ -67,13 +67,13 @@ class LabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-        let label1 = createLabel(CGPointMake(30.0, 50.0), title: "hoge")
+        let label1 = createLabel(CGPoint(x: 30.0, y: 50.0), title: "hoge")
         self.view.addSubview(label1)
         
-        let label2 = createLabel2(CGPointMake(30.0, 100.0), title: "Superime")
+        let label2 = createLabel2(CGPoint(x: 30.0, y: 100.0), title: "Superime")
         self.view.addSubview(label2)
         
-        let label3 = createLabel2(CGPointMake(30.0, 150.0), title: "Superime Superime Superime")
+        let label3 = createLabel2(CGPoint(x: 30.0, y: 150.0), title: "Superime Superime Superime")
         self.view.addSubview(label3)
     }
     

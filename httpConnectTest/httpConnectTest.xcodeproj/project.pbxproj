@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CFE858A000AFBCEB10CAAFA /* Pods_httpConnectTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE88C954FDA998A62FF1E6 /* Pods_httpConnectTest.framework */; };
 		8A283B201D845CA40017D090 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A283B0E1D845CA40017D090 /* AFHTTPRequestOperation.m */; };
 		8A283B211D845CA40017D090 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A283B101D845CA40017D090 /* AFHTTPRequestOperationManager.m */; };
 		8A283B221D845CA40017D090 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A283B121D845CA40017D090 /* AFHTTPSessionManager.m */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DD746E46E86CA0F30994F13 /* Pods-httpConnectTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpConnectTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-httpConnectTest/Pods-httpConnectTest.release.xcconfig"; sourceTree = "<group>"; };
+		75AE88C954FDA998A62FF1E6 /* Pods_httpConnectTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_httpConnectTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A283AA51D8458CA0017D090 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		8A283B0D1D845CA40017D090 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		8A283B0E1D845CA40017D090 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		8A63EF321D83953A006266C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A63EF371D83953A006266C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A63EF3D1D839B5C006266C5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		B94878E6B6F69E300D2AF96C /* Pods-httpConnectTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-httpConnectTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-httpConnectTest/Pods-httpConnectTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,12 +62,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CFE858A000AFBCEB10CAAFA /* Pods_httpConnectTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1535E721E5847B552BB9097E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75AE88C954FDA998A62FF1E6 /* Pods_httpConnectTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5C5B788AFD6FDD73B1024C85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B94878E6B6F69E300D2AF96C /* Pods-httpConnectTest.debug.xcconfig */,
+				0DD746E46E86CA0F30994F13 /* Pods-httpConnectTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8A283A8F1D84589C0017D090 /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +136,8 @@
 				8A63EF2A1D83953A006266C5 /* httpConnectTest */,
 				8A63EF291D83953A006266C5 /* Products */,
 				8A283A8F1D84589C0017D090 /* Library */,
+				5C5B788AFD6FDD73B1024C85 /* Pods */,
+				1535E721E5847B552BB9097E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A63EF3A1D83953A006266C5 /* Build configuration list for PBXNativeTarget "httpConnectTest" */;
 			buildPhases = (
+				1E7A20EB77B5DAF3857CA7B9 /* [CP] Check Pods Manifest.lock */,
 				8A63EF241D83953A006266C5 /* Sources */,
 				8A63EF251D83953A006266C5 /* Frameworks */,
 				8A63EF261D83953A006266C5 /* Resources */,
+				CDB59C37CF014CF514A385FF /* [CP] Embed Pods Frameworks */,
+				02A34D2AAE599D768CDD0DFD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -203,6 +230,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02A34D2AAE599D768CDD0DFD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-httpConnectTest/Pods-httpConnectTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E7A20EB77B5DAF3857CA7B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CDB59C37CF014CF514A385FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-httpConnectTest/Pods-httpConnectTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A63EF241D83953A006266C5 /* Sources */ = {
@@ -314,6 +389,7 @@
 		};
 		8A63EF3B1D83953A006266C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B94878E6B6F69E300D2AF96C /* Pods-httpConnectTest.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -321,13 +397,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sunsunsoft.httpConnectTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/shutaro/github/ios_programing/swift/httpConnectTest/httpConnectTest/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/HttpConnectTest/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		8A63EF3C1D83953A006266C5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0DD746E46E86CA0F30994F13 /* Pods-httpConnectTest.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -335,7 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sunsunsoft.httpConnectTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/shutaro/github/ios_programing/swift/httpConnectTest/httpConnectTest/Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/HttpConnectTest/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

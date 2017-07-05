@@ -15,7 +15,7 @@ class SliderViewController: UIViewController {
     @IBOutlet weak var label2: UILabel!
     var slider2 : UISlider?
     
-    @IBAction func sliderValueChanged(sender: AnyObject) {
+    @IBAction func sliderValueChanged(_ sender: AnyObject) {
         if let slider = sender as? UISlider {
             if slider.tag == 1 {
                 label1.text = slider.value.description
@@ -27,12 +27,12 @@ class SliderViewController: UIViewController {
         }
     }
     
-    func createSlider(pos : CGPoint) -> UISlider
+    func createSlider(_ pos : CGPoint) -> UISlider
     {
-        let slider = UISlider(frame:CGRectMake(pos.x, pos.y, 200, 30))
+        let slider = UISlider(frame:CGRect(x: pos.x, y: pos.y, width: 200, height: 30))
         
         // 色を設定
-        slider.tintColor = .redColor()
+        slider.tintColor = .red
         
         // 識別用のタグを設定
         slider.tag = 2
@@ -41,17 +41,17 @@ class SliderViewController: UIViewController {
         slider.maximumValue = 100
         
         // 値変更の通知タイミング(true: スライド中も通知 / false:スライド中は通知しない)
-        slider.continuous = false
+        slider.isContinuous = false
         
         // 値が変更された時のイベントを設定
-        slider.addTarget(self, action: #selector(self.sliderValueChanged(_:)), forControlEvents: .ValueChanged)
+        slider.addTarget(self, action: #selector(self.sliderValueChanged(_:)), for: .valueChanged)
         
         return slider
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        slider2 = createSlider(CGPointMake( 100, 150))
+        slider2 = createSlider(CGPoint( x: 100, y: 150))
         view.addSubview(slider2!)
         
     }

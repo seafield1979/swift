@@ -19,20 +19,20 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
     override func loadView() {
         // スクリーンと同じサイズのUIViewを生成して viewに設定
         // これで画面サイズの異なるデバイスでも画面サイズとviewのサイズが一致する
-        self.view = UIView(frame: UIScreen.mainScreen().bounds)
+        self.view = UIView(frame: UIScreen.main.bounds)
     }
     
     func createScrollView() -> UIScrollView
     {
         // UIScrollViewを作成
-        let scrollView = UIScrollView( frame: CGRectMake( 0,0, self.view.frame.size.width, self.view.frame.size.height))
+        let scrollView = UIScrollView( frame: CGRect( x: 0,y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         
-        scrollView.contentSize = CGSizeMake(2000, 2000)
+        scrollView.contentSize = CGSize(width: 2000, height: 2000)
         
-        scrollView.backgroundColor = .blueColor()
+        scrollView.backgroundColor = .blue
         
         // ページごとのスクロールにする
-        scrollView.pagingEnabled = true;
+        scrollView.isPagingEnabled = true;
         
         // ステータスバータップでトップにスクロールする機能をOFFにする
         scrollView.scrollsToTop = false;
@@ -43,8 +43,8 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         // スクロール確認用にViewをたくさん追加
         for x in 0 ..< 10 {
             for y in 0 ..< 10 {
-                let tempView = UIView(frame: CGRectMake(CGFloat(x)*200, CGFloat(y)*200, 30, 30))
-                tempView.backgroundColor = .greenColor()
+                let tempView = UIView(frame: CGRect(x: CGFloat(x)*200, y: CGFloat(y)*200, width: 30, height: 30))
+                tempView.backgroundColor = .green
                 scrollView.addSubview(tempView)
             }
         }
@@ -60,15 +60,15 @@ class ScrollViewController: UIViewController, UIScrollViewDelegate {
         scrollView1 = createScrollView()
         
         // ラベル作成
-        label1 = UILabel(frame: CGRectMake( 0, 20, view.frame.size.width, 30))
-        label1!.textColor = .whiteColor()
+        label1 = UILabel(frame: CGRect( x: 0, y: 20, width: view.frame.size.width, height: 30))
+        label1!.textColor = .white
         view.addSubview(label1!)
     }
     
 // MARK: UIScrollViewDelegate
     
     // スクロール中に呼ばれるメソッド
-    func scrollViewDidScroll( scrollView: UIScrollView) {
+    func scrollViewDidScroll( _ scrollView: UIScrollView) {
         //print("\(scrollView.contentOffset.x) :  \(scrollView.contentOffset.y)")
         label1!.text = String( format:"%.2f %.2f", scrollView.contentOffset.x, scrollView.contentOffset.y)
     }

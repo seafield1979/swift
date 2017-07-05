@@ -14,24 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     enum TestMode {
-        case MakeImage
-        case DrawImage
+        case makeImage
+        case drawImage
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        window = UIWindow(frame:UIScreen.mainScreen().bounds)
+        window = UIWindow(frame:UIScreen.main.bounds)
         
-        let mode = TestMode.DrawImage
+        let mode = TestMode.drawImage
         switch mode {
-        case .MakeImage:
+        case .makeImage:
             let viewController = ViewController()
-            viewController.view.backgroundColor = .greenColor()
+            viewController.view.backgroundColor = .green
             window!.rootViewController = viewController
             
-        case .DrawImage:
+        case .drawImage:
             let viewController = CGContextViewController()
-            viewController.view.backgroundColor = .greenColor()
+            viewController.view.backgroundColor = .green
             window!.rootViewController = viewController
         }
         

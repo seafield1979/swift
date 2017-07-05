@@ -13,7 +13,7 @@ class ProgressViewController: UIViewController {
     @IBOutlet weak var progress1: UIProgressView!
     var progress2 : UIProgressView?
     
-    @IBAction func button1Tapped(sender: AnyObject) {
+    @IBAction func button1Tapped(_ sender: AnyObject) {
         var newProgress = progress1.progress + 0.1
         if newProgress > 1.0 {
             newProgress = 1.0
@@ -22,7 +22,7 @@ class ProgressViewController: UIViewController {
         progress1.setProgress( newProgress, animated: true)
     }
     
-    @IBAction func button2Tapped(sender: AnyObject) {
+    @IBAction func button2Tapped(_ sender: AnyObject) {
         var newProgress = progress1.progress - 0.1
         if newProgress < 0.0 {
             newProgress = 0.0
@@ -36,15 +36,15 @@ class ProgressViewController: UIViewController {
         progress1.progress = 0.7
     }
     
-    func createProgress(pos : CGPoint) -> UIProgressView
+    func createProgress(_ pos : CGPoint) -> UIProgressView
     {
         // progressViewStyleが.Barだとなぜか表示されない
-        let progress = UIProgressView(progressViewStyle: .Default)
-        progress.frame = CGRectMake(pos.x, pos.y, 200, 20)
-        progress.progressTintColor = UIColor.redColor()
+        let progress = UIProgressView(progressViewStyle: .default)
+        progress.frame = CGRect(x: pos.x, y: pos.y, width: 200, height: 20)
+        progress.progressTintColor = UIColor.red
         
         progress.progress = 0.5
-        progress.transform = CGAffineTransformMakeScale(1.0, 4.0)
+        progress.transform = CGAffineTransform(scaleX: 1.0, y: 4.0)
         
         return progress
     }
@@ -54,7 +54,7 @@ class ProgressViewController: UIViewController {
         
         test1()
         
-        let progress = createProgress(CGPointMake(50,150))
+        let progress = createProgress(CGPoint(x: 50,y: 150))
         self.view.addSubview(progress)
         
     }

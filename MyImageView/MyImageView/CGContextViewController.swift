@@ -49,7 +49,7 @@ class CGContextViewController: UIViewController {
     @IBAction func button1Tapped(sender: AnyObject) {
         let _mode = TestMode.init(rawValue: Int(stepper1.value))!
         
-        testImage( _mode )
+        testImage(mode: _mode )
     }
     
     // MARK: Test func
@@ -67,16 +67,16 @@ class CGContextViewController: UIViewController {
         
         switch mode {
         case .DrawImage:
-            image = createImage(UIImage(named: "image/ume.png")!)
+            image = createImage(image: UIImage(named: "image/ume.png")!)
             
         case .CropImage:
-            image = cropImage(UIImage(named: "image/ume.png")!,cropRect: CGRectMake(50,50,100,100))
+            image = cropImage(image: UIImage(named: "image/ume.png")!,cropRect: CGRect(50,50,100,100))
             
         case .ResizeImage:
-            image = resizeImage(UIImage(named: "image/ume.png")!, size: CGSizeMake(200,200))
+            image = resizeImage(image: UIImage(named: "image/ume.png")!, size: CGSizeMake(200,200))
             
         case .ResizeCrop:
-            image = resizeCropImage(UIImage(named: "image/ume.png")!,
+            image = resizeCropImage(image: UIImage(named: "image/ume.png")!,
                                     srcRect: CGRectMake( 50, 50, 100, 100),
                                     scale: 0.5)
             
