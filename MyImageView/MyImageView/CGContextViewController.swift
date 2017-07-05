@@ -70,18 +70,18 @@ class CGContextViewController: UIViewController {
             image = createImage(image: UIImage(named: "image/ume.png")!)
             
         case .CropImage:
-            image = cropImage(image: UIImage(named: "image/ume.png")!,cropRect: CGRect(50,50,100,100))
+            image = cropImage(image: UIImage(named: "image/ume.png")!,cropRect: CGRect(x:50, y:50, width: 100, height: 100))
             
         case .ResizeImage:
-            image = resizeImage(image: UIImage(named: "image/ume.png")!, size: CGSizeMake(200,200))
+            image = resizeImage(image: UIImage(named: "image/ume.png")!, size: CGSize(width:200, height: 200))
             
         case .ResizeCrop:
             image = resizeCropImage(image: UIImage(named: "image/ume.png")!,
-                                    srcRect: CGRectMake( 50, 50, 100, 100),
+                                    srcRect: CGRect(x: 50,y: 50,width: 100,height: 100),
                                     scale: 0.5)
             
         case .DrawRect:
-            image = createRectImage(CGSizeMake(200,200))
+            image = createRectImage(size:CGSize(width:200,height:200))
             
         case .DrawLine:
             image = createLineImage()
@@ -90,11 +90,11 @@ class CGContextViewController: UIViewController {
             image = createCircleImage()
             
         case .DrawText:
-            image = createTextImage("Hoge Hoge")
+            image = createTextImage(text:"Hoge Hoge")
         }
         
         let imageView = UIImageView(image: image)
-        imageView.frame.origin = CGPointMake(50, 100)
+        imageView.frame.origin = CGPoint(x:50, y:100)
         self.view.addSubview(imageView)
         self.imageView = imageView
     }
@@ -105,12 +105,12 @@ class CGContextViewController: UIViewController {
     func createImage(image :UIImage) ->UIImage
     {
         // 画像コンテキスト作成(Canvasみたいなもの)
-        let imageRect = CGRectMake(0,0,image.size.width,image.size.height)
+        let imageRect = CGRect(x:0,y:0, width: image.size.width, height: image.size.height)
         
         UIGraphicsBeginImageContext(image.size);
         
         // コンテキストにUIImageを描画
-        image.drawInRect(imageRect)
+        image.draw(in: imageRect)
 
         // ~~~ ここにテキストや図形等を描画 ~~~
 
@@ -120,13 +120,13 @@ class CGContextViewController: UIViewController {
         // コンテキストを解放
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
 
     // 一部分を切り抜いた画像を取得
     func cropImage(image: UIImage, cropRect : CGRect) -> UIImage
     {
-        let srcRect = CGRectMake(0,0,image.size.width,image.size.height)
+        let srcRect = CGRect(x:0,y:0,width: image.size.width, height:image.size.height)
         
         // 切り抜き領域が元画像をはみ出していたら修正
         var _cropRect = cropRect
@@ -139,12 +139,13 @@ class CGContextViewController: UIViewController {
         
         // resizeImage にリサイズ済みの画像を生成する
         UIGraphicsBeginImageContext(srcRect.size);
-        image.drawInRect(CGRectMake(0, 0, image.size.width, image.size.height))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        image.draw(in: CGRect(x:0, y:0, width:image.size.width, height:image.size.height))
+        let resizedImage : UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         
         // 切り抜き処理
-        let cropedRef   = CGImageCreateWithImageInRect(resizedImage.CGImage, _cropRect)
-        let cropedImage = UIImage(CGImage: cropedRef!)
+        let cgImage : CGImage = resizedImage!.cgImage!
+        let cropedRef   = cgImage.cropping(to: _cropRect)
+        let cropedImage = UIImage.init(cgImage: cropedRef!)
         
         UIGraphicsEndImageContext()
         
@@ -156,15 +157,15 @@ class CGContextViewController: UIViewController {
     // width, height が元の画像より小さいなら縮小、大きいなら拡大される
     func resizeImage(image: UIImage, size: CGSize) -> UIImage
     {
-        let srcRect = CGRectMake(0,0,image.size.width,image.size.height)
+        let srcRect = CGRect(x:0, y:0, width: image.size.width, height:image.size.height)
         
         // resizeImage にリサイズ済みの画像を生成する
         UIGraphicsBeginImageContext(srcRect.size);
-        image.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        image.draw(in:CGRect(x:0, y:0, width:size.width, height:size.height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     
@@ -174,22 +175,23 @@ class CGContextViewController: UIViewController {
     func resizeCropImage(image: UIImage, srcRect : CGRect, scale : CGFloat) -> UIImage
     {
         // resizeImage にリサイズ済みの画像を生成する
-        let scaledSize = CGSizeMake(image.size.width * scale, image.size.height * scale)
+        let scaledSize = CGSize(width:image.size.width * scale,
+                                height:image.size.height * scale)
 
         UIGraphicsBeginImageContext(scaledSize);
         
         // リサイズ処理
-        image.drawInRect(CGRectMake(0, 0, scaledSize.width, scaledSize.height))
+        image.draw(in: CGRect(x:0, y:0, width:scaledSize.width, height:scaledSize.height))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
         
         // 切り抜き処理
-        let cropRect = CGRectMake( srcRect.origin.x * scale,
-                                   srcRect.origin.y * scale,
-                                   srcRect.size.width * scale,
-                                   srcRect.size.height * scale)
+        let cropRect = CGRect( x:srcRect.origin.x * scale,
+                               y:    srcRect.origin.y * scale,
+                               width:    srcRect.size.width * scale,
+                               height:    srcRect.size.height * scale)
         
-        let cropedRef   = CGImageCreateWithImageInRect(resizedImage.CGImage, cropRect)
-        let cropedImage = UIImage(CGImage: cropedRef!)
+        let cropedRef   = resizedImage!.cgImage!.cropping(to: cropRect)
+        let cropedImage = UIImage(cgImage: cropedRef!)
         
         UIGraphicsEndImageContext()
         
@@ -201,78 +203,78 @@ class CGContextViewController: UIViewController {
     {
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         
-        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        let context:CGContext = UIGraphicsGetCurrentContext()!
         
         // ■を描画 (CGContextFillRect)
         // この塗りつぶす領域の大きさ
-        let rect:CGRect = CGRectMake(0, 0, size.width, size.height)
+        let rect:CGRect = CGRect(x:0, y:0, width:size.width, height:size.height)
         //　色をRGBAで指定
-        CGContextSetRGBFillColor(context,CGFloat(0) / 255,CGFloat(0) / 255,CGFloat(255) / 255, 1.0)
+        context.setFillColor(red: CGFloat(0) / 255,green: CGFloat(0) / 255,blue: CGFloat(255) / 255, alpha: 1.0)
         // 矩形塗りつぶし
-        CGContextFillRect(context, rect)
+        context.fill( rect)
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
 
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     
     // ライン描画
     func createLineImage() -> UIImage
     {
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(300,300), false, 0)
-        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        UIGraphicsBeginImageContextWithOptions(CGSize(width:300,height:300), false, 0)
+        let context:CGContext = UIGraphicsGetCurrentContext()!
         
         // ラインの色、太さを指定
-        CGContextSetRGBFillColor(context, 1.0, 1.0, 0.0, 1.0);
-        CGContextSetLineWidth(context, 10.0);
+        context.setFillColor(red:1.0, green:1.0, blue:0.0, alpha:1.0);
+        context.setLineWidth(10.0);
         
         // ライン描画
         // 色
-        CGContextSetRGBStrokeColor(context, 1.0, 0.0, 1.0, 1.0);
-        CGContextMoveToPoint(context, 50, 100);
-        CGContextAddLineToPoint(context, 150, 100);
-        CGContextAddLineToPoint(context, 150, 150);
-        CGContextAddLineToPoint(context, 50, 150);
-        CGContextAddLineToPoint(context, 50, 200);
-        CGContextAddLineToPoint(context, 150, 200);
-        CGContextStrokePath(context);
+        context.setStrokeColor(red:1.0, green:0.0, blue:1.0, alpha:1.0);
+        context.move(to: CGPoint(x:50, y:100));
+        context.addLine(to: CGPoint(x:150, y:100));
+        context.addLine(to: CGPoint(x:150, y:150));
+        context.addLine(to: CGPoint(x:50, y:150));
+        context.addLine(to: CGPoint(x:50, y:200));
+        context.addLine(to: CGPoint(x:150, y:200));
+        context.strokePath();
 
         // ライン2描画
         // 色
-        CGContextSetRGBStrokeColor(context, 0.0, 1.0, 1.0, 1.0);
-        CGContextMoveToPoint(context, 250, 50);
-        CGContextAddLineToPoint(context, 250, 200);
+        context.setStrokeColor(red: 0.0, green:1.0, blue:1.0, alpha:1.0);
+        context.move(to: CGPoint(x:250, y:50));
+        context.addLine(to: CGPoint(x:250, y:200));
         
-        CGContextStrokePath(context);
+        context.strokePath();
         
         // ベジェ曲線
         // 色
-        CGContextSetRGBStrokeColor(context, 0.0, 0.5, 1.0, 1.0);
-        CGContextMoveToPoint(context,50, 50);
-        CGContextAddCurveToPoint(context, 100, 250,  // cp1
-                                 100, 200,           // cp2
-                                 150, 200);          // x,y
-        CGContextAddCurveToPoint(context, 200, 350,
-                                 50, 250,
-                                 250, 50);
-        CGContextStrokePath(context);
+        context.setStrokeColor(red: 0.0, green:0.5, blue:1.0, alpha:1.0);
+        context.move(to: CGPoint(x:50, y:50));
+        context.addCurve(to: CGPoint(x:100, y:250),  // cp1
+            control1:CGPoint(x:100, y:200),           // cp2
+            control2:CGPoint(x:150, y:200));          // x,y
+        context.addCurve(to: CGPoint(x:200, y:350),  // cp1
+            control1:CGPoint(x:50, y:250),           // cp2
+            control2:CGPoint(x:250, y:50));          // x,y
+        context.strokePath();
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
 
     // 円描画
     func createCircleImage() -> UIImage
     {
         // コンテキストを開く
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(400,400), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width:400,height:400), false, 0)
         // コンテキストを得る
-        let context:CGContextRef = UIGraphicsGetCurrentContext()!
+        let context:CGContext = UIGraphicsGetCurrentContext()!
         
         if false {
             //描画の中心点
@@ -283,24 +285,24 @@ class CGContextViewController: UIViewController {
             let R : CGFloat = 50.0
             
             //円の範囲
-            let rectEllipse = CGRectMake(cx - R, cy - R, R*2, R*2);
+            let rectEllipse = CGRect(x:cx - R, y:cy - R, width:R*2, height:R*2);
             
             //円の中身を描画
-            CGContextSetRGBFillColor(context, 1.0, 0.0, 0.0, 0.1);
-            CGContextFillEllipseInRect(context, rectEllipse);
+            context.setFillColor(red: 1.0, green:0.0, blue:0.0, alpha:0.1);
+            context.fillEllipse(in: rectEllipse);
             
             //円の線を描画
-            CGContextSetRGBStrokeColor(context, 1.0, 0.0, 0.0, 0.5);
-            CGContextSetLineWidth(context, 2.0);  
-            CGContextStrokeEllipseInRect(context, rectEllipse);  
+            context.setStrokeColor(red: 1.0, green:0.0, blue:0.0, alpha:0.5);
+            context.setLineWidth(2.0);
+            context.strokeEllipse(in:rectEllipse);
         }
         
         if true {
             //透明レイヤー開始
-            CGContextBeginTransparencyLayer(context, nil)
+            context.beginTransparencyLayer(auxiliaryInfo: nil)
             
             //パスの描画を開始
-            CGContextBeginPath(context)
+            context.beginPath()
             
             //開始角度
             let startAngle : CGFloat = 0//-(90 * CGFloat(M_PI)/180);
@@ -320,15 +322,14 @@ class CGContextViewController: UIViewController {
                  endAngle	X軸に対する円弧の終了角度（ラジアン）
                  clockwise	時計回りに円弧を作成する場合は1を、反時計回りに円弧を作成する場合は0を指定
             */
-            CGContextMoveToPoint(context, 200, 100);
-            CGContextAddArc(context, 100, 100, 100.0, startAngle, endAngle, 0);
-            CGContextClosePath(context);
-            
-            CGContextSetFillColorWithColor(context, UIColor.blackColor().CGColor);
-            CGContextDrawPath(context, CGPathDrawingMode.Fill)
+            context.move(to: CGPoint(x:200, y:100));
+            context.addArc(center: CGPoint(x:100,y:100), radius: 100.0, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+            context.closePath();
+            context.setFillColor(UIColor.black.cgColor)
+            context.drawPath(using: CGPathDrawingMode.fill)
             
             //透明レイヤー終了
-            CGContextEndTransparencyLayer(context)
+            context.endTransparencyLayer()
         }
         
         // コンテキストに描画済の画像を得る
@@ -336,52 +337,52 @@ class CGContextViewController: UIViewController {
         // コンテキストを解放
         UIGraphicsEndImageContext()
         
-        return newImage
+        return newImage!
     }
     
     // テキストの描画
     func createTextImage(text : String) -> UIImage
     {
-        let size = CGSizeMake(200,50)
+        let size = CGSize(width:200, height:50)
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         
         // 描画する文字列の情報を指定する
         // 文字描画時に反映される影の指定
         let shadow = NSShadow()
-        shadow.shadowOffset = CGSizeMake(0, -1)
-        shadow.shadowColor = UIColor.darkGrayColor()
+        shadow.shadowOffset = CGSize(width:0, height:-1)
+        shadow.shadowColor = UIColor.darkGray.cgColor
         shadow.shadowBlurRadius = 0
         
         // 文字描画に使用するフォントの指定
-        let font = UIFont.boldSystemFontOfSize(20.0)
+        let font = UIFont.boldSystemFont(ofSize:20.0)
         
         // パラグラフ関連の情報の指定
         let style = NSMutableParagraphStyle()
-        style.alignment = NSTextAlignment.Center
-        style.lineBreakMode = NSLineBreakMode.ByClipping
+        style.alignment = NSTextAlignment.center
+        style.lineBreakMode = NSLineBreakMode.byClipping
         
         let textFontAttributes = [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: style,
             NSShadowAttributeName: shadow,
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSBackgroundColorAttributeName: UIColor.blackColor()
-        ]
+            NSForegroundColorAttributeName: UIColor.white.cgColor,
+            NSBackgroundColorAttributeName: UIColor.black.cgColor
+        ] as [String : Any]
         // 文字列を描画する
-        text.drawInRect(CGRectMake(0,0,size.width,size.height), withAttributes:textFontAttributes)
+        text.draw(in: CGRect(x:0,y:0,width: size.width, height:size.height), withAttributes:textFontAttributes)
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        testImage(TestMode.DrawImage)
+        testImage(mode: TestMode.DrawImage)
         
         label1.text = testTitles[0]
         stepper1.maximumValue = Double(testTitles.count - 1)
