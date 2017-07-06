@@ -62,7 +62,7 @@
             startingLineNumber = "22"
             endingLineNumber = "22"
             landmarkName = "textChanged(_:)"
-            landmarkType = "5">
+            landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
@@ -72,7 +72,7 @@
                   moduleName = "UIViewTest"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shutaro/github/swift/UIViewTest/UIViewTest/ViewController/TextViewController.swift"
-                  timestampString = "520996973.342175"
+                  timestampString = "521013865.709311"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "22"
@@ -87,7 +87,7 @@
                   moduleName = "UIViewTest"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shutaro/github/swift/UIViewTest/UIViewTest/ViewController/TextViewController.swift"
-                  timestampString = "520996973.34457"
+                  timestampString = "521013865.711893"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "22"
@@ -95,6 +95,16 @@
                   offsetFromSymbolStart = "125">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

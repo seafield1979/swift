@@ -45,6 +45,12 @@ class ViewController: UIViewController {
         
     }
     
+    /**
+     Viewを移動する
+     - parameter view: 移動対象のUIView
+     - throws: none
+     - returns: none
+     */
     func moveView(_ view : UIView?) {
         let frame = view?.frame
  
