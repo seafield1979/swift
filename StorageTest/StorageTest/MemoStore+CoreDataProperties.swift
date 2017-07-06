@@ -14,7 +14,7 @@ import CoreData
 
 extension MemoStore {
 
-    @NSManaged var date: NSDate?
+    @NSManaged var date: Date?
     @NSManaged var memo: String?
     @NSManaged var name: String?
 

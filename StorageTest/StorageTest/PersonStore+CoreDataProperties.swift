@@ -15,9 +15,9 @@ import CoreData
 extension PersonStore {
 
     @NSManaged var age: NSNumber?
-    @NSManaged var createDate: NSDate?
+    @NSManaged var createDate: Date?
     @NSManaged var id: String?
     @NSManaged var name: String?
-    @NSManaged var updateDate: NSDate?
+    @NSManaged var updateDate: Date?
 
 }

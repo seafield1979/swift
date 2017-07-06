@@ -32,12 +32,12 @@ class CustomView : UIView {
     @IBOutlet weak var button1: UIButton!
     
     init(title : String) {
-        super.init(frame: CGRectMake(0, 0, 320, 73))
+        super.init(frame: CGRect(x: 0, y: 0, width: 320, height: 73))
         self.customViewCommonInit()
     }
     override init(frame : CGRect) {
         // Viewのサイズは固定
-        let _frame = CGRectMake(frame.origin.x, frame.origin.y, 320, 73)
+        let _frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: 320, height: 73)
         super.init(frame:_frame)
         self.customViewCommonInit()
     }
@@ -50,7 +50,7 @@ class CustomView : UIView {
     func customViewCommonInit(){
         // これがないと無限ループ
         if self.subviews.count == 0 {
-            let view = NSBundle.mainBundle().loadNibNamed("CustomView", owner: self, options: nil).first as! UIView
+            let view = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.first as! UIView
 //            view.frame = self.bounds
 //            view.translatesAutoresizingMaskIntoConstraints = true
 //            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]

@@ -19,28 +19,28 @@ class MemoStoreViewController: UIViewController {
     
     // 書き込みボタン
     // データを１件追加する
-    @IBAction func writeButtonTapped(sender: AnyObject) {
+    @IBAction func writeButtonTapped(_ sender: AnyObject) {
         let text = addDataWithMemo(memoTextField.text, name: nameTextField.text)
         textView1.text = text
     }
     
     // 指定の文字列に一致するデータを検索する
-    @IBAction func readButtonTapped(sender: AnyObject) {
+    @IBAction func readButtonTapped(_ sender: AnyObject) {
         let text = selectDataWithName(nameTextField.text)
         textView1.text = text
     }
     
-    @IBAction func deleteButtonTapped(sender: AnyObject) {
+    @IBAction func deleteButtonTapped(_ sender: AnyObject) {
         let text = deleteDataWithName(nameTextField.text)
         textView1.text = text
     }
     
-    @IBAction func showAllButtonTapped(sender: AnyObject) {
+    @IBAction func showAllButtonTapped(_ sender: AnyObject) {
         let text = showAllRecords()
         textView1.text = text
     }
     
-    @IBAction func updateButtonTapped(sender: AnyObject)
+    @IBAction func updateButtonTapped(_ sender: AnyObject)
     {
         let text = updateDataWithName(nameTextField.text, memoStr : memoTextField.text)
         textView1.text = text
@@ -55,11 +55,11 @@ class MemoStoreViewController: UIViewController {
     // MARK: データ操作
     
     // データを１件追加する
-    func addDataWithMemo(memoText : String?, name : String?) -> String
+    func addDataWithMemo(_ memoText : String?, name : String?) -> String
     {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let memo = NSEntityDescription.insertNewObjectForEntityForName("MemoStore", inManagedObjectContext: appDelegate.managedObjectContext) as! MemoStore
+        let memo = NSEntityDescription.insertNewObject(forEntityName: "MemoStore", into: appDelegate.managedObjectContext) as! MemoStore
         
         if let _name = name {
             memo.name = _name
@@ -74,7 +74,7 @@ class MemoStoreViewController: UIViewController {
         else {
             memo.memo = ""
         }
-        memo.date = NSDate()
+        memo.date = Date()
         
         // コミット
         do{
@@ -87,15 +87,15 @@ class MemoStoreViewController: UIViewController {
     }
     
     // レコードを更新
-    func updateDataWithName(name : String?, memoStr : String?) -> String
+    func updateDataWithName(_ name : String?, memoStr : String?) -> String
     {
         if let _name = name {
             if nameTextField.text!.characters.count <= 0 {
                 return "No name"
             }
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let fetchRequest = NSFetchRequest(entityName: "MemoStore")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MemoStore")
             // 検索の条件を作成
             
             // = 文字列一致
@@ -104,7 +104,10 @@ class MemoStoreViewController: UIViewController {
             
             // 検索
             do {
-                let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [MemoStore]
+                let results = try appDelegate.managedObjectContext.fetch(fetchRequest) as! [MemoStore]
+                if results.count <= 0 {
+                    throw NSError(domain: "更新するデータがありませんでした", code: -1, userInfo: nil)
+                }
                 let updateObj = results[0]
                 
                 let oldMemo = updateObj.memo
@@ -118,22 +121,22 @@ class MemoStoreViewController: UIViewController {
                 }
                 return "update name:\(name)\n memo \(oldMemo) -> \(memoStr!)"
             } catch let error as NSError {
-                print(error)
+                print(error.domain)
             }
         }
         return "Couldn't update"
     }
     
     // 指定したメモを取得
-    func selectDataWithName(name : String?) -> String{
+    func selectDataWithName(_ name : String?) -> String{
         if let _name = name {
             
             if nameTextField.text!.characters.count <= 0 {
                 return "couldn't get data"
             }
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let fetchRequest = NSFetchRequest(entityName: "MemoStore")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MemoStore")
             // 検索の条件を作成
             
             // = 文字列一致
@@ -156,7 +159,7 @@ class MemoStoreViewController: UIViewController {
             // 検索
             var text = ""
             do {
-                let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [MemoStore]
+                let results = try appDelegate.managedObjectContext.fetch(fetchRequest) as! [MemoStore]
                 for memo in results {
                     text += "name:\(memo.name!)\nmemo:\(memo.memo!)\ndate:\(memo.date!)\n\n"
                 }
@@ -173,15 +176,15 @@ class MemoStoreViewController: UIViewController {
         return "couldn't get data"
     }
     
-    func deleteDataWithName(name : String?) -> String{
+    func deleteDataWithName(_ name : String?) -> String{
         if let _name = name {
             
             if nameTextField.text!.characters.count <= 0 {
                 return "No name"
             }
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let fetchRequest = NSFetchRequest(entityName: "MemoStore")
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MemoStore")
             // 検索の条件を作成
             
             // = 文字列一致
@@ -190,10 +193,10 @@ class MemoStoreViewController: UIViewController {
             
             // 検索
             do {
-                let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [MemoStore]
+                let results = try appDelegate.managedObjectContext.fetch(fetchRequest) as! [MemoStore]
                 let deleteObj = results[0]
                 let deleteName = deleteObj.name
-                appDelegate.managedObjectContext.deleteObject(deleteObj)
+                appDelegate.managedObjectContext.delete(deleteObj)
 
                 // 保存
                 do{
@@ -211,8 +214,8 @@ class MemoStoreViewController: UIViewController {
     
     // 全レコード表示
     func showAllRecords() -> String{
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let fetchRequest = NSFetchRequest(entityName: "MemoStore")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MemoStore")
         // 検索の条件を作成
         
         // = 文字列一致
@@ -223,7 +226,7 @@ class MemoStoreViewController: UIViewController {
         
         // 検索
         do {
-            let results = try appDelegate.managedObjectContext.executeFetchRequest(fetchRequest) as! [MemoStore]
+            let results = try appDelegate.managedObjectContext.fetch(fetchRequest) as! [MemoStore]
             
             var text = ""
             for memo in results {

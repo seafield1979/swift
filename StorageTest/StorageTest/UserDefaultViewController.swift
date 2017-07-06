@@ -17,13 +17,13 @@ class UserDefaultViewController: UIViewController {
     @IBOutlet weak var label4: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
-    @IBAction func test1ButtonTapped(sender: AnyObject) {
+    @IBAction func test1ButtonTapped(_ sender: AnyObject) {
         setData("hoge", value: "123456789")
         
         
         messageLabel.text = "save hoge=123456789"
     }
-    @IBAction func test2ButtonTapped(sender: AnyObject) {
+    @IBAction func test2ButtonTapped(_ sender: AnyObject) {
         let str : String? = getDataByKey("hoge")
         if let _str = str {
             label1.text = _str
@@ -33,60 +33,60 @@ class UserDefaultViewController: UIViewController {
         }
         messageLabel.text = "get data key=hoge"
     }
-    @IBAction func test3ButtonTapped(sender: AnyObject) {
+    @IBAction func test3ButtonTapped(_ sender: AnyObject) {
         deleteDataByKey("hoge")
         
         messageLabel.text = "delete data key=hoge"
     }
-    @IBAction func test4ButtonTapped(sender: AnyObject) {
+    @IBAction func test4ButtonTapped(_ sender: AnyObject) {
         showAllData()
         
         messageLabel.text = "show all data"
     }
     
     // key = value のデータを作成 or 更新する
-    func setData(key : String, value : String) {
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.setObject(value, forKey: key)
+    func setData(_ key : String, value : String) {
+        let ud = UserDefaults.standard
+        ud.set(value, forKey: key)
         // すぐにシステムに反映(ストレージに保存)
         ud.synchronize()
     }
     
     // keyのデータを読み込む
-    func getDataByKey(key : String) -> String?
+    func getDataByKey(_ key : String) -> String?
     {
-        let ud = NSUserDefaults.standardUserDefaults()
+        let ud = UserDefaults.standard
         
-        let value : AnyObject! = ud.objectForKey(key)
+        let value : AnyObject! = ud.object(forKey: key) as AnyObject!
         
         return value as? String
     }
     
     // keyのデータをStringで読み込む
-    func getStringByKey(key : String) -> String?
+    func getStringByKey(_ key : String) -> String?
     {
-        let ud = NSUserDefaults.standardUserDefaults()
+        let ud = UserDefaults.standard
         
-        let value = ud.stringForKey(key)
+        let value = ud.string(forKey: key)
         
         return value
     }
     
     // keyのデータを削除する
-    func deleteDataByKey(key : String)
+    func deleteDataByKey(_ key : String)
     {
-        let ud = NSUserDefaults.standardUserDefaults()
+        let ud = UserDefaults.standard
         
         // キーidの値を削除
-        ud.removeObjectForKey(key)
+        ud.removeObject(forKey: key)
     }
     
     // 全てのデータを表示する
     func showAllData() {
-        let ud = NSUserDefaults.standardUserDefaults()
+        let ud = UserDefaults.standard
         
         // 設定値すべてを取得　※ システムで用意された設定値も出力されます
-        let dictionary : NSDictionary =  ud.dictionaryRepresentation()
+        let dictionary : NSDictionary =  ud.dictionaryRepresentation() as NSDictionary
 //        print(dictionary)
         
 
@@ -95,7 +95,7 @@ class UserDefaultViewController: UIViewController {
         if let array1 = obj as? NSArray {
             for value in array1 {
                 print(value)
-                print(value.dynamicType)
+                print(type(of: (value) as AnyObject))
             }
         }
         
@@ -105,25 +105,25 @@ class UserDefaultViewController: UIViewController {
             //print(obj.key.dynamicType)
             
             if value is NSString {
-                print(obj.key.description + "(NSString)")
-                print("    " + value.description)
+                print((obj.key as AnyObject).description + "(NSString)")
+                print("    " + (value as AnyObject).description)
             }
             else if value is NSArray {
-                print(obj.key.description + "(NSArray)")
+                print((obj.key as AnyObject).description + "(NSArray)")
                 let objv  = obj.value as? NSArray
                 print("{")
                 for obj2 in objv! {
-                    print("    " + obj2.description)
+                    print("    " + (obj2 as AnyObject).description)
                 }
                 print("}")
             }
             else if value is Int {
-                print(obj.key.description + "(Int)")
-                print("    " + value.description)
+                print((obj.key as AnyObject).description + "(Int)")
+                print("    " + (value as AnyObject).description)
             }
             else {
                 print(obj.key)
-                print(obj.value.dynamicType)
+                print(type(of: (obj.value) as AnyObject))
             }
         }
     }

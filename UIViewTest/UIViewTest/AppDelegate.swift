@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         window = UIWindow(frame:UIScreen.main.bounds)
         
-        let mode = testMode.imageView
+        let mode = testMode.vc
         
         
         // 最初に表示されるViewControllerを生成
