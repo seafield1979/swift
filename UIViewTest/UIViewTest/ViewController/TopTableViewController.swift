@@ -29,6 +29,7 @@ class TopTableViewController: UITableViewController {
         case autolayout = "AutoLayout1"
         case autolayout2 = "AutoLayout2"
         case alertView = "アラート"
+        case tableView = "テーブルビュー"
     }
     
     var items : [String]
@@ -82,7 +83,7 @@ class TopTableViewController: UITableViewController {
     // セルを返す
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CustomCell
         
         cell.textLabel!.text = items[indexPath.row]
 
@@ -165,6 +166,8 @@ class TopTableViewController: UITableViewController {
             
                 case .webview:
                     viewController = WebViewController(nibName: "WebViewController", bundle: nil)
+                case .tableView:
+                    viewController = TableViewController(nibName:"TableViewController", bundle: nil)
                 }
         if let vc = viewController {
             self.navigationController?.pushViewController(vc, animated: true)

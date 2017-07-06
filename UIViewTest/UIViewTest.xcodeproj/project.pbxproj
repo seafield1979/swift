@@ -50,6 +50,8 @@
 		8A5116871F0DDF3800E82FAE /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5116861F0DDF3800E82FAE /* CustomCell.xib */; };
 		8A5116891F0DE07600E82FAE /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5116881F0DE07600E82FAE /* CustomCell.swift */; };
 		8A51168B1F0DF5A400E82FAE /* EnumEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A51168A1F0DF5A400E82FAE /* EnumEnumerable.swift */; };
+		8A51168E1F0E0ED100E82FAE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A51168C1F0E0ED100E82FAE /* TableViewController.swift */; };
+		8A51168F1F0E0ED100E82FAE /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A51168D1F0E0ED100E82FAE /* TableViewController.xib */; };
 		8A54CC511D7A87AC009BBB38 /* Autolayout2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CC501D7A87AC009BBB38 /* Autolayout2ViewController.swift */; };
 		8A63EE961D7FE346006266C5 /* ActionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A63EE941D7FE346006266C5 /* ActionSheetViewController.swift */; };
 		8A63EE971D7FE346006266C5 /* ActionSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A63EE951D7FE346006266C5 /* ActionSheetViewController.xib */; };
@@ -103,6 +105,8 @@
 		8A5116861F0DDF3800E82FAE /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCell.xib; path = TableView/CustomCell.xib; sourceTree = "<group>"; };
 		8A5116881F0DE07600E82FAE /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		8A51168A1F0DF5A400E82FAE /* EnumEnumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumEnumerable.swift; sourceTree = "<group>"; };
+		8A51168C1F0E0ED100E82FAE /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ViewController/TableViewController.swift; sourceTree = "<group>"; };
+		8A51168D1F0E0ED100E82FAE /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableViewController.xib; path = ViewController/TableViewController.xib; sourceTree = "<group>"; };
 		8A54CC501D7A87AC009BBB38 /* Autolayout2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Autolayout2ViewController.swift; path = Autolayout/Autolayout2ViewController.swift; sourceTree = "<group>"; };
 		8A63EE941D7FE346006266C5 /* ActionSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionSheetViewController.swift; path = ViewController/ActionSheetViewController.swift; sourceTree = "<group>"; };
 		8A63EE951D7FE346006266C5 /* ActionSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActionSheetViewController.xib; path = ViewController/ActionSheetViewController.xib; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				8A3D36281D7169CF003528A0 /* ViewController.xib */,
 				8A3D367C1D7698FA003528A0 /* WebViewController.swift */,
 				8A3D367D1D7698FA003528A0 /* WebViewController.xib */,
+				8A51168C1F0E0ED100E82FAE /* TableViewController.swift */,
+				8A51168D1F0E0ED100E82FAE /* TableViewController.xib */,
 			);
 			name = UIView;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 				8A1C167B1D796536004824CB /* AutolayoutViewController.xib in Resources */,
 				8A3D36731D76986D003528A0 /* TextViewController.xib in Resources */,
 				8A3D36461D769522003528A0 /* ImageViewController.xib in Resources */,
+				8A51168F1F0E0ED100E82FAE /* TableViewController.xib in Resources */,
 				8A3D364E1D76959A003528A0 /* ProgressViewController.xib in Resources */,
 				8A3D361C1D71694D003528A0 /* Assets.xcassets in Resources */,
 				8A3D367B1D7698B6003528A0 /* PickerViewController.xib in Resources */,
@@ -332,6 +339,7 @@
 				8A3D36491D76954D003528A0 /* LabelViewController.swift in Sources */,
 				8A3D367A1D7698B6003528A0 /* PickerViewController.swift in Sources */,
 				8A3D36451D769522003528A0 /* ImageViewController.swift in Sources */,
+				8A51168E1F0E0ED100E82FAE /* TableViewController.swift in Sources */,
 				8A5116831F0DD4B100E82FAE /* TopTableViewController.swift in Sources */,
 				8A54CC511D7A87AC009BBB38 /* Autolayout2ViewController.swift in Sources */,
 				8A3D36721D76986D003528A0 /* TextViewController.swift in Sources */,
