@@ -202,17 +202,14 @@ class UDraw {
     }
 
     // テキストを描画する（最初の１行のみ）
-    public static func drawTextOneLine(text: String,alignment: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor )
+    public static func drawText(text: String,alignment: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor )
     {
-//        let size = CGSize(width:300, height:100)
-//        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        
-        // 描画する文字列の情報を指定する
+    
         // 文字描画時に反映される影の指定
-        let shadow = NSShadow()
-        shadow.shadowOffset = CGSize(width:0, height:-1)
-        shadow.shadowColor = UIColor.darkGray
-        shadow.shadowBlurRadius = 0
+//        let shadow = NSShadow()
+//        shadow.shadowOffset = CGSize(width:0, height:-1)
+//        shadow.shadowColor = UIColor.darkGray
+//        shadow.shadowBlurRadius = 0
         
         // 文字描画に使用するフォントの指定
         let font = UIFont.boldSystemFont(ofSize:CGFloat(textSize))
@@ -225,7 +222,7 @@ class UDraw {
         let textFontAttributes = [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: style,
-            NSShadowAttributeName: shadow,
+//            NSShadowAttributeName: shadow,
             NSForegroundColorAttributeName: UIColor.white,
             NSBackgroundColorAttributeName: UIColor.clear
             ] as [String : Any]
@@ -263,52 +260,36 @@ class UDraw {
                              y:_y, width: size.width,
                              height:size.height),
                   withAttributes: textFontAttributes)
-        
-        print("size:" + size.debugDescription)
     }
     
-    public static func drawTextOneLine3(text: String,alignment: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor )
+    
+    // テキストの描画サイズを取得する
+    public static func getTextSize(text: String, textSize: Int) -> CGSize
     {
-        let _text : NSString = text as NSString
-        _text.draw(at: CGPoint(x:x, y:y), withAttributes: [NSFontAttributeName: UIFont.systemFont(ofSize:40.0)])
-    }
+        // 文字描画に使用するフォントの指定
+        let font = UIFont.boldSystemFont(ofSize:CGFloat(textSize))
 
-    public static func drawTextOneLine(text: String,alignment: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor, bgColor: UIColor, margin: CGFloat )
-    {
-        
+        return text.size(attributes: [NSFontAttributeName : font])
     }
     
-    // テキストを描画（複数行対応)
-    public static func drawText(text: String, alignemnt: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor)
-    {
-        
+    // UIImage描画
+    // 画像をそのままのサイズで描画
+    public static func drawImage(x: CGFloat, y: CGFloat, image: UIImage) {
+        let size = image.size
+        image.draw(in: CGRect(x:x, y:y, width:size.width, height:size.height))
     }
     
-    public static func drawText(text: String, alignemnt: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor, bgColor: UIColor)
+    // UIImage描画
+    // 描画座標とサイズを指定
+    public static func drawImage(image: UIImage, x:CGFloat, y:CGFloat, width: CGFloat, height: CGFloat)
     {
-        
-    }
-
-    public static func getTextSize(canvasW: Int, text: String, textSize: Int) -> CGSize
-    {
-        return CGSize(width:0, height: 0)
+        image.draw(in: CGRect(x:x, y:y, width:width, height:height))
     }
     
-    //１行テキストの描画サイズを取得する
-    public static func getOneLineTextSize(text: String, textSize: Int) -> CGSize
+    // UIImage描画
+    // 描画座標とサイズを CGRectで指定
+    public static func drawImage(image: UIImage, rect: CGRect)
     {
-        return CGSize(width:0, height: 0)
-    }
-    
-    
-    // Bitmap画像
-    public static func drawBitmap(image: UIImage, x:CGFloat, y:CGFloat, width: Int, height: Int)
-    {
-        
-    }
-    
-    public static func drawBitmap(image: UIImage, rect: CGRect)
-    {
-        
+        image.draw(in: rect)
     }
 }

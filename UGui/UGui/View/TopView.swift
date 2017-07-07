@@ -33,7 +33,8 @@ class TopView : UIView {
      */
     override func draw(_ rect: CGRect) {
 //        draw1()
-        draw2()
+//        draw2()
+        draw3()
     }
     
     func draw1() {
@@ -101,29 +102,41 @@ class TopView : UIView {
         var y : CGFloat = 50
         let margin : CGFloat = 5
         
-        UDraw.drawTextOneLine(text: "hoge\nhoge", alignment: UAlignment.Center, textSize: 40, x: x, y: y, color: UIColor.black)
+        UDraw.drawText(text: "hoge\nhoge", alignment: UAlignment.Center, textSize: 40, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
         
         y += 100
-        UDraw.drawTextOneLine(text: "hoge2", alignment: UAlignment.Left, textSize: 40, x: x, y: y, color: UIColor.black)
+        UDraw.drawText(text: "hoge2", alignment: UAlignment.Left, textSize: 40, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
         
         y += 50 + margin
-        UDraw.drawTextOneLine(text: "hoge3", alignment: UAlignment.Right, textSize: 40, x: x, y: y, color: UIColor.black)
+        UDraw.drawText(text: "hoge3", alignment: UAlignment.Right, textSize: 40, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
         
         y += 50 + margin
-        UDraw.drawTextOneLine(text: "hoge4", alignment: UAlignment.CenterX, textSize: 40, x: x, y: y, color: UIColor.black)
+        UDraw.drawText(text: "hoge4", alignment: UAlignment.CenterX, textSize: 40, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
         
         y += 50 + margin
-        UDraw.drawTextOneLine(text: "hoge5", alignment: UAlignment.CenterY, textSize: 40, x: x, y: y, color: UIColor.black)
+        UDraw.drawText(text: "hoge5", alignment: UAlignment.CenterY, textSize: 40, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
         
         y += 50 + margin
-        UDraw.drawTextOneLine(text: "hoge6", alignment: UAlignment.Right_CenterY, textSize: 40, x: x, y: y, color: UIColor.black)
+        UDraw.drawText(text: "hoge6", alignment: UAlignment.Right_CenterY, textSize: 40, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+    }
+    
+    /**
+        画像描画のテスト
+    */
+    func draw3() {
+        let image = UIImage(named: "image/ume.png")!
         
+        // サイズを指定して描画
+        UDraw.drawImage(image: image, x:50, y:50, width:100, height:100)
+        
+        // UIImageの元々のサイズで描画
+        UDraw.drawImage(x: 50, y: 150, image: image)
     }
     
     /**
