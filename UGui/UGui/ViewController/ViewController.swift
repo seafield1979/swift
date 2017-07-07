@@ -27,6 +27,9 @@ class ViewController: UIViewController {
                                     height:screenSize.height - statusHeight)
         newView.frame.origin = CGPoint(x:0, y:statusHeight)
         self.view.addSubview(newView)
+        
+        // UILabel
+        
     }
 
     

@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class TopView : UIView {
+    
+    var vt : ViewTouch = ViewTouch()
+    
     override init(frame: CGRect) {
         super.init(frame:frame)
         
@@ -137,6 +140,7 @@ class TopView : UIView {
         
         // UIImageの元々のサイズで描画
         UDraw.drawImage(x: 50, y: 150, image: image)
+        
     }
     
     /**
@@ -148,14 +152,16 @@ class TopView : UIView {
      */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        print("touchesBegan")
+//        print("touchesBegan")
         // タッチイベントを取得する
         let touch = touches.first
         
         // タップした座標を取得する
         let tapLocation = touch!.location(in: self)
         
-        print("touchPos:" + tapLocation.debugDescription)
+//        print("touchPos:" + tapLocation.debugDescription)
+        
+        vt.touchStart(touch: touch!, view: self)
     }
     
     /**
@@ -166,7 +172,7 @@ class TopView : UIView {
      */
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        print("touchesMoved:");
+//        print("touchesMoved:");
         // タッチイベントを取得する
         let touch = touches.first
         
@@ -174,8 +180,10 @@ class TopView : UIView {
         let tapLocation = touch!.location(in: self)
         let prevLocation = touch!.previousLocation(in: self)
         
-        print("prevPos:" + prevLocation.debugDescription)
-        print("touchPos:" + tapLocation.debugDescription)
+//        print("prevPos:" + prevLocation.debugDescription)
+//        print("touchPos:" + tapLocation.debugDescription)
+        
+        vt.touchMove(touch: touch!, view: self)
     }
     
     /**
@@ -187,7 +195,12 @@ class TopView : UIView {
      */
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        print("touchesEnded:")
+//        print("touchesEnded:")
+        
+        // 再描画
+        self.setNeedsDisplay()
+        
+        vt.touchEnd(touch: touches.first!, view: self)
     }
     
     /**

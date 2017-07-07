@@ -83,9 +83,8 @@ class UNClassTest {
     // initializer
     // イニシャライザの前にはfuncは不要
     // 引数なし
-    init () {
-        _str1 = ""
-        _str2 = ""
+    convenience init () {
+        self.init(str1: "", str2: "")
         hoges = Array(repeating: Hoge(), count: 10)
     }
     // 引数あり

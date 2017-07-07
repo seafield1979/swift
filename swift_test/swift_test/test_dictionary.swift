@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 SunSunSoft. All rights reserved.
 //
 /*
+    SwiftではMapの代わりにDictionaryという名前
+ 
     辞書型 Dictionary
     特徴
         宣言時にキーと値の型を宣言できる。ちなみにObjective-CではキーはNSString,値はオブジェクト型だった
@@ -23,7 +25,7 @@ class UNTestDictionary
         
     }
     
-    func test1() -> String {
+    func test1() {
         // 宣言 Dictionary型
         let d0 : Dictionary<String, Int> = ["Apple1" : 1001, "Orange2": 2001, "Banana3" : 501]
         print(d0)
@@ -38,9 +40,9 @@ class UNTestDictionary
         
         // 宣言3 型が混在
         var d3 = ["Apple" : 1000, "Orange" : "2000", 100 : 100] as [AnyHashable : Any]
-        print( d3["Apple"] )
-        print( d3["Orange"] )
-        print( d3[100] )          // インデックスでも参照できる。これが出来るのはすごい
+        print( d3["Apple"] as Any )
+        print( d3["Orange"] as Any )
+        print( d3[100] as Any )          // インデックスでも参照できる。これが出来るのはすごい
         print(d3)
         
         // 値の変更 キーを指定して値を代入する
@@ -75,14 +77,16 @@ class UNTestDictionary
         for (key, value) in d7 {
             print("d7_3 \(key):\(value)")
         }
-        
-        return ""
     }
     
     func test2() {
-        var d1 : [String : Int]? = nil;
+        var d1 : Dictionary<String ,Int> = Dictionary()
+        d1["hoge"] = 100
+        d1["hoge2"] = 200
         
-        
+        for (key, value) in d1 {
+            print("key:" + key + " value:" + value.description)
+        }
     }
     
     

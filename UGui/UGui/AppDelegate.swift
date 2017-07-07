@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewController = ViewController(nibName: "ViewController", bundle: nil)
         viewController.view.backgroundColor = UIColor.white
         
+        // システム初期化
+        initSystem()
         
         window!.rootViewController = viewController
         window!.makeKeyAndVisible();
@@ -43,5 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
     }
 
+    
+    func initSystem() {
+        NanoTimer.initialize()
+        ULog.initialize()
+    }
 }
 

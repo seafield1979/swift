@@ -152,9 +152,15 @@ func testArray(_ mode : Int) {
 
 func testDictionary(_ mode: Int) {
     let dictionary1 = UNTestDictionary()
-    
-    let ret = dictionary1.test1()
-    print("\(ret)")
+
+    switch mode {
+    case 1:
+        dictionary1.test1()
+    case 2:
+        dictionary1.test2()
+    default:
+        break
+    }
 }
 
 func testString(_ mode : Int) {
@@ -415,6 +421,18 @@ func testMath(_ mode:Int) {
     }
 }
 
+// Timer
+func testTimer(_ mode:Int) {
+    let timer = UNTestTimer()
+    
+    switch mode {
+    case 1:
+        timer.test1()
+    default:
+        break
+    }
+}
+
 
 /*
  * コンソールでユーザーの入力を取得する
@@ -462,7 +480,7 @@ while !breakWhile {
         case "array":
             testArray(command.mode)
         case "dic":
-            testDictionary(1)
+            testDictionary(command.mode)
         case "enum":
             testEnum(command.mode)
         case "exception":
@@ -505,6 +523,8 @@ while !breakWhile {
             testStruct(command.mode)
         case "tuple":
             testTuple(command.mode)
+        case "timer":
+            testTimer(command.mode)
         case "arc":
             testARC()
         case "nest":

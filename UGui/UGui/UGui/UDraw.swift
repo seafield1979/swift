@@ -223,7 +223,7 @@ class UDraw {
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: style,
 //            NSShadowAttributeName: shadow,
-            NSForegroundColorAttributeName: UIColor.white,
+            NSForegroundColorAttributeName: color,
             NSBackgroundColorAttributeName: UIColor.clear
             ] as [String : Any]
 
