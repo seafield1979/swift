@@ -403,6 +403,19 @@ func testClassCast(mode:Int) {
     }
 }
 
+// Math
+func testMath(_ mode:Int) {
+    let math = UNTestMath()
+    
+    switch mode {
+    case 1:
+        math.test1()
+    default:
+        break
+    }
+}
+
+
 /*
  * コンソールでユーザーの入力を取得する
  *
@@ -466,10 +479,12 @@ while !breakWhile {
             testFuncObj(command.mode)
         case "nsclass":
             fallthrough
-        case "ns":
-            testNSClass(command.mode)
         case "map":
             testArray(4)
+        case "math":
+            testMath(command.mode)
+        case "ns":
+            testNSClass(command.mode)
         case "opt":
             testOptional(command.mode)
         case "property":

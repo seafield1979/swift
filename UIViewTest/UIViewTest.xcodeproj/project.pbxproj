@@ -216,8 +216,6 @@
 				8A3D36281D7169CF003528A0 /* ViewController.xib */,
 				8A3D367C1D7698FA003528A0 /* WebViewController.swift */,
 				8A3D367D1D7698FA003528A0 /* WebViewController.xib */,
-				8A51168C1F0E0ED100E82FAE /* TableViewController.swift */,
-				8A51168D1F0E0ED100E82FAE /* TableViewController.xib */,
 			);
 			name = UIView;
 			sourceTree = "<group>";
@@ -225,6 +223,8 @@
 		8A5116851F0DDE3400E82FAE /* UITable */ = {
 			isa = PBXGroup;
 			children = (
+				8A51168C1F0E0ED100E82FAE /* TableViewController.swift */,
+				8A51168D1F0E0ED100E82FAE /* TableViewController.xib */,
 				8A5116861F0DDF3800E82FAE /* CustomCell.xib */,
 				8A5116881F0DE07600E82FAE /* CustomCell.swift */,
 			);
