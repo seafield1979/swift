@@ -83,13 +83,13 @@ class ULog {
             return
         }
         
-        for (key, value) in counters {
+        for (key, _) in counters {
             counters[key] = 0
         }
     }
     
     
-    public static func count(tag: String) {
+    public static func count(_ tag: String) {
         if !isCount {
             return
         }
@@ -108,7 +108,7 @@ class ULog {
         }
     
         // 有効無効判定
-        var enable = enables[tag]
+        let enable = enables[tag]
         if enable != nil || enable! == false {
             // 出力しない
         } else {
@@ -121,7 +121,7 @@ class ULog {
             return
         }
         
-        for (key, value) in counters {
+        for (key, _) in counters {
             showCount(tag:key);
         }
     }

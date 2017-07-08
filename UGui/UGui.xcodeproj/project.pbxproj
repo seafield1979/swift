@@ -8,6 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		8A1C2B331F0FC92C005483ED /* NanoTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B321F0FC92C005483ED /* NanoTimer.swift */; };
+		8A1C2B351F10648E005483ED /* UColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B341F10648E005483ED /* UColor.swift */; };
+		8A1C2B391F1064B2005483ED /* UDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B381F1064B2005483ED /* UDebug.swift */; };
+		8A1C2B3B1F1064CC005483ED /* UDpi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B3A1F1064CC005483ED /* UDpi.swift */; };
+		8A1C2B3D1F106513005483ED /* UResouceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B3C1F106513005483ED /* UResouceManager.swift */; };
+		8A1C2B3F1F10653B005483ED /* UUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B3E1F10653B005483ED /* UUtil.swift */; };
+		8A1C2B4A1F106750005483ED /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B491F106750005483ED /* ColorView.swift */; };
+		8A1C2B4C1F10678A005483ED /* UView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B4B1F10678A005483ED /* UView.swift */; };
+		8A1C2B4E1F1067B3005483ED /* UImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B4D1F1067B3005483ED /* UImageView.swift */; };
+		8A1C2B501F1067C8005483ED /* UListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B4F1F1067C8005483ED /* UListItem.swift */; };
+		8A1C2B531F1067F1005483ED /* UListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B521F1067F1005483ED /* UListView.swift */; };
+		8A1C2B551F10686B005483ED /* UButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B541F10686B005483ED /* UButton.swift */; };
+		8A1C2B571F106882005483ED /* UButtonClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B561F106882005483ED /* UButtonClose.swift */; };
+		8A1C2B591F106897005483ED /* UButtonImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B581F106897005483ED /* UButtonImage.swift */; };
+		8A1C2B5B1F1068CA005483ED /* UButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B5A1F1068CA005483ED /* UButtonText.swift */; };
+		8A1C2B5D1F1068EE005483ED /* UMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B5C1F1068EE005483ED /* UMenuBar.swift */; };
+		8A1C2B5F1F10690D005483ED /* UMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B5E1F10690D005483ED /* UMenuItem.swift */; };
+		8A1C2B611F106ACA005483ED /* UScrollBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B601F106ACA005483ED /* UScrollBar.swift */; };
+		8A1C2B641F106AE3005483ED /* UScrollWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B631F106AE3005483ED /* UScrollWindow.swift */; };
+		8A1C2B661F106D03005483ED /* UTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B651F106D03005483ED /* UTextView.swift */; };
+		8A1C2B681F106D19005483ED /* UTextViewOpenClose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B671F106D19005483ED /* UTextViewOpenClose.swift */; };
+		8A1C2B6A1F106D50005483ED /* DrawList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B691F106D50005483ED /* DrawList.swift */; };
+		8A1C2B6C1F106D69005483ED /* UDrawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B6B1F106D69005483ED /* UDrawable.swift */; };
+		8A1C2B6E1F106DFE005483ED /* UDrawableRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B6D1F106DFE005483ED /* UDrawableRect.swift */; };
+		8A1C2B701F106E2D005483ED /* UDrawManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B6F1F106E2D005483ED /* UDrawManager.swift */; };
+		8A1C2B721F106E5F005483ED /* UDialogWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B711F106E5F005483ED /* UDialogWindow.swift */; };
+		8A1C2B741F106E84005483ED /* UDrawItemsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B731F106E84005483ED /* UDrawItemsWindow.swift */; };
+		8A1C2B761F106F86005483ED /* ULogWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B751F106F86005483ED /* ULogWindow.swift */; };
+		8A1C2B781F106FA6005483ED /* UPopupWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B771F106FA6005483ED /* UPopupWindow.swift */; };
+		8A1C2B7A1F106FBC005483ED /* UWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B791F106FBC005483ED /* UWindow.swift */; };
+		8A1C2B7C1F10826C005483ED /* URect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B7B1F10826C005483ED /* URect.swift */; };
 		8A5116C01F0E79CB00E82FAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5116BF1F0E79CB00E82FAE /* AppDelegate.swift */; };
 		8A5116C71F0E79CB00E82FAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A5116C61F0E79CB00E82FAE /* Assets.xcassets */; };
 		8A5116D41F0E7AB000E82FAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5116D21F0E7AB000E82FAE /* ViewController.swift */; };
@@ -22,6 +52,36 @@
 
 /* Begin PBXFileReference section */
 		8A1C2B321F0FC92C005483ED /* NanoTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NanoTimer.swift; path = UUtil/NanoTimer.swift; sourceTree = "<group>"; };
+		8A1C2B341F10648E005483ED /* UColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UColor.swift; path = UUtil/UColor.swift; sourceTree = "<group>"; };
+		8A1C2B381F1064B2005483ED /* UDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDebug.swift; path = UUtil/UDebug.swift; sourceTree = "<group>"; };
+		8A1C2B3A1F1064CC005483ED /* UDpi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDpi.swift; path = UGui/UDpi.swift; sourceTree = "<group>"; };
+		8A1C2B3C1F106513005483ED /* UResouceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UResouceManager.swift; path = UUtil/UResouceManager.swift; sourceTree = "<group>"; };
+		8A1C2B3E1F10653B005483ED /* UUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UUtil.swift; path = UUtil/UUtil.swift; sourceTree = "<group>"; };
+		8A1C2B491F106750005483ED /* ColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
+		8A1C2B4B1F10678A005483ED /* UView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UView.swift; path = UGui/UView.swift; sourceTree = "<group>"; };
+		8A1C2B4D1F1067B3005483ED /* UImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UImageView.swift; path = UGui/UImageView.swift; sourceTree = "<group>"; };
+		8A1C2B4F1F1067C8005483ED /* UListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UListItem.swift; path = UGui/UListItem.swift; sourceTree = "<group>"; };
+		8A1C2B521F1067F1005483ED /* UListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UListView.swift; path = UGui/UListView.swift; sourceTree = "<group>"; };
+		8A1C2B541F10686B005483ED /* UButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UButton.swift; path = UGui/Button/UButton.swift; sourceTree = "<group>"; };
+		8A1C2B561F106882005483ED /* UButtonClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UButtonClose.swift; path = UGui/Button/UButtonClose.swift; sourceTree = "<group>"; };
+		8A1C2B581F106897005483ED /* UButtonImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UButtonImage.swift; path = UGui/Button/UButtonImage.swift; sourceTree = "<group>"; };
+		8A1C2B5A1F1068CA005483ED /* UButtonText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UButtonText.swift; path = UGui/Button/UButtonText.swift; sourceTree = "<group>"; };
+		8A1C2B5C1F1068EE005483ED /* UMenuBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UMenuBar.swift; path = UGui/Menu/UMenuBar.swift; sourceTree = "<group>"; };
+		8A1C2B5E1F10690D005483ED /* UMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UMenuItem.swift; path = UGui/Menu/UMenuItem.swift; sourceTree = "<group>"; };
+		8A1C2B601F106ACA005483ED /* UScrollBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UScrollBar.swift; path = UGui/ScrollBar/UScrollBar.swift; sourceTree = "<group>"; };
+		8A1C2B631F106AE3005483ED /* UScrollWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UScrollWindow.swift; sourceTree = "<group>"; };
+		8A1C2B651F106D03005483ED /* UTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTextView.swift; path = UGui/Text/UTextView.swift; sourceTree = "<group>"; };
+		8A1C2B671F106D19005483ED /* UTextViewOpenClose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UTextViewOpenClose.swift; path = UGui/Text/UTextViewOpenClose.swift; sourceTree = "<group>"; };
+		8A1C2B691F106D50005483ED /* DrawList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawList.swift; path = UGui/UDraw/DrawList.swift; sourceTree = "<group>"; };
+		8A1C2B6B1F106D69005483ED /* UDrawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDrawable.swift; path = UGui/UDraw/UDrawable.swift; sourceTree = "<group>"; };
+		8A1C2B6D1F106DFE005483ED /* UDrawableRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDrawableRect.swift; path = UGui/UDraw/UDrawableRect.swift; sourceTree = "<group>"; };
+		8A1C2B6F1F106E2D005483ED /* UDrawManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDrawManager.swift; path = UGui/UDraw/UDrawManager.swift; sourceTree = "<group>"; };
+		8A1C2B711F106E5F005483ED /* UDialogWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDialogWindow.swift; path = UGui/Window/UDialogWindow.swift; sourceTree = "<group>"; };
+		8A1C2B731F106E84005483ED /* UDrawItemsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDrawItemsWindow.swift; path = UGui/Window/UDrawItemsWindow.swift; sourceTree = "<group>"; };
+		8A1C2B751F106F86005483ED /* ULogWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ULogWindow.swift; path = UGui/Window/ULogWindow.swift; sourceTree = "<group>"; };
+		8A1C2B771F106FA6005483ED /* UPopupWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UPopupWindow.swift; path = UGui/Window/UPopupWindow.swift; sourceTree = "<group>"; };
+		8A1C2B791F106FBC005483ED /* UWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UWindow.swift; path = UGui/Window/UWindow.swift; sourceTree = "<group>"; };
+		8A1C2B7B1F10826C005483ED /* URect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = URect.swift; path = UGui/URect.swift; sourceTree = "<group>"; };
 		8A5116BC1F0E79CB00E82FAE /* UGui.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UGui.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5116BF1F0E79CB00E82FAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A5116C61F0E79CB00E82FAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +107,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A1C2B431F106700005483ED /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C2B541F10686B005483ED /* UButton.swift */,
+				8A1C2B561F106882005483ED /* UButtonClose.swift */,
+				8A1C2B581F106897005483ED /* UButtonImage.swift */,
+				8A1C2B5A1F1068CA005483ED /* UButtonText.swift */,
+			);
+			name = Button;
+			sourceTree = "<group>";
+		};
+		8A1C2B441F10670A005483ED /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C2B5C1F1068EE005483ED /* UMenuBar.swift */,
+				8A1C2B5E1F10690D005483ED /* UMenuItem.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		8A1C2B451F10670F005483ED /* ScrollBar */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C2B601F106ACA005483ED /* UScrollBar.swift */,
+			);
+			name = ScrollBar;
+			sourceTree = "<group>";
+		};
+		8A1C2B461F10671B005483ED /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C2B651F106D03005483ED /* UTextView.swift */,
+				8A1C2B671F106D19005483ED /* UTextViewOpenClose.swift */,
+			);
+			name = Text;
+			sourceTree = "<group>";
+		};
+		8A1C2B471F106724005483ED /* UDraw */ = {
+			isa = PBXGroup;
+			children = (
+				8A5116D91F0E8D2700E82FAE /* UDraw.swift */,
+				8A1C2B691F106D50005483ED /* DrawList.swift */,
+				8A1C2B6B1F106D69005483ED /* UDrawable.swift */,
+				8A1C2B6D1F106DFE005483ED /* UDrawableRect.swift */,
+				8A1C2B6F1F106E2D005483ED /* UDrawManager.swift */,
+			);
+			name = UDraw;
+			sourceTree = "<group>";
+		};
+		8A1C2B481F106735005483ED /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C2B631F106AE3005483ED /* UScrollWindow.swift */,
+				8A1C2B711F106E5F005483ED /* UDialogWindow.swift */,
+				8A1C2B731F106E84005483ED /* UDrawItemsWindow.swift */,
+				8A1C2B751F106F86005483ED /* ULogWindow.swift */,
+				8A1C2B771F106FA6005483ED /* UPopupWindow.swift */,
+				8A1C2B791F106FBC005483ED /* UWindow.swift */,
+			);
+			name = Window;
+			sourceTree = "<group>";
+		};
+		8A1C2B511F1067D8005483ED /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C2B4F1F1067C8005483ED /* UListItem.swift */,
+				8A1C2B521F1067F1005483ED /* UListView.swift */,
+			);
+			name = ListView;
+			sourceTree = "<group>";
+		};
 		8A5116B31F0E79CB00E82FAE = {
 			isa = PBXGroup;
 			children = (
@@ -66,17 +197,19 @@
 		8A5116BE1F0E79CB00E82FAE /* UGui */ = {
 			isa = PBXGroup;
 			children = (
+				8A1C2B3A1F1064CC005483ED /* UDpi.swift */,
+				8A5116DB1F0EA45C00E82FAE /* UAlignment.swift */,
+				8A1C2B3C1F106513005483ED /* UResouceManager.swift */,
+				8A1C2B3E1F10653B005483ED /* UUtil.swift */,
 				8A5116E41F0FB12900E82FAE /* Util */,
 				8A5116E11F0F8DE300E82FAE /* UView */,
 				8A5116DF1F0F65F300E82FAE /* image */,
-				8A5116D61F0E7C3D00E82FAE /* UGui */,
 				8A5116D11F0E7A8900E82FAE /* View */,
 				8A5116BF1F0E79CB00E82FAE /* AppDelegate.swift */,
 				8A5116C61F0E79CB00E82FAE /* Assets.xcassets */,
 				8A5116CB1F0E79CB00E82FAE /* Info.plist */,
 				8A5116D21F0E7AB000E82FAE /* ViewController.swift */,
 				8A5116D31F0E7AB000E82FAE /* ViewController.xib */,
-				8A5116E21F0F8E1400E82FAE /* ViewTouch.swift */,
 			);
 			path = UGui;
 			sourceTree = "<group>";
@@ -89,18 +222,21 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		8A5116D61F0E7C3D00E82FAE /* UGui */ = {
-			isa = PBXGroup;
-			children = (
-				8A5116D91F0E8D2700E82FAE /* UDraw.swift */,
-				8A5116DB1F0EA45C00E82FAE /* UAlignment.swift */,
-			);
-			name = UGui;
-			sourceTree = "<group>";
-		};
 		8A5116E11F0F8DE300E82FAE /* UView */ = {
 			isa = PBXGroup;
 			children = (
+				8A5116E21F0F8E1400E82FAE /* ViewTouch.swift */,
+				8A1C2B431F106700005483ED /* Button */,
+				8A1C2B441F10670A005483ED /* Menu */,
+				8A1C2B511F1067D8005483ED /* ListView */,
+				8A1C2B481F106735005483ED /* Window */,
+				8A1C2B471F106724005483ED /* UDraw */,
+				8A1C2B461F10671B005483ED /* Text */,
+				8A1C2B451F10670F005483ED /* ScrollBar */,
+				8A1C2B491F106750005483ED /* ColorView.swift */,
+				8A1C2B4B1F10678A005483ED /* UView.swift */,
+				8A1C2B4D1F1067B3005483ED /* UImageView.swift */,
+				8A1C2B7B1F10826C005483ED /* URect.swift */,
 			);
 			name = UView;
 			sourceTree = "<group>";
@@ -110,6 +246,8 @@
 			children = (
 				8A5116E51F0FB14400E82FAE /* ULog.swift */,
 				8A1C2B321F0FC92C005483ED /* NanoTimer.swift */,
+				8A1C2B341F10648E005483ED /* UColor.swift */,
+				8A1C2B381F1064B2005483ED /* UDebug.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -186,14 +324,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A1C2B661F106D03005483ED /* UTextView.swift in Sources */,
+				8A1C2B7C1F10826C005483ED /* URect.swift in Sources */,
+				8A1C2B551F10686B005483ED /* UButton.swift in Sources */,
+				8A1C2B4C1F10678A005483ED /* UView.swift in Sources */,
+				8A1C2B641F106AE3005483ED /* UScrollWindow.swift in Sources */,
 				8A5116D41F0E7AB000E82FAE /* ViewController.swift in Sources */,
+				8A1C2B5F1F10690D005483ED /* UMenuItem.swift in Sources */,
+				8A1C2B351F10648E005483ED /* UColor.swift in Sources */,
+				8A1C2B7A1F106FBC005483ED /* UWindow.swift in Sources */,
+				8A1C2B6A1F106D50005483ED /* DrawList.swift in Sources */,
 				8A5116DA1F0E8D2700E82FAE /* UDraw.swift in Sources */,
+				8A1C2B3B1F1064CC005483ED /* UDpi.swift in Sources */,
 				8A5116E61F0FB14400E82FAE /* ULog.swift in Sources */,
+				8A1C2B721F106E5F005483ED /* UDialogWindow.swift in Sources */,
+				8A1C2B701F106E2D005483ED /* UDrawManager.swift in Sources */,
+				8A1C2B531F1067F1005483ED /* UListView.swift in Sources */,
+				8A1C2B781F106FA6005483ED /* UPopupWindow.swift in Sources */,
+				8A1C2B5B1F1068CA005483ED /* UButtonText.swift in Sources */,
+				8A1C2B501F1067C8005483ED /* UListItem.swift in Sources */,
+				8A1C2B5D1F1068EE005483ED /* UMenuBar.swift in Sources */,
+				8A1C2B611F106ACA005483ED /* UScrollBar.swift in Sources */,
 				8A5116D81F0E7C7300E82FAE /* TopView.swift in Sources */,
+				8A1C2B391F1064B2005483ED /* UDebug.swift in Sources */,
+				8A1C2B6E1F106DFE005483ED /* UDrawableRect.swift in Sources */,
 				8A5116C01F0E79CB00E82FAE /* AppDelegate.swift in Sources */,
+				8A1C2B571F106882005483ED /* UButtonClose.swift in Sources */,
+				8A1C2B3F1F10653B005483ED /* UUtil.swift in Sources */,
+				8A1C2B741F106E84005483ED /* UDrawItemsWindow.swift in Sources */,
+				8A1C2B681F106D19005483ED /* UTextViewOpenClose.swift in Sources */,
 				8A5116E31F0F8E1400E82FAE /* ViewTouch.swift in Sources */,
+				8A1C2B4A1F106750005483ED /* ColorView.swift in Sources */,
 				8A5116DC1F0EA45C00E82FAE /* UAlignment.swift in Sources */,
+				8A1C2B3D1F106513005483ED /* UResouceManager.swift in Sources */,
+				8A1C2B4E1F1067B3005483ED /* UImageView.swift in Sources */,
+				8A1C2B591F106897005483ED /* UButtonImage.swift in Sources */,
 				8A1C2B331F0FC92C005483ED /* NanoTimer.swift in Sources */,
+				8A1C2B761F106F86005483ED /* ULogWindow.swift in Sources */,
+				8A1C2B6C1F106D69005483ED /* UDrawable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

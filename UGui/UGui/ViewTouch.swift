@@ -53,7 +53,7 @@ class ViewTouch {
     private var innerType : TouchType = .None    // 内部用のタイプ
     private var timer : Timer? = nil
     
-    private var isTouchUp : Bool = false      // タッチアップしたフレームだけtrueになる
+    public private(set) var isTouchUp : Bool = false      // タッチアップしたフレームだけtrueになる
     var isTouching : Bool = false
     private var isLongTouch : Bool = false
     

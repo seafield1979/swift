@@ -1,0 +1,328 @@
+//
+//  UDrawManager.swift
+//  UGui
+//  描画システムの管理を行う
+//  Created by Shusuke Unno on 2017/07/08.
+//  Copyright © 2017年 Shusuke Unno. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+
+/**
+ * デバッグ座標の１点の情報
+ */
+class DebugPoint {
+    public var x : CGFloat = 0, y : CGFloat = 0
+    public var color : UIColor = UIColor.clear
+    public var drawText : Bool = false
+    
+    init(x : CGFloat, y : CGFloat, color : UIColor, drawText : Bool) {
+        self.x = x
+        self.y = y
+        self.color = color
+        self.drawText = drawText
+    }
+}
+
+class UDrawManager {
+    /**
+     * Constants
+     */
+    public static let TAG : String = "UDrawManager"
+    private static let DEFAULT_PAGE : Int = 1
+    
+    /**
+     * Static variables
+     */
+    private static var singleton = UDrawManager()
+    public static func getInstance() -> UDrawManager { return singleton }
+    
+    // デバッグ用のポイント描画
+    private static var debugPoints : [DebugPoint] = []
+    private static var debugPoints2 : Dictionary<Int, DebugPoint> = Dictionary()
+    
+    /**
+     * Member variable
+     */
+    // タッチ中のDrawableオブジェクト
+    // タッチを放すまで他のオブジェクトのタッチ処理はしない
+    private var touchingObj : UDrawable? = nil
+    
+    // ページのリスト
+    private var mPageList : Dictionary<Int, Dictionary<Int, DrawList>> = Dictionary()
+    
+    // カレントページ
+    private var mCurrentPage : Int = DEFAULT_PAGE
+    
+    private var removeRequest : [UDrawable] = [];
+    
+    /**
+     * Get/Set
+     */
+    public func getTouchingObj() -> UDrawable? {
+        return touchingObj
+    }
+    
+    public func setTouchingObj(touchingObj : UDrawable) {
+        self.touchingObj = touchingObj;
+    }
+    
+    /**
+     * 初期化
+     * アクティビティが生成されるタイミングで呼ぶ
+     */
+    public func initialize() {
+        // デフォルトのページを設定
+// todo        setCurrentPage(mCurrentPage);
+    }
+    
+    public func initPage(page : Int) {
+        // todo Page
+        var lists = mPageList[page]
+        if lists != nil {
+            lists!.removeAll()
+        }
+     }
+     
+     /**
+     * ページを切り替える
+     * @param page 切り替え先のページ 0ならデフォルトのページ
+     */
+    public func setCurrentPage(page : Int) {
+        // 古いページの削除リクエストを処理する
+        removeRequestedList();
+
+        // ページリストが存在しないなら作成する
+        if mPageList[page] != nil {
+            let lists : Dictionary<Int, DrawList> = Dictionary()
+            mPageList[page] = lists
+        }
+        self.mCurrentPage = page
+    }
+     
+     /**
+     * カレントページのリストを取得
+     */
+    private func getCurrentDrawLists() -> Dictionary<Int, DrawList>
+    {
+        return mPageList[mCurrentPage]!
+    }
+     
+     /**
+     * 描画オブジェクトを追加
+     * @param obj
+     * @return
+     */
+    public func addWithNewPriority(obj: UDrawable, priority: Int) -> DrawList {
+        obj.drawPriority = priority
+        return addDrawable(obj)
+    }
+    
+    public func addDrawable(_ obj : UDrawable) -> DrawList {
+        // カレントページのリストを取得
+        var lists : Dictionary<Int, DrawList> = getCurrentDrawLists()
+
+        // 挿入するリストを探す
+        let _priority : Int = obj.getDrawPriority()
+        var list : DrawList? = lists[_priority]
+        if list == nil {
+            // まだ存在していないのでリストを生成
+            list = DrawList(priority: obj.getDrawPriority())
+            lists[_priority] = list
+        }
+        list!.add(obj)
+        obj.setDrawList(list!)
+        return list!
+    }
+    
+     /**
+     * リストに登録済みの描画オブジェクトを削除
+     * 削除要求をバッファに積んでおき、描画前に削除チェックを行う
+     * @param obj
+     * @return
+     */
+    public func removeDrawable(_ obj: UDrawable) {
+        removeRequest.append(obj);
+    }
+     
+    /**
+     * 削除要求のリストの描画オブジェクトを削除する
+     */
+    private func removeRequestedList() {
+        var lists = getCurrentDrawLists()
+        
+        for obj in removeRequest {
+            let _priority : Int = obj.getDrawPriority()
+            let list = lists[_priority]
+            if list != nil {
+                list!.remove(obj)
+            }
+        }
+        removeRequest.removeAll()
+    }
+     
+     /**
+     * 指定のプライオリティのオブジェクトを全て削除
+     * @param priority
+     */
+    public func removeWithPriority(priority : Int) {
+        var lists = getCurrentDrawLists()
+         
+        lists.removeValue(forKey: priority)
+    }
+     
+    /**
+     * DrawListのプライオリティを変更する
+     * @param list1  変更元のリスト
+     * @param priority
+     */
+    public func setPriority(list1 : DrawList, priority : Int) {
+        var lists = getCurrentDrawLists()
+
+        // 変更先のプライオリティーを持つリストを探す
+        let list2 : DrawList? = lists[priority];
+        
+        if list2 != nil {
+            // すでに変更先のプライオリティーのリストがあるので交換
+            let srcPriority = list1.priority
+            lists[priority] = list1
+            lists[srcPriority] = list2
+        } else {
+            lists[priority] = list1
+        }
+    }
+    
+     /**
+     * 追加済みのオブジェクトのプライオリティーを変更する
+     * @param obj
+     * @param priority
+     */
+    public func setPriority(obj : UDrawable, priority : Int) {
+        let lists = getCurrentDrawLists()
+         
+        // 探す
+        for pri in lists.keys {
+            let list : DrawList? = lists[pri]
+            if list!.contains(obj: obj) {
+                if pri == priority {
+                    // すでに同じPriorityにいたら末尾に移動
+                    list!.toLast(obj)
+                }
+                else {
+                    list!.remove(obj)
+                    addDrawable(obj)
+                    return
+                }
+            }
+        }
+    }
+    
+     /**
+     * 配下の描画オブジェクトを全て描画する
+     * @param canvas
+     * @param paint
+     * @return true:再描画あり / false:再描画なし
+     */
+     public func draw() -> Bool {
+         var redraw = false;
+         let lists = getCurrentDrawLists()
+         
+         // 削除要求のかかったオブジェクトを削除する
+         removeRequestedList()
+         
+         for list in lists.values {
+             // 毎フレームの処理
+             let ret = list.doAction()
+             if ret == DoActionRet.Done {
+                 redraw = true
+                 break
+             } else if (ret == DoActionRet.Redraw) {
+                redraw = true;
+             }
+         }
+         
+        ULog.startCount(tag: UDrawManager.TAG)
+        // 描画は手前(priorityが大きい)から順に行う
+        for list in lists.values.reversed() {
+            if list.draw() {
+               redraw = true
+            }
+        }
+         
+        ULog.showCount(tag: UDrawManager.TAG)
+        
+        UDrawManager.drawDebugPoint()
+         
+        return redraw;
+    }
+     
+     /**
+     * タッチイベント処理
+     * 描画優先度の高い順に処理を行う
+     * @param vt
+     * @return true:再描画
+     */
+    public func touchEvent(vt : ViewTouch) -> Bool {
+        let lists = getCurrentDrawLists()
+
+        var isRedraw = false
+        for list in lists.values {
+            if (list.touchUpEvent(vt: vt) ) {
+                // タッチアップイベントは全てのオブジェクトで処理する
+                isRedraw = true
+            }
+        }
+
+        for list in lists.values {
+            if list.touchEvent(vt: vt) {
+                // その他のタッチイベントはtrueが返った時点で打ち切り
+                return true
+            }
+        }
+        return isRedraw
+    }
+    
+    /**
+     * デバッグ用の点を描画する
+     */
+     /**
+     * 点の追加
+     */
+     // List
+    public static func addDebugPoint(x : CGFloat, y : CGFloat, color : UIColor, drawText : Bool )
+    {
+        debugPoints.append(DebugPoint(x:x, y:y, color:color, drawText:drawText))
+    }
+     
+    // Map
+    public static func setDebugPoint(id: Int, x : CGFloat, y : CGFloat, color : UIColor, drawText : Bool)
+    {
+        debugPoints2[id] = DebugPoint(x: x, y: y, color: color, drawText: drawText)
+    }
+     
+     /**
+     * 全てクリア
+     */
+    public static func clearDebugPoint() {
+        debugPoints.removeAll()
+        debugPoints2.removeAll()
+    }
+     
+    private static func drawDebugPoint() {
+        for dp in debugPoints {
+            UDraw.drawLine(x1:dp.x - 50, y1: dp.y, x2: dp.x + 50, y2: dp.y, lineWidth: 3, color: dp.color)
+            UDraw.drawLine(x1: dp.x, y1: dp.y - 50, x2: dp.x, y2: dp.y + 50, lineWidth: 3, color: dp.color)
+        }
+         
+        for dp in debugPoints2.values {
+            UDraw.drawLine(x1: dp.x - 50, y1: dp.y,
+                           x2: dp.x + 50, y2: dp.y,
+                           lineWidth: 3, color: dp.color)
+            UDraw.drawLine(x1: dp.x, y1: dp.y - 50,
+                           x2: dp.x, y2: dp.y + 50,
+                           lineWidth: 3, color: dp.color)
+        }
+    }
+}
