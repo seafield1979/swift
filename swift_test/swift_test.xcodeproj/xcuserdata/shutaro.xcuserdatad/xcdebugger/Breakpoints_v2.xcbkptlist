@@ -35,5 +35,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "swift_test/test_iterator.swift"
+            timestampString = "521351803.730437"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "makeIterator()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "swift_test.Cowntdown.makeIterator () -&gt; Swift.AnyIterator&lt;Swift.Optional&lt;Swift.Int&gt;&gt;"
+                  moduleName = "swift_test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shutaro/github/swift/swift_test/swift_test/test_iterator.swift"
+                  timestampString = "521351158.623982"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "swift_test.Cowntdown.(makeIterator () -&gt; Swift.AnyIterator&lt;Swift.Optional&lt;Swift.Int&gt;&gt;).(closure #1)"
+                  moduleName = "swift_test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shutaro/github/swift/swift_test/swift_test/test_iterator.swift"
+                  timestampString = "521351158.625838"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

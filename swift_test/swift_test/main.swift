@@ -139,6 +139,8 @@ func testArray(_ mode : Int) {
         array1.test3()
     case 4:
         array1.test4()
+    case 5:
+        array1.testList()
     case 10:
         array1.testMap()
     case 11:
@@ -437,6 +439,19 @@ func testTimer(_ mode:Int) {
     }
 }
 
+// Iterator
+func testIterator(_ mode:Int) {
+    let iterator = TestIterator()
+    
+    switch mode {
+    case 1:
+        iterator.test1()
+    case 2:
+        iterator.test2()
+    default:
+        break
+    }
+}
 
 /*
  * コンソールでユーザーの入力を取得する
@@ -499,6 +514,8 @@ while !breakWhile {
             testFunc(command.mode)
         case "funcobj":
             testFuncObj(command.mode)
+        case "iterator":
+            testIterator(command.mode)
         case "nsclass":
             fallthrough
         case "map":

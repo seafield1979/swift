@@ -258,6 +258,20 @@ class UNTestArray{
         let newArray = array1.reversed()
         newArray.forEach { print($0) }
     }
+
+    // 通常の配列は要素の値をコピーして返すが、それを参照で返すようにしたListクラスをテスト
+    func testList() {
+        var list1 : List<String> = List()
+        
+        list1.append("hoge1")
+        list1.append("hoge2")
+        list1.append("hoge3")
+        list1.append("hoge4")
+        
+        for str in list1 {
+            print(str ?? "nil")
+        }
+    }
     
     class Param1 {
         var i1 : Int = 0
