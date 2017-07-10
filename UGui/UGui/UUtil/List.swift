@@ -1,6 +1,6 @@
 //
 //  List.swift
-//  swift_test
+//  UGui
 //
 //  Created koher
 //  https://github.com/koher/Swift-List/blob/master/List.swift
@@ -111,5 +111,5 @@ class List<T> : Sequence{
             return element
         }
     }
-
+    
 }

@@ -1,5 +1,5 @@
 //
-//  SharedDictionary.swift
+//  RefDictionary.swift
 //  UGui
 //
 //  Created by Shusuke Unno on 2017/07/10.
@@ -10,7 +10,7 @@ import Foundation
 
 
 // 参照型の辞書型
-class SharedDictionary<K : Hashable, V> {
+class RefDictionary<K : Hashable, V> {
     private var dict : Dictionary<K, V> = Dictionary()
     subscript(key : K) -> V? {
         get {

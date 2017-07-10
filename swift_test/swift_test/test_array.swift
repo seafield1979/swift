@@ -268,7 +268,7 @@ class UNTestArray{
         list1.append("hoge3")
         list1.append("hoge4")
         
-        for str in list1 {
+        for str : String? in list1 {
             print(str ?? "nil")
         }
     }

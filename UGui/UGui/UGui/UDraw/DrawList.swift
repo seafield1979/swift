@@ -12,7 +12,7 @@ import Foundation
 class DrawList {
     // 描画範囲 この範囲外には描画しない
     public private(set) var priority : Int;
-    private var list : [UDrawable] = [];
+    private var list : List<UDrawable> = List()
     
     init(priority : Int) {
         self.priority = priority;
@@ -78,14 +78,15 @@ class DrawList {
     public func draw() -> Bool {
         // 分けるのが面倒なのでアニメーションと描画を同時に処理する
         var allDone = true
-        for obj : UDrawable in list {
-            if obj.animate() {
+        
+        for obj : UDrawable? in list {
+            if obj!.animate() {
                 allDone = false;
             }
             ULog.count(UDrawManager.TAG)
-            let offset = obj.getDrawOffset()
-            obj.draw(offset);
-            drawId(rect: obj.getRect(), priority: priority);
+            let offset = obj!.getDrawOffset()
+            obj!.draw(offset);
+            drawId(rect: obj!.getRect(), priority: priority);
         }
         return !allDone;
     }
@@ -96,8 +97,8 @@ class DrawList {
      */
     public func doAction() -> DoActionRet {
         var ret = DoActionRet.None;
-        for obj : UDrawable in list {
-            let _ret : DoActionRet = obj.doAction()
+        for obj : UDrawable? in list {
+            let _ret : DoActionRet = obj!.doAction()
             switch(_ret) {
                 case .Done:
                     return _ret;
@@ -142,8 +143,8 @@ class DrawList {
     func touchUpEvent(vt : ViewTouch) -> Bool {
         var isRedraw : Bool = false
         
-        for obj : UDrawable in list {
-            if obj.touchUpEvent(vt: vt) {
+        for obj : UDrawable? in list {
+            if obj!.touchUpEvent(vt: vt) {
                 isRedraw = true
             }
         }
@@ -175,12 +176,12 @@ class DrawList {
     
         // 手前に表示されたものから処理したいのでリストを逆順で処理する
         for obj in list.reversed() {
-            if !obj.isShow {
+            if obj?.isShow == false {
                 continue
             }
-            let offset = obj.getDrawOffset()
+            let offset = obj!.getDrawOffset()
             
-            if obj.touchEvent(vt:vt, offset:offset) {
+            if obj!.touchEvent(vt:vt, offset:offset) {
                 if vt.type == TouchType.Touch {
                     manager.setTouchingObj(obj)
                 }

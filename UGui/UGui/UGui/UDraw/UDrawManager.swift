@@ -40,8 +40,8 @@ class UDrawManager {
     public static func getInstance() -> UDrawManager { return singleton }
     
     // デバッグ用のポイント描画
-    private static var debugPoints : [DebugPoint] = []
-    private static var debugPoints2 : SharedDictionary<Int, DebugPoint> = SharedDictionary()
+    private static var debugPoints : List<DebugPoint> = List()
+    private static var debugPoints2 : RefDictionary<Int, DebugPoint> = RefDictionary()
     
     /**
      * Member variable
@@ -51,12 +51,12 @@ class UDrawManager {
     private var touchingObj : UDrawable? = nil
     
     // ページのリスト
-    private var mPageList : SharedDictionary<Int, SharedDictionary<Int, DrawList>> = SharedDictionary()
+    private var mPageList : RefDictionary<Int, RefDictionary<Int, DrawList>> = RefDictionary()
     
     // カレントページ
     private var mCurrentPage : Int = DEFAULT_PAGE
     
-    private var removeRequest : [UDrawable] = [];
+    private var removeRequest : List<UDrawable> = List();
     
     /**
      * Get/Set
@@ -95,7 +95,7 @@ class UDrawManager {
 
         // ページリストが存在しないなら作成する
         if mPageList[page] == nil {
-            let lists : SharedDictionary<Int, DrawList> = SharedDictionary()
+            let lists : RefDictionary<Int, DrawList> = RefDictionary()
             mPageList[page] = lists
         }
         self.mCurrentPage = page
@@ -104,7 +104,7 @@ class UDrawManager {
      /**
      * カレントページのリストを取得
      */
-    private func getCurrentDrawLists() -> SharedDictionary<Int, DrawList>?
+    private func getCurrentDrawLists() -> RefDictionary<Int, DrawList>?
     {
         return mPageList[mCurrentPage]
     }
@@ -121,7 +121,7 @@ class UDrawManager {
     
     public func addDrawable(_ obj : UDrawable) -> DrawList? {
         // カレントページのリストを取得
-        let lists : SharedDictionary<Int, DrawList>? = getCurrentDrawLists()
+        let lists : RefDictionary<Int, DrawList>? = getCurrentDrawLists()
         if lists == nil {
             return nil
         }
@@ -159,10 +159,10 @@ class UDrawManager {
         }
         
         for obj in removeRequest {
-            let _priority : Int = obj.getDrawPriority()
+            let _priority : Int = obj!.getDrawPriority()
             let list = lists![_priority]
             if list != nil {
-                list!.remove(obj)
+                list!.remove(obj!)
             }
         }
         removeRequest.removeAll()
@@ -174,7 +174,7 @@ class UDrawManager {
      */
     public func removeWithPriority(priority : Int) {
         let lists = getCurrentDrawLists()
-        if var _lists  = lists {
+        if let _lists  = lists {
             _lists.removeValue(forKey: priority)
         }
     }
@@ -185,9 +185,9 @@ class UDrawManager {
      * @param priority
      */
     public func setPriority(list1 : DrawList, priority : Int) {
-        var lists = getCurrentDrawLists()
+        let lists = getCurrentDrawLists()
         
-        if var _lists = lists {
+        if let _lists = lists {
             // 変更先のプライオリティーを持つリストを探す
             let list2 : DrawList? = _lists[priority]
             
@@ -210,7 +210,7 @@ class UDrawManager {
     public func setPriority(obj : UDrawable, priority : Int) {
         let lists = getCurrentDrawLists()
         
-        if var _lists = lists {
+        if let _lists = lists {
             // 探す
             for pri in _lists.keys {
                 let list : DrawList? = _lists[pri]
@@ -329,8 +329,10 @@ class UDrawManager {
      
     private static func drawDebugPoint() {
         for dp in debugPoints {
-            UDraw.drawLine(x1:dp.x - 50, y1: dp.y, x2: dp.x + 50, y2: dp.y, lineWidth: 3, color: dp.color)
-            UDraw.drawLine(x1: dp.x, y1: dp.y - 50, x2: dp.x, y2: dp.y + 50, lineWidth: 3, color: dp.color)
+            if let _dp = dp {
+                UDraw.drawLine(x1:_dp.x - 50, y1: _dp.y, x2: _dp.x + 50, y2: _dp.y, lineWidth: 3, color: _dp.color)
+                UDraw.drawLine(x1: _dp.x, y1: _dp.y - 50, x2: _dp.x, y2: _dp.y + 50, lineWidth: 3, color: _dp.color)
+            }
         }
          
         for dp in debugPoints2.values {
