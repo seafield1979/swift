@@ -29,6 +29,7 @@ class UNTestArray{
     var array7 = [Int]()
     var array8 : [String] = []  // 要素が0だけど空ではない
     var array_empty1 : [String]
+    var param1 : Param1 = Param1(i1: 10, str1: "hoge")
     
     //メソッド
     init() {
@@ -134,6 +135,36 @@ class UNTestArray{
         print("test3_3: \(repeated)")
     }
     
+    // 参照渡しのテスト
+    // Swiftの配列は値渡しなので、配列の要素をコピーして他の変数に設定。その変数を通してオブジェクトのプロパティを変更しても、元の配列の要素の値は変わらない
+    func test4() {
+        var names = ["hoge1", "hoge2"]
+        add(array1: &names)
+        print("names:" + names.debugDescription)
+
+        var arr = getRefArray()
+        arr.append("hoge")
+        print("array4:" + array4.debugDescription)
+        
+        // オブジェクトの参照を取得
+        let p1 = getObj()
+        p1.i1 = 123
+        
+        print("param1:" + param1.i1.description)
+    }
+    
+    func add( array1:inout [String]) {
+        array1.append("hoge")
+    }
+    
+    func getRefArray() -> [String]{
+        return array4
+    }
+    
+    func getObj() -> Param1 {
+        return param1
+    }
+    
     // mapのテスト
     func testMap(){
         // 全要素を10倍した新しい配列を取得
@@ -226,5 +257,14 @@ class UNTestArray{
         let array1 = ["a1", "hoge", "b3", "hage"]
         let newArray = array1.reversed()
         newArray.forEach { print($0) }
+    }
+    
+    class Param1 {
+        var i1 : Int = 0
+        var str1 : String = ""
+        init(i1 : Int, str1 : String) {
+            self.i1 = i1
+            self.str1 = str1
+        }
     }
 }

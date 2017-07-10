@@ -166,6 +166,15 @@ class UNTestOptional {
         }
     }
     
+    func test5() {
+        // オプショナルバインディングテスト
+        let hoge : String? = "hoge"
+        
+        if hoge != nil {
+            print(hoge!)
+        }
+    }
+    
 //    func test5() {
 //        print("UNTextOptional:test5")
 //        let connect2 : optionalConnect2 = optionalConnect2(str:nil)

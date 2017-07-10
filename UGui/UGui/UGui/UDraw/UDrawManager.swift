@@ -41,7 +41,7 @@ class UDrawManager {
     
     // デバッグ用のポイント描画
     private static var debugPoints : [DebugPoint] = []
-    private static var debugPoints2 : Dictionary<Int, DebugPoint> = Dictionary()
+    private static var debugPoints2 : SharedDictionary<Int, DebugPoint> = SharedDictionary()
     
     /**
      * Member variable
@@ -51,7 +51,7 @@ class UDrawManager {
     private var touchingObj : UDrawable? = nil
     
     // ページのリスト
-    private var mPageList : Dictionary<Int, Dictionary<Int, DrawList>> = Dictionary()
+    private var mPageList : SharedDictionary<Int, SharedDictionary<Int, DrawList>> = SharedDictionary()
     
     // カレントページ
     private var mCurrentPage : Int = DEFAULT_PAGE
@@ -65,7 +65,7 @@ class UDrawManager {
         return touchingObj
     }
     
-    public func setTouchingObj(touchingObj : UDrawable) {
+    public func setTouchingObj(_ touchingObj : UDrawable?) {
         self.touchingObj = touchingObj;
     }
     
@@ -75,12 +75,11 @@ class UDrawManager {
      */
     public func initialize() {
         // デフォルトのページを設定
-// todo        setCurrentPage(mCurrentPage);
+        setCurrentPage(mCurrentPage)
     }
     
     public func initPage(page : Int) {
-        // todo Page
-        var lists = mPageList[page]
+        let lists = mPageList[page]
         if lists != nil {
             lists!.removeAll()
         }
@@ -90,13 +89,13 @@ class UDrawManager {
      * ページを切り替える
      * @param page 切り替え先のページ 0ならデフォルトのページ
      */
-    public func setCurrentPage(page : Int) {
+    public func setCurrentPage(_ page : Int) {
         // 古いページの削除リクエストを処理する
         removeRequestedList();
 
         // ページリストが存在しないなら作成する
-        if mPageList[page] != nil {
-            let lists : Dictionary<Int, DrawList> = Dictionary()
+        if mPageList[page] == nil {
+            let lists : SharedDictionary<Int, DrawList> = SharedDictionary()
             mPageList[page] = lists
         }
         self.mCurrentPage = page
@@ -105,9 +104,9 @@ class UDrawManager {
      /**
      * カレントページのリストを取得
      */
-    private func getCurrentDrawLists() -> Dictionary<Int, DrawList>
+    private func getCurrentDrawLists() -> SharedDictionary<Int, DrawList>?
     {
-        return mPageList[mCurrentPage]!
+        return mPageList[mCurrentPage]
     }
      
      /**
@@ -115,22 +114,25 @@ class UDrawManager {
      * @param obj
      * @return
      */
-    public func addWithNewPriority(obj: UDrawable, priority: Int) -> DrawList {
+    public func addWithNewPriority(obj: UDrawable, priority: Int) -> DrawList? {
         obj.drawPriority = priority
         return addDrawable(obj)
     }
     
-    public func addDrawable(_ obj : UDrawable) -> DrawList {
+    public func addDrawable(_ obj : UDrawable) -> DrawList? {
         // カレントページのリストを取得
-        var lists : Dictionary<Int, DrawList> = getCurrentDrawLists()
+        let lists : SharedDictionary<Int, DrawList>? = getCurrentDrawLists()
+        if lists == nil {
+            return nil
+        }
 
         // 挿入するリストを探す
         let _priority : Int = obj.getDrawPriority()
-        var list : DrawList? = lists[_priority]
+        var list : DrawList? = lists![_priority]
         if list == nil {
             // まだ存在していないのでリストを生成
             list = DrawList(priority: obj.getDrawPriority())
-            lists[_priority] = list
+            lists![_priority] = list
         }
         list!.add(obj)
         obj.setDrawList(list!)
@@ -152,10 +154,13 @@ class UDrawManager {
      */
     private func removeRequestedList() {
         var lists = getCurrentDrawLists()
+        if lists == nil {
+            return
+        }
         
         for obj in removeRequest {
             let _priority : Int = obj.getDrawPriority()
-            let list = lists[_priority]
+            let list = lists![_priority]
             if list != nil {
                 list!.remove(obj)
             }
@@ -168,9 +173,10 @@ class UDrawManager {
      * @param priority
      */
     public func removeWithPriority(priority : Int) {
-        var lists = getCurrentDrawLists()
-         
-        lists.removeValue(forKey: priority)
+        let lists = getCurrentDrawLists()
+        if var _lists  = lists {
+            _lists.removeValue(forKey: priority)
+        }
     }
      
     /**
@@ -180,17 +186,19 @@ class UDrawManager {
      */
     public func setPriority(list1 : DrawList, priority : Int) {
         var lists = getCurrentDrawLists()
-
-        // 変更先のプライオリティーを持つリストを探す
-        let list2 : DrawList? = lists[priority];
         
-        if list2 != nil {
-            // すでに変更先のプライオリティーのリストがあるので交換
-            let srcPriority = list1.priority
-            lists[priority] = list1
-            lists[srcPriority] = list2
-        } else {
-            lists[priority] = list1
+        if var _lists = lists {
+            // 変更先のプライオリティーを持つリストを探す
+            let list2 : DrawList? = _lists[priority]
+            
+            if list2 != nil {
+                // すでに変更先のプライオリティーのリストがあるので交換
+                let srcPriority = list1.priority
+                _lists[priority] = list1
+                _lists[srcPriority] = list2
+            } else {
+                _lists[priority] = list1
+            }
         }
     }
     
@@ -201,19 +209,21 @@ class UDrawManager {
      */
     public func setPriority(obj : UDrawable, priority : Int) {
         let lists = getCurrentDrawLists()
-         
-        // 探す
-        for pri in lists.keys {
-            let list : DrawList? = lists[pri]
-            if list!.contains(obj: obj) {
-                if pri == priority {
-                    // すでに同じPriorityにいたら末尾に移動
-                    list!.toLast(obj)
-                }
-                else {
-                    list!.remove(obj)
-                    addDrawable(obj)
-                    return
+        
+        if var _lists = lists {
+            // 探す
+            for pri in _lists.keys {
+                let list : DrawList? = _lists[pri]
+                if list!.contains(obj: obj) {
+                    if pri == priority {
+                        // すでに同じPriorityにいたら末尾に移動
+                        list!.toLast(obj)
+                    }
+                    else {
+                        list!.remove(obj)
+                        addDrawable(obj)
+                        return
+                    }
                 }
             }
         }
@@ -228,11 +238,15 @@ class UDrawManager {
      public func draw() -> Bool {
          var redraw = false;
          let lists = getCurrentDrawLists()
+        
+        if lists == nil {
+            return false
+        }
          
          // 削除要求のかかったオブジェクトを削除する
          removeRequestedList()
          
-         for list in lists.values {
+         for list in lists!.values {
              // 毎フレームの処理
              let ret = list.doAction()
              if ret == DoActionRet.Done {
@@ -245,7 +259,7 @@ class UDrawManager {
          
         ULog.startCount(tag: UDrawManager.TAG)
         // 描画は手前(priorityが大きい)から順に行う
-        for list in lists.values.reversed() {
+        for list in lists!.values.reversed() {
             if list.draw() {
                redraw = true
             }
@@ -266,16 +280,19 @@ class UDrawManager {
      */
     public func touchEvent(vt : ViewTouch) -> Bool {
         let lists = getCurrentDrawLists()
+        if lists == nil {
+            return false
+        }
 
         var isRedraw = false
-        for list in lists.values {
+        for list in lists!.values {
             if (list.touchUpEvent(vt: vt) ) {
                 // タッチアップイベントは全てのオブジェクトで処理する
                 isRedraw = true
             }
         }
 
-        for list in lists.values {
+        for list in lists!.values {
             if list.touchEvent(vt: vt) {
                 // その他のタッチイベントはtrueが返った時点で打ち切り
                 return true

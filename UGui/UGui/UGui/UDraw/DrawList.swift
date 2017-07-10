@@ -26,11 +26,13 @@ class DrawList {
      */
     public func add(_ obj: UDrawable) {
         // これから追加しようとしているオブジェクトをリストから削除
-        for i in 0...list.count-1 {
-            let _obj = list[i]
-            if obj === _obj {
-                list.remove(at: i)
-                break
+        if list.count > 0 {
+            for i in 0...list.count-1 {
+                let _obj = list[i]
+                if obj === _obj {
+                    list.remove(at: i)
+                    break
+                }
             }
         }
         // リストの末尾に追加
@@ -157,20 +159,19 @@ class DrawList {
     func touchEvent(vt : ViewTouch) -> Bool {
         let manager = UDrawManager.getInstance()
 
-        // todo UDrawManger を実装してから
-//        if vt.isTouchUp {
-//            manager.setTouchingObj(nil)
-//        }
-//        
-//        // タッチを放すまではタッチしたオブジェクトのみ処理する
-//        if (manager.getTouchingObj() != null &&
-//            vt.type != TouchType.Touch)
-//        {
-//            if (manager.getTouchingObj().touchEvent(vt, null)) {
-//                return true;
-//            }
-//            return false;
-//        }
+        if vt.isTouchUp {
+            manager.setTouchingObj(nil)
+        }
+        
+        // タッチを放すまではタッチしたオブジェクトのみ処理する
+        if (manager.getTouchingObj() != nil &&
+            vt.type != TouchType.Touch)
+        {
+            if manager.getTouchingObj()?.touchEvent(vt:vt, offset: nil) == true {
+                return true;
+            }
+            return false;
+        }
     
         // 手前に表示されたものから処理したいのでリストを逆順で処理する
         for obj in list.reversed() {
@@ -181,7 +182,7 @@ class DrawList {
             
             if obj.touchEvent(vt:vt, offset:offset) {
                 if vt.type == TouchType.Touch {
-// todo UDrawManager実装後                    manager.setTouchingObj(obj);
+                    manager.setTouchingObj(obj)
                 }
                 return true;
             }

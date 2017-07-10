@@ -21,6 +21,8 @@ import Foundation
 
 class UNTestDictionary
 {
+    var dic1 : SharedDictionary<Int, String> = SharedDictionary()
+    var dic2 : SharedDictionary<Int, SharedDictionary<Int, String>> = SharedDictionary()
     init() {
         
     }
@@ -89,5 +91,72 @@ class UNTestDictionary
         }
     }
     
+    // 参照型の辞書型テスト
+    func test3() {
+        var dic = getDic1()
+        dic[1] = "hoge"
+        dic[2] = "hoge2"
+        
+        dic2[1] = dic1
+        dic2[2] = dic1
+//        var _dic2 = getDic2(key:1)
+        var _dic2 = dic2[1]
+        _dic2![1] = "hogehoge"
+        
+        
+        print("dic[1]:" + dic1[1]!)
+        
+        for key in dic.keys {
+            print("dic_key:" + key.description)
+        }
+    }
+    func getDic1() -> SharedDictionary<Int, String> {
+        return dic1
+    }
+    func getDic2(key : Int) -> SharedDictionary<Int, String>? {
+        return dic2[key]
+    }
+}
+
+// 参照型の辞書型
+class SharedDictionary<K : Hashable, V> {
+    private var dict : Dictionary<K, V> = Dictionary()
+    subscript(key : K) -> V? {
+        get {
+            return dict[key]
+        }
+        set(newValue) {
+            dict[key] = newValue
+        }
+    }
+
+    // keysを実装
+    // 元々のDictionaryのkeysと同じように使用出来る
+    var keys : [K] {
+        get {
+            return Array(dict.keys)
+        }
+    }
     
+    // valuesを実装
+    // 元々のDictionaryのvaluesと同じように使用出来る
+    var values : [V] {
+        get {
+            return Array(dict.values)
+        }
+    }
+    
+    func getDict() -> Dictionary<K,V> {
+        return dict
+    }
+    
+    // すべての要素を削除する
+    func removeAll() {
+        dict.removeAll()
+    }
+    
+    // 指定したキーの要素を削除する
+    func removeValue(forKey: K) {
+        dict.removeValue(forKey: forKey)
+    }
 }

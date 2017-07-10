@@ -49,6 +49,7 @@ class UNTestGenerics {
         
     }
     
+    // 演算子で比較可能であることを示すために Comparable 定義を追加している
     func bigger<T:Comparable>(_ val1: T, val2: T) -> T {
         return val1 > val2 ? val1 : val2
     }

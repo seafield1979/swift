@@ -109,7 +109,7 @@ class ULog {
     
         // 有効無効判定
         let enable = enables[tag]
-        if enable != nil || enable! == false {
+        if enable == nil || enable! == false {
             // 出力しない
         } else {
             print( tag + " count:" + counters[tag]!.description);

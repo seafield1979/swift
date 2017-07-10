@@ -30,8 +30,8 @@ class UDrawable {
      * Member variables
      */
     var drawList : DrawList? = nil    // DrawManagerに描画登録するとnull以外になる
-    private var pos = CGPoint()
-    private var size = CGSize()
+    var pos = CGPoint()
+    var size = CGSize()
     var rect : URect? = nil
     var color = UIColor()
     var drawPriority = 0     // DrawManagerに渡す描画優先度
@@ -206,8 +206,6 @@ class UDrawable {
     
     /**
      * 描画処理
-     * @param canvas
-     * @param paint
      * @param offset 独自の座標系を持つオブジェクトをスクリーン座標系に変換するためのオフセット値
      */
     public func draw(_ offset : CGPoint) {
@@ -247,7 +245,7 @@ class UDrawable {
      * @param vt
      * @return
      */
-    public func touchEvent(vt : ViewTouch, offset : CGPoint) -> Bool
+    public func touchEvent(vt : ViewTouch, offset : CGPoint?) -> Bool
     {
         return false;
     }
@@ -256,14 +254,14 @@ class UDrawable {
      * DrawManagerの描画リストに追加する
      */
     public func addToDrawManager() {
-// todo        UDrawManager.getInstance().addDrawable(self)
+        UDrawManager.getInstance().addDrawable(self)
     }
     
     /**
      * DrawManageのリストから削除する
      */
     public func removeFromDrawManager() {
-// todo        UDrawManager.getInstance().removeDrawable(self);
+        UDrawManager.getInstance().removeDrawable(self)
     }
     
     

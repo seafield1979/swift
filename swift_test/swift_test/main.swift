@@ -138,12 +138,14 @@ func testArray(_ mode : Int) {
     case 3:
         array1.test3()
     case 4:
+        array1.test4()
+    case 10:
         array1.testMap()
-    case 5:
+    case 11:
         array1.testFilter()
-    case 6:
+    case 12:
         array1.testSort()
-    case 7:
+    case 13:
         array1.testReverse()
     default:
         break
@@ -158,6 +160,8 @@ func testDictionary(_ mode: Int) {
         dictionary1.test1()
     case 2:
         dictionary1.test2()
+    case 3:
+        dictionary1.test3()
     default:
         break
     }
@@ -490,7 +494,7 @@ while !breakWhile {
         case "ext":
             testExtension()
         case "filter":
-            testArray(5)
+            testArray(11)
         case "func":
             testFunc(command.mode)
         case "funcobj":
@@ -498,7 +502,7 @@ while !breakWhile {
         case "nsclass":
             fallthrough
         case "map":
-            testArray(4)
+            testArray(10)
         case "math":
             testMath(command.mode)
         case "ns":
@@ -512,11 +516,11 @@ while !breakWhile {
         case "prot":
             testProtocol(command.mode)
         case "reverse":
-            testArray(7)
+            testArray(13)
         case "subscript":
             testSubscript(command.mode)
         case "sort":
-            testArray(6)
+            testArray(12)
         case "string":
             testString(command.mode)
         case "struct":

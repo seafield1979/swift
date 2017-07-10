@@ -22,6 +22,11 @@ class TopView : UIView {
         // 背景色を設定
         self.backgroundColor = UIColor(red:0.5, green:0.5, blue:0.5, alpha:1.0)
         
+        UDrawManager.getInstance().initialize()
+        
+        let circleView = UCircle(priority: 100, x: 100.0, y: 100.0, width: 50.0, height: 50.0)
+        circleView.color = UIColor.red
+        circleView.addToDrawManager()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -37,7 +42,10 @@ class TopView : UIView {
     override func draw(_ rect: CGRect) {
 //        draw1()
 //        draw2()
-        draw3()
+//        draw3()
+        if UDrawManager.getInstance().draw() == true {
+            self.setNeedsDisplay()
+        }
     }
     
     func draw1() {
