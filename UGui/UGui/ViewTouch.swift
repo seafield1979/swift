@@ -29,7 +29,7 @@ public enum TouchType {
     case MoveCancel    // 移動キャンセル
 }
 
-class ViewTouch {
+public class ViewTouch {
     public static let TAG = "ViewTouch"
     
     // クリック判定するためのタッチ座標誤差
@@ -58,12 +58,20 @@ class ViewTouch {
     private var isLongTouch : Bool = false
     
     // タッチ開始した座標
-    private var touchX : CGFloat = 0.0, touchY : CGFloat = 0.0
+    public private(set) var touchX : CGFloat = 0.0, touchY : CGFloat = 0.0
     
     public private(set) var x : CGFloat = 0.0
     public private(set) var y : CGFloat = 0.0       // スクリーン座標
     public private(set) var moveX : CGFloat = 0.0, moveY : CGFloat = 0.0
     public private(set) var isMoveStart : Bool = false;
+    
+    // get/set
+    public func touchX(offset: CGFloat) -> CGFloat {
+        return touchX + offset
+    }
+    public func touchY(offset: CGFloat) -> CGFloat {
+        return touchY + offset
+    }
     
     // タッチ開始した時間
     var touchTime : UInt64 = 0;

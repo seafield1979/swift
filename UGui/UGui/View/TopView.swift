@@ -27,6 +27,10 @@ class TopView : UIView {
         let circleView = UCircle(priority: 100, x: 100.0, y: 100.0, width: 50.0, height: 50.0)
         circleView.color = UIColor.red
         circleView.addToDrawManager()
+        
+        let circleView2 = UCircle(priority: 101, x: 200.0, y: 100.0, width: 50.0, height: 50.0)
+        circleView2.color = UIColor.blue
+        circleView2.addToDrawManager()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -40,9 +44,6 @@ class TopView : UIView {
      - returns: none
      */
     override func draw(_ rect: CGRect) {
-//        draw1()
-//        draw2()
-//        draw3()
         if UDrawManager.getInstance().draw() == true {
             self.setNeedsDisplay()
         }

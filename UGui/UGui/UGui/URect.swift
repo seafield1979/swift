@@ -46,4 +46,16 @@ class URect {
         }
         return true
     }
+    
+    /**
+     指定の点が矩形内に含まれるかどうかを判定する
+     - parameter x: 点のx座標
+     - parameter y: 点のy座標
+     - return true: 含まれている / false: 含まれていない
+     */
+    public func contains(x : CGFloat, y : CGFloat) -> Bool {
+        return left < right && top < bottom
+                && x >= left && x < right && y >= top && y < bottom
+    }
+    
 }

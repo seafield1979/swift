@@ -51,6 +51,7 @@
 		8A5116E31F0F8E1400E82FAE /* ViewTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5116E21F0F8E1400E82FAE /* ViewTouch.swift */; };
 		8A5116E61F0FB14400E82FAE /* ULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5116E51F0FB14400E82FAE /* ULog.swift */; };
 		8AECCE381F13394A005C4ECF /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECCE371F13394A005C4ECF /* List.swift */; };
+		8AECCE3A1F134AFA005C4ECF /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECCE391F134AFA005C4ECF /* Random.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		8A5116E21F0F8E1400E82FAE /* ViewTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTouch.swift; sourceTree = "<group>"; };
 		8A5116E51F0FB14400E82FAE /* ULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ULog.swift; path = UUtil/ULog.swift; sourceTree = "<group>"; };
 		8AECCE371F13394A005C4ECF /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = List.swift; path = UUtil/List.swift; sourceTree = "<group>"; };
+		8AECCE391F134AFA005C4ECF /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = UUtil/Random.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +267,7 @@
 				8A1C2B381F1064B2005483ED /* UDebug.swift */,
 				8A1C2B3E1F10653B005483ED /* UUtil.swift */,
 				8AECCE371F13394A005C4ECF /* List.swift */,
+				8AECCE391F134AFA005C4ECF /* Random.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				8A1C2B781F106FA6005483ED /* UPopupWindow.swift in Sources */,
 				8A1C2B5B1F1068CA005483ED /* UButtonText.swift in Sources */,
 				8A1C2B501F1067C8005483ED /* UListItem.swift in Sources */,
+				8AECCE3A1F134AFA005C4ECF /* Random.swift in Sources */,
 				8A1C2B5D1F1068EE005483ED /* UMenuBar.swift in Sources */,
 				8A1C2B611F106ACA005483ED /* UScrollBar.swift in Sources */,
 				8A5116D81F0E7C7300E82FAE /* TopView.swift in Sources */,

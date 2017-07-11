@@ -19,7 +19,7 @@ public enum MovingType {
     case Deceleration       // 減速
 }
 
-class UDrawable {
+public class UDrawable {
     /**
      * Constants
      */
@@ -33,7 +33,7 @@ class UDrawable {
     var pos = CGPoint()
     var size = CGSize()
     var rect : URect? = nil
-    var color = UIColor()
+    var color : UIColor = UIColor()
     var drawPriority = 0     // DrawManagerに渡す描画優先度
     
     // 自動移動、サイズ変更、色変更
@@ -173,8 +173,8 @@ class UDrawable {
         updateRect()
     }
     
-    public func getRect() -> URect {return rect!}
-    public func getRectWithOffset(offset : CGPoint) -> URect {
+    func getRect() -> URect {return rect!}
+    func getRectWithOffset(offset : CGPoint) -> URect {
         return URect(rect!.left + offset.x,
                      rect!.top + offset.y,
                      rect!.right + offset.x,
@@ -182,7 +182,7 @@ class UDrawable {
     }
     
     // 枠の分太いRectを返す
-    public func getRectWithOffset(offset : CGPoint, frameWidth : CGFloat) -> URect
+    func getRectWithOffset(offset : CGPoint, frameWidth : CGFloat) -> URect
     {
         return URect(rect!.left + offset.x - frameWidth,
                 rect!.top + offset.y - frameWidth,
@@ -447,11 +447,11 @@ class UDrawable {
     /**
      * Drawableインターフェース
      */
-    public func setDrawList(_ drawList : DrawList) {
+    func setDrawList(_ drawList : DrawList) {
         self.drawList = drawList
     }
     
-    public func getDrawList() -> DrawList? {
+    func getDrawList() -> DrawList? {
         return drawList
     }
     
