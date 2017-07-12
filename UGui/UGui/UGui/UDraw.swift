@@ -89,21 +89,24 @@ class UDraw {
      - parameter strokeWidth: 枠の太さ
      - parameter strokeColor: 枠の色
      */
-    public static func drawRoundRectFill(rect: CGRect, cornerR: CGFloat, color: UIColor, strokeWidth: CGFloat, strokeColor: UIColor)
+    public static func drawRoundRectFill(rect: CGRect, cornerR: CGFloat, color: UIColor, strokeWidth: CGFloat, strokeColor: UIColor?)
     {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners:.allCorners, cornerRadii: CGSize(width:cornerR, height:cornerR))
         // 塗りつぶし色
         color.setFill()
         
         // 枠の色
-        strokeColor.setStroke()
+        if strokeColor != nil {
+            strokeColor!.setStroke()
+        }
         
         // 塗りつぶし
         path.fill()
         
         // 枠
-        path.stroke()
-        
+        if strokeColor != nil {
+            path.stroke()
+        }
     }
     
     //  円描画(線)

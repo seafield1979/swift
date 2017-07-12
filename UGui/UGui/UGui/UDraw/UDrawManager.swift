@@ -278,7 +278,7 @@ class UDrawManager {
      * @param vt
      * @return true:再描画
      */
-    public func touchEvent(vt : ViewTouch) -> Bool {
+    public func touchEvent(_ vt : ViewTouch) -> Bool {
         let lists = getCurrentDrawLists()
         if lists == nil {
             return false

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TopView : UIView {
+class TopView : UIView, UButtonCallbacks{
     
     var vt : ViewTouch = ViewTouch()
     
@@ -31,6 +31,9 @@ class TopView : UIView {
         let circleView2 = UCircle(priority: 101, x: 200.0, y: 100.0, width: 50.0, height: 50.0)
         circleView2.color = UIColor.blue
         circleView2.addToDrawManager()
+        
+        let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100, priority: 100, text: "hoge", x: 100.0, y: 200.0, width: 200.0, height: 50.0, textSize: 20, textColor: UColor.White, color: UColor.Blue)
+        textButton.addToDrawManager()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -164,16 +167,15 @@ class TopView : UIView {
      */
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-//        print("touchesBegan")
         // タッチイベントを取得する
         let touch = touches.first
         
-        // タップした座標を取得する
-        let tapLocation = touch!.location(in: self)
-        
-//        print("touchPos:" + tapLocation.debugDescription)
-        
         vt.touchStart(touch: touch!, view: self)
+        
+        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
+        if UDrawManager.getInstance().touchEvent(vt) {
+            invalidate()
+        }
     }
     
     /**
@@ -188,14 +190,12 @@ class TopView : UIView {
         // タッチイベントを取得する
         let touch = touches.first
         
-        // タップした座標を取得する
-        let tapLocation = touch!.location(in: self)
-        let prevLocation = touch!.previousLocation(in: self)
-        
-//        print("prevPos:" + prevLocation.debugDescription)
-//        print("touchPos:" + tapLocation.debugDescription)
-        
         vt.touchMove(touch: touch!, view: self)
+        
+        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
+        if UDrawManager.getInstance().touchEvent(vt) {
+            invalidate()
+        }
     }
     
     /**
@@ -209,10 +209,12 @@ class TopView : UIView {
     {
 //        print("touchesEnded:")
         
-        // 再描画
-        self.setNeedsDisplay()
+        _ = vt.touchEnd(touch: touches.first!, view: self)
         
-        vt.touchEnd(touch: touches.first!, view: self)
+        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
+        if UDrawManager.getInstance().touchEvent(vt) {
+            invalidate()
+        }
     }
     
     /**
@@ -224,5 +226,29 @@ class TopView : UIView {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         print("touchesCancelled")
+    }
+
+    /**
+        UButtonCallbacks
+     */
+    /**
+     * ボタンがクリックされた時の処理
+     * @param id  button id
+     * @param pressedOn  押された状態かどうか(On/Off)
+     * @return
+     */
+    func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
+        switch id {
+        case 100:
+            print("button is clicked")
+        default:
+            break
+        }
+        return true
+    }
+    
+    func invalidate() {
+        // 再描画
+        self.setNeedsDisplay()
     }
 }

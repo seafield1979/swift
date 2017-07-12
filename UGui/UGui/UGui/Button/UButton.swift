@@ -18,7 +18,7 @@ enum UButtonType {
 }
 
 
-protocol UButtonCallbacks {
+public protocol UButtonCallbacks {
     /**
      * ボタンがクリックされた時の処理
      * @param id  button id
@@ -43,8 +43,8 @@ public class UButton : UDrawable {
      * Consts
      */
 //    public static let TAG = "UButton"
-    public static let PRESS_Y : Int = 6;
-    public static let BUTTON_RADIUS : Int = 6;
+    public static let PRESS_Y : Int = 6
+    public static let BUTTON_RADIUS : Int = 6
     public static let DISABLED_COLOR : UIColor = UColor.makeColor(160, 160, 160)
     public static let DEFAULT_BG_COLOR : UIColor = UColor.LightGray
     
@@ -84,15 +84,15 @@ public class UButton : UDrawable {
         return checked
     }
     
-    public func setChecked(checked : Bool) {
+    public func setChecked(_ checked : Bool) {
         self.checked = checked
     }
     
-    public func setEnabled(enabled : Bool) {
+    public func setEnabled(_ enabled : Bool) {
         self.enabled = enabled
     }
     
-    public func setPullDownIcon(pullDown : Bool) {
+    public func setPullDownIcon(_ pullDown : Bool) {
         pullDownIcon = pullDown
     }
     
@@ -148,7 +148,7 @@ public class UButton : UDrawable {
      * 描画処理
      * @param offset 独自の座標系を持つオブジェクトをスクリーン座標系に変換するためのオフセット値
      */
-    public func draw(offset: CGPoint) {
+    override public func draw(_ offset: CGPoint) {
         // UButtonは抽象クラスなので何もしない
     }
     
