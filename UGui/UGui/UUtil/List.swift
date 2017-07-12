@@ -8,7 +8,7 @@
 
 import Foundation
 
-class List<T> : Sequence{
+class List<T> : Sequence, Hashable{
     final var elements: Array<T>
     
     init(_ elements: Array<T>) {
@@ -111,5 +111,16 @@ class List<T> : Sequence{
             return element
         }
     }
+
+    // Hashable
+    // ハッシュ値を返す
+    var hashValue: Int {
+        return self.elements.description.hashValue
+    }
     
+    // ハッシュ値を比較する
+    static func == (lhs: List, rhs: List) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
 }
+

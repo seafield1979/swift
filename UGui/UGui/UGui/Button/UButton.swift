@@ -42,7 +42,7 @@ public class UButton : UDrawable {
     /**
      * Consts
      */
-    public static let TAG = "UButton"
+//    public static let TAG = "UButton"
     public static let PRESS_Y : Int = 6;
     public static let BUTTON_RADIUS : Int = 6;
     public static let DISABLED_COLOR : UIColor = UColor.makeColor(160, 160, 160)
@@ -104,7 +104,7 @@ public class UButton : UDrawable {
      * Constructor
      */
     init(callbacks : UButtonCallbacks, type : UButtonType, id : Int, priority : Int,
-         x : CGFloat, y : CGFloat, width : CGFloat, height : CGFloat, color : UIColor)
+         x : CGFloat, y : CGFloat, width : CGFloat, height : CGFloat, color : UIColor?)
     {
         //init(priority: Int, x: CGFloat, y: CGFloat, width : CGFloat, height : CGFloat)
         
@@ -116,9 +116,9 @@ public class UButton : UDrawable {
         self.color = color
         if color != UIColor.black {
             if type == UButtonType.BGColor {
-                self.pressedColor = UColor.addBrightness(argb:color, addY:0.2)
+                self.pressedColor = UColor.addBrightness(argb:color!, addY:0.2)
             } else {
-                self.pressedColor = UColor.addBrightness(argb:color, addY:-0.2)
+                self.pressedColor = UColor.addBrightness(argb:color!, addY:-0.2)
             }
         }
         disabledColor = UButton.DISABLED_COLOR

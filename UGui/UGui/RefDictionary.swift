@@ -45,6 +45,9 @@ class RefDictionary<K : Hashable, V> {
     func removeAll() {
         dict.removeAll()
     }
+    func clear() {
+        dict.removeAll()
+    }
     
     // 指定したキーの要素を削除する
     func removeValue(forKey key: K) {

@@ -209,6 +209,14 @@ func testEnum(_ mode : Int) {
     switch mode {
     case 1:
         enum1.test1()
+    case 2:
+        enum1.test2(1)
+    case 3:
+        enum1.test3()
+    case 4:
+        enum1.test4()
+    case 5:
+        enum1.test5()
     default:
         break;
     }
@@ -453,6 +461,21 @@ func testIterator(_ mode:Int) {
     }
 }
 
+// Dictionaryのキーとして使用するためのHashableを実装したクラス
+func testHashable(_ mode:Int) {
+    let hashable = UNTestHashable()
+    
+    switch mode {
+    case 1:
+        hashable.test1()
+    case 2:
+        hashable.test2()
+    default:
+        break
+    }
+}
+
+
 /*
  * コンソールでユーザーの入力を取得する
  *
@@ -514,6 +537,10 @@ while !breakWhile {
             testFunc(command.mode)
         case "funcobj":
             testFuncObj(command.mode)
+        
+        case "hash":
+            testHashable(command.mode)
+        
         case "iterator":
             testIterator(command.mode)
         case "nsclass":

@@ -47,6 +47,9 @@ class TopView : UIView {
         if UDrawManager.getInstance().draw() == true {
             self.setNeedsDisplay()
         }
+        
+        let str = NSLocalizedString("hoge", comment: "hoge")
+        print (str)
     }
     
     func draw1() {

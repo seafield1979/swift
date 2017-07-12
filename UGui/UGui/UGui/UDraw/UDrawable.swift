@@ -33,7 +33,7 @@ public class UDrawable {
     var pos = CGPoint()
     var size = CGSize()
     var rect : URect? = nil
-    var color : UIColor = UIColor()
+    var color : UIColor? = UIColor()
     var drawPriority = 0     // DrawManagerに渡す描画優先度
     
     // 自動移動、サイズ変更、色変更
@@ -191,10 +191,10 @@ public class UDrawable {
     }
     
     public func getColor() -> UIColor {
-        return color
+        return color!
     }
     public func setColor(color : UIColor) {
-        self.color = color;
+        self.color = color
     }
     
     /**

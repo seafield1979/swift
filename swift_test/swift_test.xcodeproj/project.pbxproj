@@ -28,6 +28,8 @@
 		7947EC411A7D18220038B8BD /* test_array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7947EC401A7D18220038B8BD /* test_array.swift */; };
 		7947EC431A7D182A0038B8BD /* test_enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7947EC421A7D182A0038B8BD /* test_enum.swift */; };
 		7947EC451A7D1DBB0038B8BD /* test_basis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7947EC441A7D1DBB0038B8BD /* test_basis.swift */; };
+		8A05FE511F14B8EF008C33EC /* test_hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE501F14B8EF008C33EC /* test_hash.swift */; };
+		8A05FE671F152550008C33EC /* EnumEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE661F152550008C33EC /* EnumEnumerable.swift */; };
 		8A1C16741D7803A0004824CB /* test_tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16731D7803A0004824CB /* test_tuple.swift */; };
 		8A1C2B311F0FC40A005483ED /* test_timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B301F0FC40A005483ED /* test_timer.swift */; };
 		8A1C2B841F13220D005483ED /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B831F13220D005483ED /* List.swift */; };
@@ -81,6 +83,8 @@
 		7947EC401A7D18220038B8BD /* test_array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_array.swift; sourceTree = "<group>"; };
 		7947EC421A7D182A0038B8BD /* test_enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_enum.swift; sourceTree = "<group>"; };
 		7947EC441A7D1DBB0038B8BD /* test_basis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_basis.swift; sourceTree = "<group>"; };
+		8A05FE501F14B8EF008C33EC /* test_hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_hash.swift; sourceTree = "<group>"; };
+		8A05FE661F152550008C33EC /* EnumEnumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumEnumerable.swift; sourceTree = "<group>"; };
 		8A1C16731D7803A0004824CB /* test_tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_tuple.swift; sourceTree = "<group>"; };
 		8A1C2B301F0FC40A005483ED /* test_timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_timer.swift; sourceTree = "<group>"; };
 		8A1C2B831F13220D005483ED /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				7947EC3E1A7D0CD10038B8BD /* test_function.swift */,
 				8AA9F7A21F0BCC0700D29A14 /* test_function_obj.swift */,
 				589388A11AE5E4F8009E0A2A /* test_generics.swift */,
+				8A05FE501F14B8EF008C33EC /* test_hash.swift */,
 				8A5116DD1F0F298600E82FAE /* test_math.swift */,
 				8A54CCD01D7E91CB009BBB38 /* test_nsclass.swift */,
 				5893889F1AE5DF9A009E0A2A /* test_nested.swift */,
@@ -182,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				8A1C2B831F13220D005483ED /* List.swift */,
+				8A05FE661F152550008C33EC /* EnumEnumerable.swift */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A1C16741D7803A0004824CB /* test_tuple.swift in Sources */,
+				8A05FE511F14B8EF008C33EC /* test_hash.swift in Sources */,
 				793762581A7A626400196768 /* test_class.swift in Sources */,
 				8A5C4D081D6E9DD400FB8621 /* test_subscript.swift in Sources */,
 				589388A41AE61E84009E0A2A /* test_accessLevel.swift in Sources */,
@@ -255,6 +262,7 @@
 				7947EC451A7D1DBB0038B8BD /* test_basis.swift in Sources */,
 				8A1C2B861F132940005483ED /* test_iterator.swift in Sources */,
 				58EED45A1AD3C4B3008799BE /* test_struct.swift in Sources */,
+				8A05FE671F152550008C33EC /* EnumEnumerable.swift in Sources */,
 				8AA9F7A51F0BD5E300D29A14 /* test_closure.swift in Sources */,
 				8A3D36421D75C151003528A0 /* test_string.swift in Sources */,
 				8A1C2B311F0FC40A005483ED /* test_timer.swift in Sources */,

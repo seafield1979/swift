@@ -73,8 +73,39 @@ class UNTestEnum {
         case red        // 赤
     }
     
+    // 列挙型自身の値を変更する
+    enum Signal4 : Int {
+        case blue = 1   // 青
+        case yellow     // 黄
+        case red        // 赤
+        
+        // 次の列挙値に変更
+        mutating func next() {
+            switch self {
+            case .blue:
+                self = .yellow
+            case .yellow:
+                self = .red
+            case .red:
+                self = .blue
+            }
+        }
+        
+        // 前の列挙値に変更
+        mutating func prev() {
+            switch( self ) {
+            case .blue:
+                self = .red
+            case .yellow:
+                self = .blue
+            case .red:
+                self = .yellow
+            }
+        }
+    }
+    
     // 文字列型
-    enum String1 : String {
+    enum String1 : String, EnumEnumerable{
         case Hoge = "hoge"
         case Mage = "mage"
         case Kage = "kage"
@@ -97,15 +128,41 @@ class UNTestEnum {
         }
     }
     
-    init () {
+    // 次の値、前の値に遷移できる
+    enum SignalMove : Int, EnumEnumerable {
+        case blue
+        case yellow
+        case red
         
+        static let mapper: [SignalMove: String] = [
+            .blue: "青",
+            .yellow: "黄",
+            .red: "赤"
+        ]
+        var string: String {
+            return SignalMove.mapper[self]!
+        }
+        
+        // 次の列挙値に変更
+        mutating func next() {
+            let next = (self.rawValue + 1) % SignalMove.count
+            self = SignalMove.cases[next]
+        }
+        // 前の列挙値に変更
+        mutating func prev() {
+            let prev = (self.rawValue - 1 + SignalMove.count) % SignalMove.count
+            self = SignalMove.cases[prev]
+        }
+    }
+    
+    init () {
     }
     
     func test1() {
         print("UNTestEnum.test1")
         // 参照
-        print(Signal3.blue)
-        print(String1.Kage)
+        print(Signal3.blue) // 整数値
+        print(String1.Kage) // 文字列
         
         // 関数呼び出し
         let s = SignalF.yellow
@@ -152,4 +209,68 @@ class UNTestEnum {
         }
     }
     
+    // 次の値、前の値を参照
+    func test3() {
+        var signal1 = Signal4.red
+        // next
+        print("next")
+        print(signal1.rawValue.description)
+        signal1.next()
+        print(signal1.rawValue.description)
+        signal1.next()
+        print(signal1.rawValue.description)
+        signal1.next()
+        print(signal1.rawValue.description)
+        
+        // prev
+        print("prev")
+        signal1 = Signal4.red
+        print(signal1.rawValue.description)
+        signal1.prev()
+        print(signal1.rawValue.description)
+        signal1.prev()
+        print(signal1.rawValue.description)
+        signal1.prev()
+        print(signal1.rawValue.description)
+        signal1.prev()
+    }
+    
+    // 拡張enum (EnumEnumerable)のテスト
+    // enum で全要素をforループで回したり、要素数を参照したり、インデックスで要素を取得したりできる
+    func test4() {
+        print("count:" + String1.count.description)
+        
+        // forループで全要素を参照
+        for str in String1.cases {
+            print(str)
+        }
+        
+        // インデックスで要素を参照
+        print("[0]:" + String1.cases[0].rawValue)
+        print("[1]:" + String1.cases[1].rawValue)
+        print("[2]:" + String1.cases[2].rawValue)
+    }
+    
+    // 次へ、前へをスマートに行う
+    func test5() {
+        print("next")
+        var signal1 = SignalMove.blue
+        print(signal1.string)
+        signal1.next()
+        print(signal1.string)
+        signal1.next()
+        print(signal1.string)
+        signal1.next()
+        print(signal1.string)
+        
+        print("prev")
+        signal1 = SignalMove.blue
+        print(signal1.string)
+        signal1.prev()
+        print(signal1.string)
+        signal1.prev()
+        print(signal1.string)
+        signal1.prev()
+        print(signal1.string)
+    }
 }
