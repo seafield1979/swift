@@ -41,7 +41,7 @@ public class UUtil {
      * @param bmp
      * @return
      */
-    public static func convToGrayBitmap(image : UIImage) -> UIImage {
+    public static func convToGrayImage(image : UIImage) -> UIImage {
     // グレースケール変換
 //    int height = bmp.getHeight();
 //    int width  = bmp.getWidth();
@@ -72,7 +72,7 @@ public class UUtil {
      * 単色Bitmap画像の色を変更する
      * 元の画像はグレースケール限定
      */
-    public static func convBitmapColor(image : UIImage, newColor : UIColor) -> UIImage {
+    public static func convImageColor(image : UIImage, newColor : UIColor) -> UIImage {
     // グレースケール変換
 //    int height = bmp.getHeight();
 //    int width  = bmp.getWidth();

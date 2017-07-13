@@ -30,62 +30,52 @@
 import Foundation
 
 class UNTestOptional {
-    
-    // declear variables
-    var optInt : Int?
-    var optStr : String?
-    var int1 : Int
-    var str1 : String
-    
     // init
     init(){
-        optInt = nil
-        optStr = nil
-//        int1 = nil      // Nil cannnot be assigned to type 'int'
-//        str1 = nil      // エラー
-        int1 = 100      // nilは代入できない。型に合わせた値を代入すること。
-        str1 = "hoge"
+        
     }
 
-    
     func test1() {
-        optInt = nil        // OK!
-        optStr = nil        // OK!
+        let optInt : Int? = nil        // オプショナル型なのでnilが代入できる
+        let optStr : String? = nil     // オプショナル型なのでnilが代入できる
         
         print("1:\(optStr) \(optInt)")
         
-        optInt = 100
-        optStr = "hello"
+        let optInt2 : Int? = 100     // もちろんnil以外も代入できる
+        let optStr2 : String? = "hello"
         
-        print("2:\(optStr) \(optInt)")
+        print("2:\(optStr2) \(optInt2)")
     }
     
     // アンラップのあれこれ
     func test2() {
-        let a: Int = 1
-        print(a + 2) // -> 3
         
         // Optional型をそのまま使用しようとしてエラーになる例
         var b: Int? = 1
         //println(b + 2) // -> Value of optional type 'Int?' not unwrapped; did you mean to use '!' or '?'?
         
         // Optional型はアンラップすれば使用できる
-        // !でアンラップしてみる
-        var c : String? = "100"
-        c = "hoge"
-        print("23: \(Int(c!))")     // OK
+        // アンラップの方法は ? と ! の２つ方法がある
+        // ?でアンラップすると nil の場合にオプショナルチェーンが無視される(メソッドが呼ばれないでnilを返す)
+        // !でアンラップすると nil の場合に実行時エラーになる
+        var c : String? = "123456789"
+        var c2 : String = (c?.lowercased())!
+        var c3 : String? = c?.lowercased()
         
-        // でもnilが入ったOptional変数を !でアンラップすると実行時エラーになる
-        var d : String? = nil
-        //println("4:\(d!.toInt())")      // 実行時にエラーになる
+        c = nil
+//        c2 = (c?.lowercased())!       // 実行時エラー
+        c3 = c?.lowercased()
         
         // nilが入った変数は?でアンラップするといい感じ
         // ?でアンラップすることをoptional Chainingという
         var e : String? = nil;
-        print("24: \(Int(e!))")     // OK nilが返る
+        // print("24: \(Int(e!))")     // エラー
         e = "123"
-        print("25: \(e?.uppercased())")
-        
+        print("25: \(e!.uppercased())")     // 25: 123
+        print("25: \(e?.uppercased())")     // 25: Optional(123)
+        e = nil
+        print("25: \(e?.uppercased())")     // 25: nil
+
         /*
             e?.uppercaseString は 内部でこんな動き(optional chaining)をしている
             e をアンラップする
@@ -174,25 +164,4 @@ class UNTestOptional {
             print(hoge!)
         }
     }
-    
-//    func test5() {
-//        print("UNTextOptional:test5")
-//        let connect2 : optionalConnect2 = optionalConnect2(str:nil)
-//        print("test1", terminator: "")
-//        connect2.connect1 = nil
-//        if let Str1 = connect2.connect1?.Str? {
-//            print("connect2.connect1.Str \(Str1)")
-//        } else {
-//            print("connect2.connect1.Str doesn't exist")
-//        }
-//        
-//        print("test2", terminator: "")
-//        connect2.connect1 = optionalConnect1(str: "hoge")
-//        if let Str1 = connect2.connect1?.Str? {
-//            print("connect2.connect1.Str \(Str1)")
-//        } else {
-//            print("connect2.connect1.Str don't exist")
-//        }
-//        
-//    }
 }

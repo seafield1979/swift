@@ -34,6 +34,18 @@ class TopView : UIView, UButtonCallbacks{
         
         let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100, priority: 100, text: "hoge", x: 100.0, y: 200.0, width: 200.0, height: 50.0, textSize: 20, textColor: UColor.White, color: UColor.Blue)
         textButton.addToDrawManager()
+        
+        let textButton2 = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100, priority: 101, text: "hoge2", x: 150.0, y: 220.0, width: 200.0, height: 50.0, textSize: 20, textColor: UColor.White, color: UColor.Green)
+        textButton2.addToDrawManager()
+        
+//        let textView = UTextView.createInstance(text: "hoge", priority: 100, canvasW: 0, isDrawBG: true, x: 100.0, y: 300.0)
+//        textView.addToDrawManager()
+        
+        // UButtonImage
+        let image1 = UResourceManager.getImageByName(ImageName.miro)
+        let image2 = UResourceManager.getImageByName(ImageName.ume)
+        let imageButton = UButtonImage.createButton(callbacks: self, id: 101, priority: 100, x: 100.0, y: 300.0, width: 200, height: 100, image: image1, pressedImage: image2)
+        imageButton.addToDrawManager()
     }
     
     public required init?(coder aDecoder: NSCoder) {

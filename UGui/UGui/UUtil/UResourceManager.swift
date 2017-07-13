@@ -115,7 +115,7 @@ public class UResourceManager {
         // キャッシュがなかったのでImageを生成
         image = getImageByName(imageName)
         if color != nil {
-            image = UUtil.convBitmapColor(image: image!, newColor: color!)
+            image = UUtil.convImageColor(image: image!, newColor: color!)
         }
         // キャッシュに追加
         colorImageCache[key] = image

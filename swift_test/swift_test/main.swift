@@ -179,6 +179,8 @@ func testString(_ mode : Int) {
         string1.testRegEx()
     case 3:
         string1.testReplace()
+    case 4:
+        string1.testSubstring()
     default:
         break
     }
@@ -196,8 +198,11 @@ func testOptional(_ mode: Int){
         optional1.test3()
     case 4:
         optional1.test4()
-//    case 5:
-        //optional1.test5()
+    case 5:
+        optional1.test5()
+    case 6:
+        optional1.test6()
+        
     default:
         break
     }
@@ -565,7 +570,7 @@ while !breakWhile {
             testSubscript(command.mode)
         case "sort":
             testArray(12)
-        case "string":
+        case "str":
             testString(command.mode)
         case "struct":
             testStruct(command.mode)

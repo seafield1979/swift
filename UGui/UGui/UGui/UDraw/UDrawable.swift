@@ -32,7 +32,7 @@ public class UDrawable {
     var drawList : DrawList? = nil    // DrawManagerに描画登録するとnull以外になる
     var pos = CGPoint()
     var size = CGSize()
-    var rect : URect? = nil
+    var rect : CGRect? = nil
     var color : UIColor? = UIColor()
     var drawPriority = 0     // DrawManagerに渡す描画優先度
     
@@ -59,6 +59,7 @@ public class UDrawable {
     var animeFrameMax : Int = 0
     var animeRatio : CGFloat = 0.0
     
+    // Constructor
     init(priority: Int, x: CGFloat, y: CGFloat, width : CGFloat, height : CGFloat)
     {
         setPos(x, y)
@@ -118,13 +119,13 @@ public class UDrawable {
     
     public func updateRect() {
         if rect == nil {
-            rect = URect(pos.x, pos.y,
-                         size.width, pos.y + size.height)
+            rect = CGRect(x:pos.x, y:pos.y,
+                          width: size.width, height:size.height)
         } else {
-            rect!.left = pos.x
-            rect!.right = pos.x + size.width
-            rect!.top = pos.y
-            rect!.bottom = pos.y + size.height
+            rect!.x = pos.x
+            rect!.y = pos.y
+            rect!.width = size.width
+            rect!.height = size.height
         }
     }
     public func getIsShow() -> Bool {
@@ -140,10 +141,10 @@ public class UDrawable {
         let _scaleW = size.width * (scaleH - 1.0) / 2
         let _scaleH = size.height * (scaleV - 1.0) / 2
         
-        rect!.left = pos.x + -_scaleW
-        rect!.top = pos.y + -_scaleH
-        rect!.right = pos.x + size.width + _scaleW
-        rect!.bottom = pos.y + size.height + _scaleH
+        rect!.x = pos.x - _scaleW
+        rect!.y = pos.y - _scaleH
+        rect!.width = size.width + _scaleW * 2
+        rect!.height = size.height + _scaleH * 2
     }
     
     public func getRight() -> CGFloat {
@@ -173,21 +174,21 @@ public class UDrawable {
         updateRect()
     }
     
-    func getRect() -> URect {return rect!}
-    func getRectWithOffset(offset : CGPoint) -> URect {
-        return URect(rect!.left + offset.x,
-                     rect!.top + offset.y,
-                     rect!.right + offset.x,
-                     rect!.bottom + offset.y);
+    func getRect() -> CGRect {return rect!}
+    func getRectWithOffset(offset : CGPoint) -> CGRect {
+        return CGRect(x: rect!.x + offset.x,
+                      y: rect!.y + offset.y,
+                      width: rect!.width,
+                      height: rect!.height)
     }
     
     // 枠の分太いRectを返す
-    func getRectWithOffset(offset : CGPoint, frameWidth : CGFloat) -> URect
+    func getRectWithOffset(offset : CGPoint, frameWidth : CGFloat) -> CGRect
     {
-        return URect(rect!.left + offset.x - frameWidth,
-                rect!.top + offset.y - frameWidth,
-                rect!.right + offset.x + frameWidth,
-                rect!.bottom + offset.y + frameWidth);
+        return CGRect(x:rect!.x + offset.x - frameWidth,
+                      y:rect!.y + offset.y - frameWidth,
+                      width:rect!.width + frameWidth,
+                      height:rect!.height + frameWidth)
     }
     
     public func getColor() -> UIColor {
@@ -224,13 +225,17 @@ public class UDrawable {
     /**
      * Rectをライン描画する for Debug
      */
-    public func drawRectLine(offset : CGPoint, color : UIColor) {
-        let _rect = URect(rect!.left + offset.x,
-                        rect!.top + offset.y,
-                        rect!.right + offset.x,
-                        rect!.bottom + offset.y )
+    public func drawRectLine(offset : CGPoint?, color : UIColor) {
+        var _rect = CGRect(x: rect!.x,
+                          y: rect!.y,
+                          width: rect!.width,
+                          height: rect!.height)
+        if offset != nil {
+            _rect.x += offset!.x
+            _rect.y += offset!.y
+        }
         
-        UDraw.drawRect(rect: _rect.toCGRect(), width: 2, color: color)
+        UDraw.drawRect(rect: _rect, width: 2, color: color)
     }
     
     /**
@@ -254,7 +259,7 @@ public class UDrawable {
      * DrawManagerの描画リストに追加する
      */
     public func addToDrawManager() {
-        UDrawManager.getInstance().addDrawable(self)
+        _ = UDrawManager.getInstance().addDrawable(self)
     }
     
     /**

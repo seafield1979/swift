@@ -63,7 +63,8 @@ class Regexp {
             options: NSString.CompareOptions.regularExpression,
             range: nil)
     }
-}
+    
+    }
 
 class UNTestString
 {
@@ -90,4 +91,22 @@ class UNTestString
             replace:"found : $1 : $2")
         print(replaceString)
     }
+    
+    // substringのテスト
+    func testSubstring() {
+        let str = "hoge12345"
+        
+        // 先頭から指定位置まで
+        let str2 = str.substring(to: str.index(str.startIndex, offsetBy: 5))
+        print("to:" + str2)
+        
+        // 指定位置から末尾まで
+        let str3 = str.substring(from: str.index(str.startIndex, offsetBy: 5))
+        print("from:" + str3)
+        
+        // 指定位置から指定位置まで
+        let str4 = str.substring(with: str.index(str.startIndex, offsetBy: 3)..<str.index(str.endIndex, offsetBy: -3))
+        print("with:" + str4)
+    }
+
 }

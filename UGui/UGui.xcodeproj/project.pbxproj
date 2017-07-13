@@ -14,6 +14,7 @@
 		8A05FE691F15A0FF008C33EC /* EnumEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE681F15A0FF008C33EC /* EnumEnumerable.swift */; };
 		8A05FE6B1F15B20B008C33EC /* MyUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE6A1F15B20B008C33EC /* MyUserDefault.swift */; };
 		8A05FE6D1F15CEDE008C33EC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A05FE6C1F15CEDE008C33EC /* Default-568h@2x.png */; };
+		8A05FE701F16FDD5008C33EC /* CGRect+U.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */; };
 		8A1C2B331F0FC92C005483ED /* NanoTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B321F0FC92C005483ED /* NanoTimer.swift */; };
 		8A1C2B351F10648E005483ED /* UColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B341F10648E005483ED /* UColor.swift */; };
 		8A1C2B391F1064B2005483ED /* UDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B381F1064B2005483ED /* UDebug.swift */; };
@@ -70,6 +71,7 @@
 		8A05FE681F15A0FF008C33EC /* EnumEnumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumEnumerable.swift; path = UUtil/EnumEnumerable.swift; sourceTree = "<group>"; };
 		8A05FE6A1F15B20B008C33EC /* MyUserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyUserDefault.swift; path = UUtil/MyUserDefault.swift; sourceTree = "<group>"; };
 		8A05FE6C1F15CEDE008C33EC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGRect+U.swift"; path = "UGui/extension/CGRect+U.swift"; sourceTree = "<group>"; };
 		8A1C2B321F0FC92C005483ED /* NanoTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NanoTimer.swift; path = UUtil/NanoTimer.swift; sourceTree = "<group>"; };
 		8A1C2B341F10648E005483ED /* UColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UColor.swift; path = UUtil/UColor.swift; sourceTree = "<group>"; };
 		8A1C2B381F1064B2005483ED /* UDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDebug.swift; path = UUtil/UDebug.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 				8A05FE5D1F14F604008C33EC /* Localizable.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8A05FE6E1F16FD9F008C33EC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		8A1C2B431F106700005483ED /* Button */ = {
@@ -217,6 +227,7 @@
 		8A5116B31F0E79CB00E82FAE = {
 			isa = PBXGroup;
 			children = (
+				8A05FE6E1F16FD9F008C33EC /* Extension */,
 				8A05FE6C1F15CEDE008C33EC /* Default-568h@2x.png */,
 				8A05FE541F14F40F008C33EC /* Supporting Files */,
 				8A5116BE1F0E79CB00E82FAE /* UGui */,
@@ -391,6 +402,7 @@
 				8A1C2B701F106E2D005483ED /* UDrawManager.swift in Sources */,
 				8A1C2B531F1067F1005483ED /* UListView.swift in Sources */,
 				8A05FE4F1F14B1E4008C33EC /* UResourceManager.swift in Sources */,
+				8A05FE701F16FDD5008C33EC /* CGRect+U.swift in Sources */,
 				8A1C2B781F106FA6005483ED /* UPopupWindow.swift in Sources */,
 				8A1C2B5B1F1068CA005483ED /* UButtonText.swift in Sources */,
 				8A1C2B501F1067C8005483ED /* UListItem.swift in Sources */,

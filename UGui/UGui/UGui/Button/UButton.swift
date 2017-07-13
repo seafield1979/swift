@@ -206,7 +206,8 @@ public class UButton : UDrawable {
         case .None: break
             
         case .Touch:
-            if (rect?.contains(x:vt.touchX(offset: -offset!.x), y:vt.touchY(offset: -offset!.y)))! {
+            let point = CGPoint(x:vt.touchX(offset: -offset!.x), y:vt.touchY(offset: -offset!.y))
+            if (rect?.contains( point))! {
                 isPressed = true
                 done = true
             }
@@ -216,19 +217,20 @@ public class UButton : UDrawable {
             fallthrough
         case .LongPress:
             isPressed = false;
-            if (rect?.contains(x: vt.touchX(offset: -offset!.x), y: vt.touchY(offset: -offset!.y)))! {
+            let point = CGPoint(x: vt.touchX(offset: -offset!.x), y: vt.touchY(offset: -offset!.y))
+            if rect!.contains(point) {
                 if (type == UButtonType.Press3) {
                     // Off -> On に切り替わる一回目だけイベント発生
                     if (pressedOn == false) {
-                        isClicked = true;
-                        pressedOn = true;
-                        done = true;
+                        isClicked = true
+                        pressedOn = true
+                        done = true
                     }
                 } else {
-                    isClicked = true;
-                    done = true;
+                    isClicked = true
+                    done = true
                     if (type == UButtonType.Press2) {
-                        pressedOn = !pressedOn;
+                        pressedOn = !pressedOn
                     }
                 }
             }

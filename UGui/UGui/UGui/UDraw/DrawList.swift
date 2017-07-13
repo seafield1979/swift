@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DrawList {
     // 描画範囲 この範囲外には描画しない
@@ -86,7 +87,7 @@ class DrawList {
             ULog.count(UDrawManager.TAG)
             let offset = obj!.getDrawOffset()
             obj!.draw(offset);
-            drawId(rect: obj!.getRect(), priority: priority);
+            drawId(rect: obj!.rect!, priority: priority);
         }
         return !allDone;
     }
@@ -117,7 +118,7 @@ class DrawList {
      * @param canvas
      * @param paint
      */
-    func drawId(rect : URect, priority : Int) {
+    func drawId(rect : CGRect, priority : Int) {
         // idを表示
         if !UDebug.drawIconId {
             return
