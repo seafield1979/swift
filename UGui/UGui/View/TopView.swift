@@ -69,9 +69,6 @@ public class TopView : UIView, UButtonCallbacks{
         if UDrawManager.getInstance().draw() == true {
             redraw = true
         }
-        
-        let str = NSLocalizedString("hoge", comment: "hoge")
-        print (str)
     }
     
     

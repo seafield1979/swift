@@ -64,12 +64,14 @@ class UDraw {
     }
     
     // 矩形(塗りつぶし＆枠)
-    public static func drawRectFill(rect: CGRect, color: UIColor, strokeWidth: CGFloat, strokeColor: UIColor)
+    public static func drawRectFill(rect: CGRect, color: UIColor, strokeWidth: CGFloat, strokeColor: UIColor?)
     {
         let path = UIBezierPath(rect: rect)
 
         // 枠の色
-        strokeColor.setStroke()
+        if strokeColor != nil {
+            strokeColor!.setStroke()
+        }
         
         // 塗りつぶしの色を設定
         color.setFill()
@@ -78,7 +80,9 @@ class UDraw {
         path.fill()
         
         // 枠描画
-        path.stroke()
+        if strokeColor != nil {
+            path.stroke()
+        }
     }
 
     /**

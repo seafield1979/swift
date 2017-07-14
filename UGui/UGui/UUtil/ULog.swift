@@ -57,8 +57,8 @@ class ULog {
         if !isEnable {
             return
         }
-        let enable = enables[tag]
-        if let _ = enable {
+        let enable = enables[tag]!
+        if enable == true {
             let time = NanoTimer.nanoTime()
             print(time.description + ": " + msg)
         }

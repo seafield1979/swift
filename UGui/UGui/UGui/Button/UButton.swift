@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // ボタンの種類
-enum UButtonType {
+public enum UButtonType {
     case BGColor    // color changing
     case Press      // pressed down
     case Press2     // pressed down, On/Off swiching

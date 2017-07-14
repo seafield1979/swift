@@ -11,4 +11,6 @@ import Foundation
 public enum ImageName : String {
     case miro = "image/miro.jpg"
     case ume = "image/ume.png"
+    
+    case close = "image/close"
 }
