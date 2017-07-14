@@ -58,9 +58,9 @@ public class UButton : UDrawable {
     var checked : Bool = false          // チェックアイコンを表示する
     var isPressed : Bool = false
     var isClicked : Bool = false        // クリックされた(クリックイベントを遅延発生させるために使用)
-    var pressedColor: UIColor = UIColor()
-    var disabledColor : UIColor = UIColor()  // enabled == false のときの色
-    var disabledColor2 : UIColor = UIColor() // eanbled == false のときの濃い色
+    var pressedColor: UIColor
+    var disabledColor : UIColor         // enabled == false のときの色
+    var disabledColor2 : UIColor        // eanbled == false のときの濃い色
     var pressedOn : Bool = false        // Press2タイプの時のOn状態
     var pullDownIcon : Bool = false     // プルダウンのアイコン▼を表示
     
@@ -106,23 +106,23 @@ public class UButton : UDrawable {
     init(callbacks : UButtonCallbacks?, type : UButtonType, id : Int, priority : Int,
          x : CGFloat, y : CGFloat, width : CGFloat, height : CGFloat, color : UIColor?)
     {
-        //init(priority: Int, x: CGFloat, y: CGFloat, width : CGFloat, height : CGFloat)
+        if type == UButtonType.BGColor {
+            self.pressedColor = UColor.addBrightness(argb:color!, addY:0.2)
+        } else {
+            self.pressedColor = UColor.addBrightness(argb:color!, addY:-0.2)
+        }
+        disabledColor = UButton.DISABLED_COLOR
+        disabledColor2 = UColor.addBrightness(argb:disabledColor, addY:-0.2)
         
         super.init(priority: priority,x: x,y: y,width: width,height: height)
+        
+        self.color = color
         self.id = id
         self.enabled = true
         self.buttonCallback = callbacks
         self.type = type
-        self.color = color
-        if color != UIColor.black {
-            if type == UButtonType.BGColor {
-                self.pressedColor = UColor.addBrightness(argb:color!, addY:0.2)
-            } else {
-                self.pressedColor = UColor.addBrightness(argb:color!, addY:-0.2)
-            }
-        }
-        disabledColor = UButton.DISABLED_COLOR
-        disabledColor2 = UColor.addBrightness(argb:disabledColor, addY:-0.2)
+        
+        
     }
 
     /**

@@ -109,9 +109,6 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
     /**
      * UButtonCallbacks
      */
-    /**
-     * UButtonCallbacks
-     */
     public func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
         switch(id) {
         case PageViewTitle.buttonId1:

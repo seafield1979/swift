@@ -146,9 +146,9 @@ public class UColor {
         var R : CGFloat = 0.0, G : CGFloat = 0.0, B : CGFloat = 0.0 ,A : CGFloat = 0.0
         rgb.getRed( &R, green: &G, blue: &B, alpha: &A)
         
-        var Y  = CGFloat(0.257 * R + 0.504 * G + 0.098 * B + 16)
-        var Cb = CGFloat(-0.148 * R - 0.291 * G + 0.439 * B + 128)
-        var Cr = CGFloat(0.439 * R - 0.368 * G - 0.071 * B + 128)
+        var Y  = CGFloat(0.257 * R + 0.504 * G + 0.098 * B + (16.0 / 256.0))
+        var Cb = CGFloat(-0.148 * R - 0.291 * G + 0.439 * B + (128 / 256.0))
+        var Cr = CGFloat(0.439 * R - 0.368 * G - 0.071 * B + (128 / 256.0))
         
         if (Y > 1.0) {
             Y = 1.0
@@ -198,9 +198,13 @@ public class UColor {
     }
     
     public static func YUVtoRGB(y: CGFloat, u: CGFloat, v: CGFloat, a: CGFloat) -> UIColor {
-        var R = CGFloat(1.164 * (y - 16)                 + 1.596 * (v-128))
-        var G = CGFloat(1.164 * (y-16) - 0.391 * (u-128) - 0.813 * (v-128))
-        var B = CGFloat(1.164 * (y-16) + 2.018 * (u-128))
+        var R = CGFloat(1.164 * (y - (16.0 / 256.0))
+            + 1.596 * (v-(128.0 / 256.0)))
+        var G = CGFloat(1.164 * (y-(16.0 / 256.0))
+            - 0.391 * (u-(128.0 / 256.0))
+            - 0.813 * (v-(128.0 / 256.0)))
+        var B = CGFloat(1.164 * (y-(16.0 / 256.0))
+            + 2.018 * (u-(128.0 / 256.0)))
         
         if (R > 1.0){ R = 1.0 }
         if (R < 0){ R = 0 }

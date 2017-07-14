@@ -44,10 +44,7 @@ public class UPageViewManager {
         
         // 戻るボタン
         returnButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItemStyle.plain, target: self, action: #selector(UPageViewManager.clickReturnButton))
-        
-
     }
-    
     
     /**
      * Methods
@@ -119,9 +116,6 @@ public class UPageViewManager {
      */
     public func pageChanged(_ pageId : PageView) {
         UDrawManager.clearDebugPoint()
-        
-        // 前のページのDrawObjectをクリア
-        //UDrawManager.getInstance().removeAll()
     }
     
     /**

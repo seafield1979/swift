@@ -114,7 +114,7 @@ public class UDpi {
         
         // スケールが設定されていたら読み込む
         let scaleInt = MySharedPref.readInt(key: MySharedPref.ScaleKey);
-        if scaleInt != nil {
+        if scaleInt != nil && scaleInt! != 0 {
             mScale = Scale.cases[scaleInt!]
         } else {
             mScale = Scale.S100;

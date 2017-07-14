@@ -32,6 +32,9 @@ public class TopView : UIView, UButtonCallbacks{
         UDrawManager.getInstance().initialize()
         mPageManager = PageViewManager.createInstance(topView: self)
         
+        // DPI初期化
+        UDpi.initialize()
+        
         // タイマー
         // 画面更新用
         if timer == nil {
