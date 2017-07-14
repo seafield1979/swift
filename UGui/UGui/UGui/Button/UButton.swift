@@ -247,7 +247,7 @@ public class UButton : UDrawable {
     
     public func click() {
         if buttonCallback != nil {
-            buttonCallback!.UButtonClicked(id: id, pressedOn: pressedOn)
+            _ = buttonCallback!.UButtonClicked(id: id, pressedOn: pressedOn)
         }
     }
 }

@@ -24,7 +24,7 @@ public class UDrawable {
      * Constants
      */
     private static let TAG = "UDrawable"
-    public static let RAD : Double = 3.1415 / 180.0
+    public static let RAD : CGFloat = 3.1415 / 180.0
     
     /**
      * Member variables
@@ -520,7 +520,7 @@ public class UDrawable {
      * @return
      */
     public func getAnimeAlpha() -> Int {
-        let v1 = (Double(animeFrame) / Double(animeFrameMax)) * 180.0
+        let v1 = (CGFloat(animeFrame) / CGFloat(animeFrameMax)) * 180.0
         return Int((1.0 -  sin(v1 * UDrawable.RAD)) * 255)
     }
 }

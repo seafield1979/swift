@@ -17,6 +17,16 @@ public enum ConvDateMode {
 public class UUtil {
     public static let RAD : CGFloat = 3.1415 / 180.0
     
+    //スクリーンの幅
+    public static func screenWidth() -> Int {
+        return Int( UIScreen.main.bounds.size.width)
+    }
+    
+    //スクリーンの高さ
+    public static func screenHeight() -> Int {
+        return Int(UIScreen.main.bounds.size.height)
+    }
+    
     /**
      * sinテーブルの0->90度の 0.0~1.0 の値を取得する
      *

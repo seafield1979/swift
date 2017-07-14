@@ -37,14 +37,14 @@ class ULog {
     
     // 初期化、アプリ起動時に１回だけ呼ぶ
     public static func initialize() {
-        ULog.setEnable(ViewTouch.TAG,        false);
-//        setEnable(UDrawManager.TAG,     false);
+        setEnable(ViewTouch.TAG,        false);
+        setEnable(UDrawManager.TAG,     false);
 //        setEnable(UMenuBar.TAG,         false);
-//        setEnable(UScrollBar.TAG,       false);
+        setEnable(UScrollBar.TAG,       false);
 //        setEnable(UIconWindow.TAG,      false);
 //        setEnable(UButton.TAG,          false);
-//        setEnable(UColor.TAG,           false);
-//        setEnable(UResourceManager.TAG, false);
+        setEnable(UColor.TAG,           false);
+        setEnable(UResourceManager.TAG, false);
 //        setEnable(UWindow.TAG,          false);
 //        setEnable(BackupManager.TAG,    false);
 //        setEnable(PageViewDebug.TAG,    false);

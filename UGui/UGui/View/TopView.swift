@@ -11,6 +11,10 @@ import UIKit
 
 public class TopView : UIView, UButtonCallbacks{
     
+    // Consts
+    public static let drawInterval : TimeInterval = 1.0 / 30.0
+    
+    // Propaties
     var vt : ViewTouch = ViewTouch()
     var subView : UIView? = nil
     var timer : Timer? = nil
@@ -39,7 +43,7 @@ public class TopView : UIView, UButtonCallbacks{
         // 画面更新用
         if timer == nil {
             // 0.3s 毎にTemporalEventを呼び出す
-            timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector:#selector(TopView.TemporalEvent), userInfo: nil,repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: TopView.drawInterval, target: self, selector:#selector(TopView.TemporalEvent), userInfo: nil,repeats: true)
         }
     }
     

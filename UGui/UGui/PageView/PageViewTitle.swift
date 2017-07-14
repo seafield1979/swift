@@ -112,11 +112,12 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
     public func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
         switch(id) {
         case PageViewTitle.buttonId1:
-                // ページ切り替え
+            // ページ切り替え
             _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test1)
-            break
+            
         case PageViewTitle.buttonId2:
-            break
+            // ページ切り替え
+            _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test2)
         case PageViewTitle.buttonId3:
             break
         case PageViewTitle.buttonId4:

@@ -39,7 +39,7 @@ public class PageViewManager : UPageViewManager {
         super.init(topView: topView)
         
         // 最初に表示するページ
-        stackPage(pageId: PageView.Title)
+        _ = stackPage(pageId: PageView.Title)
     }
     
     /**
@@ -52,10 +52,12 @@ public class PageViewManager : UPageViewManager {
         case .Title:              // タイトル画面
             page = PageViewTitle( topView: mTopView,
                                   title: UResourceManager.getStringByName("app_title"))
-            
-        case .Test1:               // 単語帳を編集
+        case .Test1:
             page = PageViewTest1( topView: mTopView,
                         title: UResourceManager.getStringByName("test1"))
+        case .Test2:
+            page = PageViewTest2( topView: mTopView,
+                                  title: UResourceManager.getStringByName("test2"))
         default:
             break
         }

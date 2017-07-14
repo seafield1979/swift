@@ -31,7 +31,7 @@ class DrawList {
             for i in 0...list.count-1 {
                 let _obj = list[i]
                 if obj === _obj {
-                    list.remove(at: i)
+                    _ = list.remove(at: i)
                     break
                 }
             }
@@ -45,7 +45,7 @@ class DrawList {
         for i in 0...list.count-1 {
             let _obj = list[i]
             if obj === _obj {
-                list.remove(at: i)
+                _ = list.remove(at: i)
                 break
             }
         }

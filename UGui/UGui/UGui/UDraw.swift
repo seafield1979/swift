@@ -10,10 +10,34 @@
 import Foundation
 import UIKit
 
+// フォントのサイズ
+public enum FontSize : Int {
+    case S      // small
+    case M      // medium
+    case L      // large
+}
+
+
 class UDraw {
-    // 360度の角度をラジアン角に変換する用
-    static let RADIAN : CGFloat = CGFloat.pi / 180.0;
     
+    // フォントのサイズ
+    public static func getFontSize(_ size: FontSize) -> Int {
+        var _size : Int
+        switch (size) {
+        case .S:
+            _size = 10
+        case .M:
+            _size = 13
+        case .L:
+            fallthrough
+        default:
+            _size = 17
+        }
+        return Int(UDpi.toPixel(_size))
+    }
+    
+    // 360度の角度をラジアン角に変換する用
+    static let RADIAN : CGFloat = CGFloat.pi / 180.0
     
     // ラインを描画
     public static func drawLine(x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat, lineWidth : CGFloat, color :UIColor)

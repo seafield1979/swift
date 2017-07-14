@@ -1,14 +1,13 @@
 //
-//  PageViewTest1.swift
+//  PageViewTest2.swift
 //  UGui
-//  テストページ1
-//  Created by Shusuke Unno on 2017/07/13.
+//  ダイアログのテスト用ページ
+//  Created by Shusuke Unno on 2017/07/14.
 //  Copyright © 2017年 Shusuke Unno. All rights reserved.
 //
 
 import Foundation
 import UIKit
-
 
 /**
  * Created by shutaro on 2016/12/15.
@@ -16,14 +15,14 @@ import UIKit
  * Debug page
  */
 
-public class PageViewTest1 : UPageView, UButtonCallbacks {
+public class PageViewTest2 : UPageView, UButtonCallbacks {
     /**
      * Enums
      */
     /**
      * Constants
      */
-    public static let TAG = "PageViewTest1"
+    public static let TAG = "PageViewTest2"
     
     public static let buttonId1 = 100
     public static let buttonId2 = 101
@@ -90,14 +89,14 @@ public class PageViewTest1 : UPageView, UButtonCallbacks {
         let buttonH : CGFloat = 50.0
         
         // UButtonText
-        let textButton = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest1.buttonId1, priority: 100, text: "button1", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
+        let textButton = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId1, priority: 100, text: "button1", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton.addToDrawManager()
         
         y += 70.0
-
+        
         let textButton2 = UButtonText(callbacks: self, type: UButtonType.Press2, id: PageViewTest1.buttonId1, priority: 100, text: "button2", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton2.addToDrawManager()
-
+        
         y += 70.0
         
         // UButtonImage
@@ -111,6 +110,15 @@ public class PageViewTest1 : UPageView, UButtonCallbacks {
         // UButtonClose
         let closeButton = UButtonClose(callbacks: self, type: UButtonType.BGColor, id: PageViewTest1.buttonId4, priority: 100, x: x, y: y, color: UIColor.red)
         closeButton.addToDrawManager()
+    }
+    
+    // ダイアログを表示する
+    func showDialog() {
+        let dialog = UPopupWindow(popupType: UPopupType.OKCancel,
+                                  title: "hoge", isAnimation: true,
+                                  screenW: CGFloat(UUtil.screenWidth()),
+                                  screenH: CGFloat(UUtil.screenHeight()))
+        dialog.addToDrawManager()
     }
     
     /**
@@ -130,7 +138,7 @@ public class PageViewTest1 : UPageView, UButtonCallbacks {
     public func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
         switch(id) {
         case PageViewTest1.buttonId1:
-            print("button1 clicked")
+            showDialog()
             break
         case PageViewTest1.buttonId2:
             print("button2 clicked")

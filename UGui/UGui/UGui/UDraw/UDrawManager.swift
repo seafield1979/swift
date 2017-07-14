@@ -155,7 +155,7 @@ class UDrawManager {
      * 削除要求のリストの描画オブジェクトを削除する
      */
     private func removeRequestedList() {
-        var lists = getCurrentDrawLists()
+        let lists = getCurrentDrawLists()
         if lists == nil {
             return
         }
@@ -236,7 +236,7 @@ class UDrawManager {
                     }
                     else {
                         list!.remove(obj)
-                        addDrawable(obj)
+                        _ = addDrawable(obj)
                         return
                     }
                 }

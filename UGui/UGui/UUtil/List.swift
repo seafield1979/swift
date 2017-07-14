@@ -87,7 +87,7 @@ class List<T> : Sequence, Hashable{
     }
     
     func sort(isOrderedBefore: (T, T) -> Bool) {
-        elements.sorted(by: isOrderedBefore)
+        _ = elements.sorted(by: isOrderedBefore)
     }
     
     func reverse() -> Array<T> {

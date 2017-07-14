@@ -185,7 +185,7 @@ public class UWindow : UDrawable, UButtonCallbacks {
              bgColor: bgColor, topBarH: 0, frameW: 0, frameH: 0)
     }
     
-    init(callbacks: UWindowCallbacks, priority : Int,
+    init(callbacks: UWindowCallbacks?, priority : Int,
          x : CGFloat, y : CGFloat, width : CGFloat, height : CGFloat,
          bgColor : UIColor?, topBarH : CGFloat, frameW : CGFloat, frameH : CGFloat)
     {
@@ -390,11 +390,11 @@ public class UWindow : UDrawable, UButtonCallbacks {
      * @param canvas
      * @param paint
      */
-    public func drawFrame(offset: CGPoint) {
+    public func drawFrame(offset: CGPoint?) {
         var _pos : CGPoint = CGPoint(x: pos.x, y: pos.y)
         if offset != nil {
-            _pos.x += offset.x
-            _pos.y += offset.y
+            _pos.x += offset!.x
+            _pos.y += offset!.y
         }
         // Frame
         if (frameSize.width > 0 && frameColor != nil) {
