@@ -12,7 +12,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var navigation: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -21,11 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 最初に表示されるViewControllerを生成
         let viewController = ViewController(nibName: "ViewController", bundle: nil)
         viewController.view.backgroundColor = UIColor.white
+        viewController.title = "hoge"
+        
+        // トップのNavigationControllerを生成
+        navigation = UINavigationController(rootViewController: viewController)
         
         // システム初期化
         initSystem()
         
-        window!.rootViewController = viewController
+        window!.rootViewController = navigation
         window!.makeKeyAndVisible();
         return true
     }

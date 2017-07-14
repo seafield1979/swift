@@ -51,6 +51,11 @@ class DrawList {
         }
     }
     
+    // すべてのリストを削除
+    public func removeAll() {
+        list.removeAll()
+    }
+    
     // 指定の描画オブジェクトを最後に移動
     public func toLast(_ obj : UDrawable) {
         // 追加時と同じ処理なので流用する

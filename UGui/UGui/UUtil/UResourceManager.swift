@@ -69,9 +69,9 @@ public class UResourceManager {
      * stringsのIDで文字列を取得する
      * @param strId
      */
-    public static func getStringByName(_ imageId : ImageName) -> String
+    public static func getStringByName(_ name : String) -> String
     {
-        return NSLocalizedString(imageId.rawValue, comment: imageId.rawValue)
+        return NSLocalizedString(name, comment: name)
     }
     
     /**

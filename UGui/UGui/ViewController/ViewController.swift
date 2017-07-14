@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         
         // カスタムView追加
         let newView = TopView()
+        newView.setViewController(self)
         let screenSize : CGSize = UIScreen.main.bounds.size
         
         newView.frame.size = CGSize(width:screenSize.width,

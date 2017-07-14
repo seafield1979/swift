@@ -66,6 +66,14 @@ class List<T> : Sequence, Hashable{
         }
     }
     
+    func first() -> T? {
+        return elements.first
+    }
+
+    func last() -> T? {
+        return elements.last
+    }
+    
     var isEmpty: Bool {
         get {
             return elements.isEmpty

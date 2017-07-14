@@ -9,9 +9,15 @@
 import Foundation
 import UIKit
 
-class TopView : UIView, UButtonCallbacks{
+public class TopView : UIView, UButtonCallbacks{
     
     var vt : ViewTouch = ViewTouch()
+    var subView : UIView? = nil
+    var timer : Timer? = nil
+    public var redraw : Bool = false
+    var parentVC : UIViewController? = nil
+    
+    private var mPageManager : UPageViewManager? = nil
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -22,34 +28,26 @@ class TopView : UIView, UButtonCallbacks{
         // 背景色を設定
         self.backgroundColor = UIColor(red:0.5, green:0.5, blue:0.5, alpha:1.0)
         
+        // ページマネージャーを初期化
         UDrawManager.getInstance().initialize()
+        mPageManager = PageViewManager.createInstance(topView: self)
         
-        let circleView = UCircle(priority: 100, x: 100.0, y: 100.0, width: 50.0, height: 50.0)
-        circleView.color = UIColor.red
-        circleView.addToDrawManager()
-        
-        let circleView2 = UCircle(priority: 101, x: 200.0, y: 100.0, width: 50.0, height: 50.0)
-        circleView2.color = UIColor.blue
-        circleView2.addToDrawManager()
-        
-        let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100, priority: 100, text: "hoge", x: 100.0, y: 200.0, width: 200.0, height: 50.0, textSize: 20, textColor: UColor.White, color: UColor.Blue)
-        textButton.addToDrawManager()
-        
-        let textButton2 = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100, priority: 101, text: "hoge2", x: 150.0, y: 220.0, width: 200.0, height: 50.0, textSize: 20, textColor: UColor.White, color: UColor.Green)
-        textButton2.addToDrawManager()
-        
-//        let textView = UTextView.createInstance(text: "hoge", priority: 100, canvasW: 0, isDrawBG: true, x: 100.0, y: 300.0)
-//        textView.addToDrawManager()
-        
-        // UButtonImage
-        let image1 = UResourceManager.getImageByName(ImageName.miro)
-        let image2 = UResourceManager.getImageByName(ImageName.ume)
-        let imageButton = UButtonImage.createButton(callbacks: self, id: 101, priority: 100, x: 100.0, y: 300.0, width: 200, height: 100, image: image1, pressedImage: image2)
-        imageButton.addToDrawManager()
+        // タイマー
+        // 画面更新用
+        if timer == nil {
+            // 0.3s 毎にTemporalEventを呼び出す
+            timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector:#selector(TopView.TemporalEvent), userInfo: nil,repeats: true)
+        }
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    public func setViewController(_ parentVC: UIViewController) {
+        self.parentVC = parentVC
+        
+        mPageManager!.mParentVC = parentVC
     }
     
     /**
@@ -58,13 +56,130 @@ class TopView : UIView, UButtonCallbacks{
      - throws: none
      - returns: none
      */
-    override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
+        // 現在のページの描画
+        if (mPageManager!.draw()) {
+            redraw = true
+        }
+        
+        // マネージャに登録した描画オブジェクトをまとめて描画
         if UDrawManager.getInstance().draw() == true {
-            self.setNeedsDisplay()
+            redraw = true
         }
         
         let str = NSLocalizedString("hoge", comment: "hoge")
         print (str)
+    }
+    
+    
+    /**
+     タッチ開始 このViewをタッチしたときの処理
+     - parameter touches: タッチ情報
+     - parameter event:
+     - throws: none
+     - returns: none
+     */
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        // タッチイベントを取得する
+        let touch = touches.first
+        
+        vt.touchStart(touch: touch!, view: self)
+        
+        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
+        if UDrawManager.getInstance().touchEvent(vt) {
+            invalidate()
+        }
+    }
+    
+    /**
+     タッチ中の移動
+     - parameter touches: タッチ情報
+     - throws: none
+     - returns: none
+     */
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+//        print("touchesMoved:");
+        // タッチイベントを取得する
+        let touch = touches.first
+        
+        vt.touchMove(touch: touch!, view: self)
+        
+        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
+        if UDrawManager.getInstance().touchEvent(vt) {
+            invalidate()
+        }
+    }
+    
+    /**
+     タッチ終了 Viewからタッチを離したときの処理
+     - parameter touches: タッチ情報
+     - parameter event:
+     - throws: none
+     - returns: none
+     */
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        _ = vt.touchEnd(touch: touches.first!, view: self)
+        
+        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
+        if UDrawManager.getInstance().touchEvent(vt) {
+            invalidate()
+        }
+    }
+    
+    /**
+     タッチが外部からキャンセルされたときの処理
+     - parameter touched: タッチ情報
+     - throws: none
+     - returns: none
+     */
+    override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        print("touchesCancelled")
+    }
+
+    /**
+        UButtonCallbacks
+     */
+    /**
+     * ボタンがクリックされた時の処理
+     * @param id  button id
+     * @param pressedOn  押された状態かどうか(On/Off)
+     * @return
+     */
+    public func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
+        switch id {
+        case 100:
+            print("button is clicked")
+        default:
+            break
+        }
+        return true
+    }
+    
+    func invalidate() {
+        // 再描画
+        self.setNeedsDisplay()
+    }
+    
+    
+    //一定タイミングで繰り返し呼び出される関数
+    func TemporalEvent(){
+        //画面再描画用
+        // ※ drawメソッド内でinvalidateをかけても再描画されない
+        if redraw {
+            redraw = false
+            invalidate()
+        }
+    }
+    
+    func stopTimer(){
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
     }
     
     func draw1() {
@@ -125,7 +240,7 @@ class TopView : UIView, UButtonCallbacks{
     }
     
     /**
-        テキストの描画テスト
+     テキストの描画テスト
      */
     func draw2() {
         let x : CGFloat = 150
@@ -157,8 +272,8 @@ class TopView : UIView, UButtonCallbacks{
     }
     
     /**
-        画像描画のテスト
-    */
+     画像描画のテスト
+     */
     func draw3() {
         let image = UIImage(named: "image/ume.png")!
         
@@ -170,97 +285,4 @@ class TopView : UIView, UButtonCallbacks{
         
     }
     
-    /**
-     タッチ開始 このViewをタッチしたときの処理
-     - parameter touches: タッチ情報
-     - parameter event:
-     - throws: none
-     - returns: none
-     */
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        // タッチイベントを取得する
-        let touch = touches.first
-        
-        vt.touchStart(touch: touch!, view: self)
-        
-        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
-        if UDrawManager.getInstance().touchEvent(vt) {
-            invalidate()
-        }
-    }
-    
-    /**
-     タッチ中の移動
-     - parameter touches: タッチ情報
-     - throws: none
-     - returns: none
-     */
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-//        print("touchesMoved:");
-        // タッチイベントを取得する
-        let touch = touches.first
-        
-        vt.touchMove(touch: touch!, view: self)
-        
-        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
-        if UDrawManager.getInstance().touchEvent(vt) {
-            invalidate()
-        }
-    }
-    
-    /**
-     タッチ終了 Viewからタッチを離したときの処理
-     - parameter touches: タッチ情報
-     - parameter event:
-     - throws: none
-     - returns: none
-     */
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-//        print("touchesEnded:")
-        
-        _ = vt.touchEnd(touch: touches.first!, view: self)
-        
-        // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
-        if UDrawManager.getInstance().touchEvent(vt) {
-            invalidate()
-        }
-    }
-    
-    /**
-     タッチが外部からキャンセルされたときの処理
-     - parameter touched: タッチ情報
-     - throws: none
-     - returns: none
-     */
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        print("touchesCancelled")
-    }
-
-    /**
-        UButtonCallbacks
-     */
-    /**
-     * ボタンがクリックされた時の処理
-     * @param id  button id
-     * @param pressedOn  押された状態かどうか(On/Off)
-     * @return
-     */
-    func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
-        switch id {
-        case 100:
-            print("button is clicked")
-        default:
-            break
-        }
-        return true
-    }
-    
-    func invalidate() {
-        // 再描画
-        self.setNeedsDisplay()
-    }
 }

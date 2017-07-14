@@ -15,6 +15,11 @@
 		8A05FE6B1F15B20B008C33EC /* MyUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE6A1F15B20B008C33EC /* MyUserDefault.swift */; };
 		8A05FE6D1F15CEDE008C33EC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A05FE6C1F15CEDE008C33EC /* Default-568h@2x.png */; };
 		8A05FE701F16FDD5008C33EC /* CGRect+U.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */; };
+		8A05FE731F172A91008C33EC /* UPageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE721F172A91008C33EC /* UPageViewManager.swift */; };
+		8A05FE771F172AC6008C33EC /* UPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE761F172AC6008C33EC /* UPageView.swift */; };
+		8A05FE791F172AE9008C33EC /* PageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE781F172AE9008C33EC /* PageViewManager.swift */; };
+		8A05FE7B1F174D07008C33EC /* PageViewTest1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE7A1F174D07008C33EC /* PageViewTest1.swift */; };
+		8A05FE7D1F175000008C33EC /* PageViewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE7C1F175000008C33EC /* PageViewTitle.swift */; };
 		8A1C2B331F0FC92C005483ED /* NanoTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B321F0FC92C005483ED /* NanoTimer.swift */; };
 		8A1C2B351F10648E005483ED /* UColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B341F10648E005483ED /* UColor.swift */; };
 		8A1C2B391F1064B2005483ED /* UDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B381F1064B2005483ED /* UDebug.swift */; };
@@ -72,6 +77,11 @@
 		8A05FE6A1F15B20B008C33EC /* MyUserDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyUserDefault.swift; path = UUtil/MyUserDefault.swift; sourceTree = "<group>"; };
 		8A05FE6C1F15CEDE008C33EC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGRect+U.swift"; path = "UGui/extension/CGRect+U.swift"; sourceTree = "<group>"; };
+		8A05FE721F172A91008C33EC /* UPageViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UPageViewManager.swift; path = PageView/UPageViewManager.swift; sourceTree = "<group>"; };
+		8A05FE761F172AC6008C33EC /* UPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UPageView.swift; path = PageView/UPageView.swift; sourceTree = "<group>"; };
+		8A05FE781F172AE9008C33EC /* PageViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewManager.swift; path = PageView/PageViewManager.swift; sourceTree = "<group>"; };
+		8A05FE7A1F174D07008C33EC /* PageViewTest1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTest1.swift; path = PageView/PageViewTest1.swift; sourceTree = "<group>"; };
+		8A05FE7C1F175000008C33EC /* PageViewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTitle.swift; path = PageView/PageViewTitle.swift; sourceTree = "<group>"; };
 		8A1C2B321F0FC92C005483ED /* NanoTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NanoTimer.swift; path = UUtil/NanoTimer.swift; sourceTree = "<group>"; };
 		8A1C2B341F10648E005483ED /* UColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UColor.swift; path = UUtil/UColor.swift; sourceTree = "<group>"; };
 		8A1C2B381F1064B2005483ED /* UDebug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDebug.swift; path = UUtil/UDebug.swift; sourceTree = "<group>"; };
@@ -143,6 +153,18 @@
 				8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		8A05FE711F172A59008C33EC /* PageView */ = {
+			isa = PBXGroup;
+			children = (
+				8A05FE721F172A91008C33EC /* UPageViewManager.swift */,
+				8A05FE761F172AC6008C33EC /* UPageView.swift */,
+				8A05FE781F172AE9008C33EC /* PageViewManager.swift */,
+				8A05FE7C1F175000008C33EC /* PageViewTitle.swift */,
+				8A05FE7A1F174D07008C33EC /* PageViewTest1.swift */,
+			);
+			name = PageView;
 			sourceTree = "<group>";
 		};
 		8A1C2B431F106700005483ED /* Button */ = {
@@ -248,6 +270,7 @@
 			children = (
 				8A5116DB1F0EA45C00E82FAE /* UAlignment.swift */,
 				8A5116E41F0FB12900E82FAE /* Util */,
+				8A05FE711F172A59008C33EC /* PageView */,
 				8A5116E11F0F8DE300E82FAE /* UView */,
 				8A5116DF1F0F65F300E82FAE /* image */,
 				8A5116D11F0E7A8900E82FAE /* View */,
@@ -397,12 +420,15 @@
 				8A1C2B6A1F106D50005483ED /* DrawList.swift in Sources */,
 				8A5116DA1F0E8D2700E82FAE /* UDraw.swift in Sources */,
 				8A5116E61F0FB14400E82FAE /* ULog.swift in Sources */,
+				8A05FE7D1F175000008C33EC /* PageViewTitle.swift in Sources */,
 				8A1C2B721F106E5F005483ED /* UDialogWindow.swift in Sources */,
 				8A1C2B811F13115E005483ED /* RefDictionary.swift in Sources */,
 				8A1C2B701F106E2D005483ED /* UDrawManager.swift in Sources */,
 				8A1C2B531F1067F1005483ED /* UListView.swift in Sources */,
 				8A05FE4F1F14B1E4008C33EC /* UResourceManager.swift in Sources */,
+				8A05FE771F172AC6008C33EC /* UPageView.swift in Sources */,
 				8A05FE701F16FDD5008C33EC /* CGRect+U.swift in Sources */,
+				8A05FE791F172AE9008C33EC /* PageViewManager.swift in Sources */,
 				8A1C2B781F106FA6005483ED /* UPopupWindow.swift in Sources */,
 				8A1C2B5B1F1068CA005483ED /* UButtonText.swift in Sources */,
 				8A1C2B501F1067C8005483ED /* UListItem.swift in Sources */,
@@ -412,6 +438,7 @@
 				8A1C2B611F106ACA005483ED /* UScrollBar.swift in Sources */,
 				8A5116D81F0E7C7300E82FAE /* TopView.swift in Sources */,
 				8A1C2B391F1064B2005483ED /* UDebug.swift in Sources */,
+				8A05FE731F172A91008C33EC /* UPageViewManager.swift in Sources */,
 				8A1C2B6E1F106DFE005483ED /* UDrawableRect.swift in Sources */,
 				8AECCE381F13394A005C4ECF /* List.swift in Sources */,
 				8A5116C01F0E79CB00E82FAE /* AppDelegate.swift in Sources */,
@@ -421,6 +448,7 @@
 				8A1C2B7F1F111A7A005483ED /* UCircle.swift in Sources */,
 				8A1C2B681F106D19005483ED /* UTextViewOpenClose.swift in Sources */,
 				8A5116E31F0F8E1400E82FAE /* ViewTouch.swift in Sources */,
+				8A05FE7B1F174D07008C33EC /* PageViewTest1.swift in Sources */,
 				8A1C2B4A1F106750005483ED /* ColorView.swift in Sources */,
 				8A05FE631F151080008C33EC /* ImageId.swift in Sources */,
 				8A5116DC1F0EA45C00E82FAE /* UAlignment.swift in Sources */,

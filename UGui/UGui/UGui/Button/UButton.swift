@@ -103,7 +103,7 @@ public class UButton : UDrawable {
     /**
      * Constructor
      */
-    init(callbacks : UButtonCallbacks, type : UButtonType, id : Int, priority : Int,
+    init(callbacks : UButtonCallbacks?, type : UButtonType, id : Int, priority : Int,
          x : CGFloat, y : CGFloat, width : CGFloat, height : CGFloat, color : UIColor?)
     {
         //init(priority: Int, x: CGFloat, y: CGFloat, width : CGFloat, height : CGFloat)
@@ -212,6 +212,9 @@ public class UButton : UDrawable {
                 done = true
             }
         case .Click:
+            // クリックイベントをすぐに処理すると、ボタンの凹みが戻らないうちに次のページに遷移したりと
+            // いろいろと都合が悪いため、クリックしたオブジェクトの isClicked フラグを立てておいて
+            // draw()のdoAction内で処理を行う。
             fallthrough
         case .LongClick:
             fallthrough

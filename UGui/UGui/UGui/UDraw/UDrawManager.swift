@@ -74,6 +74,8 @@ class UDrawManager {
      * アクティビティが生成されるタイミングで呼ぶ
      */
     public func initialize() {
+        mPageList.clear()
+        
         // デフォルトのページを設定
         setCurrentPage(mCurrentPage)
     }
@@ -178,6 +180,19 @@ class UDrawManager {
             _lists.removeValue(forKey: priority)
         }
     }
+
+    /**
+     * すべての描画オブジェクトを削除する
+     */
+    public func removeAll() {
+        // カレントページのリストを取得
+        let lists : RefDictionary<Int, DrawList>? = getCurrentDrawLists()
+        
+        for list : DrawList in lists!.values {
+            list.removeAll()
+        }
+    }
+
      
     /**
      * DrawListのプライオリティを変更する
@@ -236,8 +251,8 @@ class UDrawManager {
      * @return true:再描画あり / false:再描画なし
      */
      public func draw() -> Bool {
-         var redraw = false;
-         let lists = getCurrentDrawLists()
+        var redraw = false;
+        let lists = getCurrentDrawLists()
         
         if lists == nil {
             return false

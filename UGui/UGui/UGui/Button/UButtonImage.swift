@@ -62,7 +62,7 @@ public class UButtonImage : UButton {
     /**
      * Constructor
      */
-    public init(callbacks : UButtonCallbacks,
+    public init(callbacks : UButtonCallbacks?,
                              id : Int , priority : Int,
                              x : CGFloat, y : CGFloat,
                              width : CGFloat, height : CGFloat,
@@ -87,7 +87,7 @@ public class UButtonImage : UButton {
     }
     
     // 画像ボタン
-    public static func createButton(callbacks : UButtonCallbacks,
+    public static func createButton(callbacks : UButtonCallbacks?,
                                     id : Int, priority : Int,
                                     x : CGFloat, y : CGFloat,
                                     width : CGFloat, height : CGFloat,
@@ -102,7 +102,7 @@ public class UButtonImage : UButton {
     }
     
     // 画像ボタン
-    public static func createButton(callbacks : UButtonCallbacks,
+    public static func createButton(callbacks : UButtonCallbacks?,
                                     id : Int, priority : Int,
                                     x : CGFloat, y : CGFloat,
                                     width : CGFloat, height : CGFloat,
