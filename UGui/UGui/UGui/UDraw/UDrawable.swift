@@ -252,7 +252,8 @@ public class UDrawable {
      */
     public func touchEvent(vt : ViewTouch, offset : CGPoint?) -> Bool
     {
-        return false;
+        // サブクラスでオーバーライドして使用する
+        return false
     }
     
     /**

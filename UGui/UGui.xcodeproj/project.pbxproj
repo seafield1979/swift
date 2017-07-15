@@ -63,6 +63,8 @@
 		8A5116E61F0FB14400E82FAE /* ULog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5116E51F0FB14400E82FAE /* ULog.swift */; };
 		8AE720611F18B0CA005B0043 /* DrawPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720601F18B0CA005B0043 /* DrawPriority.swift */; };
 		8AE720631F1907D8005B0043 /* PageViewTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720621F1907D8005B0043 /* PageViewTest2.swift */; };
+		8AE720651F19CB8B005B0043 /* PageViewTest3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720641F19CB8B005B0043 /* PageViewTest3.swift */; };
+		8AE720671F19DA4D005B0043 /* UIView+mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720661F19DA4D005B0043 /* UIView+mask.swift */; };
 		8AECCE381F13394A005C4ECF /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECCE371F13394A005C4ECF /* List.swift */; };
 		8AECCE3A1F134AFA005C4ECF /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECCE391F134AFA005C4ECF /* Random.swift */; };
 /* End PBXBuildFile section */
@@ -128,6 +130,8 @@
 		8A5116E51F0FB14400E82FAE /* ULog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ULog.swift; path = UUtil/ULog.swift; sourceTree = "<group>"; };
 		8AE720601F18B0CA005B0043 /* DrawPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawPriority.swift; path = UGui/UDraw/DrawPriority.swift; sourceTree = "<group>"; };
 		8AE720621F1907D8005B0043 /* PageViewTest2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTest2.swift; path = PageView/PageViewTest2.swift; sourceTree = "<group>"; };
+		8AE720641F19CB8B005B0043 /* PageViewTest3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTest3.swift; path = PageView/PageViewTest3.swift; sourceTree = "<group>"; };
+		8AE720661F19DA4D005B0043 /* UIView+mask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+mask.swift"; path = "UGui/extension/UIView+mask.swift"; sourceTree = "<group>"; };
 		8AECCE371F13394A005C4ECF /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = List.swift; path = UUtil/List.swift; sourceTree = "<group>"; };
 		8AECCE391F134AFA005C4ECF /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = UUtil/Random.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				8A05FE6F1F16FDD5008C33EC /* CGRect+U.swift */,
+				8AE720661F19DA4D005B0043 /* UIView+mask.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 				8A05FE7C1F175000008C33EC /* PageViewTitle.swift */,
 				8A05FE7A1F174D07008C33EC /* PageViewTest1.swift */,
 				8AE720621F1907D8005B0043 /* PageViewTest2.swift */,
+				8AE720641F19CB8B005B0043 /* PageViewTest3.swift */,
 			);
 			name = PageView;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				8A05FE691F15A0FF008C33EC /* EnumEnumerable.swift in Sources */,
 				8A1C2B5D1F1068EE005483ED /* UMenuBar.swift in Sources */,
 				8A1C2B611F106ACA005483ED /* UScrollBar.swift in Sources */,
+				8AE720671F19DA4D005B0043 /* UIView+mask.swift in Sources */,
 				8A5116D81F0E7C7300E82FAE /* TopView.swift in Sources */,
 				8A1C2B391F1064B2005483ED /* UDebug.swift in Sources */,
 				8A05FE731F172A91008C33EC /* UPageViewManager.swift in Sources */,
@@ -451,6 +458,7 @@
 				8AECCE381F13394A005C4ECF /* List.swift in Sources */,
 				8A5116C01F0E79CB00E82FAE /* AppDelegate.swift in Sources */,
 				8A1C2B571F106882005483ED /* UButtonClose.swift in Sources */,
+				8AE720651F19CB8B005B0043 /* PageViewTest3.swift in Sources */,
 				8A1C2B3F1F10653B005483ED /* UUtil.swift in Sources */,
 				8A1C2B741F106E84005483ED /* UDrawItemsWindow.swift in Sources */,
 				8A1C2B7F1F111A7A005483ED /* UCircle.swift in Sources */,

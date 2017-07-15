@@ -1,22 +1,22 @@
 //
-//  PageViewTest2.swift
+//  PageViewTest3.swift
 //  UGui
-//  ダイアログのテスト用ページ
-//  Created by Shusuke Unno on 2017/07/14.
+//
+//  Created by Shusuke Unno on 2017/07/15.
 //  Copyright © 2017年 Shusuke Unno. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-public class PageViewTest2 : UPageView, UButtonCallbacks {
+public class PageViewTest3 : UPageView, UButtonCallbacks {
     /**
      * Enums
      */
     /**
      * Constants
      */
-    public static let TAG = "PageViewTest2"
+    public static let TAG = "PageViewTest3"
     
     public static let buttonId1 = 100
     public static let buttonId2 = 101
@@ -24,8 +24,9 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
     public static let buttonId4 = 103
     
     /**
-     * Member variables
+     * Propaties
      */
+    var logWindow : ULogWindow? = nil
     
     
     /**
@@ -83,25 +84,23 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
         let buttonH : CGFloat = 50.0
         
         // UButtonText
-        let textButton = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId1, priority: 100, text: "button1", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
+        let textButton = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest3.buttonId1, priority: 100, text: "button1", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton.addToDrawManager()
         
         y += 70.0
         
-        let textButton2 = UButtonText(callbacks: self, type: UButtonType.Press2, id: PageViewTest1.buttonId2, priority: 100, text: "button2", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
+        let textButton2 = UButtonText(callbacks: self, type: UButtonType.Press2, id: PageViewTest1.buttonId1, priority: 100, text: "button2", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton2.addToDrawManager()
         
         y += 70.0
         
-        let textButton3 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest1.buttonId3, priority: 100, text: "button3", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
-        textButton3.addToDrawManager()
-        
-        y += 70.0
-        
-        let textButton4 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest1.buttonId4, priority: 100, text: "button4", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
-        textButton4.addToDrawManager()
-        
-        y += 70.0
+        // ULogWindow
+        // 自動で描画リストに追加される
+        logWindow = ULogWindow.createInstance(
+            parentView: mTopView, type: LogWindowType.Fix,
+            x: 0, y: y,
+            width: CGFloat(UUtil.screenWidth()),
+            height: CGFloat(UUtil.screenHeight()) - y - 40.0)
     }
     
     // ダイアログを表示する
@@ -130,20 +129,14 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
     public func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
         switch(id) {
         case PageViewTest1.buttonId1:
-            showDialog()
+            if logWindow != nil {
+                logWindow!.addLog(text: "button1 clicked")
+            }
             break
         case PageViewTest1.buttonId2:
-            mTopView?.mask(withRect: CGRect(x:50,y:50,width:200,height:200))
-            print("button2 clicked")
-            break
-        case PageViewTest1.buttonId3:
-            mTopView?.mask(withRect: CGRect(x:50,y:50,width:200,height:200),
-                           inverse: true)
-            print("button3 clicked")
-            break
-        case PageViewTest1.buttonId4:
-            mTopView?.clearMask()
-            print("button4 clicked")
+            if logWindow != nil {
+                logWindow!.addLog(text: "button2 clicked")
+            }
             break
         default:
             break

@@ -26,7 +26,8 @@ class List<T> : Sequence, Hashable{
     convenience init(_ elements: T...) {
         self.init(elements)
     }
-    
+
+    // [index] で要素を参照するためのサブスクリプト
     subscript(index: Int) -> T {
         get {
             return elements[index]
@@ -36,22 +37,32 @@ class List<T> : Sequence, Hashable{
         }
     }
     
+    // リストに要素を追加する
     func append(_ newElement: T) {
         elements.append(newElement)
     }
     
+    // リストの指定位置に要素を追加する
     func insert(_ newElement: T, atIndex index: Int) {
         elements.insert(newElement, at: index)
     }
     
+    // リストの戦闘に要素を追加する
+    func push(_ newElement: T) {
+        elements.insert(newElement, at: 0)
+    }
+    
+    // リストの指定位置の要素を削除する
     func remove(at index: Int) -> T {
         return elements.remove(at: index)
     }
     
+    // リストの最後の要素を削除する
     func removeLast() -> T {
         return elements.removeLast()
     }
     
+    // リストの全要素を削除する
     func removeAll(keepCapacity: Bool = false) {
         elements.removeAll(keepingCapacity: keepCapacity)
     }

@@ -119,7 +119,8 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
             // ページ切り替え
             _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test2)
         case PageViewTitle.buttonId3:
-            break
+            // ページ切り替え
+            _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test3)
         case PageViewTitle.buttonId4:
             break
         default:

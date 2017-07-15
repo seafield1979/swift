@@ -326,7 +326,7 @@ public class UWindow : UDrawable, UButtonCallbacks {
      * @param paint
      * @param offset 独自の座標系を持つオブジェクトをスクリーン座標系に変換するためのオフセット値
      */
-    public func draw(offset : CGPoint?) {
+    override public func draw(_ offset : CGPoint?) {
         if (!isShow) {
             return
         }
@@ -521,8 +521,10 @@ public class UWindow : UDrawable, UButtonCallbacks {
         
         var offset = offset
         if offset == nil {
-            offset = CGPoint(x: pos.x, y: pos.y)
+            offset = CGPoint(x: offset!.x, y: offset!.y)
         }
+        offset!.x += pos.x
+        offset!.y += pos.y
         
         if closeIcon != nil && closeIcon!.isShow {
             if (closeIcon!.touchEvent(vt: vt, offset: offset)) {
@@ -530,17 +532,15 @@ public class UWindow : UDrawable, UButtonCallbacks {
             }
         }
         
-        let offset2 = CGPoint(x: offset!.x + pos.x, y: offset!.y + pos.y)
-        
         // スクロールバーのタッチ処理
         if mScrollBarV != nil && mScrollBarV!.isShow(){
-            if ( mScrollBarV!.touchEvent(vt: vt, offset: offset2)) {
+            if ( mScrollBarV!.touchEvent(vt: vt, offset: offset!)) {
                 contentTop.y = CGFloat(mScrollBarV!.getTopPos())
                 return true
             }
         }
         if mScrollBarH != nil && mScrollBarH!.isShow() {
-            if  mScrollBarH!.touchEvent(vt: vt, offset: offset2) {
+            if  mScrollBarH!.touchEvent(vt: vt, offset: offset!) {
                 contentTop.x = CGFloat(mScrollBarH!.getTopPos())
                 return true;
             }
@@ -602,7 +602,7 @@ public class UWindow : UDrawable, UButtonCallbacks {
         
         var x, y : CGFloat
         let MARGIN : Int = 4
-        y = UDpi.toPixel(UButtonClose.BUTTON_W + MARGIN)
+        y = UDpi.toPixel(MARGIN)
         if (closeIconPos == CloseIconPos.LeftTop) {
             x = UDpi.toPixel(UButtonClose.BUTTON_W + MARGIN);
         } else {

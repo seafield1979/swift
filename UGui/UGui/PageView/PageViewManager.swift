@@ -58,6 +58,9 @@ public class PageViewManager : UPageViewManager {
         case .Test2:
             page = PageViewTest2( topView: mTopView,
                                   title: UResourceManager.getStringByName("test2"))
+        case .Test3:
+            page = PageViewTest3( topView: mTopView,
+                                  title: UResourceManager.getStringByName("test3"))
         default:
             break
         }
