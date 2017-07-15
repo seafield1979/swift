@@ -108,7 +108,7 @@ public class UColor {
         return UColor.makeColor( ri, gi, bi, 255)
     }
     
-    public static func makeColor(_ ri: UInt32, _ gi: UInt32, _ bi: UInt32, _ ai: UInt32 ) -> UIColor
+    public static func makeColor( _ ai: UInt32, _ ri: UInt32, _ gi: UInt32, _ bi: UInt32) -> UIColor
     {
         return UIColor(red: CGFloat(ri) / 255.0, green: CGFloat(gi) / 255.0, blue: CGFloat(bi) / 255.0, alpha: CGFloat(ai) / 255.0)
     }

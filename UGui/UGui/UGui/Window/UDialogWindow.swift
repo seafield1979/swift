@@ -69,6 +69,7 @@ public class UDialogWindow : UWindow {
     
     var textColor : UIColor
     var dialogColor : UIColor?
+    var dialogBGColor : UIColor?
     
     var buttonCallbacks : UButtonCallbacks?
     var dialogCallbacks : UDialogCallbacks?
@@ -163,7 +164,7 @@ public class UDialogWindow : UWindow {
             startAnimation( type: AnimationType.Opening )
         }
         if (type == DialogType.Mordal) {
-            bgColor = UColor.makeColor(160,0,0,0)
+            dialogBGColor = UColor.makeColor(160,0,0,0)
         }        
     }
     
@@ -372,7 +373,7 @@ public class UDialogWindow : UWindow {
      * @param text
      */
     public func addCloseButton(text : String) {
-        addCloseButton(text: text, textColor: UIColor.white, bgColor: nil)
+        addCloseButton(text: text, textColor: UIColor.white, bgColor: UColor.Salmon)
     }
     
     public func addCloseButton(text : String, textColor : UIColor, bgColor : UIColor?) {
@@ -546,7 +547,7 @@ public class UDialogWindow : UWindow {
             UDraw.drawRectFill( rect: CGRect(x:0, y:0,
                                              width: screenSize.width,
                                              height: screenSize.height),
-                                color: bgColor!,
+                                color: dialogBGColor!,
                                 strokeWidth: 0,
                                 strokeColor: nil);
         }

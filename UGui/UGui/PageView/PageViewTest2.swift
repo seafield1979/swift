@@ -98,18 +98,6 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
         textButton2.addToDrawManager()
         
         y += 70.0
-        
-        // UButtonImage
-        let image1 = UResourceManager.getImageByName(ImageName.miro)
-        let image2 = UResourceManager.getImageByName(ImageName.ume)
-        let imageButton = UButtonImage.createButton(callbacks: nil, id: PageViewTest1.buttonId3, priority: 100, x: x, y: y, width: buttonW, height: buttonH, image: image1, pressedImage: image2)
-        imageButton.addToDrawManager()
-        
-        y += 70.0
-        
-        // UButtonClose
-        let closeButton = UButtonClose(callbacks: self, type: UButtonType.BGColor, id: PageViewTest1.buttonId4, priority: 100, x: x, y: y, color: UIColor.red)
-        closeButton.addToDrawManager()
     }
     
     // ダイアログを表示する

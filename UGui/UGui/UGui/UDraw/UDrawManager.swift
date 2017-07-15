@@ -274,8 +274,9 @@ class UDrawManager {
          
         ULog.startCount(tag: UDrawManager.TAG)
         // 描画は手前(priorityが大きい)から順に行う
-        for list in lists!.values.reversed() {
-            if list.draw() {
+        for key in lists!.keys.sorted().reversed() {
+            let list = lists![key]
+            if list!.draw() {
                redraw = true
             }
         }
@@ -300,15 +301,22 @@ class UDrawManager {
         }
 
         var isRedraw = false
-        for list in lists!.values {
-            if (list.touchUpEvent(vt: vt) ) {
+        
+        // 手前から順に処理したいので priority が低い順に操作する
+        let sortedKeys = lists!.keys.sorted()
+        
+        for key in sortedKeys {
+            let list = lists![key]
+            if (list!.touchUpEvent(vt: vt) ) {
                 // タッチアップイベントは全てのオブジェクトで処理する
                 isRedraw = true
             }
         }
 
-        for list in lists!.values {
-            if list.touchEvent(vt: vt) {
+        for key in sortedKeys {
+            let list = lists![key]
+            
+            if list!.touchEvent(vt: vt) {
                 // その他のタッチイベントはtrueが返った時点で打ち切り
                 return true
             }

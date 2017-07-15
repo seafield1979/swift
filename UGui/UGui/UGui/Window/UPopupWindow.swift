@@ -45,7 +45,7 @@ public class UPopupWindow : UDialogWindow {
                     isAnimation: isAnimation,
                     x: 0, y: 0,
                     screenW: screenW, screenH: screenH,
-                    textColor: UIColor.black, dialogColor: UIColor.white)
+                    textColor: UIColor.black, dialogColor: UColor.White)
         
         self.buttonCallbacks = self
         self.frameColor = UIColor.black
@@ -73,7 +73,7 @@ public class UPopupWindow : UDialogWindow {
             startClosing()
             return true
         default:
-            break
+            _ = super.UButtonClicked(id: id, pressedOn: pressedOn)
         }
         return false
     }
