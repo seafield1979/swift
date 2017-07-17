@@ -28,7 +28,7 @@ public class MenuBarTest1 : UMenuBar {
     public init(parentView : TopView, callbacks : UMenuItemCallbacks,
                 parentW : CGFloat, parentH : CGFloat, bgColor : UIColor? )
     {
-        super.init(callbacks: callbacks,
+        super.init(parentView: parentView, callbacks: callbacks,
                    parentW: parentW, parentH: parentH,
                    bgColor: bgColor)
     }

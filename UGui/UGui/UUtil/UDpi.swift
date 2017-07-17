@@ -92,7 +92,7 @@ public class UDpi {
     /**
      * Constants
      */
-    public static let BASE_DPI : CGFloat = 160       // ベースのdpiは Android開発時にベースとなった160dpi
+    public static let BASE_DPI : CGFloat = 326.0       // ベースのdpiは Android開発時にベースとなった160dpi
     
     /**
      * Variables

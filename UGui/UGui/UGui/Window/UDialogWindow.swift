@@ -124,7 +124,7 @@ public class UDialogWindow : UWindow {
     /**
      * Constructor
      */
-    public init(type : DialogType, buttonCallbacks : UButtonCallbacks?,
+    public init(parentView: TopView, type : DialogType, buttonCallbacks : UButtonCallbacks?,
                 dialogCallbacks : UDialogCallbacks?,
                 dir : ButtonDir,
                 posType : DialogPosType,
@@ -149,7 +149,7 @@ public class UDialogWindow : UWindow {
         screenSize.width = screenW
         screenSize.height = screenH
         
-        super.init(callbacks: nil, priority: DrawPriority.Dialog.rawValue,
+        super.init(parentView: parentView, callbacks: nil, priority: DrawPriority.Dialog.rawValue,
                    x: x, y: y,
                    width: screenW, height: screenH,
                    bgColor: dialogColor,
@@ -170,6 +170,7 @@ public class UDialogWindow : UWindow {
     
     // 座標指定タイプ
     public static func createInstance(
+        parentView : TopView,
         type : DialogType,
         buttonCallbacks : UButtonCallbacks,
         dialogCallbacks : UDialogCallbacks,
@@ -181,6 +182,7 @@ public class UDialogWindow : UWindow {
         textColor : UIColor, dialogColor : UIColor?) -> UDialogWindow
     {
         let instance : UDialogWindow = createInstance(
+            parentView: parentView,
             type: type,
             buttonCallbacks: buttonCallbacks,
             dialogCallbacks: dialogCallbacks,
@@ -197,6 +199,7 @@ public class UDialogWindow : UWindow {
     
     // 画面中央に表示するタイプ
     public static func createInstance(
+        parentView : TopView, 
         type : DialogType, buttonCallbacks : UButtonCallbacks,
         dialogCallbacks : UDialogCallbacks,
         dir : ButtonDir,
@@ -207,6 +210,7 @@ public class UDialogWindow : UWindow {
     {
         
         let instance = UDialogWindow(
+            parentView: parentView,
             type: type,
             buttonCallbacks: buttonCallbacks,
             dialogCallbacks: dialogCallbacks,
@@ -221,12 +225,14 @@ public class UDialogWindow : UWindow {
     
     // 最小限の引数で作成
     public static func createInstance(
+        parentView: TopView,
         buttonCallbacks : UButtonCallbacks,
         dialogCallbacks : UDialogCallbacks,
         buttonDir : ButtonDir,
         screenW : CGFloat, screenH : CGFloat) -> UDialogWindow
     {
-        return createInstance(type: DialogType.Mordal,
+        return createInstance( parentView: parentView,
+                            type: DialogType.Mordal,
                               buttonCallbacks: buttonCallbacks,
                               dialogCallbacks: dialogCallbacks,
                               dir: buttonDir,

@@ -30,11 +30,13 @@ public class UMenuBar : UWindow {
     /**
      * Constructor
      */
-    public init( callbacks : UMenuItemCallbacks?,
+    public init( parentView: TopView,
+                callbacks : UMenuItemCallbacks?,
                  parentW : CGFloat, parentH : CGFloat,
                  bgColor : UIColor? )
     {
-        super.init(callbacks : nil,
+        super.init(parentView: parentView,
+                   callbacks : nil,
                    priority: UMenuBar.DRAW_PRIORITY,
                    x:0, y:parentH - UDpi.toPixel(UMenuBar.MENU_BAR_H),
                    width: parentW, height: UDpi.toPixel(UMenuBar.MENU_BAR_H),

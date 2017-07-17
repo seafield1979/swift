@@ -106,7 +106,8 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
     
     // ダイアログを表示する
     func showDialog() {
-        let dialog = UPopupWindow(popupType: UPopupType.OKCancel,
+        let dialog = UPopupWindow(parentView : mTopView!,
+                                  popupType: UPopupType.OKCancel,
                                   title: "hoge", isAnimation: true,
                                   screenW: CGFloat(UUtil.screenWidth()),
                                   screenH: CGFloat(UUtil.screenHeight()))

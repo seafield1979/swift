@@ -29,6 +29,8 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
     public static let buttonId2 = 101
     public static let buttonId3 = 102
     public static let buttonId4 = 103
+    public static let buttonId5 = 104
+    public static let buttonId6 = 105
     
     /**
      * Member variables
@@ -87,7 +89,7 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
         let x : CGFloat = 100.0
         var y : CGFloat = 100.0
         
-        for i in 0...3 {
+        for i in 0...5 {
             let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100 + i, priority: 100, text: "button" + (i+1).description,
                                          x: x, y: y,
                                          width: 200.0, height: 50.0, textSize: 20,
@@ -127,6 +129,12 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
         case PageViewTitle.buttonId4:
             // ページ切り替え
             _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test4)
+        case PageViewTitle.buttonId5:
+            // ページ切り替え
+            _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test5)
+        case PageViewTitle.buttonId6:
+            // ページ切り替え
+            _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test6)
         default:
             break
         }

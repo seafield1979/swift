@@ -64,10 +64,7 @@ class ULog {
             print(time.description + ": " + msg)
         }
     }
-//        if (logWindow != null) {
-//            logWindow.addLog(msg);
-//        }
-        
+    
     /**
      * カウントする
      * start - count ... - end

@@ -1,5 +1,5 @@
 //
-//  PageViewTest4.swift
+//  PageViewTest5.swift
 //  UGui
 //
 //  Created by Shusuke Unno on 2017/07/17.
@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-public class PageViewTest4 : UPageView, UMenuItemCallbacks {
+public class PageViewTest5 : UPageView {
     /**
      * Enums
      */
     /**
      * Constants
      */
-    public static let TAG = "PageViewTest4"
+    public static let TAG = "PageViewTest5"
     
     public static let buttonId1 = 100
     public static let buttonId2 = 101
@@ -26,8 +26,6 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
     /**
      * Propaties
      */
-    var logWindow : ULogWindow? = nil
-    var menuBar : MenuBarTest1? = nil
     
     /**
      * Constructor
@@ -78,10 +76,6 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
     override public func initDrawables() {
         UDrawManager.getInstance().initialize()
         
-        // MenuBar
-        menuBar = MenuBarTest1.createInstance(parentView: mTopView!, callbacks: self,
-                                              parentW: mTopView!.frame.size.width,
-                                              parentH: mTopView!.frame.size.height, bgColor: nil)
     }
     
     // ダイアログを表示する
@@ -105,10 +99,5 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
     /**
      * Callbacks
      */
-    /**
-     * UMenuBarCallbacks
-     */
-    // メニューの項目がクリックされたときのコールバック
-    public func menuItemClicked(itemId : Int, stateId : Int) {
-    }
+    
 }

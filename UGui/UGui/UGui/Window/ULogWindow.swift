@@ -26,19 +26,21 @@ public class ULogWindow : UWindow {
     public static let SHOW_TIME : TimeInterval = 3.0
     public static let DRAW_PRIORITY : Int = 5
     private static let TEXT_SIZE : Int = 14
+    private static let MARGIN : Int = 10
     
     private var logs : List<LogData> = List()
     private var timer : Timer? = nil
-    private var parentView : TopView? = nil
     private var type : LogWindowType = LogWindowType.Fix
     private var count : Int = 1
     private var maxLog : Int = 0
     
-    private init( x : CGFloat, y : CGFloat,
+    private init( parentView: TopView,
+                  x : CGFloat, y : CGFloat,
                   width : CGFloat, height : CGFloat,
                   color: UIColor)
     {
-        super.init(callbacks: nil, priority: ULogWindow.DRAW_PRIORITY,
+        super.init(parentView: parentView,
+                   callbacks: nil, priority: ULogWindow.DRAW_PRIORITY,
                    x: x, y: y, width: width, height: height,
                    bgColor: color, topBarH: 0, frameW: 0, frameH: 0)
         isShow = true
@@ -56,12 +58,12 @@ public class ULogWindow : UWindow {
      * @param height
      * @return
      */
-    public static func createInstance( parentView : TopView?,
+    public static func createInstance( parentView : TopView,
                                        type : LogWindowType,
                                        x : CGFloat, y : CGFloat,
                                        width : CGFloat, height : CGFloat) -> ULogWindow
     {
-        let instance = ULogWindow( x:x, y:y,
+        let instance = ULogWindow( parentView : parentView, x:x, y:y,
                                    width:width, height:height,
                                    color: UColor.makeColor(128,0,0,0))
         instance.parentView = parentView
@@ -257,8 +259,8 @@ public class ULogWindow : UWindow {
             ] as [String : Any]
         
         
-        let drawX : CGFloat = pos.x
-        var drawY : CGFloat = pos.y + UDpi.toPixel(ULogWindow.TEXT_SIZE)
+        let drawX : CGFloat = pos.x + UDpi.toPixel(ULogWindow.MARGIN)
+        var drawY : CGFloat = pos.y + UDpi.toPixel(ULogWindow.TEXT_SIZE + ULogWindow.MARGIN)
         // 全ログを表示
         for msg in logs {
             let size = msg!.text.size(attributes: [NSFontAttributeName : font])

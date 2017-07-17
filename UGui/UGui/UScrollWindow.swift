@@ -15,13 +15,14 @@ public class UScrollWindow : UWindow {
     /**
      * Constructor
      */
-    public init(callbacks : UWindowCallbacks,
+    public init(parentView : TopView,
+                callbacks : UWindowCallbacks,
                 priority : Int, x : CGFloat, y : CGFloat,
                 width : CGFloat, height : CGFloat,
                 color : UIColor,
                 topBarH : CGFloat, frameW : CGFloat, frameH : CGFloat)
     {
-        super.init(callbacks: callbacks, priority: priority,
+        super.init(parentView: parentView, callbacks: callbacks, priority: priority,
                    x: x, y: y,
                    width: width, height: height,
                    bgColor: color,

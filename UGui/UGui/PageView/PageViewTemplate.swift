@@ -1,5 +1,5 @@
 //
-//  PageViewTest4.swift
+//  PageViewTemplate.swift
 //  UGui
 //
 //  Created by Shusuke Unno on 2017/07/17.
@@ -9,25 +9,19 @@
 import Foundation
 import UIKit
 
-public class PageViewTest4 : UPageView, UMenuItemCallbacks {
+public class PageViewTemplate : UPageView {
     /**
      * Enums
      */
     /**
      * Constants
      */
-    public static let TAG = "PageViewTest4"
+    public static let TAG = "PageViewTemplate"
     
-    public static let buttonId1 = 100
-    public static let buttonId2 = 101
-    public static let buttonId3 = 102
-    public static let buttonId4 = 103
     
     /**
      * Propaties
      */
-    var logWindow : ULogWindow? = nil
-    var menuBar : MenuBarTest1? = nil
     
     /**
      * Constructor
@@ -77,21 +71,8 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
      */
     override public func initDrawables() {
         UDrawManager.getInstance().initialize()
-        
-        // MenuBar
-        menuBar = MenuBarTest1.createInstance(parentView: mTopView!, callbacks: self,
-                                              parentW: mTopView!.frame.size.width,
-                                              parentH: mTopView!.frame.size.height, bgColor: nil)
-    }
-    
-    // ダイアログを表示する
-    func showDialog() {
-        let dialog = UPopupWindow(parentView: mTopView!,
-                                  popupType: UPopupType.OKCancel,
-                                  title: "hoge", isAnimation: true,
-                                  screenW: CGFloat(UUtil.screenWidth()),
-                                  screenH: CGFloat(UUtil.screenHeight()))
-        dialog.addToDrawManager()
+
+        // ここにページで表示するオブジェクト生成処理を記述
     }
     
     /**
@@ -105,10 +86,4 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
     /**
      * Callbacks
      */
-    /**
-     * UMenuBarCallbacks
-     */
-    // メニューの項目がクリックされたときのコールバック
-    public func menuItemClicked(itemId : Int, stateId : Int) {
-    }
 }

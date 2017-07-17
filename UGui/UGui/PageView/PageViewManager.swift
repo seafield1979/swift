@@ -12,10 +12,12 @@ import UIKit
 // ページIDのリスト
 public enum PageView : Int, EnumEnumerable {
     case Title = 0   // タイトル画面
-    case Test1
+    case Test1      // ボタン
     case Test2
-    case Test3
-    case Test4
+    case Test3      // ログウィンドウ
+    case Test4      // メニューバー
+    case Test5      // スクロールバー
+    case Test6
    ;
 }
 
@@ -62,6 +64,12 @@ public class PageViewManager : UPageViewManager {
             page = PageViewTest3( topView: mTopView,
                                   title: UResourceManager.getStringByName("test3"))
         case .Test4:
+            page = PageViewTest4( topView: mTopView,
+                                  title: UResourceManager.getStringByName("test4"))
+        case .Test5:
+            page = PageViewTest4( topView: mTopView,
+                                  title: UResourceManager.getStringByName("test4"))
+        case .Test6:
             page = PageViewTest4( topView: mTopView,
                                   title: UResourceManager.getStringByName("test4"))
         }
