@@ -13,4 +13,7 @@ public enum ImageName : String {
     case ume = "image/ume.png"
     
     case close = "image/close"
+    case debug = "image/debug"
+    case hogeman = "image/hogeman.png"
+    case hogeman2 = "image/hogeman2.png"
 }

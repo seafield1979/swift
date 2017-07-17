@@ -53,10 +53,9 @@ public class UDrawable {
     var dstSize = CGSize()
     
     // アニメーション用
-    public static let ANIME_FRAME : Int = 20
     var isAnimating : Bool = false
     var animeFrame : Int = 0
-    var animeFrameMax : Int = 0
+    var animeFrameMax : Int = 20
     var animeRatio : CGFloat = 0.0
     
     // Constructor
@@ -481,7 +480,7 @@ public class UDrawable {
      * アニメーション開始
      */
     public func startAnimation() {
-        startAnimation(frameMax: UDrawable.ANIME_FRAME);
+        startAnimation(frameMax: animeFrameMax)
     }
     public func startAnimation(frameMax : Int) {
         isAnimating = true
@@ -520,8 +519,8 @@ public class UDrawable {
      *
      * @return
      */
-    public func getAnimeAlpha() -> Int {
+    public func getAnimeAlpha() -> CGFloat {
         let v1 = (CGFloat(animeFrame) / CGFloat(animeFrameMax)) * 180.0
-        return Int((1.0 -  sin(v1 * UDrawable.RAD)) * 255)
+        return 1.0 -  sin(v1 * UDrawable.RAD)
     }
 }

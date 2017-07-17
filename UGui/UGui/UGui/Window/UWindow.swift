@@ -332,10 +332,12 @@ public class UWindow : UDrawable, UButtonCallbacks {
         }
         
         // BG
-        if offset != nil {
-            drawBG(offset: offset!)
-        } else {
-            drawBG()
+        if bgColor != nil {
+            if offset != nil {
+                drawBG(offset: offset!)
+            } else {
+                drawBG()
+            }
         }
         
         // Window内部

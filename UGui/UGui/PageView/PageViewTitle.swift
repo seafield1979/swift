@@ -88,10 +88,13 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
         var y : CGFloat = 100.0
         
         for i in 0...3 {
-            let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100 + i, priority: 100, text: "button" + (i+1).description, x: x, y: y, width: 200.0, height: 50.0, textSize: 20, textColor: UColor.White, color: UColor.Blue)
+            let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100 + i, priority: 100, text: "button" + (i+1).description,
+                                         x: x, y: y,
+                                         width: 200.0, height: 50.0, textSize: 20,
+                                         textColor: UColor.White, color: UColor.Blue)
             textButton.addToDrawManager()
             
-            y += 100.0
+            y += 60.0
         }
     }
     
@@ -122,7 +125,8 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
             // ページ切り替え
             _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test3)
         case PageViewTitle.buttonId4:
-            break
+            // ページ切り替え
+            _ = PageViewManager.getInstance().stackPage(pageId: PageView.Test4)
         default:
             break
         }

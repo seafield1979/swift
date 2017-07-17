@@ -88,17 +88,17 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
         
         y += 70.0
         
-        let textButton2 = UButtonText(callbacks: self, type: UButtonType.Press2, id: PageViewTest1.buttonId2, priority: 100, text: "button2", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
+        let textButton2 = UButtonText(callbacks: self, type: UButtonType.Press2, id: PageViewTest2.buttonId2, priority: 100, text: "button2", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton2.addToDrawManager()
         
         y += 70.0
         
-        let textButton3 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest1.buttonId3, priority: 100, text: "button3", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
+        let textButton3 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId3, priority: 100, text: "button3", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton3.addToDrawManager()
         
         y += 70.0
         
-        let textButton4 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest1.buttonId4, priority: 100, text: "button4", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
+        let textButton4 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId4, priority: 100, text: "button4", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
         textButton4.addToDrawManager()
         
         y += 70.0

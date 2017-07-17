@@ -203,4 +203,46 @@ public class ViewTouch {
         let millisec = UInt64(sec * 1000) // intだとあふれるので注意
         return millisec
     }
+    
+    /**
+     * ２点間の距離が指定の距離内に収まっているかどうかを調べる
+     * @return true:距離内 / false:距離外
+     */
+    public func checkInsideCircle(
+        vx : CGFloat, vy : CGFloat, x: CGFloat, y: CGFloat,
+        length : CGFloat) -> Bool
+    {
+        if (vx - x) * (vx - x) + (vy - y) * (vy - y) <= length * length {
+            return true
+        }
+        return false
+    }
+    
+    /**
+     * ロングタッチ検出用のタイマーを開始
+     */
+    private func startLongTouchTimer() {
+//    if (timer != null) {
+//    timer.cancel();
+//    timer = null;
+//    }
+//    timer = new Timer();
+//    timer.scheduleAtFixedRate(new TimerTask(){
+//    @Override
+//    public void run() {
+//    timer.cancel();
+//    if (isTouching && type != TouchType.Moving) {
+//    // ロングタッチを検出する
+//    isLongTouch = true;
+//    isTouching = false;
+//    innerType = type = TouchType.LongPress;
+//    // ロングタッチイベント開始はonTouchから取れないので親に通知する
+//    if (callbacks != null) {
+//    callbacks.longPressed();
+//    }
+//    ULog.print(TAG, "timer Long Touch");
+//    }
+//    }
+//    }, LONG_TOUCH_TIME, 1000);
+    }
 }

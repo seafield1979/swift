@@ -108,6 +108,11 @@ public class UColor {
         return UColor.makeColor( ri, gi, bi, 255)
     }
     
+    public static func makeColor(r: CGFloat, g: CGFloat, b: CGFloat) -> UIColor
+    {
+        return UIColor.init( red: r, green: g, blue: b, alpha: 1.0)
+    }
+    
     public static func makeColor( _ ai: UInt32, _ ri: UInt32, _ gi: UInt32, _ bi: UInt32) -> UIColor
     {
         return UIColor(red: CGFloat(ri) / 255.0, green: CGFloat(gi) / 255.0, blue: CGFloat(bi) / 255.0, alpha: CGFloat(ai) / 255.0)
@@ -125,6 +130,13 @@ public class UColor {
         let g = CGFloat((argb >> 8) & 0xff) / 255.0
         let b = CGFloat(argb & 0xff) / 255.0
         return UIColor(red: r, green: g, blue: b, alpha: a)
+    }
+    
+    // alphaと RGBのUIColorから UIColorを作成する
+    public static func makeColor(a: CGFloat, rgb: UIColor) -> UIColor {
+        var R : CGFloat = 0.0,G : CGFloat = 0.0,B : CGFloat = 0.0,A : CGFloat = 0.0
+        rgb.getRed( &R, green: &G, blue: &B, alpha: &A)
+        return UIColor.init(red:R, green:G, blue:B, alpha:a)
     }
         
     /**
