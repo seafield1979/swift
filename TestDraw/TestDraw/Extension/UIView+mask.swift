@@ -1,12 +1,9 @@
 //
 //  UIView+mask.swift
-//  UGui
-//  
-//  UIViewの拡張
-//  矩形のマスクを設定して、そこに描画がされないようにする
+//  TestDraw
 //
-//  Created by Shusuke Unno on 2017/07/15.
-//  Copyright © 2017年 Shusuke Unno. All rights reserved.
+//  Created by Shusuke Unno on 2017/07/18.
+//  Copyright © 2017年 Sun Sun Soft. All rights reserved.
 //
 
 import Foundation
@@ -50,7 +47,7 @@ public extension UIView {
         
         self.layer.mask = maskLayer
     }
-
+    
     /**
      マスクをクリアする
      */

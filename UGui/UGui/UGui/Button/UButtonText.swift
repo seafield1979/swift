@@ -81,7 +81,7 @@ public class UButtonText : UButton {
     /**
      * Constructor
      */
-    init(callbacks : UButtonCallbacks, type : UButtonType, id : Int,
+    init(callbacks : UButtonCallbacks?, type : UButtonType, id : Int,
                      priority : Int, text : String,
                      x : CGFloat, y : CGFloat, width : CGFloat, height : CGFloat,
                      textSize : Int, textColor : UIColor?, color : UIColor?)

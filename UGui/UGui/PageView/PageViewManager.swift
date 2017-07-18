@@ -67,11 +67,11 @@ public class PageViewManager : UPageViewManager {
             page = PageViewTest4( topView: mTopView,
                                   title: UResourceManager.getStringByName("test4"))
         case .Test5:
-            page = PageViewTest4( topView: mTopView,
-                                  title: UResourceManager.getStringByName("test4"))
+            page = PageViewTest5( topView: mTopView,
+                                  title: UResourceManager.getStringByName("test5"))
         case .Test6:
-            page = PageViewTest4( topView: mTopView,
-                                  title: UResourceManager.getStringByName("test4"))
+            page = PageViewTest6( topView: mTopView,
+                                  title: UResourceManager.getStringByName("test6"))
         }
         if page != nil {
             pages[pageView.rawValue] = page

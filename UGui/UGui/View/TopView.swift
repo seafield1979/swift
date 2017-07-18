@@ -73,6 +73,7 @@ public class TopView : UIView, UButtonCallbacks{
         if UDrawManager.getInstance().draw() == true {
             redraw = true
         }
+//        clearMask()
     }
     
     

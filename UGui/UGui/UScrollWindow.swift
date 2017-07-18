@@ -16,7 +16,7 @@ public class UScrollWindow : UWindow {
      * Constructor
      */
     public init(parentView : TopView,
-                callbacks : UWindowCallbacks,
+                callbacks : UWindowCallbacks?,
                 priority : Int, x : CGFloat, y : CGFloat,
                 width : CGFloat, height : CGFloat,
                 color : UIColor,
@@ -56,9 +56,8 @@ public class UScrollWindow : UWindow {
                     if (contentTop.x + clientSize.width > contentSize.width) {
                         contentTop.x = contentSize.width - clientSize.width
                     }
-                    mScrollBarH!.updateScroll(pos: Int64(contentTop.x))
+                    mScrollBarH!.updateScroll(pos: contentTop.x)
                     isDraw = true
-                    
                 }
             }
             if contentSize.height > clientSize.height {
@@ -70,7 +69,9 @@ public class UScrollWindow : UWindow {
                     if contentTop.y + clientSize.height > contentSize.height {
                         contentTop.y = contentSize.height - clientSize.height
                     }
-                    mScrollBarV!.updateScroll(pos: Int64(contentTop.y))
+                    print("contentTop.y:" + contentTop.y.description)
+                    
+                    mScrollBarV!.updateScroll(pos: contentTop.y)
                     isDraw = true
                 }
             }

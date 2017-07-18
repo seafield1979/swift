@@ -56,14 +56,14 @@ public class UListItem : UDrawable {
     public func getMIndex() -> Int{
         return mIndex
     }
-    public func setListItemCallbacks(_ callbacks : UListItemCallbacks) {
+    public func setListItemCallbacks(_ callbacks : UListItemCallbacks?) {
         self.mListItemCallbacks = callbacks
     }
     
     /**
      * Constructor
      */
-    public init(callbacks : UListItemCallbacks, isTouchable : Bool,
+    public init(callbacks : UListItemCallbacks?, isTouchable : Bool,
                 x : CGFloat, width : CGFloat, height : CGFloat,
                 bgColor : UIColor?,
                 frameW : CGFloat, frameColor : UIColor?)

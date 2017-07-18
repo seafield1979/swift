@@ -68,9 +68,9 @@ public class UScrollBar {
     public var barLength : CGFloat = 0.0       // バーの長さ(縦バーなら高さ、横バーなら幅)
     
     // コンテンツ座標系
-    public var contentLen : Int64       // コンテンツ領域のサイズ
-    public var pageLen : Int64          // 表示画面のサイズ
-    public var topPos : Int64         // スクロールの現在の位置
+    public var contentLen : CGFloat       // コンテンツ領域のサイズ
+    public var pageLen : CGFloat          // 表示画面のサイズ
+    public var topPos : CGFloat         // スクロールの現在の位置
     
     var bgRect = CGRect()
     var barRect = CGRect()
@@ -91,7 +91,7 @@ public class UScrollBar {
         self.barColor = barColor
     }
     
-    public func getTopPos() -> Int64 {
+    public func getTopPos() -> CGFloat {
         return topPos
     }
     
@@ -115,7 +115,7 @@ public class UScrollBar {
         return bgWidth
     }
     
-    public func setPageLen(pageLen : Int64) {
+    public func setPageLen(pageLen : CGFloat) {
         self.pageLen = pageLen
     }
     
@@ -140,7 +140,7 @@ public class UScrollBar {
     public init(type : ScrollBarType, showType : ScrollBarShowType,
                 parentPos : CGPoint, x : CGFloat, y : CGFloat,
                 bgLength : CGFloat, bgWidth : CGFloat,
-                pageLen : Int64, contentLen : Int64 )
+                pageLen : CGFloat, contentLen : CGFloat )
     {
         self.type = type
         self.showType = showType
@@ -196,13 +196,13 @@ public class UScrollBar {
      * ※外部のスクロールを反映させる
      * @param pos
      */
-    public func updateScroll(pos : Int64) {
-        barPos = CGFloat(pos / contentLen) * bgLength
+    public func updateScroll(pos : CGFloat) {
+        barPos = pos / contentLen * bgLength
         self.topPos = pos
     }
     
     public func updateBarPos() {
-        barPos = CGFloat(topPos / contentLen) * bgLength
+        barPos = topPos / contentLen * bgLength
     }
     
     /**
@@ -210,13 +210,13 @@ public class UScrollBar {
      * updateScrollの逆バージョン
      */
     private func updateScrollByBarPos() {
-        topPos = Int64(barPos / bgLength) * contentLen
+        topPos = (barPos / bgLength) * contentLen
     }
     
     /**
      * コンテンツやViewのサイズが変更された時の処理
      */
-    public func updateContent(contentSize : Int64) -> Int64 {
+    public func updateContent(contentSize : CGFloat) -> CGFloat {
         self.contentLen = contentSize
         
         updateBarLength()

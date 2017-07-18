@@ -231,8 +231,8 @@ public class UWindow : UDrawable, UButtonCallbacks {
                 y: frameSize.height + topBarH,
                 bgLength: clientSize.height,
                 bgWidth: scrollBarW,
-                pageLen: Int64(height - scrollBarW),
-                contentLen: Int64(contentSize.height))
+                pageLen: height - scrollBarW,
+                contentLen: contentSize.height)
             
             mScrollBarH = UScrollBar(
                 type: ScrollBarType.Horizontal,
@@ -241,8 +241,8 @@ public class UWindow : UDrawable, UButtonCallbacks {
                 y: size.height - frameSize.height - scrollBarW,
                 bgLength: clientSize.width,
                 bgWidth: scrollBarW,
-                pageLen: Int64(width - scrollBarW),
-                contentLen: Int64(contentSize.width))
+                pageLen: width - scrollBarW,
+                contentLen: contentSize.width)
         }
     }
     
@@ -291,14 +291,14 @@ public class UWindow : UDrawable, UButtonCallbacks {
         
         // スクロールバー
         if mScrollBarV != nil {
-            mScrollBarV!.setPageLen(pageLen: Int64(clientSize.height))
+            mScrollBarV!.setPageLen(pageLen: clientSize.height)
             mScrollBarV!.updateSize()
-            contentTop.y = CGFloat(mScrollBarV!.updateContent(contentSize: Int64(contentSize.height)))
+            contentTop.y = CGFloat(mScrollBarV!.updateContent(contentSize: contentSize.height))
         }
         if (mScrollBarH != nil) {
-            mScrollBarH!.setPageLen(pageLen: Int64(clientSize.width))
+            mScrollBarH!.setPageLen(pageLen: clientSize.width)
             mScrollBarH!.updateSize()
-            contentTop.x = CGFloat(mScrollBarH!.updateContent(contentSize: Int64(contentSize.width)))
+            contentTop.x = CGFloat(mScrollBarH!.updateContent(contentSize: contentSize.width))
         }
     }
     
@@ -512,7 +512,7 @@ public class UWindow : UDrawable, UButtonCallbacks {
             }
         }
         // スクロールバーの表示を更新
-        mScrollBarV!.updateScroll(pos: Int64(contentTop.y))
+        mScrollBarV!.updateScroll(pos: contentTop.y)
         
         return true;
     }

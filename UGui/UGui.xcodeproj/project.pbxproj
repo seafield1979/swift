@@ -69,6 +69,7 @@
 		8AE720941F1C6284005B0043 /* PageViewTest5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720931F1C6284005B0043 /* PageViewTest5.swift */; };
 		8AE720961F1C6297005B0043 /* PageViewTest6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720951F1C6297005B0043 /* PageViewTest6.swift */; };
 		8AE720981F1C632D005B0043 /* PageViewTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720971F1C632D005B0043 /* PageViewTemplate.swift */; };
+		8AE7209A1F1C9B70005B0043 /* ListItemTest1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720991F1C9B70005B0043 /* ListItemTest1.swift */; };
 		8AECCE381F13394A005C4ECF /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECCE371F13394A005C4ECF /* List.swift */; };
 		8AECCE3A1F134AFA005C4ECF /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AECCE391F134AFA005C4ECF /* Random.swift */; };
 /* End PBXBuildFile section */
@@ -140,6 +141,7 @@
 		8AE720931F1C6284005B0043 /* PageViewTest5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTest5.swift; path = PageView/PageViewTest5.swift; sourceTree = "<group>"; };
 		8AE720951F1C6297005B0043 /* PageViewTest6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTest6.swift; path = PageView/PageViewTest6.swift; sourceTree = "<group>"; };
 		8AE720971F1C632D005B0043 /* PageViewTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PageViewTemplate.swift; path = PageView/PageViewTemplate.swift; sourceTree = "<group>"; };
+		8AE720991F1C9B70005B0043 /* ListItemTest1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemTest1.swift; path = UGui/ListView/ListItemTest1.swift; sourceTree = "<group>"; };
 		8AECCE371F13394A005C4ECF /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = List.swift; path = UUtil/List.swift; sourceTree = "<group>"; };
 		8AECCE391F134AFA005C4ECF /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = UUtil/Random.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +260,7 @@
 			children = (
 				8A1C2B4F1F1067C8005483ED /* UListItem.swift */,
 				8A1C2B521F1067F1005483ED /* UListView.swift */,
+				8AE720991F1C9B70005B0043 /* ListItemTest1.swift */,
 			);
 			name = ListView;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				8A1C2B811F13115E005483ED /* RefDictionary.swift in Sources */,
 				8AE720941F1C6284005B0043 /* PageViewTest5.swift in Sources */,
 				8A1C2B701F106E2D005483ED /* UDrawManager.swift in Sources */,
+				8AE7209A1F1C9B70005B0043 /* ListItemTest1.swift in Sources */,
 				8A1C2B531F1067F1005483ED /* UListView.swift in Sources */,
 				8AE720981F1C632D005B0043 /* PageViewTemplate.swift in Sources */,
 				8AE720631F1907D8005B0043 /* PageViewTest2.swift in Sources */,

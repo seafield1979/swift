@@ -29,7 +29,7 @@ public class UListView : UScrollWindow
      * Member variables
      */
     var mItems : List<UListItem> = List()
-    var mListItemCallbacks : UListItemCallbacks
+    var mListItemCallbacks : UListItemCallbacks?
     var mClipRect : CGRect
     
     // リストの最後のアイテムの下端の座標
@@ -39,8 +39,8 @@ public class UListView : UScrollWindow
      * Constructor
      */
     public init(parentView : TopView,
-                windowCallbacks : UWindowCallbacks,
-                listItemCallbacks : UListItemCallbacks,
+                windowCallbacks : UWindowCallbacks?,
+                listItemCallbacks : UListItemCallbacks?,
                 priority : Int,
                 x : CGFloat, y : CGFloat,
                 width : CGFloat, height : CGFloat, color : UIColor)
@@ -129,90 +129,96 @@ public class UListView : UScrollWindow
     }
     
     // ウィンドウの内部領域の描画
-//    public func drawContent( offset : CGPoint? ) {
-//        var _pos = CGPoint(x: pos.x, y: pos.y)
-//        
-//        if offset != nil {
-//            _pos.x += offset!.x
-//            _pos.y += offset!.y
-//        }
-//        
-//        // クリッピングを設定
-//        
-//        
-//        mClipRect.left = (int)_pos.x;
-//        mClipRect.right = (int)_pos.x + clientSize.width;
-//        mClipRect.top = (int)_pos.y;
-//        mClipRect.bottom = (int)_pos.y + clientSize.height;
-//        
-//        canvas.clipRect(mClipRect);
-//        
-//        // アイテムを描画
-//        PointF _offset = new PointF(_pos.x, _pos.y - contentTop.y);
-//        for (UListItem item : mItems) {
-//            if (item.getBottom() < contentTop.y) continue;
-//            
-//            item.draw(canvas, paint, _offset);
-//            
-//            if (item.getY() + item.getHeight() > contentTop.y + size.height) {
-//                // アイテムの下端が画面外にきたので以降のアイテムは表示されない
-//                break;
-//            }
-//        }
-//        
-//        // クリッピングを解除
-//        canvas.restore();
-//    }
-//    
-//    public boolean touchEvent(ViewTouch vt, PointF offset) {
-//        if (offset == null) {
-//            offset = new PointF();
-//        }
-//        // 領域外なら何もしない
-//        if (!getClientRect().contains((int)vt.touchX(-pos.x - offset.x),
-//                                      (int)vt.touchY(-pos.y - offset.y)))
-//        {
-//            return false;
-//        }
-//        
-//        // アイテムのクリック判定処理
-//        PointF _offset = new PointF(pos.x + offset.x, pos.y - contentTop.y + offset.y);
-//        boolean isDraw = false;
-//        
-//        if (super.touchEvent(vt, offset)) {
-//            return true;
-//        }
-//        
-//        for (UListItem item : mItems) {
-//            if (item.getBottom() < contentTop.y) continue;
-//            if (item.touchEvent(vt, _offset)) {
-//                isDraw = true;
-//            }
-//            if (item.getY() + item.getHeight() > contentTop.y + clientSize.height) {
-//                // アイテムの下端が画面外にきたので以降のアイテムは表示されない
-//                break;
-//            }
-//        }
-//        
-//        return isDraw;
-//    }
-//    
-//    public boolean touchUpEvent(ViewTouch vt) {
-//        boolean isDraw = false;
-//        if (vt.isTouchUp()) {
-//            for (UListItem item : mItems) {
-//                item.touchUpEvent(vt);
-//                isDraw = true;
-//            }
-//        }
-//        return isDraw;
-//    }
-//    
-//    /**
-//     * for Debug
-//     */
-//    public void addDummyItems(int count) {
-//        
-//        updateWindow();
-//    }
+    override public func drawContent( offset : CGPoint? ) {
+        var _pos = CGPoint(x: pos.x, y: pos.y)
+        
+        if offset != nil {
+            _pos.x += offset!.x
+            _pos.y += offset!.y
+        }
+        
+        // クリッピングを設定        
+        mClipRect = CGRect( x: _pos.x, y: _pos.y,
+                            width: clientSize.width, height: clientSize.height)
+        
+        UIGraphicsGetCurrentContext()!.saveGState()
+        UIGraphicsGetCurrentContext()!.clip(to: mClipRect)
+        
+        // アイテムを描画
+        let _offset = CGPoint(x:_pos.x, y:_pos.y - contentTop.y)
+        for item in mItems {
+            if item!.getBottom() < contentTop.y {
+                continue
+            }
+            
+            item!.draw(_offset)
+            
+            if (item!.getY() + item!.getHeight() > contentTop.y + size.height) {
+                // アイテムの下端が画面外にきたので以降のアイテムは表示されない
+                break
+            }
+        }
+        // クリッピングを解除
+        UIGraphicsGetCurrentContext()!.restoreGState()
+    }
+
+    override public func touchEvent(vt : ViewTouch, offset : CGPoint?) -> Bool {
+        var offset = offset
+        if offset == nil {
+            offset = CGPoint()
+        }
+        // 領域外なら何もしない
+        let point = CGPoint(x: vt.touchX(offset: -pos.x - offset!.x),
+                            y: vt.touchY(offset: -pos.y - offset!.y))
+        if !getClientRect().contains(point) {
+            return false
+        }
+        
+        // アイテムのクリック判定処理
+        let _offset = CGPoint(x:pos.x + offset!.x, y:pos.y - contentTop.y + offset!.y)
+        var isDraw = false
+        
+        if (super.touchEvent(vt:vt, offset:offset)) {
+            return true
+        }
+        
+        for item in mItems {
+            if item!.getBottom() < contentTop.y {
+                continue
+            }
+            if item!.touchEvent(vt:vt, offset:_offset) {
+                isDraw = true
+            }
+            if item!.getY() + item!.getHeight() > contentTop.y + clientSize.height {
+                // アイテムの下端が画面外にきたので以降のアイテムは表示されない
+                break
+            }
+        }
+        
+        return isDraw
+    }
+    
+    override public func touchUpEvent(vt : ViewTouch) -> Bool {
+        var isDraw = false
+        if vt.isTouchUp {
+            for item in mItems {
+                item!.touchUpEvent(vt: vt)
+                isDraw = true
+            }
+        }
+        return isDraw
+    }
+    
+    /**
+     * for Debug
+     */
+    public func addDummyItems(count : Int) {
+        for i in 0...19 {
+            let item = ListItemTest1(callbacks: nil,
+                                     text: "hoge",
+                                     x: 0, width: size.width, color:UIColor.yellow)
+            add(item: item)
+        }
+        updateWindow()
+    }
 }
