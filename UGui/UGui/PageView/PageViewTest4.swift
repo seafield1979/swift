@@ -18,11 +18,6 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
      */
     public static let TAG = "PageViewTest4"
     
-    public static let buttonId1 = 100
-    public static let buttonId2 = 101
-    public static let buttonId3 = 102
-    public static let buttonId4 = 103
-    
     /**
      * Propaties
      */
@@ -82,16 +77,14 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
         menuBar = MenuBarTest1.createInstance(parentView: mTopView!, callbacks: self,
                                               parentW: mTopView!.frame.size.width,
                                               parentH: mTopView!.frame.size.height, bgColor: nil)
-    }
-    
-    // ダイアログを表示する
-    func showDialog() {
-        let dialog = UPopupWindow(parentView: mTopView!,
-                                  popupType: UPopupType.OKCancel,
-                                  title: "hoge", isAnimation: true,
-                                  screenW: CGFloat(UUtil.screenWidth()),
-                                  screenH: CGFloat(UUtil.screenHeight()))
-        dialog.addToDrawManager()
+        
+        // ULogWindow
+        // 自動で描画リストに追加される
+        logWindow = ULogWindow.createInstance(
+            parentView: mTopView!, type: LogWindowType.Fix,
+            x: 0, y: UUtil.navigationBarHeight(),
+            width: CGFloat(UUtil.screenWidth()),
+            height: CGFloat(UUtil.screenHeight()) / 2 - UUtil.navigationBarHeight())
     }
     
     /**
@@ -110,5 +103,15 @@ public class PageViewTest4 : UPageView, UMenuItemCallbacks {
      */
     // メニューの項目がクリックされたときのコールバック
     public func menuItemClicked(itemId : Int, stateId : Int) {
+        switch itemId {
+        case MenuBarTest1.MenuItemId.Debug1.rawValue:
+            logWindow?.addLog("debug1 clicked")
+        case MenuBarTest1.MenuItemId.Debug2.rawValue:
+            logWindow?.addLog("debug2 clicked")
+        case MenuBarTest1.MenuItemId.Debug3.rawValue:
+            logWindow?.addLog("debug3 clicked")
+        default:
+            break
+        }
     }
 }

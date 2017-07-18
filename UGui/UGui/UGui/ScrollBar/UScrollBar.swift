@@ -346,25 +346,23 @@ public class UScrollBar {
      */
     private func touchDown(vt : ViewTouch, offset : CGPoint) -> Bool {
         // スペース部分をタッチしたら１画面分スクロール
-        let ex : CGFloat = vt.touchX - offset.x
-        let ey : CGFloat = vt.touchY - offset.y
+        let ep = CGPoint(x: vt.touchX - offset.x, y: vt.touchY - offset.y)
         
         var rect = CGRect()
         
         if (type == ScrollBarType.Vertical) {
-            rect = CGRect(x:pos.x - UDpi.toPixel(UScrollBar.TOUCH_MARGIN),
+            let marginW = UDpi.toPixel(UScrollBar.TOUCH_MARGIN)
+            rect = CGRect(x:pos.x - marginW,
                           y: pos.y,
-                          width: bgWidth, height: bgLength)
+                          width: bgWidth + marginW * 2, height: bgLength)
             
-            if (rect.left <= ex && ex < rect.right &&
-                rect.top <= ey && ey < rect.bottom)
-            {
-                if (ey < barPos) {
+            if (rect.contains(ep)) {
+                if (ep.y < barPos) {
                     // 上にスクロール
                     ULog.printMsg(UScrollBar.TAG,"Scroll Up")
                     scrollUp()
                     return true
-                } else if (ey > pos.y + barPos + barLength) {
+                } else if (ep.y > pos.y + barPos + barLength) {
                     // 下にスクロール
                     ULog.printMsg(UScrollBar.TAG, "Scroll Down")
                     scrollDown()
@@ -381,15 +379,13 @@ public class UScrollBar {
                           y: pos.y - UDpi.toPixel(UScrollBar.TOUCH_MARGIN),
                           width: bgLength, height: bgWidth)
             
-            if (rect.left <= ex && ex < rect.right &&
-                rect.top <= ey && ey < rect.bottom)
-            {
-                if ex < barPos {
+            if (rect.contains(ep)) {
+                if ep.x < barPos {
                     // 上にスクロール
                     ULog.printMsg(UScrollBar.TAG, "Scroll Up")
                     scrollUp()
                     return true
-                } else if ex > pos.x + barPos + barLength {
+                } else if ep.x > pos.x + barPos + barLength {
                     // 下にスクロール
                     ULog.printMsg(UScrollBar.TAG, "Scroll Down")
                     scrollDown()
@@ -402,7 +398,7 @@ public class UScrollBar {
                 }
             }
         }
-        return false;
+        return false
     }
     
     private func touchUp() -> Bool {

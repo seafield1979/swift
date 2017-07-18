@@ -17,6 +17,25 @@ public enum ConvDateMode {
 public class UUtil {
     public static let RAD : CGFloat = 3.1415 / 180.0
     
+    public static var _naviBarHeight : CGFloat = 0
+    
+    // 初期化処理
+    // NavigationController生成時に１回呼び出す
+    public static func initialize(navigationC: UINavigationController) {
+        // ナビゲーションバーの高さを計算する
+        _naviBarHeight = navigationC.navigationBar.frame.size.height
+    }
+    
+    // ステータスバーの高さ
+    public static func statusBarHeight() -> CGFloat {
+        return  UIApplication.shared.statusBarFrame.size.height
+    }
+    
+    // ナビゲーションバーの高さ
+    public static func navigationBarHeight() -> CGFloat {
+        return _naviBarHeight
+    }
+    
     //スクリーンの幅
     public static func screenWidth() -> Int {
         return Int( UIScreen.main.bounds.size.width)

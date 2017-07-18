@@ -69,7 +69,6 @@ public class UScrollWindow : UWindow {
                     if contentTop.y + clientSize.height > contentSize.height {
                         contentTop.y = contentSize.height - clientSize.height
                     }
-                    print("contentTop.y:" + contentTop.y.description)
                     
                     mScrollBarV!.updateScroll(pos: contentTop.y)
                     isDraw = true

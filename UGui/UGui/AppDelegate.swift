@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // システム初期化
         initSystem()
         
+        UUtil.initialize(navigationC: navigation!)
+        
         window!.rootViewController = navigation
         window!.makeKeyAndVisible();
         return true

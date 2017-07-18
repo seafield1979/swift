@@ -26,7 +26,7 @@ public class PageViewTest3 : UPageView, UButtonCallbacks {
     /**
      * Propaties
      */
-    var logWindow : ULogWindow? = nil
+    private var logWindow : ULogWindow? = nil
     
     
     /**
@@ -131,12 +131,12 @@ public class PageViewTest3 : UPageView, UButtonCallbacks {
         switch(id) {
         case PageViewTest1.buttonId1:
             if logWindow != nil {
-                logWindow!.addLog(text: "button1 clicked")
+                logWindow!.addLog("button1 clicked")
             }
             break
         case PageViewTest1.buttonId2:
             if logWindow != nil {
-                logWindow!.addLog(text: "button2 clicked")
+                logWindow!.addLog("button2 clicked")
             }
             break
         default:

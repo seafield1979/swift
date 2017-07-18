@@ -16,8 +16,18 @@ import UIKit
  *
  * Debug page
  */
+/**
+ * Struct
+ */
+public struct ButtonInfo {
+    var id : Int
+    var name : String
+}
+
 
 public class PageViewTitle : UPageView, UButtonCallbacks {
+
+    
     /**
      * Enums
      */
@@ -25,6 +35,7 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
      * Constants
      */
     public static let TAG = "PageViewTitle"
+    private var buttonInfo : [ButtonInfo] = []
     public static let buttonId1 = 100
     public static let buttonId2 = 101
     public static let buttonId3 = 102
@@ -42,6 +53,12 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
      */
     public override init( topView : TopView, title : String) {
         super.init( topView: topView, title: title)
+        
+        buttonInfo.append(ButtonInfo(id: 100, name: "ボタン"))
+        buttonInfo.append(ButtonInfo(id: 101, name: "ダイアログ"))
+        buttonInfo.append(ButtonInfo(id: 102, name: "Logwindow"))
+        buttonInfo.append(ButtonInfo(id: 103, name: "メニューバー"))
+        buttonInfo.append(ButtonInfo(id: 104, name: "リストView"))
     }
     
     /**
@@ -89,8 +106,8 @@ public class PageViewTitle : UPageView, UButtonCallbacks {
         let x : CGFloat = 100.0
         var y : CGFloat = 100.0
         
-        for i in 0...5 {
-            let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: 100 + i, priority: 100, text: "button" + (i+1).description,
+        for button in buttonInfo {
+            let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: button.id, priority: 100, text: button.name,
                                          x: x, y: y,
                                          width: 200.0, height: 50.0, textSize: 20,
                                          textColor: UColor.White, color: UColor.Blue)

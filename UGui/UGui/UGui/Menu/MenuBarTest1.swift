@@ -15,7 +15,7 @@ public class MenuBarTest1 : UMenuBar {
      */
     
     // メニューをタッチした時に返されるID
-    enum MenuItemId : Int {
+    public enum MenuItemId : Int {
         case DebugTop
         case Debug1
         case Debug2

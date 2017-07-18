@@ -103,7 +103,7 @@ public class UDialogWindow : UWindow {
         return title
     }
     
-    public func setTitle(title : String) {
+    public func setTitle(_ title : String) {
         self.title = title
     }
     
@@ -172,8 +172,8 @@ public class UDialogWindow : UWindow {
     public static func createInstance(
         parentView : TopView,
         type : DialogType,
-        buttonCallbacks : UButtonCallbacks,
-        dialogCallbacks : UDialogCallbacks,
+        buttonCallbacks : UButtonCallbacks?,
+        dialogCallbacks : UDialogCallbacks?,
         dir : ButtonDir,
         posType : DialogPosType,
         isAnimation : Bool,
@@ -200,8 +200,8 @@ public class UDialogWindow : UWindow {
     // 画面中央に表示するタイプ
     public static func createInstance(
         parentView : TopView, 
-        type : DialogType, buttonCallbacks : UButtonCallbacks,
-        dialogCallbacks : UDialogCallbacks,
+        type : DialogType, buttonCallbacks : UButtonCallbacks?,
+        dialogCallbacks : UDialogCallbacks?,
         dir : ButtonDir,
         posType : DialogPosType,
         isAnimation : Bool,
@@ -226,8 +226,8 @@ public class UDialogWindow : UWindow {
     // 最小限の引数で作成
     public static func createInstance(
         parentView: TopView,
-        buttonCallbacks : UButtonCallbacks,
-        dialogCallbacks : UDialogCallbacks,
+        buttonCallbacks : UButtonCallbacks?,
+        dialogCallbacks : UDialogCallbacks?,
         buttonDir : ButtonDir,
         screenW : CGFloat, screenH : CGFloat) -> UDialogWindow
     {
@@ -512,15 +512,14 @@ public class UDialogWindow : UWindow {
         }
         else {
             // ボタンを縦に並べる
-            for i in 0...mButtons.count {
-                let button = mButtons[i]
-                if button is UButtonImage {
-                    let _button = button as! UButtonImage
+            for button in mButtons {
+                if button! is UButtonImage {
+                    let _button = button! as! UButtonImage
                     _button.setPos((size.width - _button.getWidth()) / 2, y)
-                    y += button.getHeight() + buttonMarginV
+                    y += button!.getHeight() + buttonMarginV
                 } else {
-                    button.setPos(buttonMarginH, y)
-                    button.setSize(size.width - buttonMarginH * 2, buttonH)
+                    button!.setPos(buttonMarginH, y)
+                    button!.setSize(size.width - buttonMarginH * 2, buttonH)
                     y += buttonH + buttonMarginV
                 }
             }

@@ -11,7 +11,7 @@ import UIKit
 
 // ボタンの種類
 public enum UButtonType {
-    case BGColor    // color changing
+    case BGColor    // color changing 
     case Press      // pressed down
     case Press2     // pressed down, On/Off swiching
     case Press3     // pressed down, Off -> On only, to change Off call setPressedOn(false)
@@ -70,10 +70,6 @@ public class UButton : UDrawable {
     public func getEnabled() -> Bool { return enabled; }
     public func getId() -> Int {
         return id
-    }
-    
-    public func isPressedOn() -> Bool {
-        return pressedOn
     }
     
     public func setPressedOn(pressedOn : Bool) {

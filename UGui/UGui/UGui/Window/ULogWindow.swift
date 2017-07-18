@@ -82,8 +82,8 @@ public class ULogWindow : UWindow {
         self.addToDrawManager()
     }
     
-    public func addLog(text : String) {
-        addLog(text: text, color: UIColor.white)
+    public func addLog(_ text : String) {
+        addLog(text, color: UIColor.white)
     }
     
     /**
@@ -91,7 +91,7 @@ public class ULogWindow : UWindow {
      * @param text
      * @param color
      */
-    public func addLog(text : String, color : UIColor) {
+    public func addLog(_ text : String, color : UIColor) {
         let msg = LogData(text: "" + count.description + ": " + text, color: color)
         
         // 追加先はリストの戦闘
@@ -243,6 +243,15 @@ public class ULogWindow : UWindow {
 
         let lineH = UDpi.toPixel(ULogWindow.TEXT_SIZE)
 
+        // クリッピングを設定
+        let mClipRect = CGRect( x: pos.x, y: pos.y,
+                            width: clientSize.width,
+                            height: clientSize.height - lineH)
+        
+        UIGraphicsGetCurrentContext()!.saveGState()
+        UIGraphicsGetCurrentContext()!.clip(to: mClipRect)
+        
+        
         // 文字描画に使用するフォントの指定
         let font = UIFont.boldSystemFont(ofSize:lineH)
         
@@ -260,7 +269,7 @@ public class ULogWindow : UWindow {
         
         
         let drawX : CGFloat = pos.x + UDpi.toPixel(ULogWindow.MARGIN)
-        var drawY : CGFloat = pos.y + UDpi.toPixel(ULogWindow.TEXT_SIZE + ULogWindow.MARGIN)
+        var drawY : CGFloat = pos.y + UDpi.toPixel(ULogWindow.MARGIN)
         // 全ログを表示
         for msg in logs {
             let size = msg!.text.size(attributes: [NSFontAttributeName : font])
@@ -270,6 +279,9 @@ public class ULogWindow : UWindow {
                           withAttributes: textFontAttributes)
             drawY += lineH
         }
+        
+        // クリッピングを解除
+        UIGraphicsGetCurrentContext()!.restoreGState()
     }
     
     /**

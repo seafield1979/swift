@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class PageViewTest2 : UPageView, UButtonCallbacks {
+public class PageViewTest2 : UPageView, UButtonCallbacks, UDialogCallbacks {
     /**
      * Enums
      */
@@ -22,17 +22,26 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
     public static let buttonId2 = 101
     public static let buttonId3 = 102
     public static let buttonId4 = 103
+    public static let buttonId5 = 105
     
+    public static let MARGIN : CGFloat = 20.0
+
     /**
      * Member variables
      */
-    
+    private var buttonInfo : [ButtonInfo] = []
     
     /**
      * Constructor
      */
     public override init( topView : TopView, title : String) {
         super.init( topView: topView, title: title)
+        
+        buttonInfo.append(ButtonInfo(id: PageViewTest2.buttonId1, name: "ダイアログ1"))
+        buttonInfo.append(ButtonInfo(id: PageViewTest2.buttonId2, name: "ダイアログ2"))
+        buttonInfo.append(ButtonInfo(id: PageViewTest2.buttonId3, name: "ダイアログ3"))
+        buttonInfo.append(ButtonInfo(id: PageViewTest2.buttonId4, name: "ダイアログ4"))
+        buttonInfo.append(ButtonInfo(id: PageViewTest2.buttonId5, name: "ダイアログ5"))
     }
     
     /**
@@ -77,35 +86,68 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
     override public func initDrawables() {
         UDrawManager.getInstance().initialize()
         
-        let x : CGFloat = 50.0
-        var y : CGFloat = 50.0
-        let buttonW : CGFloat = 200.0
-        let buttonH : CGFloat = 50.0
+        let x : CGFloat = PageViewTest1.MARGIN
+        var y : CGFloat = UUtil.navigationBarHeight() + PageViewTest1.MARGIN
         
-        // UButtonText
-        let textButton = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId1, priority: 100, text: "button1", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
-        textButton.addToDrawManager()
-        
-        y += 70.0
-        
-        let textButton2 = UButtonText(callbacks: self, type: UButtonType.Press2, id: PageViewTest2.buttonId2, priority: 100, text: "button2", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
-        textButton2.addToDrawManager()
-        
-        y += 70.0
-        
-        let textButton3 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId3, priority: 100, text: "button3", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
-        textButton3.addToDrawManager()
-        
-        y += 70.0
-        
-        let textButton4 = UButtonText(callbacks: self, type: UButtonType.Press, id: PageViewTest2.buttonId4, priority: 100, text: "button4", x: x, y: y, width: buttonW, height: buttonH, textSize: 20, textColor: UIColor.white, color: UIColor.blue)
-        textButton4.addToDrawManager()
-        
-        y += 70.0
+        for button in buttonInfo {
+            let textButton = UButtonText(callbacks: self, type: UButtonType.BGColor, id: button.id, priority: 100, text: button.name,
+                                         x: x, y: y,
+                                         width: 200.0, height: 50.0, textSize: 20,
+                                         textColor: UColor.White, color: UColor.Blue)
+            textButton.addToDrawManager()
+            
+            y += 60.0
+        }
     }
     
+    //
     // ダイアログを表示する
-    func showDialog() {
+    //
+    
+    // OK/Cancelを選択 モーダル
+    func showDialog1() {
+        let dialog = UPopupWindow(parentView : mTopView!,
+                                  popupType: UPopupType.OKCancel,
+                                  title: "hoge", isAnimation: true,
+                                  screenW: CGFloat(UUtil.screenWidth()),
+                                  screenH: CGFloat(UUtil.screenHeight()))
+        dialog.addToDrawManager()
+    }
+    
+    // OK/Cancelを選択
+    func showDialog2() {
+        let dialog = UDialogWindow.createInstance(
+            parentView: mTopView!,
+            buttonCallbacks: self, dialogCallbacks: nil,
+            buttonDir: UDialogWindow.ButtonDir.Vertical,
+            screenW: CGFloat(UUtil.screenWidth()), screenH: CGFloat(UUtil.screenHeight()))
+        dialog.setTitle("ダイアログ")
+        dialog.addTextView(text: "テキスト1", alignment: UAlignment.Center,
+                           multiLine: true, isDrawBG: false, textSize: 20,
+                           textColor: UIColor.green, bgColor: nil)
+        dialog.addTextView(text: "テキスト2", alignment: UAlignment.Center,
+                           multiLine: true, isDrawBG: false, textSize: 20,
+                           textColor: UIColor.green, bgColor: nil)
+        dialog.addCloseButton(text: "閉じる")
+        dialog.addToDrawManager()
+    }
+    func showDialog3() {
+        let dialog = UPopupWindow(parentView : mTopView!,
+                                  popupType: UPopupType.OKCancel,
+                                  title: "hoge", isAnimation: true,
+                                  screenW: CGFloat(UUtil.screenWidth()),
+                                  screenH: CGFloat(UUtil.screenHeight()))
+        dialog.addToDrawManager()
+    }
+    func showDialog4() {
+        let dialog = UPopupWindow(parentView : mTopView!,
+                                  popupType: UPopupType.OKCancel,
+                                  title: "hoge", isAnimation: true,
+                                  screenW: CGFloat(UUtil.screenWidth()),
+                                  screenH: CGFloat(UUtil.screenHeight()))
+        dialog.addToDrawManager()
+    }
+    func showDialog5() {
         let dialog = UPopupWindow(parentView : mTopView!,
                                   popupType: UPopupType.OKCancel,
                                   title: "hoge", isAnimation: true,
@@ -130,25 +172,27 @@ public class PageViewTest2 : UPageView, UButtonCallbacks {
      */
     public func UButtonClicked(id : Int, pressedOn : Bool) -> Bool {
         switch(id) {
-        case PageViewTest1.buttonId1:
-            showDialog()
-            break
-        case PageViewTest1.buttonId2:
-            mTopView?.mask(withRect: CGRect(x:50,y:50,width:200,height:200))
-            print("button2 clicked")
-            break
-        case PageViewTest1.buttonId3:
-            mTopView?.mask(withRect: CGRect(x:50,y:50,width:200,height:200),
-                           inverse: true)
-            print("button3 clicked")
-            break
-        case PageViewTest1.buttonId4:
-            mTopView?.clearMask()
-            print("button4 clicked")
-            break
+        case PageViewTest2.buttonId1:
+            showDialog1()
+            
+        case PageViewTest2.buttonId2:
+            showDialog2()
+        case PageViewTest2.buttonId3:
+            showDialog3()
+        case PageViewTest2.buttonId4:
+            showDialog4()
+        case PageViewTest2.buttonId5:
+            showDialog5()
         default:
             break
         }
         return true
+    }
+    
+    /**
+     * UDialogCallback
+     */
+    public func dialogClosed(dialog : UDialogWindow) {
+        
     }
 }
