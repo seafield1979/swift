@@ -74,13 +74,13 @@ public class TestDataDao {
      */
     static func updateOne(id: Int, name: String, age: Int) -> Bool {
         // 更新対象のオブジェクトを取得
-        let result = mRealm!.objects(TestData.self).filter("name = " + id.description).first
-        
-        if result != nil {
-            try! mRealm!.write() {
-                result!.name = name
-                result!.age = age
-            }
+        let result = mRealm!.objects(TestData.self).filter("id = " + id.description).first
+        if result == nil {
+            return false
+        }
+        try! mRealm!.write() {
+            result!.name = name
+            result!.age = age
         }
         return true
     }
@@ -91,7 +91,7 @@ public class TestDataDao {
      */
     static func deleteById(_ id: Int) -> Bool{
         // 更新対象のオブジェクトを取得
-        let result = mRealm!.objects(TestData.self).filter("name = " + id.description).first
+        let result = mRealm!.objects(TestData.self).filter("id = " + id.description).first
         if result == nil {
             return false
         }

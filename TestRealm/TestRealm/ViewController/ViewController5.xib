@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController5" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController5" customModule="TestRealm" customModuleProvider="target">
             <connections>
+                <outlet property="idText" destination="28m-qI-4AF" id="YTx-X6-06o"/>
+                <outlet property="textView" destination="g3t-1Y-dtG" id="8qJ-Hh-aMy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +20,65 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XGE-bu-smG">
+                    <rect key="frame" x="20" y="80" width="19" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Xgf-5z-HND"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="28m-qI-4AF">
+                    <rect key="frame" x="49" y="80" width="306" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="5fx-Mg-3lR"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7mf-jR-kuN">
+                    <rect key="frame" x="0.0" y="125" width="375" height="30"/>
+                    <state key="normal" title="delete"/>
+                    <connections>
+                        <action selector="deleteButtonClicked:" destination="-1" eventType="touchUpInside" id="9B3-cG-Rx1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DfE-EW-hvA">
+                    <rect key="frame" x="0.0" y="163" width="375" height="30"/>
+                    <state key="normal" title="delete all"/>
+                    <connections>
+                        <action selector="deleteAllButtonClicked:" destination="-1" eventType="touchUpInside" id="5Qh-Wk-PfZ"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="g3t-1Y-dtG">
+                    <rect key="frame" x="0.0" y="213" width="375" height="454"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7mf-jR-kuN" firstAttribute="top" secondItem="28m-qI-4AF" secondAttribute="bottom" constant="15" id="0cm-X2-xQG"/>
+                <constraint firstItem="DfE-EW-hvA" firstAttribute="top" secondItem="7mf-jR-kuN" secondAttribute="bottom" constant="8" symbolic="YES" id="43d-wk-K8C"/>
+                <constraint firstItem="XGE-bu-smG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="BbU-8X-zyj"/>
+                <constraint firstAttribute="trailing" secondItem="g3t-1Y-dtG" secondAttribute="trailing" id="Bk0-oU-CXL"/>
+                <constraint firstItem="DfE-EW-hvA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IEf-B3-TON"/>
+                <constraint firstAttribute="trailing" secondItem="7mf-jR-kuN" secondAttribute="trailing" id="LHd-dn-Ft2"/>
+                <constraint firstItem="g3t-1Y-dtG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MIS-JB-gYe"/>
+                <constraint firstItem="XGE-bu-smG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Txz-fK-e9B"/>
+                <constraint firstItem="DfE-EW-hvA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="163" id="d28-B2-FF4"/>
+                <constraint firstItem="g3t-1Y-dtG" firstAttribute="top" secondItem="DfE-EW-hvA" secondAttribute="bottom" constant="20" id="h6a-z3-VO5"/>
+                <constraint firstItem="28m-qI-4AF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="i7b-6B-kov"/>
+                <constraint firstItem="28m-qI-4AF" firstAttribute="leading" secondItem="XGE-bu-smG" secondAttribute="trailing" constant="10" id="lxk-zN-HTD"/>
+                <constraint firstAttribute="trailing" secondItem="DfE-EW-hvA" secondAttribute="trailing" id="mNU-Yq-5Er"/>
+                <constraint firstItem="7mf-jR-kuN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mRB-jg-Rxq"/>
+                <constraint firstAttribute="trailing" secondItem="28m-qI-4AF" secondAttribute="trailing" constant="20" id="uut-yT-pMe"/>
+                <constraint firstAttribute="bottom" secondItem="g3t-1Y-dtG" secondAttribute="bottom" id="vOc-xq-KHW"/>
+            </constraints>
         </view>
     </objects>
 </document>

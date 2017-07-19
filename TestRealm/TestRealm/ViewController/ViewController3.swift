@@ -37,7 +37,7 @@ class ViewController3: UIViewController {
         
         var strBuf = String()
         for test in tests {
-            strBuf.append(String(format: "id:%d name:%@\n", test.id, test.name!))
+            strBuf.append(String(format: "id:%d name:%@ age:%d\n", test.id, test.name!, test.age))
         }
         textView.text = strBuf
     }

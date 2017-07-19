@@ -17,17 +17,19 @@ class ViewController2: UIViewController {
         super.viewDidLoad()
     }
     
+    // 全てのオブジェクトを表示
     @IBAction func selectAllButtonClicked(_ sender: Any) {
         showAll()
     }
     
+    // 指定したIDのオブジェクトを表示
     @IBAction func selectOnButtonClicked(_ sender: Any) {
         let idText = idTextField.text
         let id = Int(idText!)!
         
         let test = TestDataDao.selectById(id)
         if test != nil {
-            textView.text = String(format: "id:%d name:%@\n", test!.id, test!.name ?? "no")
+            textView.text = String(format: "id:%d name:%@ age:%d\n", test!.id, test!.name ?? "no", test!.age)
         } else {
             textView.text = "not found"
         }
@@ -38,7 +40,7 @@ class ViewController2: UIViewController {
         
         var strBuf = String()
         for test in tests {
-            strBuf.append(String(format: "id:%d name:%@", test.id, test.name!))
+            strBuf.append(String(format: "id:%d name:%@ age:%d\n", test.id, test.name!, test.age))
         }
         textView.text = strBuf
     }
