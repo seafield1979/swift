@@ -24,11 +24,68 @@ public class TestDataDao {
         // Realmに保存されてるDog型のオブジェクトを全て取得
         let tests : Results = mRealm!.objects(TestData.self)
         
+        return Array(tests)
+    }
+    
+    /**
+     指定した
+     - parameter <#name#>: <##>
+     - throws: <#throw detail#>
+     - returns: <#return value#>
+     */
+    static func selectInCase(ids : [Int]) -> [TestData] {
+        let results = mRealm!.objects(TestData.self).filter("id In %@", ids)
+        
         var ret : [TestData] = []
-        for test in tests {
-            ret.append(TestData(value:test))
+        for result in results {
+            ret.append(TestData(value:result))
         }
         return ret
+    }
+    
+    static func selectNotInCase(ids: [Int]) -> [TestData] {
+        let results = mRealm!.objects(TestData.self).filter("NOT (id IN %@)", ids)
+        
+        return Array(results)
+    }
+    
+    // 複数回のfilterをかける
+    static func selectWithFilter() -> [TestData] {
+        var results = mRealm!.objects(TestData.self).filter("name contains 'hoge'")
+        results = results.filter("age > 10")
+        
+        return Array(results)
+    }
+    
+    // 最大値を取得する
+    static func selectMaxAge() -> Int {
+        let max = mRealm!.objects(TestData.self).max(ofProperty: "age") as Int!
+        
+        return max!
+    }
+    
+    // 最小値を取得する
+    static func selectMinAge() -> Int {
+        let min = mRealm!.objects(TestData.self).min(ofProperty: "age") as Int!
+        
+        return min!
+    }
+    
+    // (A AND B) OR (C AND D) ... のテスト
+    static func selectMultiInCase() -> [TestData] {
+        let names : [String] = ["hoge", "hogehoge2", "chiro"]
+        let ages : [Int] = [100, 39, 10]
+        
+        var filterStr = ""
+        for i in 0...1 {
+            if i != 0 {
+                filterStr += " OR "
+            }
+            filterStr += String(format: "(name = '%@' AND age = %d)", names[i], ages[i])
+        }
+        let results = mRealm!.objects(TestData.self).filter(filterStr)
+        
+        return Array(results)
     }
     
     /**
@@ -44,6 +101,23 @@ public class TestDataDao {
         
         return TestData(value: result)
     }
+    
+    /**
+     nameに指定の文字列が含まれて居るオブジェクトを取得
+     - parameter name: nameに含まれて居る文字列
+     - returns: 見つかったオブジェクトのコピー
+     */
+    static func selectByName(_ name : String) -> [TestData]? {
+        // 更新対象のオブジェクトを取得
+        let results = mRealm!.objects(TestData.self).filter("name contains %@", name)
+        if results.count == 0 {
+            return nil
+        }
+        
+        return Array(results)
+    }
+    
+    
     
     /**
      オブジェクトを１件追加

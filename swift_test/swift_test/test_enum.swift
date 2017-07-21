@@ -67,10 +67,19 @@ class UNTestEnum {
     }
     
     // 型を指定できる
-    enum Signal3 : Int {
+    enum Signal3 : Int, EnumEnumerable {
         case blue = 1   // 青
         case yellow     // 黄
         case red        // 赤
+        
+        public func toEnum(_ value : Int) -> Signal3 {
+            if value >= Signal3.count {
+                // 範囲外は適当な値を返す
+                return Signal3.blue
+            }
+            return Signal3.cases[value]
+        }
+        
     }
     
     // 列挙型自身の値を変更する
@@ -272,5 +281,9 @@ class UNTestEnum {
         print(signal1.string)
         signal1.prev()
         print(signal1.string)
+    }
+    
+    func test6() {
+        print("" + Signal3.red.rawValue.description)
     }
 }

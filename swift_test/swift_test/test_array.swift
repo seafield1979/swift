@@ -153,6 +153,34 @@ class UNTestArray{
         print("param1:" + param1.i1.description)
     }
     
+    // 配列をコピーしたときの挙動
+    // コピー先の配列がコピー元の配列に影響を与えないかをテスト
+    func test5() {
+        let array1 : [Int] = [1,2,3,4,5]
+        var array2 = Array(array1)
+        
+        array2[0] = 100
+        array2[1] = 200
+        
+        print("array1")
+        for value in array1 {
+            print(value.description)
+        }
+        print("array2")
+        for value in array2 {
+            print(value.description)
+        }
+        
+        var array3 : [Int] = Array(repeating: 0, count: 5)
+        array3[0] = 100
+        array3[1] = 200
+        print(array3.debugDescription)
+    }
+    
+    func test6() {
+        
+    }
+    
     func add( array1:inout [String]) {
         array1.append("hoge")
     }

@@ -140,6 +140,8 @@ func testArray(_ mode : Int) {
     case 4:
         array1.test4()
     case 5:
+        array1.test5()
+    case 6:
         array1.testList()
     case 10:
         array1.testMap()

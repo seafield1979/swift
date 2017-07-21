@@ -36,4 +36,5 @@ public extension EnumEnumerable where Case: Hashable {
     public static var count: Int {
         return self.cases.count
     }
+    
 }
