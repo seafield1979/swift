@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SegmentedViewController: UIViewController {
+class SegmentedViewController: UNViewController {
 
     @IBOutlet weak var segment1: UISegmentedControl!
     var segment2 : UISegmentedControl?

@@ -11,7 +11,7 @@
 
 import UIKit
 
-class ScrollViewController: UIViewController, UIScrollViewDelegate {
+class ScrollViewController: UNViewController, UIScrollViewDelegate {
 
     var scrollView1 : UIScrollView?
     var label1 : UILabel?

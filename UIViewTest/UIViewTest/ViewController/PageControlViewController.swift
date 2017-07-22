@@ -21,7 +21,7 @@
 
 import UIKit
 
-class PageControlViewController: UIViewController, UIScrollViewDelegate{
+class PageControlViewController: UNViewController, UIScrollViewDelegate{
 
     @IBOutlet weak var pageCtrl1: UIPageControl!
     

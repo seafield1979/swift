@@ -14,7 +14,7 @@
 
 import UIKit
 
-class GestureViewController2: UIViewController {
+class GestureViewController2: UNViewController {
     var tapView1 : UIView?
     var tapView2 : UIView?
     var swipeView : UIView?

@@ -20,9 +20,9 @@ class ViewController: UIViewController {
 
         let screenSize : CGSize = UIScreen.main.bounds.size
         
-        newView.frame.size = CGSize(width:screenSize.width,
-                                    height:screenSize.height - statusHeight)
-        newView.frame.origin = CGPoint(x:0, y:statusHeight)
+        newView.frame = CGRect(x:0, y:statusHeight,
+                               width:screenSize.width,
+                                height:screenSize.height - statusHeight)
         self.view.addSubview(newView)
         
 

@@ -61,7 +61,8 @@ class ViewController2: UIViewController {
 //        showInCase(ids: [1,2])
 //        showWithFilter()
 //        showMaxAge()
-        showMultiInCase()
+//        showMultiInCase()
+        showMaxDate()
     }
     
     func showInCase(ids : [Int]) {
@@ -106,7 +107,13 @@ class ViewController2: UIViewController {
         textView.text = String(format: "max:%d min:%d\n", max, min)
     }
     
-    func showAll() {
+    func showMaxDate() {
+        let date = TestDataDao.selectDateMax()
+        
+        textView.text = String(format: "maxDate:%@", date.description)
+    }
+    func
+        showAll() {
         // 全てのオブジェクトを取得
         let tests = TestDataDao.selectAll()
         

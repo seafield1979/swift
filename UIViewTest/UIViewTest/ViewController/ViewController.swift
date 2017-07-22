@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UNViewController {
 
     var view1 : UIView?
     
@@ -29,6 +29,10 @@ class ViewController: UIViewController {
         showToggle(self.view1)
     }
     
+    @IBAction func button4Taped(_ sender: AnyObject) {
+        removeView(self.view1)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,9 +44,9 @@ class ViewController: UIViewController {
         //self.view1!.frame.origin = CGPoint(x:0, y:0)
         
         // Viewのレイヤーの座標を設定する
-        self.view1!.layer.position = CGPoint(x: 100, y: 120)
-        self.view1!.layer.backgroundColor = UIColor.green.cgColor
-        
+//        self.view1!.layer.position = CGPoint(x: 100, y: 120)
+//        self.view1!.layer.backgroundColor = UIColor.green.cgColor
+    
     }
     
     /**
@@ -70,6 +74,8 @@ class ViewController: UIViewController {
                                     width: frame!.size.width,
                                     height: frame!.size.height + 50.0)
     }
+    
+    // Viewの表示ON/OFFを切り替える
     func showToggle(_ view : UIView?) {
         if view!.isHidden {
             view!.isHidden = false
@@ -79,5 +85,10 @@ class ViewController: UIViewController {
             view!.isHidden = true
             button3.setTitle("hide", for:UIControlState())
         }
+    }
+    
+    // Viewを親から削除する
+    func removeView(_ view : UIView?) {
+        view?.removeFromSuperview()
     }
 }

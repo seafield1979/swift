@@ -13,7 +13,7 @@
 
 import UIKit
 
-class ImageViewController: UIViewController {
+class ImageViewController: UNViewController {
 
     var imageView1 : UIImageView?
     var imageView2 : UIImageView?

@@ -17,10 +17,17 @@
 		8AE720A31F1CDEB3005B0043 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE720A11F1CDEB3005B0043 /* ViewController.xib */; };
 		8AE720A51F1CDECF005B0043 /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720A41F1CDECF005B0043 /* TopView.swift */; };
 		8AE720A91F1CDF08005B0043 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720A71F1CDF08005B0043 /* TopViewController.swift */; };
-		8AE720AA1F1CDF08005B0043 /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE720A81F1CDF08005B0043 /* TopViewController.xib */; };
 		8AE720AC1F1D96C7005B0043 /* SimpleView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720AB1F1D96C7005B0043 /* SimpleView1.swift */; };
 		8AE720AE1F1D96D4005B0043 /* SimpleView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720AD1F1D96D4005B0043 /* SimpleView2.swift */; };
 		8AE720B11F1D9902005B0043 /* UIView+mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE720B01F1D9902005B0043 /* UIView+mask.swift */; };
+		8AFDE2221F232AF80094860B /* EnumEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2211F232AF80094860B /* EnumEnumerable.swift */; };
+		8AFDE22B1F232BCA0094860B /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2271F232BCA0094860B /* CustomCell.swift */; };
+		8AFDE22C1F232BCA0094860B /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2281F232BCA0094860B /* CustomCell.xib */; };
+		8AFDE22D1F232BCA0094860B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2291F232BCA0094860B /* TableViewController.swift */; };
+		8AFDE22E1F232BCA0094860B /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE22A1F232BCA0094860B /* TableViewController.xib */; };
+		8AFDE2311F232DFE0094860B /* Draw1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE22F1F232DFE0094860B /* Draw1ViewController.swift */; };
+		8AFDE2321F232DFE0094860B /* Draw1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2301F232DFE0094860B /* Draw1ViewController.xib */; };
+		8AFDE2341F232F3F0094860B /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2331F232F3F0094860B /* TopViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,10 +43,17 @@
 		8AE720A11F1CDEB3005B0043 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ViewController/ViewController.xib; sourceTree = "<group>"; };
 		8AE720A41F1CDECF005B0043 /* TopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopView.swift; path = View/TopView.swift; sourceTree = "<group>"; };
 		8AE720A71F1CDF08005B0043 /* TopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopViewController.swift; path = ViewController/TopViewController.swift; sourceTree = "<group>"; };
-		8AE720A81F1CDF08005B0043 /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopViewController.xib; path = ViewController/TopViewController.xib; sourceTree = "<group>"; };
 		8AE720AB1F1D96C7005B0043 /* SimpleView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleView1.swift; path = View/SimpleView1.swift; sourceTree = "<group>"; };
 		8AE720AD1F1D96D4005B0043 /* SimpleView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleView2.swift; sourceTree = "<group>"; };
 		8AE720B01F1D9902005B0043 /* UIView+mask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+mask.swift"; path = "Extension/UIView+mask.swift"; sourceTree = "<group>"; };
+		8AFDE2211F232AF80094860B /* EnumEnumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnumEnumerable.swift; path = Util/EnumEnumerable.swift; sourceTree = "<group>"; };
+		8AFDE2271F232BCA0094860B /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = UITable/CustomCell.swift; sourceTree = "<group>"; };
+		8AFDE2281F232BCA0094860B /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomCell.xib; path = UITable/CustomCell.xib; sourceTree = "<group>"; };
+		8AFDE2291F232BCA0094860B /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = UITable/TableViewController.swift; sourceTree = "<group>"; };
+		8AFDE22A1F232BCA0094860B /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TableViewController.xib; path = UITable/TableViewController.xib; sourceTree = "<group>"; };
+		8AFDE22F1F232DFE0094860B /* Draw1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw1ViewController.swift; path = ViewController/Draw1ViewController.swift; sourceTree = "<group>"; };
+		8AFDE2301F232DFE0094860B /* Draw1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw1ViewController.xib; path = ViewController/Draw1ViewController.xib; sourceTree = "<group>"; };
+		8AFDE2331F232F3F0094860B /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopViewController.xib; path = ViewController/TopViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +86,8 @@
 		8AE720731F1A3293005B0043 /* TestDraw */ = {
 			isa = PBXGroup;
 			children = (
+				8AFDE2261F232BB90094860B /* UITable */,
+				8AFDE2201F232ADF0094860B /* Util */,
 				8AE720AF1F1D98E0005B0043 /* Extension */,
 				8AE720A61F1CDED2005B0043 /* View */,
 				8AE7209B1F1CDE42005B0043 /* ViewController */,
@@ -88,11 +104,13 @@
 			isa = PBXGroup;
 			children = (
 				8AE720A71F1CDF08005B0043 /* TopViewController.swift */,
-				8AE720A81F1CDF08005B0043 /* TopViewController.xib */,
 				8AE720A01F1CDEB3005B0043 /* ViewController.swift */,
 				8AE720A11F1CDEB3005B0043 /* ViewController.xib */,
 				8AE7209C1F1CDE64005B0043 /* ViewController2.swift */,
 				8AE7209D1F1CDE64005B0043 /* ViewController2.xib */,
+				8AFDE22F1F232DFE0094860B /* Draw1ViewController.swift */,
+				8AFDE2301F232DFE0094860B /* Draw1ViewController.xib */,
+				8AFDE2331F232F3F0094860B /* TopViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -113,6 +131,25 @@
 				8AE720B01F1D9902005B0043 /* UIView+mask.swift */,
 			);
 			name = Extension;
+			sourceTree = "<group>";
+		};
+		8AFDE2201F232ADF0094860B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8AFDE2211F232AF80094860B /* EnumEnumerable.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		8AFDE2261F232BB90094860B /* UITable */ = {
+			isa = PBXGroup;
+			children = (
+				8AFDE2271F232BCA0094860B /* CustomCell.swift */,
+				8AFDE2281F232BCA0094860B /* CustomCell.xib */,
+				8AFDE2291F232BCA0094860B /* TableViewController.swift */,
+				8AFDE22A1F232BCA0094860B /* TableViewController.xib */,
+			);
+			name = UITable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,10 +213,13 @@
 			files = (
 				8AE720A31F1CDEB3005B0043 /* ViewController.xib in Resources */,
 				8AE7209F1F1CDE65005B0043 /* ViewController2.xib in Resources */,
-				8AE720AA1F1CDF08005B0043 /* TopViewController.xib in Resources */,
+				8AFDE22C1F232BCA0094860B /* CustomCell.xib in Resources */,
 				8AE7208E1F1A3637005B0043 /* image in Resources */,
 				8AE7208C1F1A3614005B0043 /* Base.lproj in Resources */,
+				8AFDE2341F232F3F0094860B /* TopViewController.xib in Resources */,
+				8AFDE2321F232DFE0094860B /* Draw1ViewController.xib in Resources */,
 				8AE7207C1F1A3293005B0043 /* Assets.xcassets in Resources */,
+				8AFDE22E1F232BCA0094860B /* TableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,11 +232,15 @@
 			files = (
 				8AE720AE1F1D96D4005B0043 /* SimpleView2.swift in Sources */,
 				8AE720A21F1CDEB3005B0043 /* ViewController.swift in Sources */,
+				8AFDE22B1F232BCA0094860B /* CustomCell.swift in Sources */,
+				8AFDE2221F232AF80094860B /* EnumEnumerable.swift in Sources */,
 				8AE7209E1F1CDE65005B0043 /* ViewController2.swift in Sources */,
 				8AE720AC1F1D96C7005B0043 /* SimpleView1.swift in Sources */,
+				8AFDE22D1F232BCA0094860B /* TableViewController.swift in Sources */,
 				8AE720B11F1D9902005B0043 /* UIView+mask.swift in Sources */,
 				8AE720A51F1CDECF005B0043 /* TopView.swift in Sources */,
 				8AE720751F1A3293005B0043 /* AppDelegate.swift in Sources */,
+				8AFDE2311F232DFE0094860B /* Draw1ViewController.swift in Sources */,
 				8AE720A91F1CDF08005B0043 /* TopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +384,7 @@
 				8AE720851F1A3293005B0043 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

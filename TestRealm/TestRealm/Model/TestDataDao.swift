@@ -99,7 +99,7 @@ public class TestDataDao {
             return nil
         }
         
-        return TestData(value: result)
+        return result
     }
     
     /**
@@ -117,6 +117,15 @@ public class TestDataDao {
         return Array(results)
     }
     
+    // 日付の最大値（最近）を求める
+    static func selectDateMax() -> Date {
+        let maxDate = mRealm!.objects(TestData.self).max(ofProperty: "date") as Date!
+        
+        if maxDate == nil {
+            return Date()
+        }
+        return maxDate!
+    }
     
     
     /**
@@ -131,6 +140,7 @@ public class TestDataDao {
         test.name = name
         test.age = age
         test.id = getNextId()
+        test.date = Date()
         
         // データを追加
         try! mRealm!.write() {
@@ -155,6 +165,7 @@ public class TestDataDao {
         try! mRealm!.write() {
             result!.name = name
             result!.age = age
+            result!.date = Date()
         }
         return true
     }

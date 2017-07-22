@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SwitchViewController: UIViewController {
+class SwitchViewController: UNViewController {
 
     @IBOutlet weak var switch1: UISwitch!
     @IBOutlet weak var switch2: UISwitch!

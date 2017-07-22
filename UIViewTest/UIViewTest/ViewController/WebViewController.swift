@@ -16,7 +16,7 @@
 
 import UIKit
 
-class WebViewController: UIViewController, UIWebViewDelegate {
+class WebViewController: UNViewController, UIWebViewDelegate {
     
     var webView1 : UIWebView?
     var backButton : UIButton?

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SliderViewController: UIViewController {
+class SliderViewController: UNViewController {
 
     @IBOutlet weak var slider1: UISlider!
     @IBOutlet weak var label1: UILabel!

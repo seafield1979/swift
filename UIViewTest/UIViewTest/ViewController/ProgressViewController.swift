@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProgressViewController: UIViewController {
+class ProgressViewController: UNViewController {
 
     @IBOutlet weak var progress1: UIProgressView!
     var progress2 : UIProgressView?

@@ -202,8 +202,6 @@ func testOptional(_ mode: Int){
         optional1.test4()
     case 5:
         optional1.test5()
-    case 6:
-        optional1.test6()
         
     default:
         break

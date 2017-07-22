@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LabelViewController: UIViewController {
+class LabelViewController: UNViewController {
 
     // シンプルなラベルを作成
     func createLabel(_ pos : CGPoint, title : String) -> UILabel
@@ -75,6 +75,7 @@ class LabelViewController: UIViewController {
         
         let label3 = createLabel2(CGPoint(x: 30.0, y: 150.0), title: "Superime Superime Superime")
         self.view.addSubview(label3)
+      
     }
     
     

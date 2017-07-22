@@ -16,7 +16,16 @@
 
 import UIKit
 
-class ButtonViewController: UIViewController {
+class ButtonViewController: UNViewController {
+    // Enum
+    enum buttonId : Int {
+        case Button1
+        case Button2
+        case Button3
+        case ButtonType
+        case ButtonImage
+    }
+    
 
     var button1 : UIButton?
     var button2 : UIButton?
@@ -24,6 +33,9 @@ class ButtonViewController: UIViewController {
     var buttonTypes : [UIButton]?
     var buttonImg : UIButton?
     
+    /**
+        ボタンがタップされた時の処理
+     */
     func tappedButton(_ sender: AnyObject) {
 //        if let button = sender as? UIButton {
 //            button.selected = !(button.selected)
@@ -50,8 +62,18 @@ class ButtonViewController: UIViewController {
         return image!
     }
     
-    func createButton(_ pos : CGPoint) -> UIButton {
+    /**
+     カスタマイズされたボタンを作成
+     - parameter pos: ボタンの座標
+     - parameter tagId: ボタンのId(押された時の判定用に使用する)
+     - returns: 生成したボタン
+     */
+    func createButton(_ pos : CGPoint, tagId : Int)
+        -> UIButton
+    {
+        // ボタンを生成
         let button = UIButton()
+        
         //表示されるテキスト
         button.setTitle("Tap Me!", for: UIControlState())
         
@@ -65,13 +87,12 @@ class ButtonViewController: UIViewController {
         button.setTitleColor(UIColor.red, for: .highlighted)
         
         //サイズ
-        button.frame = CGRect(x: pos.x, y: pos.y, width: 300, height: 50)
+        button.frame = CGRect(x: pos.x, y: pos.y,
+                              width: UIScreen.main.bounds.size.width,
+                              height: 50)
         
         //タグ番号
-        button.tag = 1
-        
-        //配置場所
-        button.frame.origin = CGPoint(x: pos.x, y: pos.y)
+        button.tag = tagId
         
         //背景色(通常時、ハイライト時、選択時)
         button.setBackgroundImage(createImageFromUIColor(UIColor.white), for: UIControlState())
@@ -92,7 +113,7 @@ class ButtonViewController: UIViewController {
     }
     
     // シンプルなボタンを作成
-    func createButton2(_ pos : CGPoint, title : String) -> UIButton
+    func createButton2(_ pos : CGPoint, title : String, tagId: Int) -> UIButton
     {
         let button = UIButton(frame: CGRect(x: pos.x, y: pos.y, width: 100, height: 30))
         button.setTitle(title, for: UIControlState())
@@ -114,12 +135,16 @@ class ButtonViewController: UIViewController {
         let button = UIButton(type: type)
         button.frame = CGRect(x: pos.x, y: pos.y, width: 50, height: 50)
         button.addTarget(self,action: #selector(self.tappedButton(_:)), for:.touchUpInside)
+        button.tag = buttonId.ButtonType.rawValue
         
         return button
     }
     
     // 画像つき
-    func createButtonImage(_ pos: CGPoint, filename : String, filename_hl : String) -> UIButton
+    func createButtonImage(_ pos: CGPoint,
+                           filename : String,
+                           filename_hl : String,
+                           tagId: Int) -> UIButton
     {
         let button = UIButton(frame: CGRect(x: pos.x, y: pos.y, width: 100, height: 50))
         
@@ -127,6 +152,8 @@ class ButtonViewController: UIViewController {
         button.setBackgroundImage( UIImage(named: filename_hl), for: .highlighted)
         
         button.addTarget(self,action: #selector(self.tappedButton(_:)), for:.touchUpInside)
+        button.tag = tagId
+        
         return button
     }
     
@@ -136,17 +163,19 @@ class ButtonViewController: UIViewController {
         
         var posY : CGFloat = 100.0
         // ボタンを生成
-        self.button1 = createButton(CGPoint(x: 0.0, y: posY))
+        self.button1 = createButton(CGPoint(x: 0.0, y: posY),
+                                    tagId: buttonId.Button1.rawValue)
         self.view.addSubview(button1!)
         
         posY += 70.0
         // ボタンを生成
-        self.button2 = createButton(CGPoint(x: 0.0, y: posY))
+        self.button2 = createButton(CGPoint(x: 0.0, y: posY), tagId: buttonId.Button2.rawValue)
         self.view.addSubview(button2!)
         
         posY += 70.0
         // ボタンを生成
-        self.button3 = createButton2(CGPoint(x: 0.0, y: posY), title : "hoge")
+        self.button3 = createButton2(CGPoint(x: 0.0, y: posY), title : "hoge",
+                                     tagId: buttonId.Button3.rawValue)
         self.view.addSubview(button3!)
         
         posY += 70.0
@@ -175,7 +204,12 @@ class ButtonViewController: UIViewController {
         
         posY += 70.0
         // 画像ボタンを生成
-        self.buttonImg = createButtonImage(CGPoint(x: 50.0, y: posY), filename: "image/hoge.png", filename_hl: "image/hoge_hl.png")
+        self.buttonImg = createButtonImage(
+            CGPoint(x: 50.0, y: posY),
+            filename: "image/hoge.png",
+            filename_hl: "image/hoge_hl.png",
+            tagId: buttonId.ButtonImage.rawValue
+        )
         self.view.addSubview(self.buttonImg!)
     }
 }

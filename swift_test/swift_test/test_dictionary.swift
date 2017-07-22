@@ -89,6 +89,9 @@ class UNTestDictionary
         for (key, value) in d1 {
             print("key:" + key + " value:" + value.description)
         }
+        
+        // 存在しないキーを参照
+        print(d1["hoge3"] as Any)
     }
     
     // 参照型の辞書型テスト

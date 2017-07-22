@@ -26,7 +26,7 @@
 
 import UIKit
 
-class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource
+class PickerViewController: UNViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
 
     @IBOutlet weak var pickerView: UIPickerView!

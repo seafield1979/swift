@@ -7,64 +7,104 @@
 //
 
 import UIKit
-
-class TopViewController: UIViewController {
-
+class TopViewController: UITableViewController {
+    enum testMode : String, EnumEnumerable{
+        case drawLine = "ライン描画"
+        case drawCircle = "円描画"
+        case drawRect = "四角形描画"
+        case drawPath = "パス描画"
+        case drawClip = "クリップ"
+        case drawImage = "画像描画"
+        case drawText = "テキスト描画"
+    }
+    
+    var items : [String]
+    let cellIdentifier = "Cell"
+    
+    override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        items = []
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        items = []
+        super.init(coder: aDecoder)
+        
+    }
+    
+    // View表示前
+    // 表示の準備を行う
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        for mode in testMode.cases {
+            items.append(mode.rawValue)
+        }
+        
+        print(String(testMode.count))
+        
+        // セルを表示する準備
+        tableView.register(CustomCell.self, forCellReuseIdentifier: cellIdentifier)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func clickedButton1(_ sender: Any)
-    {
-        self.edgesForExtendedLayout = []
-        
-        let viewController = ViewController(nibName: "ViewController", bundle: nil)
-        viewController.view.backgroundColor = UIColor.white
-        viewController.title = "hoge"
-        self.navigationController?.pushViewController(viewController, animated: true)
-        
-    }
-
-    @IBAction func clickedButton2(_ sender: Any)
-    {
-        self.edgesForExtendedLayout = []
-        
-        let viewController = ViewController2(nibName: "ViewController2", bundle: nil)
-        viewController.view.backgroundColor = UIColor.white
-        viewController.title = "test2"
-        self.navigationController?.pushViewController(viewController, animated: true)
-
-    }
-    
-    @IBAction func clickedButton3(_ sender: Any)
-    {
         
     }
     
-    @IBAction func clickedButton4(_ sender: Any)
-    {
-        
+    // MARK: - Table view data source
+    
+    // セクションの数
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    @IBAction func clickedButton5(_ sender: Any)
-    {
+    // 指定のセクションに含まれる絡む数を取得
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    // セルを返す
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CustomCell
+        
+        cell.textLabel!.text = items[indexPath.row]
+        
+        return cell
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // セルが選択された(タップされた)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        print("didSelectRowAt:" + String(indexPath.row))
+        let mode = testMode.cases[indexPath.row]
+        var viewController : UIViewController? = nil
+        
+        switch mode {
+        case .drawLine:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        case .drawCircle:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        case .drawRect:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        case .drawPath:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        case .drawClip:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        case .drawImage:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        case .drawText:
+            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+            
+        default:
+            break
+        }
+        if let vc = viewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    */
-
+    
 }

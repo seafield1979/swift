@@ -1,18 +1,20 @@
 //
 //  AlertViewController.swift
 //  UIViewTest
-//
+//  ※iOS9以降では UIAlertViewの代わりにUIAlertControllerを使用
+// 
 //  Created by Shusuke Unno on 2016/09/07.
 //  Copyright © 2016年 Shusuke Unno. All rights reserved.
 //
 
 import UIKit
 
-class AlertViewController: UIViewController, UIAlertViewDelegate, UIActionSheetDelegate {
+class AlertViewController: UNViewController, UIAlertViewDelegate, UIActionSheetDelegate {
 
     @IBAction func showButtonTapped(_ sender: AnyObject) {
         if objc_getClass("UIAlertController") != nil {
-            //UIAlertController使用
+            
+            //UIAlertControllerが使用可能ならそれを使用
             let ac = UIAlertController(title: "武器や", message: "これを買うかね？", preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "買わない", style: .cancel) { (action) -> Void in
@@ -29,7 +31,7 @@ class AlertViewController: UIViewController, UIAlertViewDelegate, UIActionSheetD
             present(ac, animated: true, completion: nil)
             
         } else {
-            //UIAlertView使用
+            // iOS9以前ではUIAlertView使用
             let av = UIAlertView(title: "Title", message:"Message", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "OK")
             av.show()
         }

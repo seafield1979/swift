@@ -51,7 +51,7 @@ class UNTestOptional {
     func test2() {
         
         // Optional型をそのまま使用しようとしてエラーになる例
-        var b: Int? = 1
+        var b: Int = 1
         //println(b + 2) // -> Value of optional type 'Int?' not unwrapped; did you mean to use '!' or '?'?
         
         // Optional型はアンラップすれば使用できる

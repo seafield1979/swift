@@ -10,7 +10,7 @@
 
 import UIKit
 
-class GestureViewController: UIViewController {
+class GestureViewController: UNViewController {
     
     var gestureView : UIView?
     var gestureView2 : UIView?

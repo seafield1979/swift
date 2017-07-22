@@ -134,7 +134,6 @@ class UNTestProtocol {
         prot1 = UNMovingObject()
         prot1?.goForward()
         prot1?.goBack()
-        print(prot1?.description)
     }
     
     // プロトコルの配列にそのプロトコルを実装しているインスタンスを代入する

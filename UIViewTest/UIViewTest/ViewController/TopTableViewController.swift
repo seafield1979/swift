@@ -14,6 +14,7 @@ class TopTableViewController: UITableViewController {
         case gesture = "ジェスチャー"
         case gesture2 = "ジェスチャー2"
         case button = "ボタン"
+        case button2 = "ボタン2"
         case imageView = "ImageView"
         case label = "ラベル"
         case scrollView = "スクロールビュー"
@@ -83,7 +84,7 @@ class TopTableViewController: UITableViewController {
     // セルを返す
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! CustomCell
         
         cell.textLabel!.text = items[indexPath.row]
 
@@ -95,7 +96,7 @@ class TopTableViewController: UITableViewController {
     {
         print("didSelectRowAt:" + String(indexPath.row))
         let mode = testMode.cases[indexPath.row]
-        let viewController : UIViewController?
+        var viewController : UIViewController? = nil
         
         switch mode {
                 case .alertView:
@@ -127,6 +128,11 @@ class TopTableViewController: UITableViewController {
                 case .button:
                     viewController = ButtonViewController(nibName: "ButtonViewController", bundle: nil)
         
+                    // Viewの色を変える
+                    viewController?.view.backgroundColor = UIColor.white
+                case .button2:
+                    viewController = Button2ViewController(nibName: "Button2ViewController", bundle: nil)
+                    
                     // Viewの色を変える
                     viewController?.view.backgroundColor = UIColor.white
                 case .imageView:
@@ -168,6 +174,8 @@ class TopTableViewController: UITableViewController {
                     viewController = WebViewController(nibName: "WebViewController", bundle: nil)
                 case .tableView:
                     viewController = TableViewController(nibName:"TableViewController", bundle: nil)
+        default:
+            break
                 }
         if let vc = viewController {
             self.navigationController?.pushViewController(vc, animated: true)

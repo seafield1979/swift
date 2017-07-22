@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,88 +11,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopViewController" customModule="TestDraw" customModuleProvider="target">
             <connections>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="view" destination="iN0-l3-epB" id="sPE-mX-a40"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UITableView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xw-EC-3ks">
-                    <rect key="frame" x="0.0" y="74" width="375" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="GHP-cs-Zl7"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="test1"/>
-                    <connections>
-                        <action selector="clickedButton1:" destination="-1" eventType="touchUpInside" id="whq-rQ-FoQ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rg-io-CaZ">
-                    <rect key="frame" x="0.0" y="134" width="375" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="tTI-W1-pww"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="test2"/>
-                    <connections>
-                        <action selector="clickedButton2:" destination="-1" eventType="touchUpInside" id="zoo-cT-yaq"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbW-JH-TNR">
-                    <rect key="frame" x="0.0" y="194" width="375" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="oQ0-a3-fVe"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="test3"/>
-                    <connections>
-                        <action selector="clickedButton3:" destination="-1" eventType="touchUpInside" id="Q9R-iq-Nva"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JXO-zy-Okl">
-                    <rect key="frame" x="0.0" y="254" width="375" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="cTr-Ap-ItK"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="test4"/>
-                    <connections>
-                        <action selector="clickedButton4:" destination="-1" eventType="touchUpInside" id="EXp-Ph-cTZ"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEV-0N-MjI">
-                    <rect key="frame" x="0.0" y="314" width="375" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="JjT-VA-M2V"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <state key="normal" title="test5"/>
-                    <connections>
-                        <action selector="clickedButton5:" destination="-1" eventType="touchUpInside" id="VDV-WT-zqc"/>
-                    </connections>
-                </button>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="JXO-zy-Okl" secondAttribute="trailing" id="57z-fb-tkn"/>
-                <constraint firstItem="5Rg-io-CaZ" firstAttribute="top" secondItem="5Xw-EC-3ks" secondAttribute="bottom" constant="30" id="C8B-dX-YKw"/>
-                <constraint firstAttribute="trailing" secondItem="gEV-0N-MjI" secondAttribute="trailing" id="EBY-V3-gvm"/>
-                <constraint firstItem="gEV-0N-MjI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="S16-Rn-elY"/>
-                <constraint firstAttribute="trailing" secondItem="fbW-JH-TNR" secondAttribute="trailing" id="Trt-Gt-kK1"/>
-                <constraint firstItem="fbW-JH-TNR" firstAttribute="top" secondItem="5Rg-io-CaZ" secondAttribute="bottom" constant="30" id="YIX-3W-lfn"/>
-                <constraint firstItem="5Rg-io-CaZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="apb-eT-W6a"/>
-                <constraint firstItem="fbW-JH-TNR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="c3M-Vz-J21"/>
-                <constraint firstItem="JXO-zy-Okl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fpE-8Z-pNu"/>
-                <constraint firstAttribute="trailing" secondItem="5Xw-EC-3ks" secondAttribute="trailing" id="j1A-mA-JcS"/>
-                <constraint firstItem="JXO-zy-Okl" firstAttribute="top" secondItem="fbW-JH-TNR" secondAttribute="bottom" constant="30" id="lHG-6X-TBl"/>
-                <constraint firstItem="5Xw-EC-3ks" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lgO-JL-zoh"/>
-                <constraint firstItem="gEV-0N-MjI" firstAttribute="top" secondItem="JXO-zy-Okl" secondAttribute="bottom" constant="30" id="seR-rk-qr5"/>
-                <constraint firstAttribute="trailing" secondItem="5Rg-io-CaZ" secondAttribute="trailing" id="t0d-bj-cKD"/>
-                <constraint firstItem="5Xw-EC-3ks" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="wQ8-S4-r2u"/>
-            </constraints>
+            <connections>
+                <outlet property="dataSource" destination="-1" id="kDy-6m-e2R"/>
+                <outlet property="delegate" destination="-1" id="Iw6-Ze-iN6"/>
+            </connections>
         </view>
     </objects>
 </document>

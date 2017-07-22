@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StepperViewController: UIViewController {
+class StepperViewController: UNViewController {
 
     @IBOutlet weak var stepper1: UIStepper!
     @IBOutlet weak var slider1: UISlider!
