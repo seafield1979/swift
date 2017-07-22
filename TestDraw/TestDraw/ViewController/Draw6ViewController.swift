@@ -1,5 +1,5 @@
 //
-//  Draw1ViewController.swift
+//  Draw6ViewController.swift
 //  TestDraw
 //
 //  Created by Shusuke Unno on 2017/07/22.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class Draw1ViewController: UNViewController {
+class Draw6ViewController: UNViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let view1 = CustomDrawView(frame: self.view.frame, mode: testMode.drawLine)
+        let view1 = CustomDrawView(frame: self.view.frame, mode: testMode.drawImage)
         self.view.addSubview(view1)
     }
 }

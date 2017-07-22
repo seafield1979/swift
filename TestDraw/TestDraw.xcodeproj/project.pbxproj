@@ -28,6 +28,23 @@
 		8AFDE2311F232DFE0094860B /* Draw1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE22F1F232DFE0094860B /* Draw1ViewController.swift */; };
 		8AFDE2321F232DFE0094860B /* Draw1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2301F232DFE0094860B /* Draw1ViewController.xib */; };
 		8AFDE2341F232F3F0094860B /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2331F232F3F0094860B /* TopViewController.xib */; };
+		8AFDE2371F232FEF0094860B /* Draw2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2351F232FEF0094860B /* Draw2ViewController.swift */; };
+		8AFDE2381F232FEF0094860B /* Draw2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2361F232FEF0094860B /* Draw2ViewController.xib */; };
+		8AFDE23B1F232FFE0094860B /* Draw3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2391F232FFE0094860B /* Draw3ViewController.swift */; };
+		8AFDE23C1F232FFE0094860B /* Draw3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE23A1F232FFE0094860B /* Draw3ViewController.xib */; };
+		8AFDE23F1F23300E0094860B /* Draw4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE23D1F23300E0094860B /* Draw4ViewController.swift */; };
+		8AFDE2401F23300E0094860B /* Draw4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE23E1F23300E0094860B /* Draw4ViewController.xib */; };
+		8AFDE2431F2330220094860B /* Draw5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2411F2330220094860B /* Draw5ViewController.swift */; };
+		8AFDE2441F2330220094860B /* Draw5ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2421F2330220094860B /* Draw5ViewController.xib */; };
+		8AFDE2471F2330370094860B /* Draw6ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2451F2330370094860B /* Draw6ViewController.swift */; };
+		8AFDE2481F2330370094860B /* Draw6ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2461F2330370094860B /* Draw6ViewController.xib */; };
+		8AFDE24B1F2330440094860B /* Draw7ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2491F2330440094860B /* Draw7ViewController.swift */; };
+		8AFDE24C1F2330440094860B /* Draw7ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE24A1F2330440094860B /* Draw7ViewController.xib */; };
+		8AFDE2501F2330D40094860B /* UNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE24F1F2330D40094860B /* UNViewController.swift */; };
+		8AFDE2521F2331560094860B /* CustomDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2511F2331560094860B /* CustomDrawView.swift */; };
+		8AFDE2541F2334980094860B /* UDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2531F2334980094860B /* UDraw.swift */; };
+		8AFDE2561F2334E30094860B /* UDpi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2551F2334E30094860B /* UDpi.swift */; };
+		8AFDE2581F2335330094860B /* UAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2571F2335330094860B /* UAlignment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +71,23 @@
 		8AFDE22F1F232DFE0094860B /* Draw1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw1ViewController.swift; path = ViewController/Draw1ViewController.swift; sourceTree = "<group>"; };
 		8AFDE2301F232DFE0094860B /* Draw1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw1ViewController.xib; path = ViewController/Draw1ViewController.xib; sourceTree = "<group>"; };
 		8AFDE2331F232F3F0094860B /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopViewController.xib; path = ViewController/TopViewController.xib; sourceTree = "<group>"; };
+		8AFDE2351F232FEF0094860B /* Draw2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw2ViewController.swift; path = ViewController/Draw2ViewController.swift; sourceTree = "<group>"; };
+		8AFDE2361F232FEF0094860B /* Draw2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw2ViewController.xib; path = ViewController/Draw2ViewController.xib; sourceTree = "<group>"; };
+		8AFDE2391F232FFE0094860B /* Draw3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw3ViewController.swift; path = ViewController/Draw3ViewController.swift; sourceTree = "<group>"; };
+		8AFDE23A1F232FFE0094860B /* Draw3ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw3ViewController.xib; path = ViewController/Draw3ViewController.xib; sourceTree = "<group>"; };
+		8AFDE23D1F23300E0094860B /* Draw4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw4ViewController.swift; path = ViewController/Draw4ViewController.swift; sourceTree = "<group>"; };
+		8AFDE23E1F23300E0094860B /* Draw4ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw4ViewController.xib; path = ViewController/Draw4ViewController.xib; sourceTree = "<group>"; };
+		8AFDE2411F2330220094860B /* Draw5ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw5ViewController.swift; path = ViewController/Draw5ViewController.swift; sourceTree = "<group>"; };
+		8AFDE2421F2330220094860B /* Draw5ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw5ViewController.xib; path = ViewController/Draw5ViewController.xib; sourceTree = "<group>"; };
+		8AFDE2451F2330370094860B /* Draw6ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw6ViewController.swift; path = ViewController/Draw6ViewController.swift; sourceTree = "<group>"; };
+		8AFDE2461F2330370094860B /* Draw6ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw6ViewController.xib; path = ViewController/Draw6ViewController.xib; sourceTree = "<group>"; };
+		8AFDE2491F2330440094860B /* Draw7ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Draw7ViewController.swift; path = ViewController/Draw7ViewController.swift; sourceTree = "<group>"; };
+		8AFDE24A1F2330440094860B /* Draw7ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Draw7ViewController.xib; path = ViewController/Draw7ViewController.xib; sourceTree = "<group>"; };
+		8AFDE24F1F2330D40094860B /* UNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UNViewController.swift; path = ViewController/UNViewController.swift; sourceTree = "<group>"; };
+		8AFDE2511F2331560094860B /* CustomDrawView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDrawView.swift; path = View/CustomDrawView.swift; sourceTree = "<group>"; };
+		8AFDE2531F2334980094860B /* UDraw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDraw.swift; path = Util/UDraw.swift; sourceTree = "<group>"; };
+		8AFDE2551F2334E30094860B /* UDpi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UDpi.swift; path = Util/UDpi.swift; sourceTree = "<group>"; };
+		8AFDE2571F2335330094860B /* UAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UAlignment.swift; path = Util/UAlignment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,13 +138,26 @@
 			isa = PBXGroup;
 			children = (
 				8AE720A71F1CDF08005B0043 /* TopViewController.swift */,
+				8AFDE2331F232F3F0094860B /* TopViewController.xib */,
 				8AE720A01F1CDEB3005B0043 /* ViewController.swift */,
 				8AE720A11F1CDEB3005B0043 /* ViewController.xib */,
 				8AE7209C1F1CDE64005B0043 /* ViewController2.swift */,
 				8AE7209D1F1CDE64005B0043 /* ViewController2.xib */,
 				8AFDE22F1F232DFE0094860B /* Draw1ViewController.swift */,
 				8AFDE2301F232DFE0094860B /* Draw1ViewController.xib */,
-				8AFDE2331F232F3F0094860B /* TopViewController.xib */,
+				8AFDE2351F232FEF0094860B /* Draw2ViewController.swift */,
+				8AFDE2361F232FEF0094860B /* Draw2ViewController.xib */,
+				8AFDE2391F232FFE0094860B /* Draw3ViewController.swift */,
+				8AFDE23A1F232FFE0094860B /* Draw3ViewController.xib */,
+				8AFDE23D1F23300E0094860B /* Draw4ViewController.swift */,
+				8AFDE23E1F23300E0094860B /* Draw4ViewController.xib */,
+				8AFDE2411F2330220094860B /* Draw5ViewController.swift */,
+				8AFDE2421F2330220094860B /* Draw5ViewController.xib */,
+				8AFDE2451F2330370094860B /* Draw6ViewController.swift */,
+				8AFDE2461F2330370094860B /* Draw6ViewController.xib */,
+				8AFDE2491F2330440094860B /* Draw7ViewController.swift */,
+				8AFDE24A1F2330440094860B /* Draw7ViewController.xib */,
+				8AFDE24F1F2330D40094860B /* UNViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -121,6 +168,7 @@
 				8AE720A41F1CDECF005B0043 /* TopView.swift */,
 				8AE720AB1F1D96C7005B0043 /* SimpleView1.swift */,
 				8AE720AD1F1D96D4005B0043 /* SimpleView2.swift */,
+				8AFDE2511F2331560094860B /* CustomDrawView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -137,6 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				8AFDE2211F232AF80094860B /* EnumEnumerable.swift */,
+				8AFDE2531F2334980094860B /* UDraw.swift */,
+				8AFDE2551F2334E30094860B /* UDpi.swift */,
+				8AFDE2571F2335330094860B /* UAlignment.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -212,12 +263,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE720A31F1CDEB3005B0043 /* ViewController.xib in Resources */,
+				8AFDE2481F2330370094860B /* Draw6ViewController.xib in Resources */,
+				8AFDE2441F2330220094860B /* Draw5ViewController.xib in Resources */,
+				8AFDE2381F232FEF0094860B /* Draw2ViewController.xib in Resources */,
 				8AE7209F1F1CDE65005B0043 /* ViewController2.xib in Resources */,
+				8AFDE24C1F2330440094860B /* Draw7ViewController.xib in Resources */,
 				8AFDE22C1F232BCA0094860B /* CustomCell.xib in Resources */,
 				8AE7208E1F1A3637005B0043 /* image in Resources */,
 				8AE7208C1F1A3614005B0043 /* Base.lproj in Resources */,
+				8AFDE23C1F232FFE0094860B /* Draw3ViewController.xib in Resources */,
 				8AFDE2341F232F3F0094860B /* TopViewController.xib in Resources */,
 				8AFDE2321F232DFE0094860B /* Draw1ViewController.xib in Resources */,
+				8AFDE2401F23300E0094860B /* Draw4ViewController.xib in Resources */,
 				8AE7207C1F1A3293005B0043 /* Assets.xcassets in Resources */,
 				8AFDE22E1F232BCA0094860B /* TableViewController.xib in Resources */,
 			);
@@ -231,16 +288,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AE720AE1F1D96D4005B0043 /* SimpleView2.swift in Sources */,
+				8AFDE2471F2330370094860B /* Draw6ViewController.swift in Sources */,
 				8AE720A21F1CDEB3005B0043 /* ViewController.swift in Sources */,
+				8AFDE2561F2334E30094860B /* UDpi.swift in Sources */,
 				8AFDE22B1F232BCA0094860B /* CustomCell.swift in Sources */,
 				8AFDE2221F232AF80094860B /* EnumEnumerable.swift in Sources */,
+				8AFDE2501F2330D40094860B /* UNViewController.swift in Sources */,
 				8AE7209E1F1CDE65005B0043 /* ViewController2.swift in Sources */,
+				8AFDE2521F2331560094860B /* CustomDrawView.swift in Sources */,
+				8AFDE23F1F23300E0094860B /* Draw4ViewController.swift in Sources */,
+				8AFDE2581F2335330094860B /* UAlignment.swift in Sources */,
+				8AFDE2431F2330220094860B /* Draw5ViewController.swift in Sources */,
 				8AE720AC1F1D96C7005B0043 /* SimpleView1.swift in Sources */,
 				8AFDE22D1F232BCA0094860B /* TableViewController.swift in Sources */,
 				8AE720B11F1D9902005B0043 /* UIView+mask.swift in Sources */,
 				8AE720A51F1CDECF005B0043 /* TopView.swift in Sources */,
 				8AE720751F1A3293005B0043 /* AppDelegate.swift in Sources */,
+				8AFDE2541F2334980094860B /* UDraw.swift in Sources */,
+				8AFDE23B1F232FFE0094860B /* Draw3ViewController.swift in Sources */,
+				8AFDE2371F232FEF0094860B /* Draw2ViewController.swift in Sources */,
 				8AFDE2311F232DFE0094860B /* Draw1ViewController.swift in Sources */,
+				8AFDE24B1F2330440094860B /* Draw7ViewController.swift in Sources */,
 				8AE720A91F1CDF08005B0043 /* TopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

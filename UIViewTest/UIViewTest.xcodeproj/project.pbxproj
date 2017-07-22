@@ -60,7 +60,7 @@
 		8AFDE2191F22EB830094860B /* Button2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2171F22EB830094860B /* Button2ViewController.xib */; };
 		8AFDE21B1F22F3CE0094860B /* UNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE21A1F22F3CE0094860B /* UNViewController.swift */; };
 		8AFDE21D1F22F6770094860B /* UIViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE21C1F22F6770094860B /* UIViewUtil.swift */; };
-		8AFDE2251F232B9D0094860B /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2241F232B9D0094860B /* CustomCell.swift */; };
+		8AFDE24E1F2330B20094860B /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE24D1F2330B20094860B /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,7 +119,7 @@
 		8AFDE2171F22EB830094860B /* Button2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Button2ViewController.xib; path = ViewController/Button2ViewController.xib; sourceTree = "<group>"; };
 		8AFDE21A1F22F3CE0094860B /* UNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UNViewController.swift; path = ViewController/UNViewController.swift; sourceTree = "<group>"; };
 		8AFDE21C1F22F6770094860B /* UIViewUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewUtil.swift; path = Util/UIViewUtil.swift; sourceTree = "<group>"; };
-		8AFDE2241F232B9D0094860B /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = TableView/CustomCell.swift; sourceTree = "<group>"; };
+		8AFDE24D1F2330B20094860B /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCell.swift; path = TableView/CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,7 +236,7 @@
 		8A5116851F0DDE3400E82FAE /* UITable */ = {
 			isa = PBXGroup;
 			children = (
-				8AFDE2241F232B9D0094860B /* CustomCell.swift */,
+				8AFDE24D1F2330B20094860B /* CustomCell.swift */,
 				8A51168C1F0E0ED100E82FAE /* TableViewController.swift */,
 				8A51168D1F0E0ED100E82FAE /* TableViewController.xib */,
 				8A5116861F0DDF3800E82FAE /* CustomCell.xib */,
@@ -372,7 +372,7 @@
 				8A1C16711D77BE85004824CB /* PageControlViewController.swift in Sources */,
 				8A63EE9E1D7FE413006266C5 /* AlertViewController.swift in Sources */,
 				8A3D364D1D76959A003528A0 /* ProgressViewController.swift in Sources */,
-				8AFDE2251F232B9D0094860B /* CustomCell.swift in Sources */,
+				8AFDE24E1F2330B20094860B /* CustomCell.swift in Sources */,
 				8A3D366E1D769844003528A0 /* StepperViewController.swift in Sources */,
 				8A3D36511D7696E1003528A0 /* ScrollViewController.swift in Sources */,
 				8A3D36371D741B82003528A0 /* ButtonViewController.swift in Sources */,

@@ -7,16 +7,19 @@
 //
 
 import UIKit
+
+public enum testMode : String, EnumEnumerable{
+    case drawLine = "ライン描画"
+    case drawCircle = "円描画"
+    case drawRect = "四角形描画"
+    case drawPath = "パス描画"
+    case drawClip = "クリップ"
+    case drawImage = "画像描画"
+    case drawText = "テキスト描画"
+}
+
+
 class TopViewController: UITableViewController {
-    enum testMode : String, EnumEnumerable{
-        case drawLine = "ライン描画"
-        case drawCircle = "円描画"
-        case drawRect = "四角形描画"
-        case drawPath = "パス描画"
-        case drawClip = "クリップ"
-        case drawImage = "画像描画"
-        case drawText = "テキスト描画"
-    }
     
     var items : [String]
     let cellIdentifier = "Cell"
@@ -87,20 +90,17 @@ class TopViewController: UITableViewController {
         case .drawLine:
             viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
         case .drawCircle:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+            viewController = Draw2ViewController(nibName: "Draw2ViewController", bundle: nil)
         case .drawRect:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+            viewController = Draw3ViewController(nibName: "Draw3ViewController", bundle: nil)
         case .drawPath:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+            viewController = Draw4ViewController(nibName: "Draw4ViewController", bundle: nil)
         case .drawClip:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+            viewController = Draw5ViewController(nibName: "Draw5ViewController", bundle: nil)
         case .drawImage:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+            viewController = Draw6ViewController(nibName: "Draw6ViewController", bundle: nil)
         case .drawText:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
-            
-        default:
-            break
+            viewController = Draw7ViewController(nibName: "Draw7ViewController", bundle: nil)
         }
         if let vc = viewController {
             self.navigationController?.pushViewController(vc, animated: true)
