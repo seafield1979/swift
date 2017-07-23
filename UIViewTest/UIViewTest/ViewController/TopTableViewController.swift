@@ -26,6 +26,7 @@ class TopTableViewController: UITableViewController {
         case `switch` = "スイッチ"
         case stepper = "ステッパー"
         case textField = "テキスト"
+        case textView = "テキストビュー"
         case webview = "WebView"
         case autolayout = "AutoLayout1"
         case autolayout2 = "AutoLayout2"
@@ -63,11 +64,6 @@ class TopTableViewController: UITableViewController {
         tableView.register(CustomCell.self, forCellReuseIdentifier: cellIdentifier)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-
     // MARK: - Table view data source
 
     // セクションの数
@@ -99,86 +95,87 @@ class TopTableViewController: UITableViewController {
         var viewController : UIViewController? = nil
         
         switch mode {
-                case .alertView:
-                    viewController = AlertViewController(nibName: "AlertViewController", bundle: nil)
+        case .alertView:
+            viewController = AlertViewController(nibName: "AlertViewController", bundle: nil)
+    
+        case .autolayout:
+            viewController = AutolayoutViewController(nibName: "AutolayoutViewController", bundle: nil)
+    
+        case .autolayout2:
+            viewController = Autolayout2ViewController()
+    
+        case .vc:
+            viewController = ViewController(nibName: "ViewController", bundle: nil)
+
+            // Viewの色を変える
+            viewController!.view.backgroundColor = UIColor.yellow
+    
+        case .gesture:
+            viewController = GestureViewController(nibName: "GestureViewController", bundle: nil)
+
+            // Viewの色を変える
+            viewController!.view.backgroundColor = UIColor.yellow
+        case .gesture2:
+            viewController = GestureViewController2(nibName: "GestureViewController2", bundle: nil)
+
+            // Viewの色を変える
+            viewController?.view.backgroundColor = UIColor.yellow
+    
+        case .button:
+            viewController = ButtonViewController(nibName: "ButtonViewController", bundle: nil)
+
+            // Viewの色を変える
+            viewController?.view.backgroundColor = UIColor.white
+        case .button2:
+            viewController = Button2ViewController(nibName: "Button2ViewController", bundle: nil)
             
-                case .autolayout:
-                    viewController = AutolayoutViewController(nibName: "AutolayoutViewController", bundle: nil)
-            
-                case .autolayout2:
-                    viewController = Autolayout2ViewController()
-            
-                case .vc:
-                    viewController = ViewController(nibName: "ViewController", bundle: nil)
+            // Viewの色を変える
+            viewController?.view.backgroundColor = UIColor.white
+        case .imageView:
+            viewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
+            // Viewの色を変える
+            viewController?.view.backgroundColor = UIColor.white
+    
+        case .label:
+            viewController = LabelViewController(nibName: "LabelViewController", bundle: nil)
+    
+        case .progress:
+            viewController = ProgressViewController(nibName: "ProgressViewController", bundle: nil)
+    
+        case .pageControl:
+            viewController = PageControlViewController(nibName: "PageControlViewController", bundle: nil)
+    
+        case .picker:
+            viewController = PickerViewController(nibName: "PickerViewController", bundle: nil)
+    
+        case .scrollView:
+            viewController = ScrollViewController(nibName: "ScrollViewController", bundle: nil)
+    
+        case .segmented:
+            viewController = SegmentedViewController(nibName: "SegmentedViewController", bundle: nil)
+    
+        case .slider:
+            viewController = SliderViewController(nibName: "SliderViewController", bundle: nil)
+    
+        case .switch:
+            viewController = SwitchViewController(nibName: "SwitchViewController", bundle: nil)
+    
+        case .stepper:
+            viewController = StepperViewController(nibName: "StepperViewController", bundle: nil)
+    
+        case .textField:
+            viewController = TextViewController(nibName: "TextViewController", bundle: nil)
+        case .textView:
+            viewController = TextViewViewController(nibName: "TextViewViewController", bundle: nil)
+        case .webview:
+            viewController = WebViewController(nibName: "WebViewController", bundle: nil)
+        case .tableView:
+            viewController = TableViewController(nibName:"TableViewController", bundle: nil)
+        }
         
-                    // Viewの色を変える
-                    viewController!.view.backgroundColor = UIColor.yellow
-            
-                case .gesture:
-                    viewController = GestureViewController(nibName: "GestureViewController", bundle: nil)
-        
-                    // Viewの色を変える
-                    viewController!.view.backgroundColor = UIColor.yellow
-                case .gesture2:
-                    viewController = GestureViewController2(nibName: "GestureViewController2", bundle: nil)
-        
-                    // Viewの色を変える
-                    viewController?.view.backgroundColor = UIColor.yellow
-            
-                case .button:
-                    viewController = ButtonViewController(nibName: "ButtonViewController", bundle: nil)
-        
-                    // Viewの色を変える
-                    viewController?.view.backgroundColor = UIColor.white
-                case .button2:
-                    viewController = Button2ViewController(nibName: "Button2ViewController", bundle: nil)
-                    
-                    // Viewの色を変える
-                    viewController?.view.backgroundColor = UIColor.white
-                case .imageView:
-                    viewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
-                    // Viewの色を変える
-                    viewController?.view.backgroundColor = UIColor.white
-            
-                case .label:
-                    viewController = LabelViewController(nibName: "LabelViewController", bundle: nil)
-            
-                case .progress:
-                    viewController = ProgressViewController(nibName: "ProgressViewController", bundle: nil)
-            
-                case .pageControl:
-                    viewController = PageControlViewController(nibName: "PageControlViewController", bundle: nil)
-            
-                case .picker:
-                    viewController = PickerViewController(nibName: "PickerViewController", bundle: nil)
-            
-                case .scrollView:
-                    viewController = ScrollViewController(nibName: "ScrollViewController", bundle: nil)
-            
-                case .segmented:
-                    viewController = SegmentedViewController(nibName: "SegmentedViewController", bundle: nil)
-            
-                case .slider:
-                    viewController = SliderViewController(nibName: "SliderViewController", bundle: nil)
-            
-                case .switch:
-                    viewController = SwitchViewController(nibName: "SwitchViewController", bundle: nil)
-            
-                case .stepper:
-                    viewController = StepperViewController(nibName: "StepperViewController", bundle: nil)
-            
-                case .textField:
-                    viewController = TextViewController(nibName: "TextViewController", bundle: nil)
-            
-                case .webview:
-                    viewController = WebViewController(nibName: "WebViewController", bundle: nil)
-                case .tableView:
-                    viewController = TableViewController(nibName:"TableViewController", bundle: nil)
-        default:
-            break
-                }
-        if let vc = viewController {
-            self.navigationController?.pushViewController(vc, animated: true)
+        if viewController != nil {
+            viewController!.title = mode.rawValue
+            self.navigationController?.pushViewController(viewController!, animated: true)
         }
     }
     

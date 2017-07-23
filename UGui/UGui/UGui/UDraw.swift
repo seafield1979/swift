@@ -306,10 +306,10 @@ class UDraw {
     public static func drawText(text: String,alignment: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor )
     {
         // 文字描画時に反映される影の指定
-        let shadow = NSShadow()
-        shadow.shadowOffset = CGSize(width:2, height:2)
-        shadow.shadowColor = UIColor.white
-        shadow.shadowBlurRadius = 0
+//        let shadow = NSShadow()
+//        shadow.shadowOffset = CGSize(width:2, height:2)
+//        shadow.shadowColor = UIColor.white
+//        shadow.shadowBlurRadius = 0
         
         // 文字描画に使用するフォントの指定
         let font = UIFont.boldSystemFont(ofSize:CGFloat(textSize))
@@ -322,7 +322,7 @@ class UDraw {
         let textFontAttributes = [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: style,
-            NSShadowAttributeName: shadow,
+//            NSShadowAttributeName: shadow,
             NSForegroundColorAttributeName: color,
             NSBackgroundColorAttributeName: UIColor.clear
             ] as [String : Any]

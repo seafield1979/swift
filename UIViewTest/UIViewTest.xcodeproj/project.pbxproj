@@ -56,6 +56,8 @@
 		8A63EE971D7FE346006266C5 /* ActionSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A63EE951D7FE346006266C5 /* ActionSheetViewController.xib */; };
 		8A63EE9E1D7FE413006266C5 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A63EE9C1D7FE413006266C5 /* AlertViewController.swift */; };
 		8A63EE9F1D7FE413006266C5 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A63EE9D1D7FE413006266C5 /* AlertViewController.xib */; };
+		8AE089FF1F246AAD0024E9B7 /* TextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE089FD1F246AAD0024E9B7 /* TextViewViewController.swift */; };
+		8AE08A001F246AAD0024E9B7 /* TextViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE089FE1F246AAD0024E9B7 /* TextViewViewController.xib */; };
 		8AFDE2181F22EB830094860B /* Button2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE2161F22EB830094860B /* Button2ViewController.swift */; };
 		8AFDE2191F22EB830094860B /* Button2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFDE2171F22EB830094860B /* Button2ViewController.xib */; };
 		8AFDE21B1F22F3CE0094860B /* UNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE21A1F22F3CE0094860B /* UNViewController.swift */; };
@@ -115,6 +117,8 @@
 		8A63EE951D7FE346006266C5 /* ActionSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActionSheetViewController.xib; path = ViewController/ActionSheetViewController.xib; sourceTree = "<group>"; };
 		8A63EE9C1D7FE413006266C5 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertViewController.swift; path = ViewController/AlertViewController.swift; sourceTree = "<group>"; };
 		8A63EE9D1D7FE413006266C5 /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertViewController.xib; path = ViewController/AlertViewController.xib; sourceTree = "<group>"; };
+		8AE089FD1F246AAD0024E9B7 /* TextViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextViewViewController.swift; path = ViewController/TextViewViewController.swift; sourceTree = "<group>"; };
+		8AE089FE1F246AAD0024E9B7 /* TextViewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextViewViewController.xib; path = ViewController/TextViewViewController.xib; sourceTree = "<group>"; };
 		8AFDE2161F22EB830094860B /* Button2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button2ViewController.swift; path = ViewController/Button2ViewController.swift; sourceTree = "<group>"; };
 		8AFDE2171F22EB830094860B /* Button2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Button2ViewController.xib; path = ViewController/Button2ViewController.xib; sourceTree = "<group>"; };
 		8AFDE21A1F22F3CE0094860B /* UNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UNViewController.swift; path = ViewController/UNViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				8A3D366D1D769844003528A0 /* StepperViewController.xib */,
 				8A3D36701D76986D003528A0 /* TextViewController.swift */,
 				8A3D36711D76986D003528A0 /* TextViewController.xib */,
+				8AE089FD1F246AAD0024E9B7 /* TextViewViewController.swift */,
+				8AE089FE1F246AAD0024E9B7 /* TextViewViewController.xib */,
 				8A3D36271D7169CF003528A0 /* ViewController.swift */,
 				8A3D36281D7169CF003528A0 /* ViewController.xib */,
 				8A3D367C1D7698FA003528A0 /* WebViewController.swift */,
@@ -340,6 +346,7 @@
 				8A3D362A1D7169CF003528A0 /* ViewController.xib in Resources */,
 				8A3D36631D7697DB003528A0 /* SliderViewController.xib in Resources */,
 				8A1C167B1D796536004824CB /* AutolayoutViewController.xib in Resources */,
+				8AE08A001F246AAD0024E9B7 /* TextViewViewController.xib in Resources */,
 				8A3D36731D76986D003528A0 /* TextViewController.xib in Resources */,
 				8A3D36461D769522003528A0 /* ImageViewController.xib in Resources */,
 				8A51168F1F0E0ED100E82FAE /* TableViewController.xib in Resources */,
@@ -365,6 +372,7 @@
 				8AFDE2181F22EB830094860B /* Button2ViewController.swift in Sources */,
 				8A3D362D1D7184AA003528A0 /* GestureViewController.swift in Sources */,
 				8A3D36291D7169CF003528A0 /* ViewController.swift in Sources */,
+				8AE089FF1F246AAD0024E9B7 /* TextViewViewController.swift in Sources */,
 				8A3D36621D7697DB003528A0 /* SliderViewController.swift in Sources */,
 				8A3D36151D71694D003528A0 /* AppDelegate.swift in Sources */,
 				8A3D36661D7697F5003528A0 /* SwitchViewController.swift in Sources */,
