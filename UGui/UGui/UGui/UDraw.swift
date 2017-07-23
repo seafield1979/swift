@@ -42,12 +42,81 @@ class UDraw {
     // ラインを描画
     public static func drawLine(x1: CGFloat, y1: CGFloat, x2: CGFloat, y2: CGFloat, lineWidth : CGFloat, color :UIColor)
     {
+        // UIBezierPath のインスタンス生成
         let path = UIBezierPath()
+        
+        // 起点
         path.move(to: CGPoint(x: x1, y: y1))
+        // 終点
         path.addLine(to: CGPoint(x: x2, y: y2))
-        path.lineWidth = lineWidth // 線の太さ
-        color.setStroke() // 色をセット
+        
+        // 線の太さ
+        path.lineWidth = lineWidth
+        // 線の色
+        color.setStroke()
+        // 描画
         path.stroke()
+    }
+    
+    // 指定の点を繋ぐパスを描画
+    public static func drawPath(_ points : [CGPoint], lineWidth: CGFloat, color: UIColor, closeLine : Bool )
+    {
+        // UIBezierPath のインスタンス生成
+        let line = UIBezierPath()
+        
+        if points.count < 2 {
+            return
+        }
+        
+        for i in 0...points.count - 1 {
+            let point = points[i]
+            if i == 0 {
+                // 起点
+                line.move(to: point)
+            } else {
+                line.addLine(to: point)
+            }
+        }
+        // 始点と終点を結ぶ
+        if closeLine {
+            line.close()
+        }
+        
+        // 色の設定
+        color.setStroke()
+        // ライン幅
+        line.lineWidth = lineWidth
+        // 描画
+        line.stroke()
+    }
+    
+    // 指定の点を繋ぐパスを描画
+    public static func drawPathFill(_ points : [CGPoint], color: UIColor )
+    {
+        // UIBezierPath のインスタンス生成
+        let line = UIBezierPath()
+        
+        if points.count < 2 {
+            return
+        }
+        
+        for i in 0...points.count - 1 {
+            let point = points[i]
+            if i == 0 {
+                // 起点
+                line.move(to: point)
+            } else {
+                line.addLine(to: point)
+            }
+        }
+        // 始点と終点を結ぶ
+        line.close()
+        
+        // 色の設定
+        color.setFill()
+        
+        // 描画
+        line.fill()
     }
     
     // 矩形(ライン)を描画
@@ -66,7 +135,7 @@ class UDraw {
     public static func drawRoundRect(rect: CGRect, width: CGFloat, radius : CGFloat, color : UIColor)
     {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners:.allCorners, cornerRadii: CGSize(width:radius, height:radius))
-
+        
         // stroke 色の設定
         color.setStroke()
         // ライン幅
@@ -91,7 +160,7 @@ class UDraw {
     public static func drawRectFill(rect: CGRect, color: UIColor, strokeWidth: CGFloat, strokeColor: UIColor?)
     {
         let path = UIBezierPath(rect: rect)
-
+        
         // 枠の色
         if strokeColor != nil {
             strokeColor!.setStroke()
@@ -108,7 +177,7 @@ class UDraw {
             path.stroke()
         }
     }
-
+    
     /**
      角丸四角形(塗りつぶし＆角丸)
      - parameter rect: 塗りつぶし矩形座標
@@ -144,10 +213,10 @@ class UDraw {
         
         // stroke 色の設定
         color.setStroke()
-
+        
         // ライン幅
         path.lineWidth = lineWidth
-
+        
         // 描画
         path.stroke()
     }
@@ -195,7 +264,7 @@ class UDraw {
     {
         drawTriangleCore(center: center, radius: radius, rotation: rotation, color: color, fill: true)
     }
-
+    
     public static func drawTriangleCore(center: CGPoint, radius: CGFloat, rotation: CGFloat, color: UIColor, fill : Bool)
     {
         // 三角形 -------------------------------------
@@ -231,16 +300,16 @@ class UDraw {
             path.stroke();
         }
     }
-
-    // テキストを描画する（最初の１行のみ）
+    
+    // テキストを描画する
+    // アライメントは自前で計算している
     public static func drawText(text: String,alignment: UAlignment, textSize: Int, x: CGFloat, y: CGFloat, color: UIColor )
     {
-    
         // 文字描画時に反映される影の指定
-//        let shadow = NSShadow()
-//        shadow.shadowOffset = CGSize(width:0, height:-1)
-//        shadow.shadowColor = UIColor.darkGray
-//        shadow.shadowBlurRadius = 0
+        let shadow = NSShadow()
+        shadow.shadowOffset = CGSize(width:2, height:2)
+        shadow.shadowColor = UIColor.white
+        shadow.shadowBlurRadius = 0
         
         // 文字描画に使用するフォントの指定
         let font = UIFont.boldSystemFont(ofSize:CGFloat(textSize))
@@ -249,17 +318,17 @@ class UDraw {
         let style = NSMutableParagraphStyle()
         style.alignment = NSTextAlignment.left
         style.lineBreakMode = NSLineBreakMode.byClipping
-
+        
         let textFontAttributes = [
             NSFontAttributeName: font,
             NSParagraphStyleAttributeName: style,
-//            NSShadowAttributeName: shadow,
+            NSShadowAttributeName: shadow,
             NSForegroundColorAttributeName: color,
             NSBackgroundColorAttributeName: UIColor.clear
             ] as [String : Any]
-
+        
         let size = text.size(attributes: [NSFontAttributeName : font])
-
+        
         // アライメント
         var _x : CGFloat
         var _y : CGFloat
@@ -299,20 +368,22 @@ class UDraw {
     {
         // 文字描画に使用するフォントの指定
         let font = UIFont.boldSystemFont(ofSize:CGFloat(textSize))
-
+        
         return text.size(attributes: [NSFontAttributeName : font])
     }
     
     // UIImage描画
     // 画像をそのままのサイズで描画
-    public static func drawImage(x: CGFloat, y: CGFloat, image: UIImage) {
-        let size = image.size
-        image.draw(in: CGRect(x:x, y:y, width:size.width, height:size.height))
+    public static func drawImage(image: UIImage, x: CGFloat, y: CGFloat)
+    {
+        //    image.draw(at: CGPoint(x:x, y:y))
+        image.draw(at: CGPoint(x:x, y:y), blendMode: CGBlendMode.sourceAtop, alpha: 0.5)
     }
     
     // UIImage描画
     // 描画座標とサイズを指定
-    public static func drawImage(image: UIImage, x:CGFloat, y:CGFloat, width: CGFloat, height: CGFloat)
+    public static func drawImage(image: UIImage,
+                                 x:CGFloat, y:CGFloat, width:CGFloat, height: CGFloat)
     {
         image.draw(in: CGRect(x:x, y:y, width:width, height:height))
     }
@@ -322,5 +393,52 @@ class UDraw {
     public static func drawImage(image: UIImage, rect: CGRect)
     {
         image.draw(in: rect)
+    }
+    
+    // アルファを指定して描画
+    public static func drawImageWithBlend(image : UIImage, rect: CGRect, alpha : CGFloat)
+    {
+        image.draw(in: rect, blendMode: CGBlendMode.sourceAtop, alpha: alpha)
+    }
+    
+    // 元画像を切り抜いて描画
+    public static func drawImageWithCrop(image: UIImage,
+                                         srcRect: CGRect,
+                                         dstRect: CGRect)
+    {
+        // 切り抜いた画像を作成
+        let image2 = UDraw.cropImage(image: image, cropRect: srcRect)
+        
+        // 切り抜いた画像を描画
+        image2.draw(in: dstRect)
+    }
+    
+    // 一部分を切り抜いた画像を取得
+    public static func cropImage(image: UIImage, cropRect : CGRect) -> UIImage
+    {
+        let srcRect = CGRect(x:0,y:0,width: image.size.width, height:image.size.height)
+        
+        // 切り抜き領域が元画像をはみ出していたら修正
+        var _cropRect = cropRect
+        if cropRect.origin.x + cropRect.size.width > srcRect.size.width {
+            _cropRect.size.width = srcRect.size.width - cropRect.origin.x
+        }
+        if cropRect.origin.y + cropRect.size.height > srcRect.size.height {
+            _cropRect.size.height = srcRect.size.height - cropRect.origin.y
+        }
+        
+        // resizeImage にリサイズ済みの画像を生成する
+        UIGraphicsBeginImageContext(srcRect.size);
+        image.draw(in: CGRect(x:0, y:0, width:image.size.width, height:image.size.height))
+        let resizedImage : UIImage? = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // 切り抜き処理
+        let cgImage : CGImage = resizedImage!.cgImage!
+        let cropedRef   = cgImage.cropping(to: _cropRect)
+        let cropedImage = UIImage.init(cgImage: cropedRef!)
+        
+        UIGraphicsEndImageContext()
+        
+        return cropedImage
     }
 }

@@ -60,7 +60,7 @@ class CustomDrawView : UIView {
             drawPath()
             break
         case .drawClip:
-            drawClip()
+            drawClip2()
             break
         case .drawImage:
             drawImage()
@@ -95,14 +95,108 @@ class CustomDrawView : UIView {
     // パスを描画
     private func drawPath() {
         
+        let points : [CGPoint] = [CGPoint(x:50.0,y:50.0),
+                                  CGPoint(x:100.0,y:100.0),
+                                  CGPoint(x:150.0,y:50.0),
+                                  CGPoint(x:200.0,y:100.0),
+                                  CGPoint(x:250.0,y:50.0)]
+        UDraw.drawPath(points, lineWidth: 2, color: UIColor.red, closeLine: false)
+        
+        let points2 : [CGPoint] = [CGPoint(x:50.0,y:150.0),
+                                  CGPoint(x:100.0,y:200.0),
+                                  CGPoint(x:150.0,y:150.0),
+                                  CGPoint(x:200.0,y:200.0),
+                                  CGPoint(x:250.0,y:150.0)]
+        UDraw.drawPath(points2, lineWidth: 2, color: UIColor.blue, closeLine: true)
+        
+        // 三角形
+        let points3 : [CGPoint] = [CGPoint(x:200.0,y:250.0),
+                                   CGPoint(x:300.0,y:450.0),
+                                   CGPoint(x:100.0,y:450.0)]
+        UDraw.drawPathFill(points3, color: UIColor.green)
     }
+    
+    // 描画にクリッピング領域を設定する
     private func drawClip() {
+        let clipRect = CGRect(x:50.0, y:50.0, width: 200.0, height: 200.0)
         
+        // 現在のクリッピング領域を保存
+        UIGraphicsGetCurrentContext()!.saveGState()
+        UIGraphicsGetCurrentContext()!.clip(to: clipRect)
+        
+        // いろいろ描画（クリッピング領域外には描画されない）
+        UDraw.drawCircleFill(x: 0, y: 0, radius: 100.0, color: UIColor.red)
+        UDraw.drawCircleFill(x: 150, y: 150, radius: 100.0, color: UIColor.red)
+        
+        // 保存クリッピングを戻す
+        UIGraphicsGetCurrentContext()!.restoreGState()
     }
+    
+    // 複数のクリッピング領域をまとめて指定する
+    private func drawClip2() {
+        let clipRects : [CGRect] = [
+            CGRect(x:50.0, y:50.0, width: 50.0, height: 50.0),
+            CGRect(x:150.0, y:50.0, width: 50.0, height: 50.0),
+            CGRect(x:50.0, y:150.0, width: 50.0, height: 50.0),
+            CGRect(x:150.0, y:150.0, width: 50.0, height: 50.0)
+        ]
+        
+        // 現在のクリッピング領域を保存
+        UIGraphicsGetCurrentContext()!.saveGState()
+        UIGraphicsGetCurrentContext()!.clip(to: clipRects)
+        
+        // いろいろ描画（クリッピング領域外には描画されない）
+        UDraw.drawCircleFill(x: 0, y: 0, radius: 200.0, color: UIColor.red)
+        
+        // 保存クリッピングを戻す
+        UIGraphicsGetCurrentContext()!.restoreGState()
+    }
+    
+    // 画像を描画
     private func drawImage() {
+        // 半透明描画
+        UDraw.drawImageWithBlend(image: image1!, rect: CGRect(x:50, y:50, width: 100, height: 100), alpha: 0.5)
         
+        // 描画先のサイズを指定して描画
+        UDraw.drawImage(image: image1!, rect : CGRect(x:200,y:50, width:100, height:100))
+        
+        // 元画像を切り抜き描画
+        UDraw.drawImageWithCrop(image: image1!,
+                                srcRect: CGRect(x:50.0, y:50.0, width:100, height:100),
+                                dstRect: CGRect(x:50, y: 200, width: 200, height: 200))
     }
+    
+    // 文字列を描画
     private func drawText() {
+        let width = self.frame.size.width
+        var x : CGFloat
+        var y : CGFloat
+
+        // アライメントを指定してテキストを描画
+        x = width / 2
+        y = 50
+        UDraw.drawText(text: "hello!(left)", alignment: UAlignment.Left, textSize: 20, x: x, y: y, color: UIColor.black)
+        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
         
+        y = 100
+        UDraw.drawText(text: "hello!(center xy)", alignment: UAlignment.Center, textSize: 20, x: x, y: y, color: UIColor.black)
+        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+        
+        y = 150
+        UDraw.drawText(text: "hello!(center x)", alignment: UAlignment.CenterX, textSize: 20, x: x, y: y, color: UIColor.black)
+        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+        
+        y = 200
+        UDraw.drawText(text: "hello!(center y)", alignment: UAlignment.CenterY, textSize: 20, x: x, y: y, color: UIColor.black)
+        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+        
+        y = 250
+        UDraw.drawText(text: "hello!(right)", alignment: UAlignment.Right, textSize: 20, x: x, y: y, color: UIColor.black)
+        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+        
+        y = 300
+        UDraw.drawText(text: "hello!(right center y)", alignment: UAlignment.Right_CenterY, textSize: 20, x: x, y: y, color: UIColor.black)
+        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+
     }
 }
