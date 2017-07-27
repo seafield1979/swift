@@ -71,15 +71,6 @@ class UNTestEnum {
         case blue = 1   // 青
         case yellow     // 黄
         case red        // 赤
-        
-        public func toEnum(_ value : Int) -> Signal3 {
-            if value >= Signal3.count {
-                // 範囲外は適当な値を返す
-                return Signal3.blue
-            }
-            return Signal3.cases[value]
-        }
-        
     }
     
     // 列挙型自身の値を変更する
@@ -258,6 +249,12 @@ class UNTestEnum {
         print("[0]:" + String1.cases[0].rawValue)
         print("[1]:" + String1.cases[1].rawValue)
         print("[2]:" + String1.cases[2].rawValue)
+        
+        // Intをenum型に変換
+        print("toEnum Signal3.0:" , Signal3.toEnum(0))
+        print("toEnum Signal3.1:" , Signal3.toEnum(1))
+        print("toEnum Signal3.2:" , Signal3.toEnum(2))
+        print("toEnum Signal3.3:" , Signal3.toEnum(3))
     }
     
     // 次へ、前へをスマートに行う

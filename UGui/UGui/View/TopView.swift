@@ -23,6 +23,10 @@ public class TopView : UIView, UButtonCallbacks{
     
     private var mPageManager : UPageViewManager? = nil
     
+    var longPressBeginTime: TimeInterval = 0.2
+    var gesture: UILongPressGestureRecognizer? = nil
+    
+    
     override init(frame: CGRect) {
         super.init(frame:frame)
         
@@ -44,6 +48,33 @@ public class TopView : UIView, UButtonCallbacks{
         if timer == nil {
             // 0.3s 毎にTemporalEventを呼び出す
             timer = Timer.scheduledTimer(timeInterval: TopView.drawInterval, target: self, selector:#selector(TopView.TemporalEvent), userInfo: nil,repeats: true)
+        }
+
+        // 長押し判定用
+        gesture = UILongPressGestureRecognizer(target: self,
+                                               action: #selector(TopView.longPressed))
+        
+        gesture?.minimumPressDuration = 0.6
+        self.addGestureRecognizer(gesture!)
+    }
+    
+    /** 
+     長押しされたときの処理
+     */
+    func longPressed(longPress: UIGestureRecognizer)
+    {
+        if (longPress.state == UIGestureRecognizerState.ended)
+        {
+            // 長押しが完了（指を離した）
+            let gestureTime = NSDate.timeIntervalSinceReferenceDate -
+                longPressBeginTime + gesture!.minimumPressDuration
+            print("Gesture time = \(gestureTime)")
+        }
+        else if (gesture!.state == UIGestureRecognizerState.began)
+        {
+            print("Began")
+            // 長押し判定
+            longPressBeginTime = NSDate.timeIntervalSinceReferenceDate
         }
     }
     
@@ -187,107 +218,5 @@ public class TopView : UIView, UButtonCallbacks{
         }
     }
     
-    func draw1() {
-        let w : CGFloat = 100.0
-        let h : CGFloat = 100.0
-        var x : CGFloat = 10
-        var y : CGFloat = 10
-        let margin : CGFloat = 5
-        
-        // ライン描画
-        UDraw.drawLine(x1: x, y1: y, x2: x + 50.0, y2: y + 50.0, lineWidth: 2, color: UIColor.black)
-        
-        y = 100
-        
-        // 矩形描画
-        var rect = CGRect(x: x, y: y, width: w, height: h)
-        UDraw.drawRect(rect: rect, width: 2, color: UIColor.black)
-        
-        x += w + margin
-        // 角丸矩形描画
-        rect = CGRect(x: x, y: y, width: w, height: h)
-        UDraw.drawRoundRect(rect: rect, width: 2, radius: 10, color: UIColor.black)
-        
-        x += w + margin
-        // 塗りつぶし矩形
-        rect = CGRect(x: x, y: y, width: w, height: h)
-        UDraw.drawRectFill(rect: rect, color: UIColor.orange)
-        
-        x = 10
-        y += h + margin
-        // 塗りつぶし＆枠
-        rect = CGRect(x: x, y: y, width: w, height: h)
-        UDraw.drawRectFill(rect: rect, color: UIColor.orange, strokeWidth: 4.0, strokeColor: UIColor.black)
-        
-        x += w + margin
-        // 塗りつぶし＆角丸＆枠
-        rect = CGRect(x: x, y: y, width: w, height: h)
-        UDraw.drawRoundRectFill(rect: rect, cornerR: 10.0, color: UIColor.orange, strokeWidth: 4.0, strokeColor: UIColor.black)
-        
-        x += w + margin
-        // 円（線）
-        let radius : CGFloat = w / 2
-        UDraw.drawCircle(center: CGPoint(x:x + radius, y:y + radius), radius: radius, lineWidth: 4, color: UIColor.blue)
-        
-        // 円(塗りつぶし)
-        x = 10
-        y += h + margin
-        UDraw.drawCircleFill(center: CGPoint(x:x + radius, y: y + radius), radius: radius, color: UIColor.orange)
-        
-        // 三角形（線）
-        x += w + margin
-        UDraw.drawTriangle(center: CGPoint(x: x + radius, y: y + radius), radius: radius, rotation: 90, lineWidth: 4.0, color: UIColor.black)
-        
-        // 三角形（塗りつぶし）
-        x += w + margin
-        UDraw.drawTriangleFill(center: CGPoint(x: x + radius, y: y + radius), radius: radius, rotation: 0, color: UIColor.orange)
-        
-    }
-    
-    /**
-     テキストの描画テスト
-     */
-    func draw2() {
-        let x : CGFloat = 150
-        var y : CGFloat = 50
-        let margin : CGFloat = 5
-        
-        UDraw.drawText(text: "hoge\nhoge", alignment: UAlignment.Center, textSize: 40, x: x, y: y, color: UIColor.black)
-        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
-        
-        y += 100
-        UDraw.drawText(text: "hoge2", alignment: UAlignment.Left, textSize: 40, x: x, y: y, color: UIColor.black)
-        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
-        
-        y += 50 + margin
-        UDraw.drawText(text: "hoge3", alignment: UAlignment.Right, textSize: 40, x: x, y: y, color: UIColor.black)
-        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
-        
-        y += 50 + margin
-        UDraw.drawText(text: "hoge4", alignment: UAlignment.CenterX, textSize: 40, x: x, y: y, color: UIColor.black)
-        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
-        
-        y += 50 + margin
-        UDraw.drawText(text: "hoge5", alignment: UAlignment.CenterY, textSize: 40, x: x, y: y, color: UIColor.black)
-        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
-        
-        y += 50 + margin
-        UDraw.drawText(text: "hoge6", alignment: UAlignment.Right_CenterY, textSize: 40, x: x, y: y, color: UIColor.black)
-        UDraw.drawCheck(x: x, y: y, color: UIColor.red)
-    }
-    
-    /**
-     画像描画のテスト
-     */
-    func draw3() {
-        let image = UIImage(named: "image/ume.png")!
-        
-        // サイズを指定して描画
-        UDraw.drawImage(image: image, x:50, y:50, width:100, height:100)
-        
-        // UIImageの元々のサイズで描画
-        UDraw.drawImage(image: image, x: 50, y: 150)
-        
-    }
     
 }

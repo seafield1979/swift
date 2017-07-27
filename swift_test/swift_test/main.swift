@@ -156,6 +156,46 @@ func testArray(_ mode : Int) {
     }
 }
 
+func testList(_ mode: Int) {
+    let test = UNTestList()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    case 4:
+        test.test4()
+    case 5:
+        test.test5()
+    case 6:
+        test.test6()
+    default:
+        break
+    }
+}
+
+func testCopy(_ mode : Int) {
+    let test = UNTestCopy()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    case 4:
+        test.test4()
+    case 5:
+        test.test5()
+    default:
+        break
+    }
+}
+
 func testDictionary(_ mode: Int) {
     let dictionary1 = UNTestDictionary()
 
@@ -312,6 +352,27 @@ func testGenerics(_ mode: Int) {
     }
 }
 
+func testCopy( mode: Int) {
+    let test = UNTestCopy()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    case 4:
+        test.test4()
+    case 5:
+        test.test5()
+    case 6:
+        test.test6()
+    default:
+        break
+    }
+}
+
 func testOverload(_ mode:Int) {
     let overload = UNTestOverloadOperator()
     overload.test1()
@@ -399,7 +460,7 @@ func testRandom(_ mode:Int) {
 }
 
 // クロージャー
-func testClosure(mode:Int) {
+func testClosure(_ mode : Int) {
     let closure = UNTestClosure()
     
     switch mode {
@@ -413,7 +474,7 @@ func testClosure(mode:Int) {
 }
 
 // キャスト
-func testClassCast(mode:Int) {
+func testClassCast(_ mode : Int) {
     let cast = UNTestCast()
     
     switch mode {
@@ -517,15 +578,19 @@ while !breakWhile {
         case "basis":
             testBasis(command.mode)
         case "cast":
-            testClassCast(mode: command.mode)
+            testClassCast(command.mode)
         case "class":
             testClass()
         case "class2":
             testClass2(command.mode)
         case "closure":
-            testClosure(mode: command.mode)
+            testClosure(command.mode)
+        case "copy":
+            testCopy(command.mode)
         case "array":
             testArray(command.mode)
+        case "list":
+            testList(command.mode)
         case "dic":
             testDictionary(command.mode)
         case "enum":

@@ -21,8 +21,8 @@ public enum UButtonOptions : Int {
     
 }
 /**
-    UIView関連の便利クラス
-    各種UIViewを簡単に生成できるメソッドを用意
+ UIView関連の便利クラス
+ 各種UIViewを簡単に生成できるメソッドを用意
  */
 public class UIViewUtil {
     static let BUTTON_H : CGFloat = 50.0
@@ -36,17 +36,17 @@ public class UIViewUtil {
     public static func createSimpleButton(x: CGFloat, y: CGFloat,
                                           width: CGFloat, height: CGFloat,
                                           title: String, tagId : Int )
-    -> UIButton {
-        let button = UIButton(frame: CGRect(x:x, y:y, width:width, height: height))
-        
-        button.setTitle(title, for: UIControlState())
-        button.setTitleColor(UIColor.black, for: UIControlState())
-        button.setTitleColor(UIColor.white, for: UIControlState.highlighted)
-        button.backgroundColor = UIColor.init(red: 1.0, green: 0.8, blue: 0.8, alpha: 1.0)
-//        button.showsTouchWhenHighlighted = true
-        button.tag = tagId
-        
-        return button
+        -> UIButton {
+            let button = UIButton(frame: CGRect(x:x, y:y, width:width, height: height))
+            
+            button.setTitle(title, for: UIControlState())
+            button.setTitleColor(UIColor.black, for: UIControlState())
+            button.setTitleColor(UIColor.white, for: UIControlState.highlighted)
+            button.backgroundColor = UIColor.init(red: 1.0, green: 0.8, blue: 0.8, alpha: 1.0)
+            button.showsTouchWhenHighlighted = true
+            button.tag = tagId
+            
+            return button
     }
     /**
      カスタマイズされたボタンを作成
@@ -55,7 +55,7 @@ public class UIViewUtil {
      - returns: 生成したボタン
      */
     public static func createButton(_ pos : CGPoint, tagId : Int,
-                      options : Dictionary<UButtonOptions, AnyObject>) -> UIButton {
+                                    options : Dictionary<UButtonOptions, AnyObject>) -> UIButton {
         // ボタンを生成
         let button = UIButton()
         
@@ -89,9 +89,9 @@ public class UIViewUtil {
         button.tag = tagId
         
         //背景色(通常時、ハイライト時、選択時)
-//        button.setBackgroundImage(createImageFromUIColor(UIColor.white), for: UIControlState())
-//        button.setBackgroundImage(createImageFromUIColor(UIColor.gray), for: UIControlState.highlighted)
-//        button.setBackgroundImage(createImageFromUIColor(UIColor.orange), for: UIControlState.selected)
+        //        button.setBackgroundImage(createImageFromUIColor(UIColor.white), for: UIControlState())
+        //        button.setBackgroundImage(createImageFromUIColor(UIColor.gray), for: UIControlState.highlighted)
+        //        button.setBackgroundImage(createImageFromUIColor(UIColor.orange), for: UIControlState.selected)
         
         //角丸
         if options[.CornerRadius] != nil {
@@ -104,7 +104,7 @@ public class UIViewUtil {
         
         return button
     }
-
+    
     /**
      ボタンをまとめて作成する
      - parameter y: 先頭のボタンのy座標
@@ -115,7 +115,21 @@ public class UIViewUtil {
      - returns: 作成したボタン
      */
     public static func createButtons(_ y : CGFloat, count : Int,
-                       lineCount: Int, text: String, tagId: Int)
+                                     lineCount: Int, text: String, tagId: Int)
+        -> [UIButton]
+    {
+        // ボタンのテキストを生成
+        var texts : [String] = []
+        for i in 0...count - 1 {
+            texts.append(text + (i+1).description)
+        }
+        
+        let buttons = self.createButtons(y, count: count, lineCount: lineCount, texts: texts, tagId: tagId)
+        return buttons
+    }
+    
+    public static func createButtons(_ y : CGFloat, count : Int,
+                                     lineCount: Int, texts: [String], tagId: Int)
         -> [UIButton]
     {
         var buttons : [UIButton] = []
@@ -128,10 +142,15 @@ public class UIViewUtil {
         for i in 0...count-1 {
             if i != 0 && i % lineCount == 0 {
                 x = 0.0
-                y += UIViewUtil.BUTTON_H + 10.0
+                y += UIViewUtil.BUTTON_H
             }
             
-            _text = text + (i+1).description
+            if i < texts.count {
+                _text = texts[i]
+            } else {
+                _text = "test" + (i+1).description
+            }
+            
             let button = createSimpleButton(
                 x:x, y:y, width:width, height: UIViewUtil.BUTTON_H, title: _text!, tagId: tagId + i)
             x += width
@@ -139,17 +158,33 @@ public class UIViewUtil {
         }
         return buttons
     }
-
+    
     /**
      ボタンとそれを囲むScrollViewを作成する
-     - parameter <#name#>: <##>
-     - throws: <#throw detail#>
-     - returns: <#return value#>
      */
     public static func createButtonsWithScrollBar(
         parentView: UIViewController,
         y : CGFloat, height: CGFloat, count : Int,
         lineCount: Int, text: String, tagId: Int,
+        selector: Selector ) -> UIScrollView?
+    {
+        // ボタンのテキストを生成
+        var texts : [String] = []
+        for i in 0...count - 1 {
+            texts.append(text + (i+1).description)
+        }
+        
+        let scrollView = self.createButtonsWithScrollBar2(
+            parentView: parentView, y: y, height: height,
+            count: count, lineCount: lineCount, texts: texts, tagId: tagId, selector: selector)
+        
+        return scrollView
+    }
+    
+    public static func createButtonsWithScrollBar2(
+        parentView: UIViewController,
+        y : CGFloat, height: CGFloat, count : Int,
+        lineCount: Int, texts: [String], tagId: Int,
         selector: Selector ) -> UIScrollView?
     {
         let screenW = UIScreen.main.bounds.size.width
@@ -161,8 +196,8 @@ public class UIViewUtil {
         
         // ボタンを作成
         let buttons = createButtons(y, count : count,
-                      lineCount: lineCount,
-                      text: text, tagId: tagId)
+                                    lineCount: lineCount,
+                                    texts: texts, tagId: tagId)
         if buttons.count == 0 {
             return nil
         }

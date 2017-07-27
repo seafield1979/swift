@@ -37,4 +37,11 @@ public extension EnumEnumerable where Case: Hashable {
         return self.cases.count
     }
     
+    public static func toEnum(_ value : Int) -> Case {
+        if value >= count {
+            // 範囲外の場合は最初の要素を返す
+            return cases.first!
+        }
+        return cases[value]
+    }
 }

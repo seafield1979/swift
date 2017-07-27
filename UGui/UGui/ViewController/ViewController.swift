@@ -25,14 +25,5 @@ class ViewController: UIViewController {
                                     height:screenSize.height - UUtil.statusBarHeight())
         newView.frame.origin = CGPoint(x:0, y:UUtil.statusBarHeight())
         self.view.addSubview(newView)
-        
-        // UILabel
-        
-    }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // メモリがー少なくなったときに何かできることがあればここに処理を書く
     }
 }
