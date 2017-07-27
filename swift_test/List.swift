@@ -16,7 +16,7 @@
 
 import Foundation
 
-public class List<T> : Sequence, Hashable{
+public class List<T> : Sequence {
     final var elements: Array<T>
     
     init(_ elements: Array<T>) {
@@ -48,14 +48,6 @@ public class List<T> : Sequence, Hashable{
     // リストに要素を追加する
     func append(_ newElement: T) {
         elements.append(newElement)
-    }
-    
-    // リストに含まれているかをチェック
-    //    func contains(_ element: T) -> Bool {
-    //        return elements.contains(where: { $0 === element })
-    //    }
-    func contains2<T>(obj: T) -> Bool where T : Equatable {
-        return self.filter({$0 as? T == obj}).count > 0
     }
     
     // リストの指定位置に要素を追加する
@@ -133,6 +125,7 @@ public class List<T> : Sequence, Hashable{
         return elements.reduce(initial, combine)
     }
     
+    // Sequenceプロトコルでは makeIterator メソッドを実装することで for-in でイテレートできるようになる
     public func makeIterator() -> AnyIterator<T?> {
         var count = 0
         return AnyIterator {
@@ -146,16 +139,13 @@ public class List<T> : Sequence, Hashable{
             return element
         }
     }
-    
-    // Hashable
-    // ハッシュ値を返す
-    public var hashValue: Int {
-        return self.elements.description.hashValue
-    }
-    
-    // ハッシュ値を比較する
-    public static func == (lhs: List, rhs: List) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+}
+
+// containsは T がクラスのオブジェクト型のときのだけ使用できる
+public extension List where T: AnyObject {
+    // リストに含まれているかをチェック
+    func contains(_ element : T) -> Bool {
+        return elements.contains(where: {$0 === element})
     }
 }
 

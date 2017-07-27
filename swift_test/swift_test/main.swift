@@ -541,6 +541,36 @@ func testHashable(_ mode:Int) {
     }
 }
 
+// ジェネレーターのテスト
+func testGenerator(_ mode: Int) {
+    let test = UNTestGenerator()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    default:
+        break
+    }
+}
+
+// Sequenceのテスト
+func testSequence(_ mode: Int) {
+    let test = UNTestSequence()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    default:
+        break
+    }
+}
+
 
 /*
  * コンソールでユーザーの入力を取得する
@@ -607,7 +637,8 @@ while !breakWhile {
             testFunc(command.mode)
         case "funcobj":
             testFuncObj(command.mode)
-        
+        case "generator":
+            testGenerator(command.mode)
         case "hash":
             testHashable(command.mode)
         
@@ -631,6 +662,8 @@ while !breakWhile {
             testProtocol(command.mode)
         case "reverse":
             testArray(13)
+        case "sequence":
+            testSequence(command.mode)
         case "subscript":
             testSubscript(command.mode)
         case "sort":

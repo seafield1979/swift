@@ -22,6 +22,18 @@ class UNTestList {
         for hoge in list1 {
             print(hoge!.description)
         }
+        
+        // containsのテスト
+        print("contains:")
+        
+        let ref1 = list1[1]
+        
+        if list1.contains(ref1) {
+            print("contained!!")
+        } else {
+            print("not contained!!")
+        }
+        
     }
     
     // メソッドに渡したオブジェクトの中身を書き換えるテスト
