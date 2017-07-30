@@ -105,8 +105,13 @@ public class List<T> : Sequence {
         }
     }
     
-    func sort(isOrderedBefore: (T, T) -> Bool) {
-        _ = elements.sorted(by: isOrderedBefore)
+    /**
+     ソート結果を返す
+     使用方法：  let list2 = list1.sort({ $0.age < $1.age })
+     　　　　　　let list2 = list1.sort((left, right) in { left.age < right.age })
+    */
+    func sort(isOrderedBefore: (T, T) -> Bool) -> Array<T> {
+        return elements.sorted(by: isOrderedBefore)
     }
     
     func reverse() -> Array<T> {

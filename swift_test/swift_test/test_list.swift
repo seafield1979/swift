@@ -156,6 +156,26 @@ class UNTestList {
         
         print("structObj:" + structObj.description)  // structObj:name:hoge2 age:20
         
+        
+    }
+    
+    // リストをソートする
+    func test7() {
+        let list1 : List<CHoge> = List()
+        
+        list1.append( CHoge(name: "name1", age: 10))
+        list1.append( CHoge(name: "name2", age: 60))
+        list1.append( CHoge(name: "name3", age: 50))
+        list1.append( CHoge(name: "name4", age: 110))
+        
+        let list2 : [CHoge] = list1.sort(isOrderedBefore: {
+            return $0.age > $1.age
+        })
+        
+        print("list1")
+        for hoge in list2 {
+            print(hoge.description)
+        }
     }
     
 

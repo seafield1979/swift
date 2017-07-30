@@ -52,14 +52,16 @@ class UNTestTuple {
         print("ret3: \(ret3.number) \(ret3.name)")
     }
     
-    // 関数の引数としてタプルを渡す
-    func test3() {
-        func getTuple() -> (name:String, age:Int) {
-            return ("shutaro", 36)
-        }
+    // タプルの値を更新できるかのテスト
+    func test3() {  
+        let hoge = CHoge(name: "hoge", age: 14)
+//        var tuple1 = (name : "hoge", age : 10, hoge: nil) エラー タプルにnilは設定できない
+        var tuple1 = (name : "hoge", age : 10, hoge: hoge)
         
-        let tuple1 = getTuple()
-        print(tuple1.name)
-        print(tuple1.age)
+        tuple1.name = "shutaro"
+        tuple1.age = 20
+        tuple1.hoge = CHoge(name: "hoge2", age:17)
+        
+        print(tuple1)
     }
 }

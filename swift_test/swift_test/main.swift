@@ -172,6 +172,8 @@ func testList(_ mode: Int) {
         test.test5()
     case 6:
         test.test6()
+    case 7:
+        test.test7()
     default:
         break
     }
@@ -376,6 +378,23 @@ func testCopy( mode: Int) {
 func testOverload(_ mode:Int) {
     let overload = UNTestOverloadOperator()
     overload.test1()
+}
+
+func testRegExp(_ mode: Int) {
+    let test = UNTestRegExp()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    case 4:
+        test.test4()
+    default:
+        break
+    }
 }
 
 //
@@ -662,6 +681,8 @@ while !breakWhile {
             testProtocol(command.mode)
         case "reverse":
             testArray(13)
+        case "regexp":
+            testRegExp(command.mode)
         case "sequence":
             testSequence(command.mode)
         case "subscript":
