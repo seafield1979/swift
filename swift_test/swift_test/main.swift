@@ -93,6 +93,21 @@ func testClass2(_ mode:Int) {
     }
 }
 
+func testClass3(_ mode: Int) {
+    let test = UNTestClassAdvance2()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    default:
+        break
+    }
+}
+
 func testFunc(_  mode:Int) {
     print("test_func mode:\(mode)")
     
@@ -632,6 +647,8 @@ while !breakWhile {
             testClass()
         case "class2":
             testClass2(command.mode)
+        case "class3":
+            testClass3(command.mode)
         case "closure":
             testClosure(command.mode)
         case "copy":
