@@ -19,7 +19,7 @@
 		8AE7204E1F179D72005B0043 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8AE720531F179D72005B0043 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8AE720581F179D72005B0043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8AE7205E1F179F20005B0043 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = TestNavigationVC/ViewController.xib; sourceTree = "<group>"; };
+		8AE7205E1F179F20005B0043 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +36,6 @@
 		8AE720401F179D72005B0043 = {
 			isa = PBXGroup;
 			children = (
-				8AE7205E1F179F20005B0043 /* ViewController.xib */,
 				8AE7204B1F179D72005B0043 /* TestNavigationVC */,
 				8AE7204A1F179D72005B0043 /* Products */,
 			);
@@ -55,6 +54,7 @@
 			children = (
 				8AE7204C1F179D72005B0043 /* AppDelegate.swift */,
 				8AE7204E1F179D72005B0043 /* ViewController.swift */,
+				8AE7205E1F179F20005B0043 /* ViewController.xib */,
 				8AE720531F179D72005B0043 /* Assets.xcassets */,
 				8AE720581F179D72005B0043 /* Info.plist */,
 			);
@@ -276,6 +276,7 @@
 				8AE7205D1F179D72005B0043 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -53,7 +53,7 @@ class ViewController2: UIViewController {
      */
     @IBAction func page1ButtonDidTap(sender: AnyObject)
     {
-        let viewController = ViewController(nibName: "ViewController", bundle: nil)
+        let viewController = ViewController2(nibName: "ViewController2", bundle: nil)
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     

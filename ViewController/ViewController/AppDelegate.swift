@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        let mode = Mode.TableView
+        let mode = Mode.TabBar
 
         window = UIWindow(frame:UIScreen.main.bounds);
 
@@ -44,14 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = viewController1
             
         case .NavigationController:
-            viewController1 = ViewController(nibName: "ViewController", bundle: nil)
-            navigationController = NavigationController1(rootViewController: viewController1!)
+            viewController2 = ViewController2(nibName: "ViewController2", bundle: nil)
+            navigationController = NavigationController1(rootViewController: viewController2!)
             window!.rootViewController = navigationController
-            
-        case .TableView:
-            tableViewController = TableViewController()
-            window!.rootViewController = tableViewController
-            
         case .SimpleTableView:
             simpleTableViewController = SimpleTableViewController()
             window!.rootViewController = simpleTableViewController
@@ -60,7 +55,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             simpleTableViewController2 = SimpleTableViewController2()
             window!.rootViewController = simpleTableViewController2
             
-        case .EditableTableView:
+            
+        case .TableView:
+            tableViewController = TableViewController()
+            window!.rootViewController = tableViewController
+            
+         case .EditableTableView:
             editableTableVC = EditableTableViewController()
             
             navigationController = NavigationController1(rootViewController: editableTableVC!)

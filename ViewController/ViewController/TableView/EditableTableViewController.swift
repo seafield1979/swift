@@ -72,13 +72,10 @@ class EditableTableViewController: UITableViewController {
     }
     
     // セルが削除された時の処理
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             tableData1.remove(at: indexPath.row)
-            
-            // 削除
-            tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     

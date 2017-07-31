@@ -21,7 +21,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // タイトルを変更
-        self.title = "page " + navigationController!.viewControllers.count.description
+        if navigationController != nil {
+            self.title = "page " + navigationController!.viewControllers.count.description
+        
         
         // タイトルのViewを変更
 //        self.navigationItem.titleView = UIImageView(image: UIImage(named: "image/hoge.png"))
@@ -39,29 +41,10 @@ class ViewController: UIViewController {
         // ナビゲーションバーのスタイルを変更
         //self.navigationController!.navigationBar.barStyle = UIBarStyle.Default
         
+        }
+        
         // NavigationBarにボタンを追加
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Debug", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.debugButtonTapped(button:)))
-    }
-
-    @IBAction func button1DidTap(sender: AnyObject)
-    {
-        view.backgroundColor = UIColor.green
-
-    }
-    
-    // ViewController2をpushする
-    @IBAction func page2ButtonDidTap(sender: AnyObject)
-    {
-        let viewController2 = ViewController2(nibName: "ViewController2", bundle: nil)
-        self.navigationController?.pushViewController(viewController2, animated: true)
-        
-
-    }
-    
-    // ページをpopする
-    @IBAction func popButtonTapped(sender: AnyObject)
-    {
-        self.navigationController!.popViewController(animated: true)
     }
     
 // MARK: UIViewControllerの基本メソッド

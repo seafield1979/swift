@@ -50,7 +50,7 @@
 /* Begin PBXFileReference section */
 		585014FE1BA152EC00D91177 /* ViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		585015021BA152EC00D91177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		585015031BA152EC00D91177 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		585015031BA152EC00D91177 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ViewController/AppDelegate.swift; sourceTree = "<group>"; };
 		5850150A1BA152EC00D91177 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		585015131BA152EC00D91177 /* ViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		585015181BA152EC00D91177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +103,7 @@
 		585014F51BA152EC00D91177 = {
 			isa = PBXGroup;
 			children = (
+				585015031BA152EC00D91177 /* AppDelegate.swift */,
 				585015001BA152EC00D91177 /* ViewController */,
 				585015161BA152EC00D91177 /* ViewControllerTests */,
 				585014FF1BA152EC00D91177 /* Products */,
@@ -125,7 +126,6 @@
 				8A63EEA01D7FFBB3006266C5 /* TabBarController */,
 				8A54CC561D7ACBC0009BBB38 /* TableView */,
 				5850152B1BA1691800D91177 /* NavigationController */,
-				585015031BA152EC00D91177 /* AppDelegate.swift */,
 				5850150A1BA152EC00D91177 /* Images.xcassets */,
 				585015011BA152EC00D91177 /* Supporting Files */,
 			);

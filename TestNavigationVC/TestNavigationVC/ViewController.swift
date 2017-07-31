@@ -12,15 +12,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // ナビゲーションバーにいろいろ表示
+        
+        // 右側にアイコン表示
         let searchButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.search, target: self, action: #selector(ViewController.clickSearchButton))
+
+        // 右側にアイコン表示2
         let refreshButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.refresh, target: self, action: #selector(ViewController.clickRefreshButton))
+        
+        // 左側にアイコン表示
         let returnButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.clickReturnButton))
         
-        //ナビゲーションバーの右側にボタン付与
+        //ナビゲーションバーの右側にボタン追加
         self.navigationItem.setRightBarButtonItems([searchButton, refreshButton], animated: true)
 
-        self.navigationItem.setLeftBarButton(returnButton, animated: true)
+        // ナビゲーションバーの左側にボタン追加
+//        self.navigationItem.setLeftBarButton(returnButton, animated: true)
     }
     
     func clickSearchButton(){
@@ -38,9 +46,12 @@ class ViewController: UIViewController {
         self.navigationItem.setLeftBarButton(nil, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func newPaegButtonClicked(_ sender: Any)
+    {
+        let viewController = ViewController(nibName: "ViewController", bundle: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
+    
 }
 
