@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         window = UIWindow(frame:UIScreen.main.bounds);
         
-        let mode = AppMode.memoStore
+        let mode = AppMode.fileManager
         
         switch (mode) {
         case .userDefault:

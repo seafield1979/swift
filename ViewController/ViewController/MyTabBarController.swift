@@ -17,7 +17,7 @@ class MyTabBarController: UITabBarController {
     var tabButtonBGView : [UIView]?
     
     @IBAction func tabButtonTapped(button : UIButton) {
-        selectTabForId(button.tag - 1)
+        selectTabForId(id: button.tag - 1)
     }
     
     override func viewDidLoad() {
@@ -28,10 +28,10 @@ class MyTabBarController: UITabBarController {
         Tab3View = Tab3ViewController()
         Tab4View = Tab4ViewController()
         
-        tabBar.backgroundColor = .grayColor()
+        tabBar.backgroundColor = .gray
                 
         // タブで表示するViewControllerを配列に格納する
-        let myTabs = [Tab1View!, Tab2View!, Tab3View!, Tab4View!]
+        let myTabs : [UIViewController] = [Tab1View!, Tab2View!, Tab3View!, Tab4View!]
         
         // 配列をTabにセット
         self.setViewControllers(myTabs, animated: false)
@@ -41,7 +41,7 @@ class MyTabBarController: UITabBarController {
         // ※xibを使う方法はうまくいかないので諦めた
         if mode == 1 {
             createTabBarView()
-            selectTabForId(0)
+            selectTabForId(id: 0)
         }
         else if mode == 2 {
             setTabBarItemsIcon()
@@ -54,8 +54,8 @@ class MyTabBarController: UITabBarController {
     // TabBarにカスタムしたViewを配置する
     func createTabBarView() {
         // bg
-        let baseView = UIView(frame: CGRectMake(0,0,tabBar.frame.size.width, tabBar.frame.size.height))
-        baseView.backgroundColor = .blackColor()
+        let baseView = UIView(frame: CGRect(x: 0,y: 0, width: tabBar.frame.size.width, height: tabBar.frame.size.height))
+        baseView.backgroundColor = .black
         
         // buttons
         let width = tabBar.frame.size.width / 4
@@ -63,15 +63,15 @@ class MyTabBarController: UITabBarController {
         self.tabButtonBGView = []
         
         for index in 0...3 {
-            let bgView = UIView(frame: CGRectMake(width * CGFloat(index), 0, width, 49))
-            bgView.backgroundColor = .purpleColor()
+            let bgView = UIView(frame: CGRect(x: width * CGFloat(index),y: 0,width: width, height: 49))
+            bgView.backgroundColor = .purple
             baseView.addSubview(bgView)
             tabButtonBGView!.append(bgView)
             
-            let button = UIButton(frame: CGRectMake(0, 0, width, 49))
-            button.setTitle("button\(index)", forState: .Normal)
-            button.setTitleColor(.blackColor(), forState: .Highlighted)
-            button.addTarget(self, action: #selector(self.tabButtonTapped(_:)), forControlEvents: .TouchUpInside)
+            let button = UIButton(frame: CGRect(x:0, y:0,width: width, height: 49))
+            button.setTitle("button\(index)", for: .normal)
+            button.setTitleColor(.black, for: .highlighted)
+            button.addTarget(self, action: #selector(self.tabButtonTapped(button:)), for: .touchUpInside)
             button.tag = index + 1
             
             bgView.addSubview(button)
@@ -82,10 +82,10 @@ class MyTabBarController: UITabBarController {
     // タブバーのアイコンを変更する
     func setTabBarItemsIcon() {
         // デフォルトのアイコンを設定
-        Tab1View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Featured, tag: 1)
-        Tab2View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Bookmarks, tag: 2)
-        Tab3View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Search, tag: 3)
-        Tab4View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Downloads, tag: 4)
+        Tab1View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.featured, tag: 1)
+        Tab2View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.bookmarks, tag: 2)
+        Tab3View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.search, tag: 3)
+        Tab4View.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.downloads, tag: 4)
     }
     
     func setTabBarItemsImage() {
@@ -100,23 +100,23 @@ class MyTabBarController: UITabBarController {
         if id >= 0 && id < 4 {
             print("button \(id+1)")
             self.selectedIndex = id
-            clearTabBGSelected(id)
-            self.tabButtonBGView![id].backgroundColor = .grayColor()
+            clearTabBGSelected(except: id)
+            self.tabButtonBGView![id].backgroundColor = .gray
         }
     }
     
     func clearTabBGSelected(except : Int) {
         for index in 0..<tabButtonBGView!.count {
             if except != index {
-                tabButtonBGView![index].backgroundColor = .purpleColor()
+                tabButtonBGView![index].backgroundColor = .purple
             }
         }
     }
     
     func addView1(){
         let _view = UIView()
-        _view.frame = CGRectMake(0,0,100,100)
-        _view.backgroundColor = .blackColor()
+        _view.frame = CGRect(x: 0,y: 0,width: 100, height: 100)
+        _view.backgroundColor = .black
         self.tabBar.addSubview(_view)
     }
 }

@@ -34,18 +34,18 @@ class ViewController: UIViewController {
 //        self.navigationController!.navigationBar.tintColor = .greenColor()
         
         // バーの背景色(半透明なし)
-        self.navigationController!.navigationBar.barTintColor = .greenColor()
+        self.navigationController!.navigationBar.barTintColor = .green
         
         // ナビゲーションバーのスタイルを変更
         //self.navigationController!.navigationBar.barStyle = UIBarStyle.Default
         
         // NavigationBarにボタンを追加
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Debug", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.debugButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Debug", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.debugButtonTapped(button:)))
     }
 
     @IBAction func button1DidTap(sender: AnyObject)
     {
-        view.backgroundColor = UIColor.greenColor();
+        view.backgroundColor = UIColor.green
 
     }
     
@@ -61,34 +61,34 @@ class ViewController: UIViewController {
     // ページをpopする
     @IBAction func popButtonTapped(sender: AnyObject)
     {
-        self.navigationController!.popViewControllerAnimated(true)
+        self.navigationController!.popViewController(animated: true)
     }
     
 // MARK: UIViewControllerの基本メソッド
  
     // 画面が表示される前に呼ばれる
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print("viewWillAppear")
     }
     
     // 画面が表示された後に呼ばれる
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         print("viewDidAppear")
     }
     
     // 画面が閉じる前に呼ばれる
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         print("viewWillDisappear")
     }
     
     // 画面が閉じた後に呼ばれる
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         print("viewDidDisappear")
@@ -101,14 +101,14 @@ class ViewController: UIViewController {
     }
     
     // 自動回転前に呼ばれる
-    override func shouldAutorotate() -> Bool {
+//    func shouldAutorotate() -> Bool {
+//    
+//        return true
+//    }
     
-        return true
-    }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        //return UIInterfaceOrientationMask.All
-        return UIInterfaceOrientationMask.Portrait
-    }
+//    func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+//        //return UIInterfaceOrientationMask.All
+//        return UIInterfaceOrientationMask.Portrait
+//    }
 }
 

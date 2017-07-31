@@ -13,6 +13,6 @@ class Tab4ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .grayColor()
+        view.backgroundColor = .gray
     }
 }

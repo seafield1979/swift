@@ -13,6 +13,6 @@ class Tab2ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blueColor()
+        view.backgroundColor = .blue
     }
 }

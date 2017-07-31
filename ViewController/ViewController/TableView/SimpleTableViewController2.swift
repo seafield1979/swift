@@ -20,19 +20,20 @@ class SimpleTableViewController2: UITableViewController {
         super.viewDidLoad()
 
         // ステータスバーの上にUITableViewが表示されないように位置をずらす
-        let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
         self.tableView.contentInset.top = statusBarHeight
         
     }
 
     
     // セクション数を返す
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionNum
     }
     
-    // 行数を返す
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // セル数を返す
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         if section < rowNums.count {
             return rowNums[section]
         }
@@ -41,65 +42,64 @@ class SimpleTableViewController2: UITableViewController {
     
 // MARK: UITableViewDelegate
     // セルの高さを返す
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
         return cellHeight
     }
     
     // Sectionヘッダーの高さを返す
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionHeaderHeight
     }
 
     // Sectionヘッダーの背景色
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         // 背景色
-        view.tintColor = .whiteColor()
+        view.tintColor = .white
     }
 
     // Sectionフッターの高さを返す
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return sectionFooterHeight
     }
 
     // Sectionフッターの背景色
-    override func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         // 背景色
-        view.tintColor = .whiteColor()
+        view.tintColor = .white
     }
     
     // SectionのViewを返す
     // titleForHeaderInSection等のかのセクション表示系のメソッドより優先される
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-        let view = UIView(frame: CGRectMake(0,0,self.view.frame.size.width,40))
-        view.backgroundColor = .grayColor()
+        let view = UIView(frame: CGRect(x: 0,y: 0,width: self.view.frame.size.width,height: 40))
+        view.backgroundColor = .gray
         
         // ラベルを表示する
         let label = UILabel()
-        label.frame = CGRectMake( 0,0,100,40)
+        label.frame = CGRect( x: 0, y: 0,width: 100, height: 40)
         let sectionNum = section + 1
         label.text = "セクション \(sectionNum)"
-        label.textColor = .orangeColor()
+        label.textColor = .orange
         view.addSubview(label)
         
         return view
     }
     
     // セクションのタイトルを返す
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let sectionNum = section + 1
         return "section \(sectionNum)"
     }
 
     
     // セルを返す
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "MyTestCell")
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "MyTestCell")
         cell.textLabel!.text = "hoge selction:\(indexPath.section) : row:\(indexPath.row)"
         cell.detailTextLabel!.text = "detail"
         return cell
-        
     }
 }

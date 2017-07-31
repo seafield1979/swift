@@ -15,7 +15,7 @@ class ViewController2: UIViewController {
         print("pageNum:" + self.navigationController!.viewControllers.count.description)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -26,7 +26,7 @@ class ViewController2: UIViewController {
         self.title = "page " + navigationController!.viewControllers.count.description
         
         // バーの右に普通のボタンを追加
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Debug", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.debugButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Debug", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController2.debugButtonTapped(button:)))
         
         // 画像を元にボタンを作成
 //        let barButton = UIBarButtonItem(image: UIImage(named:"image/hoge2.png"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.debugButtonTapped(_:)))
@@ -59,7 +59,7 @@ class ViewController2: UIViewController {
     
     // topのViewControllerまでpopする
     @IBAction func popToRootButtonTapped(sender: AnyObject) {
-        self.navigationController!.popToRootViewControllerAnimated(true)
+        self.navigationController!.popToRootViewController(animated: true)
     }
     
 }

@@ -32,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         case TabBar
     }
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        let mode = Mode.TabBar
+        let mode = Mode.TableView
 
-        window = UIWindow(frame:UIScreen.mainScreen().bounds);
+        window = UIWindow(frame:UIScreen.main.bounds);
 
         switch mode {
         case .ViewController:

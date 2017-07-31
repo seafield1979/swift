@@ -13,6 +13,6 @@ class Tab1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .greenColor()
+        view.backgroundColor = .green
     }
 }

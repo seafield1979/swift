@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  TestNavigationVC
+//  UTableView
 //
-//  Created by Shusuke Unno on 2017/07/13.
+//  Created by Shusuke Unno on 2017/07/31.
 //  Copyright © 2017年 Sun Sun Soft. All rights reserved.
 //
 
@@ -31,6 +31,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.makeKeyAndVisible();
         return true
     }
-
 }
 
