@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame:UIScreen.main.bounds)
         
         // 最初に表示されるViewControllerを生成
-        let viewController = ViewController(nibName: "ViewController", bundle: nil)
+        let viewController = TopViewController(nibName: "TopViewController", bundle: nil)
         viewController.view.backgroundColor = UIColor.white
-        viewController.title = "hoge"
+        viewController.title = "TableView テスト"
         
         // トップのNavigationControllerを生成
         navigation = UINavigationController(rootViewController: viewController)

@@ -15,17 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     enum AppMode {
-        case userDefault
-        case fileManager
-        case memoStore
-        case personStore
+        case userDefault    // UserDefault(アプリの設定値等の保存)
+        case fileManager    // アプリのフォルダにファイル保存
+        case memoStore      // CoreData
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         window = UIWindow(frame:UIScreen.main.bounds);
         
-        let mode = AppMode.fileManager
+        let mode = AppMode.memoStore
         
         switch (mode) {
         case .userDefault:
@@ -37,11 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window!.rootViewController = viewController
             
         case .memoStore:
+            
             let viewController = MemoStoreViewController(nibName:"MemoStoreViewController", bundle: nil)
-            window!.rootViewController = viewController
-
-        case .personStore:
-            let viewController = PersonStoreViewController(nibName:"PersonStoreViewController", bundle: nil)
             window!.rootViewController = viewController
         }
         

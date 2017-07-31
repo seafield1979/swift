@@ -30,6 +30,12 @@ UViewTest
 ViewController
     画面表示のサンプル
     ViewController, NavigationController, TableView, TabBar 等の基本的な画面表示を行うサンプル。
+
 MyImageView
+    UIImageに様々な描画処理を行うサンプル。
+    UIImageの拡大縮小、くり抜き、ライン描画等
+
 NibTest
+    nibファイルのViewをプログラムから生成する。
+    様々なページ共通のレイアウトを使用できるようになる。
 StorageTest

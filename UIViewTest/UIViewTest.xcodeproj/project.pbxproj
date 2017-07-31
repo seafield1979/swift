@@ -168,7 +168,6 @@
 			children = (
 				8AFDE2231F232B210094860B /* Util */,
 				8AFDE21F1F232AB90094860B /* Extension */,
-				8AFDE21E1F22F6820094860B /* Util */,
 				8A3D363B1D757225003528A0 /* image */,
 				8A3D36261D716973003528A0 /* ViewController */,
 				8A3D361B1D71694D003528A0 /* Assets.xcassets */,
@@ -250,14 +249,6 @@
 			name = UITable;
 			sourceTree = "<group>";
 		};
-		8AFDE21E1F22F6820094860B /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				8AFDE21C1F22F6770094860B /* UIViewUtil.swift */,
-			);
-			name = Util;
-			sourceTree = "<group>";
-		};
 		8AFDE21F1F232AB90094860B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				8A51168A1F0DF5A400E82FAE /* EnumEnumerable.swift */,
+				8AFDE21C1F22F6770094860B /* UIViewUtil.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";

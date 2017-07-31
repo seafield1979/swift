@@ -16,7 +16,7 @@ class Button2ViewController: UNViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        init2()
+        init4()
     }
     
     // シンプルなボタンを１つ表示

@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  NibTest
-//
+//      NibファイルのViewを表示する
 //  Created by Shusuke Unno on 2016/09/07.
 //  Copyright © 2016年 Shusuke Unno. All rights reserved.
 //
@@ -22,14 +22,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // MyViewを追加
-        loadTemplate()
+        loadMyView()
         
         // CustomViewを２つ追加
         loadCustomView()
     }
     
     // MyViewを作成
-    func loadTemplate() {
+    func loadMyView() {
         let myView = UINib(nibName: "MyView", bundle: nil).instantiate(withOwner: self, options: nil)[0] as! UIView
         
         let subview1 = myView.subviews[1] as UIView
@@ -43,14 +43,17 @@ class ViewController: UIViewController {
     // CustomViewを作成
     func loadCustomView()
     {
+        // CustomView1
+        // ボタンを押した時の処理は追加しない
         let customView = CustomView()
         customView.frame.origin = CGPoint(x: 0,y: 150)
         self.view.addSubview(customView)
         
+        // CustomView2
         // テキストとボタンを押した時の処理を追加
         let customView2 = CustomView(frame: CGRect(x: 0,y: 250,width: 0,height: 0))  // サイズは使われないので0
         self.view.addSubview(customView2)
-        customView2.label1.text = "hoge"
+        customView2.label1.text = "カスタムカスタム"
         customView2.button1.addTarget(self, action: #selector(self.buttonTapped(_:)), for: .touchUpInside)
     }
 }

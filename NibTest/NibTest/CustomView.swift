@@ -50,10 +50,8 @@ class CustomView : UIView {
     func customViewCommonInit(){
         // これがないと無限ループ
         if self.subviews.count == 0 {
+            // nibファイルからviewを生成する
             let view = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.first as! UIView
-//            view.frame = self.bounds
-//            view.translatesAutoresizingMaskIntoConstraints = true
-//            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             self.addSubview(view)
         }
     }
