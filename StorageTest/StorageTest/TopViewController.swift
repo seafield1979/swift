@@ -9,7 +9,7 @@
 import UIKit
 
 class TopViewController: UNViewController {
-    let titles : [String] = ["userDefault", "fileManager", "CoreData"]
+    let titles : [String] = ["userDefault", "fileManager", "CoreData", "AppResource"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ class TopViewController: UNViewController {
         // ボタンを配置
         _ = UIViewUtil.createButtons (
             parentView : self,
-            y : 0, count : 3,
+            y : 0, count : titles.count,
             lineCount: 1, texts: titles, tagId: 1,
             selector: #selector(self.tappedButton(_:)))
         
@@ -40,7 +40,9 @@ class TopViewController: UNViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
 
         case 4:
-            print("banana")
+            let viewController = ViewControllerResource(nibName:"ViewControllerResource", bundle: nil)
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         default:
             print("other fruit")
             break

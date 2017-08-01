@@ -11,6 +11,12 @@
 		8A0D6F7A1F30195F002A1949 /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F781F30195F002A1949 /* TopViewController.xib */; };
 		8A0D6F7C1F301988002A1949 /* UNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F7B1F301988002A1949 /* UNViewController.swift */; };
 		8A0D6F7F1F3019D5002A1949 /* UIViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F7E1F3019D5002A1949 /* UIViewUtil.swift */; };
+		8A0D6F851F302A5B002A1949 /* text1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F821F302A5B002A1949 /* text1.txt */; };
+		8A0D6F861F302A5B002A1949 /* text2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F831F302A5B002A1949 /* text2.txt */; };
+		8A0D6F871F302A5B002A1949 /* text3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F841F302A5B002A1949 /* text3.txt */; };
+		8A0D6F8B1F302BD9002A1949 /* ViewControllerResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F891F302BD9002A1949 /* ViewControllerResource.swift */; };
+		8A0D6F8C1F302BD9002A1949 /* ViewControllerResource.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F8A1F302BD9002A1949 /* ViewControllerResource.xib */; };
+		8A0D6F8E1F3035A1002A1949 /* data1.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F8D1F3035A1002A1949 /* data1.bin */; };
 		8A54CCB11D7E4A13009BBB38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CCB01D7E4A13009BBB38 /* AppDelegate.swift */; };
 		8A54CCB91D7E4A13009BBB38 /* StorageTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CCB71D7E4A13009BBB38 /* StorageTest.xcdatamodeld */; };
 		8A54CCBB1D7E4A13009BBB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A54CCBA1D7E4A13009BBB38 /* Assets.xcassets */; };
@@ -31,6 +37,12 @@
 		8A0D6F781F30195F002A1949 /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopViewController.xib; sourceTree = "<group>"; };
 		8A0D6F7B1F301988002A1949 /* UNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNViewController.swift; sourceTree = "<group>"; };
 		8A0D6F7E1F3019D5002A1949 /* UIViewUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewUtil.swift; path = StorageTest/Util/UIViewUtil.swift; sourceTree = "<group>"; };
+		8A0D6F821F302A5B002A1949 /* text1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text1.txt; path = StorageTest/Resouce/text1.txt; sourceTree = "<group>"; };
+		8A0D6F831F302A5B002A1949 /* text2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text2.txt; path = StorageTest/Resouce/text2.txt; sourceTree = "<group>"; };
+		8A0D6F841F302A5B002A1949 /* text3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text3.txt; path = StorageTest/Resouce/text3.txt; sourceTree = "<group>"; };
+		8A0D6F891F302BD9002A1949 /* ViewControllerResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerResource.swift; sourceTree = "<group>"; };
+		8A0D6F8A1F302BD9002A1949 /* ViewControllerResource.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerResource.xib; sourceTree = "<group>"; };
+		8A0D6F8D1F3035A1002A1949 /* data1.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = data1.bin; path = StorageTest/Resouce/data1.bin; sourceTree = "<group>"; };
 		8A54CCAD1D7E4A13009BBB38 /* StorageTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StorageTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A54CCB01D7E4A13009BBB38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A54CCB81D7E4A13009BBB38 /* StorageTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StorageTest.xcdatamodel; sourceTree = "<group>"; };
@@ -67,9 +79,38 @@
 			name = Util;
 			sourceTree = "<group>";
 		};
+		8A0D6F801F302857002A1949 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D6F811F302860002A1949 /* text */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		8A0D6F811F302860002A1949 /* text */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D6F821F302A5B002A1949 /* text1.txt */,
+				8A0D6F831F302A5B002A1949 /* text2.txt */,
+				8A0D6F841F302A5B002A1949 /* text3.txt */,
+				8A0D6F8D1F3035A1002A1949 /* data1.bin */,
+			);
+			name = text;
+			sourceTree = "<group>";
+		};
+		8A0D6F881F302A7B002A1949 /* AppResource */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D6F891F302BD9002A1949 /* ViewControllerResource.swift */,
+				8A0D6F8A1F302BD9002A1949 /* ViewControllerResource.xib */,
+			);
+			name = AppResource;
+			sourceTree = "<group>";
+		};
 		8A54CCA41D7E4A13009BBB38 = {
 			isa = PBXGroup;
 			children = (
+				8A0D6F801F302857002A1949 /* Resource */,
 				8A0D6F7D1F3019B6002A1949 /* Util */,
 				8A54CCAF1D7E4A13009BBB38 /* StorageTest */,
 				8A54CCAE1D7E4A13009BBB38 /* Products */,
@@ -93,6 +134,7 @@
 				8A54CCC51D7E4CF6009BBB38 /* UserDefault */,
 				8A54CCC61D7E4CFE009BBB38 /* FileManager */,
 				8A54CCC71D7E4D05009BBB38 /* CoreData */,
+				8A0D6F881F302A7B002A1949 /* AppResource */,
 				8A54CCB01D7E4A13009BBB38 /* AppDelegate.swift */,
 				8A54CCBA1D7E4A13009BBB38 /* Assets.xcassets */,
 				8A54CCBF1D7E4A13009BBB38 /* Info.plist */,
@@ -202,8 +244,13 @@
 				8A54CCBB1D7E4A13009BBB38 /* Assets.xcassets in Resources */,
 				8A0D6F7A1F30195F002A1949 /* TopViewController.xib in Resources */,
 				8A63EE721D7F8F50006266C5 /* MemoStoreViewController.xib in Resources */,
+				8A0D6F861F302A5B002A1949 /* text2.txt in Resources */,
+				8A0D6F8C1F302BD9002A1949 /* ViewControllerResource.xib in Resources */,
 				8A54CCCF1D7E5DC2009BBB38 /* FileManagerViewController.xib in Resources */,
 				8A54CCCB1D7E4F96009BBB38 /* UserDefaultViewController.xib in Resources */,
+				8A0D6F8E1F3035A1002A1949 /* data1.bin in Resources */,
+				8A0D6F851F302A5B002A1949 /* text1.txt in Resources */,
+				8A0D6F871F302A5B002A1949 /* text3.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +272,7 @@
 				8A63EE921D7FD24F006266C5 /* PersonStore+CoreDataProperties.swift in Sources */,
 				8A63EE8F1D7FB12B006266C5 /* MemoStore.swift in Sources */,
 				8A63EE8E1D7FB12B006266C5 /* MemoStore+CoreDataProperties.swift in Sources */,
+				8A0D6F8B1F302BD9002A1949 /* ViewControllerResource.swift in Sources */,
 				8A0D6F7C1F301988002A1949 /* UNViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
