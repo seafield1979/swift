@@ -9,7 +9,7 @@
 
 import UIKit
 
-class UserDefaultViewController: UIViewController {
+class UserDefaultViewController: UNViewController {
 
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!

@@ -13,6 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navigation: UINavigationController?
 
     enum AppMode {
         case userDefault    // UserDefault(アプリの設定値等の保存)
@@ -24,26 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         window = UIWindow(frame:UIScreen.main.bounds);
         
-        let mode = AppMode.memoStore
+        window = UIWindow(frame:UIScreen.main.bounds)
         
-        switch (mode) {
-        case .userDefault:
-            let viewController = UserDefaultViewController(nibName: "UserDefaultViewController", bundle: nil)
-            window!.rootViewController = viewController
-            
-        case .fileManager:
-            let viewController = FileManagerViewController(nibName:"FileManagerViewController", bundle: nil)
-            window!.rootViewController = viewController
-            
-        case .memoStore:
-            
-            let viewController = MemoStoreViewController(nibName:"MemoStoreViewController", bundle: nil)
-            window!.rootViewController = viewController
-        }
+        // 最初に表示されるViewControllerを生成
+        let viewController = TopViewController(nibName: "TopViewController", bundle: nil)
+        viewController.view.backgroundColor = UIColor.white
+        viewController.title = "TableView テスト"
         
+        // トップのNavigationControllerを生成
+        navigation = UINavigationController(rootViewController: viewController)
         
+        window!.rootViewController = navigation
         window!.makeKeyAndVisible();
-        
+
         return true
     }
 

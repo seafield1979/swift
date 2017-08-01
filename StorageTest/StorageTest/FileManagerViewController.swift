@@ -10,7 +10,7 @@
 
 import UIKit
 
-class FileManagerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class FileManagerViewController: UNViewController, UITableViewDelegate, UITableViewDataSource {
     enum TestMode : Int {
         case write
         case read
@@ -22,60 +22,36 @@ class FileManagerViewController: UIViewController, UIPickerViewDelegate, UIPicke
         case createDataFile
     }
     
+    @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var textView1: UITextView!
-    @IBOutlet weak var testPicker: UIPickerView!
     
     var testMode : TestMode = .write
     
-    fileprivate let pickerData: NSArray = [
+    fileprivate let pickerData : [String] = [
         "ファイル書き込み",
         "ファイル読み込み",
         "フォルダ作成",
         "ファイル削除",
         "ファイルコピー",
         "ファイル移動",
-        "フォルダ列挙",
+        "フォルダ一覧表示",
         "データファイル作成"]
     
-
-    // テストボタンが押された時の処理
-    // ピッカーで選択された番号のテストを実行する
-    @IBAction func testButtonTapped(_ sender: AnyObject) {
-        
-        switch testMode {
-        case .write:
-            writeToFile(file: "hoge.txt", writeText : textView1.text)
-        case .read:
-            let text = readFromFile("hoge.txt")
-            if let _text = text {
-                textView1.text = _text
-            }
-        case .createDir:
-            createDirByName("mydir")
-        case .deleteFile:
-            deleteFile("hoge2.txt")
-        case .copyFile:
-            copyFile("hoge.txt", dstFile : "mydir/hoge3.txt")
-        case .moveFile:
-            moveFile("hoge.txt", dstFile: "mydir/hoge.txt")
-        case .showFiles:
-            showFileList()
-        case .createDataFile:
-            createFile("hoge.dat")
-        default:
-            break
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Delegateを設定する.
-        testPicker.delegate = self
+        // ソフトウェアキーボードを非表示にするボタン
+        let hideButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(self.hideKeyboard))
         
-        // DataSourceを設定する.
-        testPicker.dataSource = self
-
+        //ナビゲーションバーの右側にボタン付与
+        self.navigationItem.setRightBarButton(hideButton, animated: true)
+        
+    }
+    
+    // ソフトウェアキーボードを非表示にする
+    func hideKeyboard() {
+        textView1.resignFirstResponder()
     }
     
     // ファイルを作成
@@ -100,7 +76,7 @@ class FileManagerViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Documentsフォルダを読み込む
         if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
         {
-            print(dir)
+            print(dir + "/" + filePath)
             let filePath = dir + "/" + file_name
             
             do {
@@ -197,8 +173,9 @@ class FileManagerViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }
     }
     
-    // Documentsディレクトリ内のファイル列挙
+    // Documentsディレクトリ内のファイルを一覧表示
     func showFileList() {
+        
         let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
         do{
             let files = try FileManager.default.contentsOfDirectory(atPath: dir!)
@@ -221,38 +198,84 @@ class FileManagerViewController: UIViewController, UIPickerViewDelegate, UIPicke
             
         }
     }
-
-    
-    // MARK: UIPickerViewDataSource
-    /*
-     pickerに表示する列数を返すデータソースメソッド.
-     (実装必須)
-     */
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    /*
-     pickerに表示する行数を返すデータソースメソッド.
-     (実装必須)
-     */
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    // MARK: UIPickerViewDelegate
-    /*
-     pickerに表示する値を返すデリゲートメソッド.
-     */
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row] as? String
-    }
     
     /*
      pickerが選択された際に呼ばれるデリゲートメソッド.
      */
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("row: \(row)")
-        testMode = TestMode.init(rawValue: row)!
     }
 
+    
+    // MARK: UITableViewDelegate
+    /*
+     セクションの数を返す(オプションなので定義は必須ではない)
+     */
+    public func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    /*
+     セクションのタイトルを返す.
+     */
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "section"
+    }
+    
+    /**
+     セクションセルの高さを返す
+     */
+    var sectionHeaderHeight: CGFloat {
+        return 30
+    }
+    
+    // 指定のセクション(section:)のセルの数を返す
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return pickerData.count
+    }
+    
+    // セルを返す
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        cell.textLabel?.text = pickerData[indexPath.row]
+        return cell
+    }
+    
+    // セルの高さを返す
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 70
+    }
+    
+    // セルをタップされた時に呼び出される
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        testMode = TestMode.init(rawValue: indexPath.row)!
+
+        switch testMode {
+        case .write:
+            writeToFile(file: "hoge.txt", writeText : textView1.text)
+        case .read:
+            let text = readFromFile("hoge.txt")
+            if let _text = text {
+                textView1.text = _text
+            }
+        case .createDir:
+            createDirByName("mydir")
+        case .deleteFile:
+            deleteFile("hoge2.txt")
+        case .copyFile:
+            copyFile("hoge.txt", dstFile : "mydir/hoge3.txt")
+        case .moveFile:
+            moveFile("hoge.txt", dstFile: "mydir/hoge.txt")
+        case .showFiles:
+            showFileList()
+        case .createDataFile:
+            createFile("hoge.dat")
+        default:
+            break
+        }
+    }
 }

@@ -1,22 +1,21 @@
 //
 //  TopViewController.swift
-//  UTableView
+//  StorageTest
 //
-//  Created by Shusuke Unno on 2017/07/31.
-//  Copyright © 2017年 Sun Sun Soft. All rights reserved.
+//  Created by Shusuke Unno on 2017/08/01.
+//  Copyright © 2017年 Shusuke Unno. All rights reserved.
 //
 
 import UIKit
 
 class TopViewController: UNViewController {
-
-    let titles : [String] = ["シンプル1", "シンプル2", "カスタム1"]
-
+    let titles : [String] = ["userDefault", "fileManager", "CoreData"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // ボタンを配置
-        UIViewUtil.createButtons(
+        _ = UIViewUtil.createButtons (
             parentView : self,
             y : 0, count : 3,
             lineCount: 1, texts: titles, tagId: 1,
@@ -24,27 +23,22 @@ class TopViewController: UNViewController {
         
     }
     
+
     // ボタンが押された時の処理
     func tappedButton(_ sender: AnyObject) {
         switch sender.tag {
         case 1:
-            let viewController = ViewControllerTable1(nibName: nil, bundle: nil)
-            viewController.view.backgroundColor = UIColor.white
-            viewController.title = titles[0]
+            let viewController = UserDefaultViewController(nibName: "UserDefaultViewController", bundle: nil)
             self.navigationController?.pushViewController(viewController, animated: true)
-            
+
         case 2:
-            let viewController = ViewControllerTable2(nibName: nil, bundle: nil)
-            viewController.view.backgroundColor = UIColor.white
-            viewController.title = titles[1]
+            let viewController = FileManagerViewController(nibName:"FileManagerViewController", bundle: nil)
             self.navigationController?.pushViewController(viewController, animated: true)
-            
+
         case 3:
-            let viewController = ViewControllerTable3(nibName: nil, bundle: nil)
-            viewController.view.backgroundColor = UIColor.white
-            viewController.title = titles[2]
+            let viewController = MemoStoreViewController(nibName:"MemoStoreViewController", bundle: nil)
             self.navigationController?.pushViewController(viewController, animated: true)
-            
+
         case 4:
             print("banana")
         default:

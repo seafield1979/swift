@@ -10,12 +10,30 @@
 import UIKit
 import CoreData
 
-class MemoStoreViewController: UIViewController {
+class MemoStoreViewController: UNViewController {
 
     @IBOutlet weak var textView1: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var memoTextField: UITextField!
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // ソフトウェアキーボードを非表示にするボタン
+        let hideButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(self.hideKeyboard))
+        
+        //ナビゲーションバーの右側にボタン付与
+        self.navigationItem.setRightBarButton(hideButton, animated: true)
+    }
+
+    // ソフトウェアキーボードを非表示にする
+    func hideKeyboard() {
+        textView1.resignFirstResponder()
+    }
+
     
     // 書き込みボタン
     // データを１件追加する
@@ -45,11 +63,7 @@ class MemoStoreViewController: UIViewController {
         let text = updateDataWithName(nameTextField.text, memoStr : memoTextField.text)
         textView1.text = text
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    
     
     
     // MARK: データ操作
