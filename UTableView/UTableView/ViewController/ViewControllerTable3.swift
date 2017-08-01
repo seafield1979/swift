@@ -12,7 +12,8 @@ class ViewControllerTable3: UNViewController,
     UITableViewDelegate, UITableViewDataSource, TableCellDelegate
 {
     let reuseSection1 = "section1"
-    let reuseCell1 = "cell1"
+    let reuseCell1 = "cell1"        // ラベルとボタンのついたCell
+    let reuseCell2 = "cell2"        // テキストフィールドのついたCell
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,10 @@ class ViewControllerTable3: UNViewController,
         // セル用のxibを登録する
         let cellNib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: reuseCell1)
+        
+        // 2つめ
+        let cellNib2 = UINib(nibName: "TableViewCell2", bundle: nil)
+        tableView.register(cellNib2, forCellReuseIdentifier: reuseCell2)
     }
     
     
@@ -63,12 +68,20 @@ class ViewControllerTable3: UNViewController,
     // セルを返す(xibから生成した自前のセル)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseCell1) as! TableViewCell
-        
-        cell.label1.text = "hoge selction:\(indexPath.section) : row:\(indexPath.row)"
-        cell.delegate = self
-        cell.indexPath = indexPath
-        return cell
+        if indexPath.row % 2 == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseCell1) as! TableViewCell
+            
+            cell.label1.text = "hoge selction:\(indexPath.section) : row:\(indexPath.row)"
+            cell.delegate = self
+            cell.indexPath = indexPath
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseCell2) as! TableViewCell2
+            
+            return cell
+            
+        }
     }
 
     
