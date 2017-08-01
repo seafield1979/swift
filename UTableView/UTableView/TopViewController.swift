@@ -37,9 +37,17 @@ class TopViewController: UNViewController {
             self.navigationController?.pushViewController(viewController, animated: true)
             
         case 2:
-            print("mango")
+            let viewController = ViewControllerTable2(nibName: nil, bundle: nil)
+            viewController.view.backgroundColor = UIColor.white
+            viewController.title = titles[1]
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         case 3:
-            print("orange")
+            let viewController = ViewControllerTable3(nibName: nil, bundle: nil)
+            viewController.view.backgroundColor = UIColor.white
+            viewController.title = titles[2]
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
         case 4:
             print("banana")
         default:

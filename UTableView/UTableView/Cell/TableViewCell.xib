@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="UTableView" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeh-Wp-BPZ">
+                        <rect key="frame" x="31" y="11" width="197" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="197" id="8oW-aj-qWM"/>
+                            <constraint firstAttribute="height" constant="21" id="vwt-rT-uLf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gon-nf-XWU">
+                        <rect key="frame" x="242" y="6" width="46" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="T3h-ct-9V9"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="button1Clicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hXb-hl-mWT"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="aeh-Wp-BPZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="87E-Nm-K4l"/>
+                    <constraint firstItem="aeh-Wp-BPZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="23" id="MaZ-QK-jaQ"/>
+                    <constraint firstItem="gon-nf-XWU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OlR-1p-GzL"/>
+                    <constraint firstItem="gon-nf-XWU" firstAttribute="leading" secondItem="aeh-Wp-BPZ" secondAttribute="trailing" constant="14" id="Vgm-Ba-bVb"/>
+                    <constraint firstAttribute="trailing" secondItem="gon-nf-XWU" secondAttribute="trailing" constant="32" id="glR-yX-ReY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label1" destination="aeh-Wp-BPZ" id="oDk-nw-5rq"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

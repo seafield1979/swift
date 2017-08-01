@@ -71,13 +71,12 @@ class EditableTableViewController: UITableViewController {
         return cellHeight
     }
     
-    // セルが削除された時の処理
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableData1.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+    // セルをタップされた時に呼び出される
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected: section=" + indexPath.section.description +
+            " row=" + indexPath.row.description + " value=" + tableData1[indexPath.row] )
     }
+    
     
     // MARK: 編集モード
     // セルが編集可能かどうか
@@ -86,7 +85,15 @@ class EditableTableViewController: UITableViewController {
         // 全て編集可能
         return true
     }
-    
+
+    // セルが削除された時の処理
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableData1.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+
     // 編集ボタンが押された時の処理
     override func setEditing(_ editing: Bool, animated: Bool)
     {
@@ -103,8 +110,9 @@ class EditableTableViewController: UITableViewController {
     }
     
     // 並び替え操作の後の処理
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
     {
+
         // sourceIndexPath データの元の位置
         // destinationIndexPath に移動先の位置
         let targetTitle = tableData1[sourceIndexPath.row]

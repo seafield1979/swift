@@ -41,7 +41,7 @@ class TableViewController: UITableViewController {
         
         // セル用のxibを登録する
         let cellNib = UINib(nibName: "MyTableViewCell", bundle: nil)
-        self.tableView.register(cellNib, forCellReuseIdentifier: reuseCell1)
+        tableView.register(cellNib, forCellReuseIdentifier: reuseCell1)
     }
 
     // MARK: - UITableViewDataSource

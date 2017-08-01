@@ -49,7 +49,8 @@ class Button2ViewController: UNViewController {
 
     // 他のサンプルで使いやすいように大量のボタンを並べる
     func init3() {
-        let buttons = UIViewUtil.createButtons(20.0, count: 10, lineCount: 2, text: "hoge", tagId: 1)
+        let buttons = UIViewUtil.createButtons(
+            parentView: self, y: 20.0, count: 10, lineCount: 2, text: "hoge", tagId: 1, selector: #selector(self.tappedButton(_:)))
         
         for button in buttons {
             button.addTarget(self, action: #selector(self.tappedButton(_:)), for:.touchUpInside)

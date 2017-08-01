@@ -30,6 +30,7 @@
 		7947EC451A7D1DBB0038B8BD /* test_basis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7947EC441A7D1DBB0038B8BD /* test_basis.swift */; };
 		8A05FE511F14B8EF008C33EC /* test_hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE501F14B8EF008C33EC /* test_hash.swift */; };
 		8A05FE671F152550008C33EC /* EnumEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE661F152550008C33EC /* EnumEnumerable.swift */; };
+		8A0D6F691F2F5F10002A1949 /* test_selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F681F2F5F10002A1949 /* test_selector.swift */; };
 		8A1C16741D7803A0004824CB /* test_tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16731D7803A0004824CB /* test_tuple.swift */; };
 		8A1C2B311F0FC40A005483ED /* test_timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B301F0FC40A005483ED /* test_timer.swift */; };
 		8A1C2B841F13220D005483ED /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B831F13220D005483ED /* List.swift */; };
@@ -92,6 +93,7 @@
 		7947EC441A7D1DBB0038B8BD /* test_basis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_basis.swift; sourceTree = "<group>"; };
 		8A05FE501F14B8EF008C33EC /* test_hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_hash.swift; sourceTree = "<group>"; };
 		8A05FE661F152550008C33EC /* EnumEnumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumEnumerable.swift; sourceTree = "<group>"; };
+		8A0D6F681F2F5F10002A1949 /* test_selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_selector.swift; sourceTree = "<group>"; };
 		8A1C16731D7803A0004824CB /* test_tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_tuple.swift; sourceTree = "<group>"; };
 		8A1C2B301F0FC40A005483ED /* test_timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_timer.swift; sourceTree = "<group>"; };
 		8A1C2B831F13220D005483ED /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				8A1C16731D7803A0004824CB /* test_tuple.swift */,
 				8A1C2B301F0FC40A005483ED /* test_timer.swift */,
 				8A23D1751F298AEC0059A1BF /* test_sequence.swift */,
+				8A0D6F681F2F5F10002A1949 /* test_selector.swift */,
 			);
 			path = swift_test;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				8AA63D181DB3BE250002FC07 /* test_random.swift in Sources */,
 				58EED4611AD7D35B008799BE /* test_ARC.swift in Sources */,
 				8A23D1741F2987120059A1BF /* test_generator.swift in Sources */,
+				8A0D6F691F2F5F10002A1949 /* test_selector.swift in Sources */,
 				8A63EE6C1D7ECC53006266C5 /* test_file.swift in Sources */,
 				58B02F271AE0D56E00024032 /* test_extension.swift in Sources */,
 				8A63EE6E1D7EF25C006266C5 /* test_exception.swift in Sources */,

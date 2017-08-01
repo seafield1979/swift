@@ -114,8 +114,10 @@ public class UIViewUtil {
      - parameter tagId: ボタンのtagId(２つ目以降は+1される)
      - returns: 作成したボタン
      */
-    public static func createButtons(_ y : CGFloat, count : Int,
-                                     lineCount: Int, text: String, tagId: Int)
+    public static func createButtons(parentView: UIViewController,
+                                     y : CGFloat, count : Int,
+                                     lineCount: Int, text: String, tagId: Int,
+                                     selector: Selector)
         -> [UIButton]
     {
         // ボタンのテキストを生成
@@ -124,12 +126,17 @@ public class UIViewUtil {
             texts.append(text + (i+1).description)
         }
         
-        let buttons = self.createButtons(y, count: count, lineCount: lineCount, texts: texts, tagId: tagId)
+        let buttons = self.createButtons(parentView: parentView,
+                                         y: y, count: count, lineCount: lineCount,
+                                         texts: texts, tagId: tagId,
+                                         selector: selector)
         return buttons
     }
     
-    public static func createButtons(_ y : CGFloat, count : Int,
-                                     lineCount: Int, texts: [String], tagId: Int)
+    public static func createButtons(parentView: UIViewController,
+                                     y : CGFloat, count : Int,
+                                     lineCount: Int, texts: [String], tagId: Int,
+                                     selector: Selector)
         -> [UIButton]
     {
         var buttons : [UIButton] = []
@@ -155,6 +162,9 @@ public class UIViewUtil {
                 x:x, y:y, width:width, height: UIViewUtil.BUTTON_H, title: _text!, tagId: tagId + i)
             x += width
             buttons.append(button)
+            
+            button.addTarget(parentView, action: selector, for: .touchUpInside)
+            parentView.view.addSubview(button)
         }
         return buttons
     }
@@ -195,9 +205,10 @@ public class UIViewUtil {
                            height: height))
         
         // ボタンを作成
-        let buttons = createButtons(y, count : count,
+        let buttons = createButtons(parentView: parentView, y: y, count : count,
                                     lineCount: lineCount,
-                                    texts: texts, tagId: tagId)
+                                    texts: texts, tagId: tagId,
+                                    selector: selector)
         if buttons.count == 0 {
             return nil
         }
@@ -212,7 +223,6 @@ public class UIViewUtil {
         scrollView.scrollsToTop = false;
         
         for button in buttons {
-            button.addTarget(parentView, action: selector, for: .touchUpInside)
             scrollView.addSubview(button)
         }
         
