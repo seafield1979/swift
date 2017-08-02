@@ -117,7 +117,13 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
             let createPath = dir + "/" + dirName    // 作成するディレクトリ名を含んだフルパス
             
             do {
-                try FileManager.default.createDirectory(atPath: createPath, withIntermediateDirectories: true, attributes: nil)
+                // フォルダがすでにあるかどうかをチェック
+                var isDir : ObjCBool = false
+                if FileManager.default.fileExists(atPath: createPath,
+                                                  isDirectory: &isDir) == false
+                {
+                    try FileManager.default.createDirectory(atPath: createPath, withIntermediateDirectories: true, attributes: nil)
+                }
             } catch {
                 // Failed to wite folder
             }

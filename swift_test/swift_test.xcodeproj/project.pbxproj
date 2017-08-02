@@ -31,6 +31,11 @@
 		8A05FE511F14B8EF008C33EC /* test_hash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE501F14B8EF008C33EC /* test_hash.swift */; };
 		8A05FE671F152550008C33EC /* EnumEnumerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05FE661F152550008C33EC /* EnumEnumerable.swift */; };
 		8A0D6F691F2F5F10002A1949 /* test_selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F681F2F5F10002A1949 /* test_selector.swift */; };
+		8A0D6F941F307536002A1949 /* test_test1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F931F307536002A1949 /* test_test1.swift */; };
+		8A0D6F971F3099C2002A1949 /* fish.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F961F307D59002A1949 /* fish.csv */; };
+		8A0D6F9C1F30A361002A1949 /* text1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F9B1F30A17C002A1949 /* text1.txt */; };
+		8A0D6F9E1F30A484002A1949 /* fish.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F991F309E9D002A1949 /* fish.csv */; };
+		8A0D6F9F1F30A488002A1949 /* text1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F9B1F30A17C002A1949 /* text1.txt */; };
 		8A1C16741D7803A0004824CB /* test_tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16731D7803A0004824CB /* test_tuple.swift */; };
 		8A1C2B311F0FC40A005483ED /* test_timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B301F0FC40A005483ED /* test_timer.swift */; };
 		8A1C2B841F13220D005483ED /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B831F13220D005483ED /* List.swift */; };
@@ -60,11 +65,24 @@
 		5872A90B1A71E7B200FF66B5 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 7;
 			files = (
+				8A0D6F9C1F30A361002A1949 /* text1.txt in CopyFiles */,
+				8A0D6F971F3099C2002A1949 /* fish.csv in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		8A0D6F9D1F30A479002A1949 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				8A0D6F9F1F30A488002A1949 /* text1.txt in CopyFiles */,
+				8A0D6F9E1F30A484002A1949 /* fish.csv in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -94,6 +112,11 @@
 		8A05FE501F14B8EF008C33EC /* test_hash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_hash.swift; sourceTree = "<group>"; };
 		8A05FE661F152550008C33EC /* EnumEnumerable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumEnumerable.swift; sourceTree = "<group>"; };
 		8A0D6F681F2F5F10002A1949 /* test_selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_selector.swift; sourceTree = "<group>"; };
+		8A0D6F931F307536002A1949 /* test_test1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_test1.swift; sourceTree = "<group>"; };
+		8A0D6F961F307D59002A1949 /* fish.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = fish.csv; path = swift_test/resource/fish.csv; sourceTree = "<group>"; };
+		8A0D6F991F309E9D002A1949 /* fish.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fish.csv; sourceTree = "<group>"; };
+		8A0D6F9A1F309FCC002A1949 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = swift_test/resource; sourceTree = "<group>"; };
+		8A0D6F9B1F30A17C002A1949 /* text1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text1.txt; path = swift_test/resource/text1.txt; sourceTree = "<group>"; };
 		8A1C16731D7803A0004824CB /* test_tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_tuple.swift; sourceTree = "<group>"; };
 		8A1C2B301F0FC40A005483ED /* test_timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_timer.swift; sourceTree = "<group>"; };
 		8A1C2B831F13220D005483ED /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -140,6 +163,9 @@
 		5872A9041A71E7B200FF66B5 = {
 			isa = PBXGroup;
 			children = (
+				8A0D6F9A1F309FCC002A1949 /* resource */,
+				8A0D6F981F309E9D002A1949 /* resource */,
+				8A0D6F951F307D2D002A1949 /* resource */,
 				8A1C2B821F1321FC005483ED /* util */,
 				582802531A9DE6ED00246C41 /* c */,
 				5872A9101A71E7B200FF66B5 /* main.swift */,
@@ -203,8 +229,27 @@
 				8A1C2B301F0FC40A005483ED /* test_timer.swift */,
 				8A23D1751F298AEC0059A1BF /* test_sequence.swift */,
 				8A0D6F681F2F5F10002A1949 /* test_selector.swift */,
+				8A0D6F931F307536002A1949 /* test_test1.swift */,
 			);
 			path = swift_test;
+			sourceTree = "<group>";
+		};
+		8A0D6F951F307D2D002A1949 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D6F9B1F30A17C002A1949 /* text1.txt */,
+				8A0D6F961F307D59002A1949 /* fish.csv */,
+			);
+			name = resource;
+			sourceTree = "<group>";
+		};
+		8A0D6F981F309E9D002A1949 /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D6F991F309E9D002A1949 /* fish.csv */,
+			);
+			name = resource;
+			path = swift_test/resource;
 			sourceTree = "<group>";
 		};
 		8A1C2B821F1321FC005483ED /* util */ = {
@@ -226,6 +271,7 @@
 				5872A9091A71E7B200FF66B5 /* Sources */,
 				5872A90A1A71E7B200FF66B5 /* Frameworks */,
 				5872A90B1A71E7B200FF66B5 /* CopyFiles */,
+				8A0D6F9D1F30A479002A1949 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -286,6 +332,7 @@
 				8AA9F7A31F0BCC0700D29A14 /* test_function_obj.swift in Sources */,
 				580F88631AA882CA0047FDFA /* test_class_advance.swift in Sources */,
 				5872284E1AAF0F9400F2C430 /* test_dictionary.swift in Sources */,
+				8A0D6F941F307536002A1949 /* test_test1.swift in Sources */,
 				7947EC451A7D1DBB0038B8BD /* test_basis.swift in Sources */,
 				8A1C2B861F132940005483ED /* test_iterator.swift in Sources */,
 				58EED45A1AD3C4B3008799BE /* test_struct.swift in Sources */,

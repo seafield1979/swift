@@ -72,6 +72,21 @@ class UNTestString
         // 文字列の長さ
         let str = "hoge123"
         print(str.characters.count)
+        
+        // 文字列にある文字列が含まれているか
+        if str.contains("hoge") {
+            print("\(str)は hogeを含んでいる")
+        }
+        
+        // 前方一致 (String.hasPrefix(文字列)
+        if str.hasPrefix("hoge") {
+            print("\(str) は hoge から始まる")
+        }
+        
+        // 後方一致 (String.hasSuffix(文字列)
+        if str.hasSuffix("123") {
+            print("\(str) は 123で終わる")
+        }
     }
     
     // 正規表現テスト

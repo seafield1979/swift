@@ -39,3 +39,5 @@ NibTest
     nibファイルのViewをプログラムから生成する。
     様々なページ共通のレイアウトを使用できるようになる。
 StorageTest
+    ストレージにデータを保存するサンプル。
+    ファイル、UserDefault、CoreData
