@@ -10,6 +10,11 @@
 		585015041BA152EC00D91177 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585015031BA152EC00D91177 /* AppDelegate.swift */; };
 		5850150B1BA152EC00D91177 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5850150A1BA152EC00D91177 /* Images.xcassets */; };
 		5850151A1BA152EC00D91177 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585015191BA152EC00D91177 /* ViewControllerTests.swift */; };
+		8A0D6FA41F318CE3002A1949 /* ViewControllerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6FA21F318CE3002A1949 /* ViewControllerModal.swift */; };
+		8A0D6FA51F318CE3002A1949 /* ViewControllerModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6FA31F318CE3002A1949 /* ViewControllerModal.xib */; };
+		8A0D6FA71F318EDB002A1949 /* UNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6FA61F318EDB002A1949 /* UNViewController.swift */; };
+		8A0D6FAB1F318F4F002A1949 /* ModalViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6FA91F318F4F002A1949 /* ModalViewController1.swift */; };
+		8A0D6FAC1F318F4F002A1949 /* ModalViewController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6FAA1F318F4F002A1949 /* ModalViewController1.xib */; };
 		8A54CC541D7ABCF7009BBB38 /* NavigationController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CC521D7ABCF7009BBB38 /* NavigationController1.swift */; };
 		8A54CC551D7ABCF7009BBB38 /* NavigationController1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A54CC531D7ABCF7009BBB38 /* NavigationController1.xib */; };
 		8A54CC6B1D7D11BF009BBB38 /* SimpleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CC691D7D11BF009BBB38 /* SimpleTableViewController.swift */; };
@@ -55,6 +60,11 @@
 		585015131BA152EC00D91177 /* ViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		585015181BA152EC00D91177 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		585015191BA152EC00D91177 /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		8A0D6FA21F318CE3002A1949 /* ViewControllerModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerModal.swift; sourceTree = "<group>"; };
+		8A0D6FA31F318CE3002A1949 /* ViewControllerModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerModal.xib; sourceTree = "<group>"; };
+		8A0D6FA61F318EDB002A1949 /* UNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UNViewController.swift; path = ViewController/UNViewController.swift; sourceTree = "<group>"; };
+		8A0D6FA91F318F4F002A1949 /* ModalViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalViewController1.swift; path = ModalViewController/ModalViewController1.swift; sourceTree = "<group>"; };
+		8A0D6FAA1F318F4F002A1949 /* ModalViewController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ModalViewController1.xib; path = ModalViewController/ModalViewController1.xib; sourceTree = "<group>"; };
 		8A54CC521D7ABCF7009BBB38 /* NavigationController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController1.swift; sourceTree = "<group>"; };
 		8A54CC531D7ABCF7009BBB38 /* NavigationController1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationController1.xib; sourceTree = "<group>"; };
 		8A54CC691D7D11BF009BBB38 /* SimpleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleTableViewController.swift; path = TableView/SimpleTableViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				585015031BA152EC00D91177 /* AppDelegate.swift */,
+				8A0D6FA61F318EDB002A1949 /* UNViewController.swift */,
 				585015001BA152EC00D91177 /* ViewController */,
 				585015161BA152EC00D91177 /* ViewControllerTests */,
 				585014FF1BA152EC00D91177 /* Products */,
@@ -122,6 +133,9 @@
 		585015001BA152EC00D91177 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8A0D6FA81F318F25002A1949 /* ModalViewController */,
+				8A54CC871D7D377D009BBB38 /* ViewController.swift */,
+				8A54CC881D7D377D009BBB38 /* ViewController.xib */,
 				8A54CCA21D7D96C3009BBB38 /* image */,
 				8A63EEA01D7FFBB3006266C5 /* TabBarController */,
 				8A54CC561D7ACBC0009BBB38 /* TableView */,
@@ -160,14 +174,23 @@
 		5850152B1BA1691800D91177 /* NavigationController */ = {
 			isa = PBXGroup;
 			children = (
-				8A54CC871D7D377D009BBB38 /* ViewController.swift */,
-				8A54CC881D7D377D009BBB38 /* ViewController.xib */,
 				8A54CC891D7D377D009BBB38 /* ViewController2.swift */,
 				8A54CC8A1D7D377D009BBB38 /* ViewController2.xib */,
 				8A54CC521D7ABCF7009BBB38 /* NavigationController1.swift */,
 				8A54CC531D7ABCF7009BBB38 /* NavigationController1.xib */,
 			);
 			name = NavigationController;
+			sourceTree = "<group>";
+		};
+		8A0D6FA81F318F25002A1949 /* ModalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D6FA21F318CE3002A1949 /* ViewControllerModal.swift */,
+				8A0D6FA31F318CE3002A1949 /* ViewControllerModal.xib */,
+				8A0D6FA91F318F4F002A1949 /* ModalViewController1.swift */,
+				8A0D6FAA1F318F4F002A1949 /* ModalViewController1.xib */,
+			);
+			name = ModalViewController;
 			sourceTree = "<group>";
 		};
 		8A54CC561D7ACBC0009BBB38 /* TableView */ = {
@@ -256,7 +279,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = B02681;
+				ORGANIZATIONNAME = SunSunSoft;
 				TargetAttributes = {
 					585014FD1BA152EC00D91177 = {
 						CreatedOnToolsVersion = 6.4;
@@ -296,10 +319,12 @@
 				8A63EEE81D8109FE006266C5 /* Tab3ViewController.xib in Resources */,
 				8A54CCA31D7D96C3009BBB38 /* image in Resources */,
 				8A54CC8C1D7D377D009BBB38 /* ViewController.xib in Resources */,
+				8A0D6FA51F318CE3002A1949 /* ViewControllerModal.xib in Resources */,
 				8A63EEEC1D810A22006266C5 /* Tab2ViewController.xib in Resources */,
 				8A54CC551D7ABCF7009BBB38 /* NavigationController1.xib in Resources */,
 				8A54CC861D7D2E1A009BBB38 /* MyTableViewSection.xib in Resources */,
 				8A54CC8E1D7D377D009BBB38 /* ViewController2.xib in Resources */,
+				8A0D6FAC1F318F4F002A1949 /* ModalViewController1.xib in Resources */,
 				8A63EEDC1D805CD8006266C5 /* CustomView.xib in Resources */,
 				8A54CC741D7D124F009BBB38 /* MyTableViewCell.xib in Resources */,
 				8A63EEF01D810A4D006266C5 /* Tab4ViewController.xib in Resources */,
@@ -322,6 +347,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A0D6FA41F318CE3002A1949 /* ViewControllerModal.swift in Sources */,
+				8A0D6FA71F318EDB002A1949 /* UNViewController.swift in Sources */,
+				8A0D6FAB1F318F4F002A1949 /* ModalViewController1.swift in Sources */,
 				8A54CC721D7D1241009BBB38 /* MyTableViewCell.swift in Sources */,
 				8A54CC6B1D7D11BF009BBB38 /* SimpleTableViewController.swift in Sources */,
 				8A63EEEF1D810A4D006266C5 /* Tab4ViewController.swift in Sources */,

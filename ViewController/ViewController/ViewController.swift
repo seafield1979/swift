@@ -3,7 +3,7 @@
 //  ViewController
 //
 //  Created by B02681 on 2015/09/10.
-//  Copyright (c) 2015年 B02681. All rights reserved.
+//  Copyright (c) 2015年 SunSunSoft. All rights reserved.
 //
 //  NavigationController1にpushされる画面
 
