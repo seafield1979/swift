@@ -12,6 +12,8 @@
 		8A1C16761D786AA1004824CB /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16751D786AA1004824CB /* UIColor+hex.swift */; };
 		8A1C167A1D796536004824CB /* AutolayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16781D796536004824CB /* AutolayoutViewController.swift */; };
 		8A1C167B1D796536004824CB /* AutolayoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1C16791D796536004824CB /* AutolayoutViewController.xib */; };
+		8A2584BF1F3211BC002EE9E2 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2584BD1F3211BC002EE9E2 /* ColorPickerViewController.swift */; };
+		8A2584C01F3211BC002EE9E2 /* ColorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2584BE1F3211BC002EE9E2 /* ColorPickerViewController.xib */; };
 		8A3D36151D71694D003528A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D36141D71694D003528A0 /* AppDelegate.swift */; };
 		8A3D361C1D71694D003528A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D361B1D71694D003528A0 /* Assets.xcassets */; };
 		8A3D36291D7169CF003528A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D36271D7169CF003528A0 /* ViewController.swift */; };
@@ -71,6 +73,8 @@
 		8A1C16751D786AA1004824CB /* UIColor+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		8A1C16781D796536004824CB /* AutolayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AutolayoutViewController.swift; path = Autolayout/AutolayoutViewController.swift; sourceTree = "<group>"; };
 		8A1C16791D796536004824CB /* AutolayoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AutolayoutViewController.xib; path = Autolayout/AutolayoutViewController.xib; sourceTree = "<group>"; };
+		8A2584BD1F3211BC002EE9E2 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorPickerViewController.swift; path = ViewController/ColorPickerViewController.swift; sourceTree = "<group>"; };
+		8A2584BE1F3211BC002EE9E2 /* ColorPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorPickerViewController.xib; path = ViewController/ColorPickerViewController.xib; sourceTree = "<group>"; };
 		8A3D36111D71694D003528A0 /* UIViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3D36141D71694D003528A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A3D361B1D71694D003528A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 				8A63EE9D1D7FE413006266C5 /* AlertViewController.xib */,
 				8A63EE941D7FE346006266C5 /* ActionSheetViewController.swift */,
 				8A63EE951D7FE346006266C5 /* ActionSheetViewController.xib */,
+				8A2584BD1F3211BC002EE9E2 /* ColorPickerViewController.swift */,
+				8A2584BE1F3211BC002EE9E2 /* ColorPickerViewController.xib */,
 			);
 			name = UIView;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				8A3D367F1D7698FA003528A0 /* WebViewController.xib in Resources */,
 				8A63EE971D7FE346006266C5 /* ActionSheetViewController.xib in Resources */,
 				8A5116871F0DDF3800E82FAE /* CustomCell.xib in Resources */,
+				8A2584C01F3211BC002EE9E2 /* ColorPickerViewController.xib in Resources */,
 				8A3D362E1D7184AA003528A0 /* GestureViewController.xib in Resources */,
 				8A3D36381D741B82003528A0 /* ButtonViewController.xib in Resources */,
 				8AFDE2191F22EB830094860B /* Button2ViewController.xib in Resources */,
@@ -364,6 +371,7 @@
 				8AFDE2181F22EB830094860B /* Button2ViewController.swift in Sources */,
 				8A3D362D1D7184AA003528A0 /* GestureViewController.swift in Sources */,
 				8A3D36291D7169CF003528A0 /* ViewController.swift in Sources */,
+				8A2584BF1F3211BC002EE9E2 /* ColorPickerViewController.swift in Sources */,
 				8AE089FF1F246AAD0024E9B7 /* TextViewViewController.swift in Sources */,
 				8A3D36621D7697DB003528A0 /* SliderViewController.swift in Sources */,
 				8A3D36151D71694D003528A0 /* AppDelegate.swift in Sources */,

@@ -32,6 +32,7 @@ class TopTableViewController: UITableViewController {
         case autolayout2 = "AutoLayout2"
         case alertView = "アラート"
         case tableView = "テーブルビュー"
+        case colorPickerView = "カラーピッカー"
     }
     
     var items : [String]
@@ -171,6 +172,8 @@ class TopTableViewController: UITableViewController {
             viewController = WebViewController(nibName: "WebViewController", bundle: nil)
         case .tableView:
             viewController = TableViewController(nibName:"TableViewController", bundle: nil)
+        case .colorPickerView:
+            viewController = ColorPickerViewController(nibName:"ColorPickerViewController", bundle: nil)
         }
         
         if viewController != nil {
