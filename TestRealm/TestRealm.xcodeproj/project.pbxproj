@@ -11,6 +11,8 @@
 		8A4014AE1F1DFE53001CF670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4014AD1F1DFE53001CF670 /* AppDelegate.swift */; };
 		8A4014B01F1DFE53001CF670 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4014AF1F1DFE53001CF670 /* ViewController.swift */; };
 		8A4014B51F1DFE53001CF670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A4014B41F1DFE53001CF670 /* Assets.xcassets */; };
+		8AB99D7A1F32E55000497E4E /* UIViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB99D791F32E55000497E4E /* UIViewUtil.swift */; };
+		8AB99D7C1F32E81E00497E4E /* UNViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB99D7B1F32E81E00497E4E /* UNViewController.swift */; };
 		8AF781541F1E04B100FC4EF2 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF781531F1E04B100FC4EF2 /* TestData.swift */; };
 		8AF781561F1EDA3600FC4EF2 /* TestDataDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF781551F1EDA3600FC4EF2 /* TestDataDao.swift */; };
 		8AF7815A1F1F049300FC4EF2 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF781581F1F049300FC4EF2 /* ViewController2.swift */; };
@@ -33,6 +35,8 @@
 		8A4014AF1F1DFE53001CF670 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8A4014B41F1DFE53001CF670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A4014B91F1DFE53001CF670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8AB99D791F32E55000497E4E /* UIViewUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewUtil.swift; path = Util/UIViewUtil.swift; sourceTree = "<group>"; };
+		8AB99D7B1F32E81E00497E4E /* UNViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UNViewController.swift; sourceTree = "<group>"; };
 		8AF781531F1E04B100FC4EF2 /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestData.swift; path = Model/TestData.swift; sourceTree = "<group>"; };
 		8AF781551F1EDA3600FC4EF2 /* TestDataDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestDataDao.swift; path = Model/TestDataDao.swift; sourceTree = "<group>"; };
 		8AF781581F1F049300FC4EF2 /* ViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController2.swift; path = ViewController/ViewController2.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		8A4014AC1F1DFE53001CF670 /* TestRealm */ = {
 			isa = PBXGroup;
 			children = (
+				8AB99D781F32E53700497E4E /* Util */,
 				8AF781571F1F047000FC4EF2 /* ViewController */,
 				8AF781521F1E049D00FC4EF2 /* Model */,
 				8A4014AD1F1DFE53001CF670 /* AppDelegate.swift */,
@@ -90,6 +95,14 @@
 				8A4014B91F1DFE53001CF670 /* Info.plist */,
 			);
 			path = TestRealm;
+			sourceTree = "<group>";
+		};
+		8AB99D781F32E53700497E4E /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				8AB99D791F32E55000497E4E /* UIViewUtil.swift */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		8AF781521F1E049D00FC4EF2 /* Model */ = {
@@ -104,6 +117,7 @@
 		8AF781571F1F047000FC4EF2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8AB99D7B1F32E81E00497E4E /* UNViewController.swift */,
 				8A4014AF1F1DFE53001CF670 /* ViewController.swift */,
 				8AF7815C1F1F04AE00FC4EF2 /* ViewController.xib */,
 				8AF781581F1F049300FC4EF2 /* ViewController2.swift */,
@@ -268,9 +282,11 @@
 				8AF7815A1F1F049300FC4EF2 /* ViewController2.swift in Sources */,
 				8AF781641F1F084500FC4EF2 /* ViewController4.swift in Sources */,
 				8AF781541F1E04B100FC4EF2 /* TestData.swift in Sources */,
+				8AB99D7C1F32E81E00497E4E /* UNViewController.swift in Sources */,
 				8AF781601F1F083900FC4EF2 /* ViewController3.swift in Sources */,
 				8AF781681F1F085900FC4EF2 /* ViewController5.swift in Sources */,
 				8A4014B01F1DFE53001CF670 /* ViewController.swift in Sources */,
+				8AB99D7A1F32E55000497E4E /* UIViewUtil.swift in Sources */,
 				8AF7816C1F1F092200FC4EF2 /* ViewController6.swift in Sources */,
 				8AF781561F1EDA3600FC4EF2 /* TestDataDao.swift in Sources */,
 				8A4014AE1F1DFE53001CF670 /* AppDelegate.swift in Sources */,

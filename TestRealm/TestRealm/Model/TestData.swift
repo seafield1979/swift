@@ -16,7 +16,7 @@ import Foundation
 import RealmSwift
 
 /// Realmで使える基本的なデータ型
-class TestData: Object {
+class TestData: Object, NSCopying {
     
     
     dynamic var id : Int = 0
@@ -42,5 +42,18 @@ class TestData: Object {
     //保存しないプロパティを指定する場合、ignoredProperties()をoverrideします。
     override static func ignoredProperties() -> [String] {
         return ["tempId"]
+    }
+    
+    // コピーを返す
+    // Realmから取得したオブジェクトはそのままだと書き換えることはできないので、コピーをつくって返す
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let copy = TestData()
+        copy.age = age
+        copy.id = id
+        copy.name = name
+        copy.date = date
+        copy.tempId = tempId
+        
+        return copy
     }
 }

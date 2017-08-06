@@ -41,7 +41,7 @@ class ViewController4: UIViewController {
 
     func showAll() {
         // 全てのオブジェクトを取得
-        let tests = TestDataDao.selectAll()
+        let tests = TestDataDao.selectAll( copy : false )
         
         var strBuf = String()
         for test in tests {

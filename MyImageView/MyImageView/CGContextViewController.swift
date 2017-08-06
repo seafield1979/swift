@@ -21,7 +21,8 @@ class CGContextViewController: UIViewController {
     @IBOutlet weak var stepper1: UIStepper!
     @IBOutlet weak var label1: UILabel!
     
-    let testTitles = ["DrawImage",
+    let testTitles = ["AccessToPixel",
+                      "DrawImage",
                       "CropImage",
                       "ResizeImage",
                       "ResizeCrop",
@@ -31,6 +32,7 @@ class CGContextViewController: UIViewController {
                       "DrawText"]
     
     enum TestMode : Int {
+        case AccessToPixel  //　ピクセル単位で画像の変更
         case DrawImage      // シンプルなUIImageの描画
         case CropImage      // 画像の切り抜き
         case ResizeImage    // 画像のリサイズ(拡大縮小)
@@ -66,6 +68,9 @@ class CGContextViewController: UIViewController {
         var image : UIImage! = nil
         
         switch mode {
+        case .AccessToPixel:
+            image = changePixelColor(image: UIImage(named: "image/ume.png")!)
+            
         case .DrawImage:
             image = createImage(image: UIImage(named: "image/ume.png")!)
             
@@ -93,13 +98,36 @@ class CGContextViewController: UIViewController {
             image = createTextImage(text:"Hoge Hoge")
         }
         
-        let imageView = UIImageView(image: image)
-        imageView.frame.origin = CGPoint(x:50, y:100)
-        self.view.addSubview(imageView)
-        self.imageView = imageView
+        if image != nil {
+            let imageView = UIImageView(image: image!)
+            imageView.frame.origin = CGPoint(x:50, y:100)
+            self.view.addSubview(imageView)
+            self.imageView = imageView
+        }
     }
     
     // MARK: CGContext func
+    
+    // 画像をピクセル単位で処理する
+    func changePixelColor(image :UIImage) -> UIImage?
+    {
+        var pixels = image.pixelData()
+        
+        if pixels == nil {
+            return nil
+        }
+        
+        // 半透明
+        for i in 0..<pixels!.count {
+            pixels![i].a = 128
+        }
+        
+        let newImage = UIImage.imageFromBitmap(pixels: pixels!,
+                                                   width: Int(image.size.width),
+                                                   height: Int(image.size.height))
+        
+        return newImage!
+    }
     
     // UIImageをCGContextに描画(画像の描画のみ、コンテキストを取得しない)
     func createImage(image :UIImage) ->UIImage
@@ -378,6 +406,74 @@ class CGContextViewController: UIViewController {
         
         return image!
     }
+    
+    // 画像からピクセルの配列を取得する
+    func pixelValues(fromCGImage imageRef: CGImage?) -> (pixelValues: [UInt8]?, width: Int, height: Int)
+    {
+        var width = 0
+        var height = 0
+        var pixelValues: [UInt8]?
+        if let imageRef = imageRef {
+            width = imageRef.width
+            height = imageRef.height
+            let bitsPerComponent = imageRef.bitsPerComponent
+            let bytesPerRow = imageRef.bytesPerRow
+            let totalBytes = height * bytesPerRow
+            
+            let colorSpace = CGColorSpaceCreateDeviceGray()
+            var intensities = [UInt8](repeating: 0, count: totalBytes)
+            
+            let contextRef = CGContext(data: &intensities, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: 0)
+            contextRef?.draw(imageRef, in: CGRect(x: 0.0, y: 0.0, width: CGFloat(width), height: CGFloat(height)))
+            
+            pixelValues = intensities
+        }
+        
+        return (pixelValues, width, height)
+    }
+    
+    // ピクセルから画像を作成する
+    func getImage(fromPixelValues pixelValues: [UInt8]?, width: Int, height: Int) -> CGImage?
+    {
+        var imageRef: CGImage?
+        if var pixelValues = pixelValues {
+            let bitsPerComponent = 8
+            let bytesPerPixel = 1
+            let bitsPerPixel = bytesPerPixel * bitsPerComponent
+            let bytesPerRow = bytesPerPixel * width
+            let totalBytes = height * bytesPerRow
+            
+            imageRef = withUnsafePointer(to: &pixelValues, {
+                ptr -> CGImage? in
+                var imageRef: CGImage?
+                let colorSpaceRef = CGColorSpaceCreateDeviceGray()
+                let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue).union(CGBitmapInfo())
+                let data = UnsafeRawPointer(ptr.pointee).assumingMemoryBound(to: UInt8.self)
+                let releaseData: CGDataProviderReleaseDataCallback = {
+                    (info: UnsafeMutableRawPointer?, data: UnsafeRawPointer, size: Int) -> () in
+                }
+                
+                if let providerRef = CGDataProvider(dataInfo: nil, data: data, size: totalBytes, releaseData: releaseData) {
+                    imageRef = CGImage(width: width,
+                                       height: height,
+                                       bitsPerComponent: bitsPerComponent,
+                                       bitsPerPixel: bitsPerPixel,
+                                       bytesPerRow: bytesPerRow,
+                                       space: colorSpaceRef,
+                                       bitmapInfo: bitmapInfo,
+                                       provider: providerRef,
+                                       decode: nil,
+                                       shouldInterpolate: false,
+                                       intent: CGColorRenderingIntent.defaultIntent)
+                }
+                
+                return imageRef
+            })
+        }
+        
+        return imageRef
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

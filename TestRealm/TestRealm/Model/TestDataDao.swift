@@ -20,11 +20,18 @@ public class TestDataDao {
      全オブジェクト(のコピー)を取得する
      - returns: 全オブジェクトのコピー
      */
-    static func selectAll() -> [TestData] {
+    static func selectAll(copy: Bool) -> [TestData] {
         // Realmに保存されてるDog型のオブジェクトを全て取得
-        let tests : Results = mRealm!.objects(TestData.self)
+        let results : Results = mRealm!.objects(TestData.self)
         
-        return Array(tests)
+        if copy {
+            var copys : [TestData] = []
+            for result in results {
+                copys.append(result.copy() as! TestData)
+            }
+            return copys
+        }
+        return Array(results)
     }
     
     /**

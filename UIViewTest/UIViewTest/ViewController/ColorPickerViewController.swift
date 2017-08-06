@@ -21,6 +21,7 @@ class ColorPickerViewController: UNViewController {
         let buttons = createButtons(count: 10, width :50, height: 50)
         
         let colors : [UIColor] = [UIColor.white, UIColor.black, UIColor.red, UIColor.blue, UIColor.green, UIColor.brown, UIColor.cyan, UIColor.yellow, UIColor.purple, UIColor.darkGray]
+        
         var i : Int = 0
         for button in buttons {
             button.backgroundColor = colors[i]

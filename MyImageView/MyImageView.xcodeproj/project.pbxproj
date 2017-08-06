@@ -15,6 +15,8 @@
 		8A63EF1A1D81A14B006266C5 /* CGContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A63EF181D81A14B006266C5 /* CGContextViewController.swift */; };
 		8A63EF1B1D81A14B006266C5 /* CGContextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A63EF191D81A14B006266C5 /* CGContextViewController.xib */; };
 		8A63EF1E1D81AD7C006266C5 /* image in Resources */ = {isa = PBXBuildFile; fileRef = 8A63EF1D1D81AD7C006266C5 /* image */; };
+		8A6DA52D1F36BD6A000F4057 /* UIImage+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6DA52C1F36BD6A000F4057 /* UIImage+ex.swift */; };
+		8A6DA52F1F36BEE0000F4057 /* UPixelImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6DA52E1F36BEE0000F4057 /* UPixelImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		8A63EF181D81A14B006266C5 /* CGContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGContextViewController.swift; sourceTree = "<group>"; };
 		8A63EF191D81A14B006266C5 /* CGContextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGContextViewController.xib; sourceTree = "<group>"; };
 		8A63EF1D1D81AD7C006266C5 /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; name = image; path = MyImageView/image; sourceTree = "<group>"; };
+		8A6DA52C1F36BD6A000F4057 /* UIImage+ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+ex.swift"; path = "MyImageView/Extension/UIImage+ex.swift"; sourceTree = "<group>"; };
+		8A6DA52E1F36BEE0000F4057 /* UPixelImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPixelImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +48,7 @@
 		8A63EEF11D812651006266C5 = {
 			isa = PBXGroup;
 			children = (
+				8A6DA52B1F36BD4C000F4057 /* Extension */,
 				8A63EF0F1D8127D0006266C5 /* UIView+captureImage.swift */,
 				8A63EF1D1D81AD7C006266C5 /* image */,
 				8A63EEFC1D812651006266C5 /* MyImageView */,
@@ -77,8 +82,17 @@
 				8A63EF111D81293E006266C5 /* ViewController.xib */,
 				8A63EF181D81A14B006266C5 /* CGContextViewController.swift */,
 				8A63EF191D81A14B006266C5 /* CGContextViewController.xib */,
+				8A6DA52E1F36BEE0000F4057 /* UPixelImage.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		8A6DA52B1F36BD4C000F4057 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A6DA52C1F36BD6A000F4057 /* UIImage+ex.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +169,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6DA52F1F36BEE0000F4057 /* UPixelImage.swift in Sources */,
 				8A63EF101D8127D0006266C5 /* UIView+captureImage.swift in Sources */,
 				8A63EF001D812651006266C5 /* ViewController.swift in Sources */,
 				8A63EF1A1D81A14B006266C5 /* CGContextViewController.swift in Sources */,
 				8A63EEFE1D812651006266C5 /* AppDelegate.swift in Sources */,
+				8A6DA52D1F36BD6A000F4057 /* UIImage+ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

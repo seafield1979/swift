@@ -109,7 +109,7 @@ class UNTestBasis {
         
         //・index省略
         print("----- for4 -----")
-        for _ in 1...3 {
+        for _ in 0..<1 {
             // 何らかの処理を3回実施します
             print("hogehoge")
         }
