@@ -34,12 +34,12 @@
 		8A0D6F941F307536002A1949 /* test_test1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F931F307536002A1949 /* test_test1.swift */; };
 		8A0D6F971F3099C2002A1949 /* fish.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F961F307D59002A1949 /* fish.csv */; };
 		8A0D6F9C1F30A361002A1949 /* text1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F9B1F30A17C002A1949 /* text1.txt */; };
-		8A0D6F9E1F30A484002A1949 /* fish.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F991F309E9D002A1949 /* fish.csv */; };
 		8A0D6F9F1F30A488002A1949 /* text1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F9B1F30A17C002A1949 /* text1.txt */; };
 		8A1C16741D7803A0004824CB /* test_tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16731D7803A0004824CB /* test_tuple.swift */; };
 		8A1C2B311F0FC40A005483ED /* test_timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B301F0FC40A005483ED /* test_timer.swift */; };
 		8A1C2B841F13220D005483ED /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B831F13220D005483ED /* List.swift */; };
 		8A1C2B861F132940005483ED /* test_iterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B851F132940005483ED /* test_iterator.swift */; };
+		8A1C315A1F388766002465CB /* Array+ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C31591F388766002465CB /* Array+ex.swift */; };
 		8A23D16E1F28AFEF0059A1BF /* test_list.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A23D16D1F28AFEF0059A1BF /* test_list.swift */; };
 		8A23D1701F28F9BB0059A1BF /* test_copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A23D16F1F28F9BB0059A1BF /* test_copy.swift */; };
 		8A23D1721F297CEB0059A1BF /* test_data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A23D1711F297CEB0059A1BF /* test_data.swift */; };
@@ -80,7 +80,6 @@
 			dstSubfolderSpec = 7;
 			files = (
 				8A0D6F9F1F30A488002A1949 /* text1.txt in CopyFiles */,
-				8A0D6F9E1F30A484002A1949 /* fish.csv in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,13 +113,12 @@
 		8A0D6F681F2F5F10002A1949 /* test_selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_selector.swift; sourceTree = "<group>"; };
 		8A0D6F931F307536002A1949 /* test_test1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_test1.swift; sourceTree = "<group>"; };
 		8A0D6F961F307D59002A1949 /* fish.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = fish.csv; path = swift_test/resource/fish.csv; sourceTree = "<group>"; };
-		8A0D6F991F309E9D002A1949 /* fish.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fish.csv; sourceTree = "<group>"; };
-		8A0D6F9A1F309FCC002A1949 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = swift_test/resource; sourceTree = "<group>"; };
 		8A0D6F9B1F30A17C002A1949 /* text1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text1.txt; path = swift_test/resource/text1.txt; sourceTree = "<group>"; };
 		8A1C16731D7803A0004824CB /* test_tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_tuple.swift; sourceTree = "<group>"; };
 		8A1C2B301F0FC40A005483ED /* test_timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_timer.swift; sourceTree = "<group>"; };
 		8A1C2B831F13220D005483ED /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		8A1C2B851F132940005483ED /* test_iterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_iterator.swift; sourceTree = "<group>"; };
+		8A1C31591F388766002465CB /* Array+ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+ex.swift"; path = "swift_test/extension/Array+ex.swift"; sourceTree = "<group>"; };
 		8A23D16D1F28AFEF0059A1BF /* test_list.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_list.swift; sourceTree = "<group>"; };
 		8A23D16F1F28F9BB0059A1BF /* test_copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_copy.swift; sourceTree = "<group>"; };
 		8A23D1711F297CEB0059A1BF /* test_data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_data.swift; sourceTree = "<group>"; };
@@ -163,8 +161,7 @@
 		5872A9041A71E7B200FF66B5 = {
 			isa = PBXGroup;
 			children = (
-				8A0D6F9A1F309FCC002A1949 /* resource */,
-				8A0D6F981F309E9D002A1949 /* resource */,
+				8A1C31581F38874A002465CB /* extension */,
 				8A0D6F951F307D2D002A1949 /* resource */,
 				8A1C2B821F1321FC005483ED /* util */,
 				582802531A9DE6ED00246C41 /* c */,
@@ -243,15 +240,6 @@
 			name = resource;
 			sourceTree = "<group>";
 		};
-		8A0D6F981F309E9D002A1949 /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				8A0D6F991F309E9D002A1949 /* fish.csv */,
-			);
-			name = resource;
-			path = swift_test/resource;
-			sourceTree = "<group>";
-		};
 		8A1C2B821F1321FC005483ED /* util */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +247,14 @@
 				8A05FE661F152550008C33EC /* EnumEnumerable.swift */,
 			);
 			name = util;
+			sourceTree = "<group>";
+		};
+		8A1C31581F38874A002465CB /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				8A1C31591F388766002465CB /* Array+ex.swift */,
+			);
+			name = extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +342,7 @@
 				8AA9F7A71F0C63AD00D29A14 /* test_class_cast.swift in Sources */,
 				589388A01AE5DF9A009E0A2A /* test_nested.swift in Sources */,
 				7947EC431A7D182A0038B8BD /* test_enum.swift in Sources */,
+				8A1C315A1F388766002465CB /* Array+ex.swift in Sources */,
 				8A1C2B841F13220D005483ED /* List.swift in Sources */,
 				589388A61AE6263A009E0A2A /* test_accessLevel2.swift in Sources */,
 				8A3D363A1D754137003528A0 /* test_cgvalue.swift in Sources */,

@@ -10,10 +10,19 @@ import UIKit
 
 class Draw1ViewController: UNViewController {
 
+    public var mode : testMode = .drawLine
+    
+    public var view1 : CustomDrawView? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let view1 = CustomDrawView(frame: self.view.frame, mode: testMode.drawLine)
-        self.view.addSubview(view1)
+        self.view.frame = CGRect(x:0, y:0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        view1 = CustomDrawView(frame: self.view.frame, mode: self.mode)
+        self.view.addSubview(view1!)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        view1!.stopTimer()
     }
 }

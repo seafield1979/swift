@@ -9,6 +9,10 @@
 import UIKit
 
 class CustomDrawView : UIView {
+    // Consts
+    public static let drawInterval : TimeInterval = 1.0 / 60.0
+    var timer : Timer? = nil
+    public var redraw : Bool = false
     
     var image1 : UIImage? = nil
     var mode = testMode.drawCircle
@@ -28,6 +32,13 @@ class CustomDrawView : UIView {
         // 背景色を設定
         self.backgroundColor = UIColor(red:1.0, green:0.8, blue:0.8, alpha:1.0)
         
+        // タイマー
+        // 画面更新用
+        if timer == nil {
+            // 0.3s 毎にTemporalEventを呼び出す
+            timer = Timer.scheduledTimer(timeInterval: CustomDrawView.drawInterval, target: self, selector:#selector(CustomDrawView.TemporalEvent), userInfo: nil,repeats: true)
+        }
+
         // 画像読み込み
         image1 = UIImage.init(named: "image/miro.jpg")
         
@@ -39,6 +50,30 @@ class CustomDrawView : UIView {
         super.init(coder: aDecoder)
     }
     
+    func invalidate() {
+        // 再描画
+        self.setNeedsDisplay()
+    }
+    
+    
+    //一定タイミングで繰り返し呼び出される関数
+    func TemporalEvent(){
+        //画面再描画用
+        // ※ drawメソッド内でinvalidateをかけても再描画されない
+//        if redraw {
+//            redraw = false
+            invalidate()
+//        }
+    }
+    
+    func stopTimer(){
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+
+    
     /**
      描画処理
      - parameter rect: 再描画領域の矩形
@@ -46,6 +81,12 @@ class CustomDrawView : UIView {
      - returns: none
      */
     override public func draw(_ rect: CGRect) {
+        
+        let fps = NanoTimer.getFps()
+        if fps != 0 {
+            print("fps:" + fps.description)
+        }
+        
         switch mode {
         case .drawLine:
             drawLine()
@@ -68,6 +109,11 @@ class CustomDrawView : UIView {
         case .drawText:
             drawText()
             break
+        case .drawObjects:
+            drawObjects()
+            
+        case .drawObjects2:
+            drawObjects2()
         }
     }
     
@@ -197,6 +243,27 @@ class CustomDrawView : UIView {
         y = 300
         UDraw.drawText(text: "hello!(right center y)", alignment: UAlignment.Right_CenterY, textSize: 20, x: x, y: y, color: UIColor.black)
         UDraw.drawCheck(x: x, y: y, color: UIColor.red)
+    }
+    
+    // 大量のオブジェクトを描画する
+    private func drawObjects() {
+        let drawCnt = 1000
+        for i in 0..<drawCnt {
+            let x  = CGFloat(arc4random() % (UInt32(UIScreen.main.bounds.size.width) - 100))
+            let y  = CGFloat(arc4random() % (UInt32(UIScreen.main.bounds.size.height) - 100))
+            UDraw.drawRectFill(rect: CGRect(x: x, y: y, width: 100, height: 100), color: UColor.makeColor(
+                arc4random() % 256, arc4random() % 256, arc4random() % 256))
+        }
+    }
+    
+    private func drawObjects2() {
+        let drawCnt = 100
+        for _ in 0..<drawCnt {
+            let x  = CGFloat(arc4random() % (UInt32(UIScreen.main.bounds.size.width) - 100))
+            let y  = CGFloat(arc4random() % (UInt32(UIScreen.main.bounds.size.height) - 100))
+            UDraw.drawText(text: "hello world", alignment: UAlignment.Center, textSize: 20, x: x, y: y, color: UColor.makeColor(
+                arc4random() % 256, arc4random() % 256, arc4random() % 256))
+        }
 
     }
 }

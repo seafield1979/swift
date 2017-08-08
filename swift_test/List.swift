@@ -3,20 +3,13 @@
 //  TangoBook
 //
 
-//  Created by koher
-//      https://github.com/koher/Swift-List
+//  Created koher
+//  https://github.com/koher/Swift-List/blob/master/List.swift
 //  上記のソースをSwift3でコンパイル時にエラーになった箇所を幾つか修正しています
-//
-//  Swiftの配列(Array)は配列全体をコピーした際に、新しい配列を作成する。
-//  このListは配列全体をコピーした際に参照を渡す。これにより、コピー元 = コピー先 が保持される。
-//  例えば元々のArrayは リスト1 を新しい変数 リスト2 にコピーした場合、コピーした時点ではリスト1とリスト2の要素は同じだが、その後リスト1やリスト2を変更すると、それぞれが個別に反映されるので別のものになる。
-// Java等ではリストをコピーした場合、コピー先のリストはあくまでコピー元の参照なのでこのようなことにはならず
-// ずっと リスト1 = リスト2 が保たれる。
-// Listクラスを使用するとJavaと同じようにコピー後も常にリスト1 = リスト2 が保たれる。
 
 import Foundation
 
-public class List<T> : Sequence {
+public class List<T> : Sequence, Hashable{
     final var elements: Array<T>
     
     init(_ elements: Array<T>) {
@@ -45,19 +38,35 @@ public class List<T> : Sequence {
         }
     }
     
+    // 配列形式で取得する
+    func toArray() -> [T] {
+        return elements
+    }
+    
     // リストに要素を追加する
     func append(_ newElement: T) {
         elements.append(newElement)
     }
     
+    // リストの先頭に要素を追加する
+    // JavaのLinkedListの仕様と合わせる
+    func push(_ newElement: T) {
+        insert(newElement, atIndex: 0)
+    }
+    
+    // リストの先頭の要素を抜き出し、リストから削除する
+    func pop() -> T? {
+        if elements.count > 0 {
+            let obj = elements[0]
+            elements.removeFirst()
+            return obj
+        }
+        return nil
+    }
+    
     // リストの指定位置に要素を追加する
     func insert(_ newElement: T, atIndex index: Int) {
         elements.insert(newElement, at: index)
-    }
-    
-    // リストの戦闘に要素を追加する
-    func push(_ newElement: T) {
-        elements.insert(newElement, at: 0)
     }
     
     // リストの指定位置の要素を削除する
@@ -107,9 +116,10 @@ public class List<T> : Sequence {
     
     /**
      ソート結果を返す
-     使用方法：  let list2 = list1.sort({ $0.age < $1.age })
-     　　　　　　let list2 = list1.sort((left, right) in { left.age < right.age })
-    */
+     使用例： ageのプロパティを持つオブジェクトのリストをソート
+     let list2 = list1.sort({ $0.age < $1.age })
+     　　let list2 = list1.sort((left, right) in { left.age < right.age })
+     */
     func sort(isOrderedBefore: (T, T) -> Bool) -> Array<T> {
         return elements.sorted(by: isOrderedBefore)
     }
@@ -130,7 +140,23 @@ public class List<T> : Sequence {
         return elements.reduce(initial, combine)
     }
     
-    // Sequenceプロトコルでは makeIterator メソッドを実装することで for-in でイテレートできるようになる
+    func shuffled() {
+        var array = elements
+        
+        for i in 0..<array.count {
+            let ub = UInt32(array.count - i)
+            let d = Int(arc4random_uniform(ub))
+            
+            let tmp = array[i]
+            array[i] = array[i+d]
+            array[i+d] = tmp
+        }
+        
+        // シャッフル済みに置き換える
+        elements = array
+    }
+
+    
     public func makeIterator() -> AnyIterator<T?> {
         var count = 0
         return AnyIterator {
@@ -144,7 +170,19 @@ public class List<T> : Sequence {
             return element
         }
     }
+    
+    // Hashable
+    // ハッシュ値を返す
+    public var hashValue: Int {
+        return self.elements.description.hashValue
+    }
+    
+    // ハッシュ値を比較する
+    public static func == (lhs: List, rhs: List) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
 }
+
 
 // containsは T がクラスのオブジェクト型のときのだけ使用できる
 public extension List where T: AnyObject {
@@ -152,5 +190,64 @@ public extension List where T: AnyObject {
     func contains(_ element : T) -> Bool {
         return elements.contains(where: {$0 === element})
     }
+    
+    /**
+     オブジェクトの位置を取得する
+     - parameter obj: インデックスを取得したいオブジェクト
+     - returns: オブジェクトの位置。リストにオブジェクトがなかったら -1 を返す
+     */
+    func indexOf(obj: T) -> Int {
+        var i = 0
+        for _obj in elements {
+            if obj === _obj {
+                return i
+            }
+            i += 1
+        }
+        return -1
+    }
+    
+    // リストを追加する
+    func append(objs: [T]) {
+        for obj in objs {
+            elements.append(obj)
+        }
+    }
+    
+    // リストにあるオブジェクトを削除する
+    func remove(obj: T) {
+        if elements.count <= 0 {
+            return
+        }
+        for i in 0..<elements.count {
+            let element = elements[i]
+            if obj === element {
+                elements.remove(at: i)
+                break
+            }
+        }
+    }
+    
+    // 引数で渡されたリストを削除する
+    func remove(objs: [T]) {
+        for obj in objs {
+            remove(obj: obj)
+        }
+    }
 }
 
+// descriptionを使用できるオブジェクト限定
+public extension List where T: CustomStringConvertible {
+    public var description : String {
+        get {
+            if elements.count == 0 {
+                return ""
+            }
+            var str = ""
+            for element in elements {
+                str += element.description + "\n"
+            }
+            return str
+        }
+    }
+}

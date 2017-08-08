@@ -321,9 +321,9 @@ class UDraw {
         
         let textFontAttributes = [
             NSFontAttributeName: font,
-            NSParagraphStyleAttributeName: style,
-                        NSShadowAttributeName: shadow,
-            NSForegroundColorAttributeName: color,
+//            NSParagraphStyleAttributeName: style,
+//                        NSShadowAttributeName: shadow,
+//            NSForegroundColorAttributeName: color,
             NSBackgroundColorAttributeName: UIColor.clear
             ] as [String : Any]
         
@@ -360,6 +360,9 @@ class UDraw {
                              y:_y, width: size.width,
                              height:size.height),
                   withAttributes: textFontAttributes)
+//        text.draw(in: CGRect(x:_x,
+//                             y:_y, width: size.width,
+//                             height:size.height))
     }
     
     

@@ -172,7 +172,32 @@ class UNTestArray{
         print(array3.debugDescription)
     }
     
+    // シャッフルのテスト
     func test6() {
+        print("test_array test6")
+        var arr1 : [Int] = [1,2,3,4,5,6,7,8,9,10]
+        
+        let arr2 = arr1.shuffled()
+        
+        for i in 0..<arr2.count {
+            print(i.description + " " + arr2[i].description)
+        }
+    }
+    
+    func test7() {
+        var list1 : List<Int> = List()
+        for i in 1...10 {
+            list1.append(i)
+        }
+        
+        list1.shuffled()
+        
+        for i in 0..<list1.count {
+            print(i.description + " " + list1[i].description)
+        }
+    }
+    
+    func test8() {
         
     }
     

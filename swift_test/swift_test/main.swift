@@ -157,14 +157,21 @@ func testArray(_ mode : Int) {
     case 5:
         array1.test5()
     case 6:
-        array1.testList()
+        array1.test6()
+    case 7:
+        array1.test7()
+    case 8:
+        array1.test8()
+        
     case 10:
-        array1.testMap()
+        array1.testList()
     case 11:
-        array1.testFilter()
+        array1.testMap()
     case 12:
-        array1.testSort()
+        array1.testFilter()
     case 13:
+        array1.testSort()
+    case 14:
         array1.testReverse()
     default:
         break
@@ -542,6 +549,10 @@ func testTimer(_ mode:Int) {
     switch mode {
     case 1:
         timer.test1()
+    case 2:
+        timer.test2()
+    case 3:
+        timer.test3()
     default:
         break
     }

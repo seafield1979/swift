@@ -16,6 +16,8 @@ public enum testMode : String, EnumEnumerable{
     case drawClip = "クリップ"
     case drawImage = "画像描画"
     case drawText = "テキスト描画"
+    case drawObjects = "オブジェクトを大量描画"
+    case drawObjects2 = "オブジェクトを大量描画2"
 }
 
 
@@ -84,24 +86,11 @@ class TopViewController: UITableViewController {
     {
         print("didSelectRowAt:" + String(indexPath.row))
         let mode = testMode.cases[indexPath.row]
-        var viewController : UIViewController? = nil
+        var viewController : Draw1ViewController? = nil
         
-        switch mode {
-        case .drawLine:
-            viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
-        case .drawCircle:
-            viewController = Draw2ViewController(nibName: "Draw2ViewController", bundle: nil)
-        case .drawRect:
-            viewController = Draw3ViewController(nibName: "Draw3ViewController", bundle: nil)
-        case .drawPath:
-            viewController = Draw4ViewController(nibName: "Draw4ViewController", bundle: nil)
-        case .drawClip:
-            viewController = Draw5ViewController(nibName: "Draw5ViewController", bundle: nil)
-        case .drawImage:
-            viewController = Draw6ViewController(nibName: "Draw6ViewController", bundle: nil)
-        case .drawText:
-            viewController = Draw7ViewController(nibName: "Draw7ViewController", bundle: nil)
-        }
+        viewController = Draw1ViewController(nibName: "Draw1ViewController", bundle: nil)
+        viewController!.mode = mode
+        
         if let vc = viewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }

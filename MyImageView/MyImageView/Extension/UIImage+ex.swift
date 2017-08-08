@@ -13,13 +13,6 @@ public struct PixelData {
     var r: UInt8 = 0
     var g: UInt8 = 0
     var b: UInt8 = 0
-    
-//    init(a: UInt8, r: UInt8, g: UInt8, b: UInt8) {
-//        self.a = a
-//        self.r = r
-//        self.g = g
-//        self.b = b
-//    }
 }
 
 extension UIImage {
@@ -38,7 +31,7 @@ extension UIImage {
                                 bitsPerComponent: 8,
                                 bytesPerRow: 4 * Int(size.width),
                                 space: colorSpace,
-                                bitmapInfo: CGImageAlphaInfo.noneSkipLast.rawValue)
+                                bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue)
         guard let cgImage = self.cgImage else { return nil }
         context?.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         
@@ -47,7 +40,7 @@ extension UIImage {
         var i = 0
         for _ in 0..<Int(size.height) {
             for _ in 0..<Int(size.width) {
-                pixels.append(PixelData( a:pixelData[i+3], r:pixelData[i+0], g:pixelData[i+1], b:pixelData[i+2]))
+                pixels.append(PixelData( a:pixelData[i+0], r:pixelData[i+1], g:pixelData[i+2], b:pixelData[i+3]))
                 i += 4
             }
         }
