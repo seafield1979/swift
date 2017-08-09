@@ -39,14 +39,15 @@ public class IconNode {
         spriteNode = SKSpriteNode(imageNamed: imageName)
         spriteNode!.position = CGPoint(x: 0, y: 0)
         spriteNode!.size = CGSize(width: w - 30, height: w - 30)
-        
+        spriteNode!.zPosition = 2.0
         parentNode.addChild(spriteNode!)
         
         // ラベル
-        labelNode = SKLabelNode(text: "hello world")
+        labelNode = SKLabelNode(text: title)
         labelNode!.fontColor = SKColor.white
-        labelNode!.fontSize = 100.0
-        labelNode!.position = CGPoint(x:0, y:-100.0)
+        labelNode!.fontSize = 30.0
+        labelNode!.zPosition = 3.0
+        labelNode!.position = CGPoint(x:0, y:-30.0)
         
         parentNode.addChild(labelNode!)
         

@@ -21,9 +21,6 @@ class GameViewController: UIViewController {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'SceneTest1'
             if let scene = SKScene(fileNamed: "SceneTest1") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
                 // Present the scene
                 view.presentScene(scene)
                 
@@ -38,56 +35,7 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
-        
-//        let button = GameViewController.createSimpleButton(CGPoint(x:100, y:100), title: "button1", tagId: 100)
-//        
-//        // タッチ時に呼ばれるメソッドを登録
-//        button.addTarget(self, action: #selector(self.tappedButton(_:)), for:.touchUpInside)
-//        // 親viewに追加
-//        self.view.addSubview(button)
     }
-    
-    
-    @IBAction func test1Clicked(_ sender: Any) {
-        scene1!.test1()
-    }
-    
-    @IBAction func test2Clicked(_ sender: Any) {
-        scene1!.test2()
-    }
-    
-    @IBAction func test3Clicked(_ sender: Any) {
-        scene1!.test3()
-    }
-    
-    @IBAction func test4Clicked(_ sender: Any) {
-        scene1!.test4()
-    }
-    
-    @IBAction func test5Clicked(_ sender: Any) {
-        scene1!.test5()
-    }
-    
-    @IBAction func test6Clicked(_ sender: Any) {
-        scene1!.test6()
-    }
-    
-    @IBAction func test7Clicked(_ sender: Any) {
-        scene1!.test7()
-    }
-    
-    @IBAction func test8Clicked(_ sender: Any) {
-        scene1!.test8()
-    }
-    
-    @IBAction func test9Clicked(_ sender: Any) {
-        scene1!.test9()
-    }
-    
-    @IBAction func test10Clicked(_ sender: Any) {
-        scene1!.test10()
-    }
-
     
     // タッチ時の処理
     func tappedButton(_ sender: AnyObject) {

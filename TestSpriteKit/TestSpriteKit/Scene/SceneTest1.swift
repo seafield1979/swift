@@ -33,20 +33,13 @@ class SceneTest1: SKScene {
     private var movingNode : MovingNode?
     private var movingNodes : [MovingNode] = []
     
-    private let MaxNodes = 200
+    private let MaxNodes = 10
     private var testMode : TestMode = .Test1
-    
+    private var testNodes : [SKNode] = []
     
     // シーンが最初に表示される前に呼ばれる
     // Called immediately after a scene is presented by a view.
     override func didMove(to view: SKView) {
-        
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//label1") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
         
         // Shape
         shapeNode = SKShapeNode(rect: CGRect(x:-50,y:-50,width:100,height:100), cornerRadius: 10.0)
@@ -67,20 +60,64 @@ class SceneTest1: SKScene {
         
         // ラベル
         labelNode = SKLabelNode(text: "hello world")
-        labelNode?.fontColor = SKColor.red
+        labelNode?.fontColor = SKColor.white
         labelNode!.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
+        
+        for i in 1...10 {
+            let name = String(format: "test%dButton", i)
+            if let n = self.childNode(withName: name) {
+                n.zPosition = 100
+            }
+        }
     }
     
     
-    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
-        if let n = self.labelNode?.copy() as! SKLabelNode? {
-            n.position = pos
-            self.addChild(n)
+    func touchDown(atPoint pos : CGPoint, touch : UITouch) {
+        
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name {
+            print(name)
+            switch name {
+            case "test1Button":
+                test1()
+                break
+            case "test2Button":
+                test2()
+                break
+            case "test3Button":
+                test3()
+                break
+            case "test4Button":
+                test4()
+                break
+            case "test5Button":
+                test5()
+                break
+            case "test6Button":
+                test6()
+                break
+            case "test7Button":
+                test7()
+                break
+            case "test8Button":
+                test8()
+                break
+            case "test9Button":
+                test9()
+                break
+            case "test10Button":
+                let scene = SceneTest2(fileNamed: "SceneTest2")
+                if let _scene = scene {
+                    //トランジションを作成する。
+                    let transition = SKTransition.fade(withDuration: 1.0)
+                    
+                    self.view!.presentScene(_scene, transition:transition)
+                }
+            default:
+                break
+            }
         }
     }
     
@@ -100,26 +137,24 @@ class SceneTest1: SKScene {
         }
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if let label = self.label {
-//            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-//        }
-//        
-//        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-//    }
-//    
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-//    }
-//    
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//    
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            self.touchDown(atPoint: t.location(in: self), touch: t)
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+    }
+    
     
     override func update(_ currentTime: TimeInterval) {
         
@@ -204,8 +239,8 @@ class SceneTest1: SKScene {
     
     // スクリーン座標のランダムな位置を取得する
     func randomPos() -> CGPoint {
-        let pos = CGPoint(x: CGFloat(arc4random() % UInt32(self.size.width) / 2),
-                          y: CGFloat(arc4random() % UInt32(self.size.height)) / 2)
+        let pos = CGPoint(x: CGFloat(arc4random() % UInt32(self.size.width)),
+                          y: CGFloat(arc4random() % UInt32(self.size.height)))
         return self.convertPoint(fromView: pos)
     }
     
@@ -215,18 +250,25 @@ class SceneTest1: SKScene {
                             blue: CGFloat(arc4random() % 101) / 100.0, alpha: 1.0)
     }
     
+    func removeTestNodes() {
+        self.removeChildren(in: testNodes)
+    }
+    
     // 大量のShapeNodeを表示
     func test1() {
         testMode = .Test1
         
         // 全ノード削除
-        self.removeAllChildren()
+        removeTestNodes()
         
-        for _ in 0..<MaxNodes {
+        for i in 0..<MaxNodes {
             if let n = self.shapeNode?.copy() as! SKShapeNode? {
                 n.position = randomPos()
                 n.fillColor = randomColor()
+                n.zPosition = 10.0
+                n.name = "test1_" + i.description
                 self.addChild(n)
+                testNodes.append(n)
             }
         }
     }
@@ -235,12 +277,13 @@ class SceneTest1: SKScene {
     func test2() {
         testMode = .Test2
         // 全ノード削除
-        self.removeAllChildren()
-        
+        removeTestNodes()
+
         for _ in 0..<MaxNodes {
             if let n = self.imageNode?.copy() as! SKSpriteNode? {
                 n.position = randomPos()
                 self.addChild(n)
+                testNodes.append(n)
             }
             
         }
@@ -250,13 +293,14 @@ class SceneTest1: SKScene {
     func test3() {
         testMode = .Test3
         // 全ノード削除
-        self.removeAllChildren()
+        self.removeTestNodes()
         
         for _ in 0..<MaxNodes {
             if let n = self.labelNode?.copy() as! SKLabelNode? {
                 n.position = randomPos()
                 n.fontColor = randomColor()
                 self.addChild(n)
+                testNodes.append(n)
             }
             
         }
@@ -267,8 +311,9 @@ class SceneTest1: SKScene {
         testMode = .Test4
         
         movingNodes.removeAll()
-        self.removeAllChildren()
-        
+        // 全ノード削除
+        removeTestNodes()
+
         for _ in 0..<20 {
             if let n = self.movingNode?.copy() as! MovingNode? {
                 n.position = CGPoint(x:0, y:0)
@@ -287,6 +332,7 @@ class SceneTest1: SKScene {
                 
                 self.addChild(n)
                 movingNodes.append(n)
+                testNodes.append(n)
             }
         }
     }
@@ -294,11 +340,14 @@ class SceneTest1: SKScene {
     // 子を持つノードを作成
     func test5() {
         testMode = .Test5
-        self.removeAllChildren()
-        
+
+        // 全ノード削除
+        removeTestNodes()
+
         let n = IconNode(imageName: "ume", title: "hoge", pos: CGPoint(x:0, y:0))
         
         self.addChild(n.parentNode)
+        testNodes.append(n.parentNode)
     }
     
     // 描画プライオリティを設定する
@@ -306,7 +355,7 @@ class SceneTest1: SKScene {
     // .zPosition は値が小さいほど先に表示される（奥に表示される)
     func test6() {
         testMode = .Test6
-        self.removeAllChildren()
+        removeTestNodes()
         
         // プライオリティを設定しない場合は (奥) 赤 > 緑 > 青 (手前)
         // プライオリティを設定した場合は  (奥) 青 > 緑 > 赤 (手前)
@@ -315,35 +364,39 @@ class SceneTest1: SKScene {
             n.fillColor = .red
 //            n.zPosition = 3.0
             self.addChild(n)
+            testNodes.append(n)
         }
         if let n = self.shapeNode?.copy() as! SKShapeNode? {
             n.position = CGPoint(x:50, y:50)
             n.fillColor = .green
 //            n.zPosition = 2.0
             self.addChild(n)
+            testNodes.append(n)
         }
         if let n = self.shapeNode?.copy() as! SKShapeNode? {
             n.position = CGPoint(x:100, y:100)
             n.fillColor = .blue
 //            n.zPosition = 1.0
             self.addChild(n)
+            testNodes.append(n)
         }
     }
     
     // マスク(クリッピング)のテスト
     func test7() {
         testMode = .Test7
-        self.removeAllChildren()
+        // 全ノード削除
+        removeTestNodes()
         
         //--------------------
         // crop1
         // 画像
         let imageN = SKSpriteNode(imageNamed:"ume")
         imageN.position = CGPoint(x:0, y:0)
-        imageN.size = CGSize(width: 400, height: 400)
+        imageN.size = CGSize(width: 200, height: 200)
         
         // マスク用のノードを作成（矩形)
-        let maskNode = SKShapeNode(rect: CGRect(x:-100,y:-100,width:200,height:200), cornerRadius: 10.0)
+        let maskNode = SKShapeNode(rect: CGRect(x:-50,y:-50,width:100,height:100), cornerRadius: 10.0)
         maskNode.fillColor = .black
         maskNode.strokeColor = .black
         
@@ -352,6 +405,8 @@ class SceneTest1: SKScene {
         cropNode.addChild(imageN)       // 重要  CropNodeに描画したいノードを追加する
         
         self.addChild(cropNode)
+        testNodes.append(cropNode)
+        
         
         //------------------------------
         // crop2
@@ -359,6 +414,7 @@ class SceneTest1: SKScene {
         let imageN2 = SKSpriteNode(imageNamed:"ume")
         imageN2.position = CGPoint(x:0, y:0)
         imageN2.size = CGSize(width: 400, height: 400)
+        
 
         // マスク用のノードを作成(円形)
         let maskNode2 = SKShapeNode(circleOfRadius: 100.0)
@@ -370,15 +426,16 @@ class SceneTest1: SKScene {
         cropNode2.addChild(imageN2)       // 重要  CropNodeに描画したいノードを追加する
         cropNode2.position = CGPoint(x: 0, y: 300)
         
-        
         self.addChild(cropNode2)
-        
+        testNodes.append(cropNode2)
     }
-    
+
+    // シーン遷移
     func test8() {
         testMode = .Test8
-        self.removeAllChildren()
-        
+        // 全ノード削除
+        removeTestNodes()
+
         //スタートボタンを押した場合はプレイ画面に切り替える。
         let scene = SceneTest2(fileNamed: "SceneTest2")
         if let _scene = scene {
@@ -392,11 +449,21 @@ class SceneTest1: SKScene {
     
     func test9() {
         testMode = .Test9
-        self.removeAllChildren()
+        // 全ノード削除
+        removeTestNodes()
+
     }
     
     func test10() {
         testMode = .Test10
-        self.removeAllChildren()
+        // 全ノード削除
+        removeTestNodes()
+
+    }
+    
+    // MARK: SKButtonDelegate
+    
+    func skButtonClicked() {
+        print("hello")
     }
 }

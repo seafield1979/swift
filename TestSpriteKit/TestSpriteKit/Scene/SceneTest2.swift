@@ -24,7 +24,7 @@ class SceneTest2: SKScene {
             let scene = SceneTest1(fileNamed: "SceneTest1")
             if let _scene = scene {
                 //トランジションを作成する。
-                let transition = SKTransition.fade(withDuration: 2.0)
+                let transition = SKTransition.fade(withDuration: 1.0)
                 
                 self.view!.presentScene(_scene, transition:transition)
             }
