@@ -378,6 +378,16 @@ class SceneTest1: SKScene {
     func test8() {
         testMode = .Test8
         self.removeAllChildren()
+        
+        //スタートボタンを押した場合はプレイ画面に切り替える。
+        let scene = SceneTest2(fileNamed: "SceneTest2")
+        if let _scene = scene {
+            //トランジションを作成する。
+            let transition = SKTransition.fade(withDuration: 2.0)
+
+            self.view!.presentScene(_scene, transition:transition)
+        }
+        
     }
     
     func test9() {

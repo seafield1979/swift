@@ -13,12 +13,13 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     var scene1 : SceneTest1? = nil
+    var skView : SKView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
+            // Load the SKScene from 'SceneTest1'
             if let scene = SKScene(fileNamed: "SceneTest1") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
@@ -28,6 +29,7 @@ class GameViewController: UIViewController {
                 
                 if scene is SceneTest1 {
                     scene1 = scene as? SceneTest1
+                    skView = scene1!.view
                 }
             }
             

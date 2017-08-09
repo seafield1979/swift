@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8A5794EF1F39E3EB0055D69C /* MovingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5794EE1F39E3EB0055D69C /* MovingNode.swift */; };
 		8A5794F11F39F2350055D69C /* IconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5794F01F39F2350055D69C /* IconNode.swift */; };
+		8A5794F31F3A9A530055D69C /* SceneTest2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8A5794F21F3A9A530055D69C /* SceneTest2.sks */; };
+		8A5794F51F3A9C2E0055D69C /* SceneTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5794F41F3A9C2E0055D69C /* SceneTest2.swift */; };
 		8AC9A86C1F394761004E38C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC9A86B1F394761004E38C7 /* AppDelegate.swift */; };
 		8AC9A86E1F394761004E38C7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8AC9A86D1F394761004E38C7 /* GameScene.sks */; };
 		8AC9A8701F394761004E38C7 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8AC9A86F1F394761004E38C7 /* Actions.sks */; };
@@ -27,6 +29,8 @@
 /* Begin PBXFileReference section */
 		8A5794EE1F39E3EB0055D69C /* MovingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovingNode.swift; path = Node/MovingNode.swift; sourceTree = "<group>"; };
 		8A5794F01F39F2350055D69C /* IconNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconNode.swift; path = Node/IconNode.swift; sourceTree = "<group>"; };
+		8A5794F21F3A9A530055D69C /* SceneTest2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SceneTest2.sks; path = Scene/SceneTest2.sks; sourceTree = "<group>"; };
+		8A5794F41F3A9C2E0055D69C /* SceneTest2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneTest2.swift; path = Scene/SceneTest2.swift; sourceTree = "<group>"; };
 		8AC9A8681F394761004E38C7 /* TestSpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSpriteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC9A86B1F394761004E38C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AC9A86D1F394761004E38C7 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				8AC9A8711F394761004E38C7 /* GameScene.swift */,
 				8AC9A8CA1F3967C0004E38C7 /* SceneTest1.sks */,
 				8AC9A8CD1F39691E004E38C7 /* SceneTest1.swift */,
+				8A5794F21F3A9A530055D69C /* SceneTest2.sks */,
+				8A5794F41F3A9C2E0055D69C /* SceneTest2.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -184,6 +190,7 @@
 				8AC9A8791F394761004E38C7 /* Assets.xcassets in Resources */,
 				8AC9A8CB1F3967C0004E38C7 /* SceneTest1.sks in Resources */,
 				8AC9A87C1F394761004E38C7 /* LaunchScreen.storyboard in Resources */,
+				8A5794F31F3A9A530055D69C /* SceneTest2.sks in Resources */,
 				8AC9A8D21F398555004E38C7 /* miro.jpg in Resources */,
 				8AC9A8701F394761004E38C7 /* Actions.sks in Resources */,
 			);
@@ -199,6 +206,7 @@
 				8AC9A8CE1F39691E004E38C7 /* SceneTest1.swift in Sources */,
 				8AC9A8C91F395DBF004E38C7 /* ModalViewController.swift in Sources */,
 				8AC9A8721F394761004E38C7 /* GameScene.swift in Sources */,
+				8A5794F51F3A9C2E0055D69C /* SceneTest2.swift in Sources */,
 				8A5794F11F39F2350055D69C /* IconNode.swift in Sources */,
 				8AC9A8741F394761004E38C7 /* GameViewController.swift in Sources */,
 				8AC9A86C1F394761004E38C7 /* AppDelegate.swift in Sources */,
