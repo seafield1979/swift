@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A03D5901F3C00AA0083A18F /* SceneTest3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A03D58F1F3C00AA0083A18F /* SceneTest3.swift */; };
 		8A5794EF1F39E3EB0055D69C /* MovingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5794EE1F39E3EB0055D69C /* MovingNode.swift */; };
 		8A5794F11F39F2350055D69C /* IconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5794F01F39F2350055D69C /* IconNode.swift */; };
 		8A5794F31F3A9A530055D69C /* SceneTest2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8A5794F21F3A9A530055D69C /* SceneTest2.sks */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A03D58F1F3C00AA0083A18F /* SceneTest3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneTest3.swift; path = Scene/SceneTest3.swift; sourceTree = "<group>"; };
 		8A5794EE1F39E3EB0055D69C /* MovingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovingNode.swift; path = Node/MovingNode.swift; sourceTree = "<group>"; };
 		8A5794F01F39F2350055D69C /* IconNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IconNode.swift; path = Node/IconNode.swift; sourceTree = "<group>"; };
 		8A5794F21F3A9A530055D69C /* SceneTest2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = SceneTest2.sks; path = Scene/SceneTest2.sks; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				8AC9A8CD1F39691E004E38C7 /* SceneTest1.swift */,
 				8A5794F21F3A9A530055D69C /* SceneTest2.sks */,
 				8A5794F41F3A9C2E0055D69C /* SceneTest2.swift */,
+				8A03D58F1F3C00AA0083A18F /* SceneTest3.swift */,
 			);
 			name = Scene;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				8AC9A8CE1F39691E004E38C7 /* SceneTest1.swift in Sources */,
 				8AC9A8C91F395DBF004E38C7 /* ModalViewController.swift in Sources */,
 				8AC9A8721F394761004E38C7 /* GameScene.swift in Sources */,
+				8A03D5901F3C00AA0083A18F /* SceneTest3.swift in Sources */,
 				8A5794F51F3A9C2E0055D69C /* SceneTest2.swift in Sources */,
 				8A5794F11F39F2350055D69C /* IconNode.swift in Sources */,
 				8AC9A8741F394761004E38C7 /* GameViewController.swift in Sources */,

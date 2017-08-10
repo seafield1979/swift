@@ -49,8 +49,15 @@ class SceneTest1: SKScene {
         movingNode = MovingNode(rect: CGRect(x:-50,y:-50,width:100,height:100), cornerRadius: 10.0)
         movingNode!.fillColor = UIColor.green
         
-        // 回転
-        shapeNode!.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
+//        // 回転
+//        shapeNode!.run(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 3.0),
+//                       completion: {() -> Void in
+//                        print("complete")
+//                        print("complete2")
+//                        print("complete3")
+//        }
+//        )
+//        shapeNode!.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
         
         //イメージ
         imageNode = SKSpriteNode(imageNamed:"ume")
@@ -274,6 +281,14 @@ class SceneTest1: SKScene {
                 n.fillColor = randomColor()
                 n.zPosition = 10.0
                 n.name = "test1_" + i.description
+                
+                // 回転
+                n.run(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 3.0),
+                               completion: {() -> Void in
+                                print("complete")
+                }
+                )
+
                 self.addTestNode(n)
             }
         }
@@ -348,8 +363,15 @@ class SceneTest1: SKScene {
         removeTestNodes()
 
         let n = IconNode(imageName: "ume", title: "hoge", pos: CGPoint(x:0, y:0))
+        n.parentNode.zPosition = 10.0
         
         self.addTestNode(n.parentNode)
+        
+        let n2 = IconNode(imageName: "ume", title: "hoge", pos: CGPoint(x:0, y:0))
+        n2.parentNode.zPosition = 11.0
+        n2.parentNode.position = CGPoint(x:20, y:20)
+        
+        self.addTestNode(n2.parentNode)
     }
     
     // 描画プライオリティを設定する

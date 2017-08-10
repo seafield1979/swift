@@ -20,15 +20,17 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'SceneTest1'
-            if let scene = SKScene(fileNamed: "SceneTest1") {
+//            if let scene = SKScene(fileNamed: "SceneTest1") {
+            let scene = SceneTest3(size: self.view.frame.size)
+//            if scene1 != nil {
                 // Present the scene
                 view.presentScene(scene)
                 
-                if scene is SceneTest1 {
-                    scene1 = scene as? SceneTest1
-                    skView = scene1!.view
-                }
-            }
+//                if scene is SceneTest1 {
+//                    scene1 = scene as? SceneTest1
+//                    skView = scene1!.view
+//                }
+//            }
             
             view.ignoresSiblingOrder = true
             
