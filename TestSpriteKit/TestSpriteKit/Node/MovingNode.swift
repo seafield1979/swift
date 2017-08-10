@@ -32,20 +32,22 @@ class MovingNode: SKShapeNode {
         self.position.x += movingSpeed.x
         self.position.y += movingSpeed.y
         
-        if self.position.x < minPos.x {
-            position.x = minPos.x
+        let hw = self.frame.size.width / 2
+        let hh = self.frame.size.height / 2
+        if self.position.x - hw < minPos.x {
+            position.x = minPos.x + hw
             movingSpeed.x *= -1
         }
-        if self.position.y < minPos.y {
-            position.y = minPos.y
+        if self.position.y - hh < minPos.y {
+            position.y = minPos.y + hh
             movingSpeed.y *= -1
         }
-        if self.position.x > maxPos.x {
-            position.x = maxPos.x
+        if self.position.x + hw > maxPos.x {
+            position.x = maxPos.x - hw
             movingSpeed.x *= -1
         }
-        if self.position.y > maxPos.y {
-            position.y = maxPos.y
+        if self.position.y + hh > maxPos.y {
+            position.y = maxPos.y - hh
             movingSpeed.y *= -1
         }
     }

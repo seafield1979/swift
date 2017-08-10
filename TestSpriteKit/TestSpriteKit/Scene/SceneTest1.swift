@@ -71,7 +71,34 @@ class SceneTest1: SKScene {
         }
     }
     
+    // MARK: Funcs
     
+    // スクリーン座標のランダムな位置を取得する
+    func randomPos() -> CGPoint {
+        let pos = CGPoint(x: CGFloat(arc4random() % UInt32(self.size.width)),
+                          y: CGFloat(arc4random() % UInt32(self.size.height)))
+        return self.convertPoint(fromView: pos)
+    }
+    
+    func randomColor() -> SKColor {
+        return SKColor.init(red: CGFloat(arc4random() % 101) / 100.0,
+                            green: CGFloat(arc4random() % 101) / 100.0,
+                            blue: CGFloat(arc4random() % 101) / 100.0, alpha: 1.0)
+    }
+    
+    // 各テストモードで使用したノードを削除
+    func removeTestNodes() {
+        self.removeChildren(in: testNodes)
+    }
+    
+    // テスト用のノードを追加
+    // 後から削除できるようにリストに追加する
+    func addTestNode(_ node: SKNode) {
+        self.addChild(node)
+        testNodes.append(node)
+    }
+    
+    // MARK: Touches
     func touchDown(atPoint pos : CGPoint, touch : UITouch) {
         
         let positionInScene = touch.location(in: self)
@@ -108,13 +135,7 @@ class SceneTest1: SKScene {
                 test9()
                 break
             case "test10Button":
-                let scene = SceneTest2(fileNamed: "SceneTest2")
-                if let _scene = scene {
-                    //トランジションを作成する。
-                    let transition = SKTransition.fade(withDuration: 1.0)
-                    
-                    self.view!.presentScene(_scene, transition:transition)
-                }
+                test10()
             default:
                 break
             }
@@ -156,6 +177,7 @@ class SceneTest1: SKScene {
     }
     
     
+    // MARK: Updates
     override func update(_ currentTime: TimeInterval) {
         
         switch testMode {
@@ -237,22 +259,7 @@ class SceneTest1: SKScene {
         
     }
     
-    // スクリーン座標のランダムな位置を取得する
-    func randomPos() -> CGPoint {
-        let pos = CGPoint(x: CGFloat(arc4random() % UInt32(self.size.width)),
-                          y: CGFloat(arc4random() % UInt32(self.size.height)))
-        return self.convertPoint(fromView: pos)
-    }
-    
-    func randomColor() -> SKColor {
-        return SKColor.init(red: CGFloat(arc4random() % 101) / 100.0,
-                            green: CGFloat(arc4random() % 101) / 100.0,
-                            blue: CGFloat(arc4random() % 101) / 100.0, alpha: 1.0)
-    }
-    
-    func removeTestNodes() {
-        self.removeChildren(in: testNodes)
-    }
+    // MARK: Tests
     
     // 大量のShapeNodeを表示
     func test1() {
@@ -267,8 +274,7 @@ class SceneTest1: SKScene {
                 n.fillColor = randomColor()
                 n.zPosition = 10.0
                 n.name = "test1_" + i.description
-                self.addChild(n)
-                testNodes.append(n)
+                self.addTestNode(n)
             }
         }
     }
@@ -282,8 +288,7 @@ class SceneTest1: SKScene {
         for _ in 0..<MaxNodes {
             if let n = self.imageNode?.copy() as! SKSpriteNode? {
                 n.position = randomPos()
-                self.addChild(n)
-                testNodes.append(n)
+                self.addTestNode(n)
             }
             
         }
@@ -299,8 +304,7 @@ class SceneTest1: SKScene {
             if let n = self.labelNode?.copy() as! SKLabelNode? {
                 n.position = randomPos()
                 n.fontColor = randomColor()
-                self.addChild(n)
-                testNodes.append(n)
+                self.addTestNode(n)
             }
             
         }
@@ -330,9 +334,8 @@ class SceneTest1: SKScene {
                 
                 n.fillColor = randomColor()
                 
-                self.addChild(n)
                 movingNodes.append(n)
-                testNodes.append(n)
+                self.addTestNode(n)
             }
         }
     }
@@ -346,8 +349,7 @@ class SceneTest1: SKScene {
 
         let n = IconNode(imageName: "ume", title: "hoge", pos: CGPoint(x:0, y:0))
         
-        self.addChild(n.parentNode)
-        testNodes.append(n.parentNode)
+        self.addTestNode(n.parentNode)
     }
     
     // 描画プライオリティを設定する
@@ -363,22 +365,19 @@ class SceneTest1: SKScene {
             n.position = CGPoint(x:0, y:0)
             n.fillColor = .red
 //            n.zPosition = 3.0
-            self.addChild(n)
-            testNodes.append(n)
+            self.addTestNode(n)
         }
         if let n = self.shapeNode?.copy() as! SKShapeNode? {
             n.position = CGPoint(x:50, y:50)
             n.fillColor = .green
 //            n.zPosition = 2.0
-            self.addChild(n)
-            testNodes.append(n)
+            self.addTestNode(n)
         }
         if let n = self.shapeNode?.copy() as! SKShapeNode? {
             n.position = CGPoint(x:100, y:100)
             n.fillColor = .blue
 //            n.zPosition = 1.0
-            self.addChild(n)
-            testNodes.append(n)
+            self.addTestNode(n)
         }
     }
     
@@ -404,9 +403,7 @@ class SceneTest1: SKScene {
         cropNode.maskNode = maskNode
         cropNode.addChild(imageN)       // 重要  CropNodeに描画したいノードを追加する
         
-        self.addChild(cropNode)
-        testNodes.append(cropNode)
-        
+        self.addTestNode(cropNode)
         
         //------------------------------
         // crop2
@@ -426,8 +423,7 @@ class SceneTest1: SKScene {
         cropNode2.addChild(imageN2)       // 重要  CropNodeに描画したいノードを追加する
         cropNode2.position = CGPoint(x: 0, y: 300)
         
-        self.addChild(cropNode2)
-        testNodes.append(cropNode2)
+        self.addTestNode(cropNode2)
     }
 
     // シーン遷移
@@ -451,14 +447,88 @@ class SceneTest1: SKScene {
         testMode = .Test9
         // 全ノード削除
         removeTestNodes()
-
+        
+        // 画面を覆うNodeを作成
+        let w = self.size.width
+        let h = self.size.height
+        let n = SKShapeNode(rect: CGRect(x: -w/2, y: -h/2, width : w, height: h), cornerRadius: 10.0)
+        self.addTestNode(n)
     }
     
     func test10() {
         testMode = .Test10
         // 全ノード削除
         removeTestNodes()
+        
+        var pos = CGPoint(x: 150, y:50)
+        
+        // 四角形
+        var pos2 = self.convertPoint(fromView: pos)
+        let n1 = SKShapeNode(rect: CGRect(x:pos2.x, y:pos2.y, width: 50, height: 50))
+        n1.fillColor = .white
+        n1.strokeColor = .red
+        n1.lineWidth = 2.0
+        self.addTestNode(n1)
+        
+        pos.y += 50
+        pos2 = self.convertPoint(fromView: pos)
+        
+        // 三角形
+        // 1辺の大きさ.
+        let length: CGFloat = 30
+        
+        // 始点から終点までの４点を指定.
+        let p2 = pos2
+        var points = [CGPoint(x:p2.x + length, y: p2.y - length / 2.0),
+                      CGPoint(x:p2.x - length, y: p2.y - length / 2.0),
+                      CGPoint(x: p2.x, y: p2.y + length),
+                      CGPoint(x: p2.x + length, y: p2.y - length / 2.0)]
+        let n2 = SKShapeNode(points: &points, count: points.count)
+        n2.fillColor = .white
+        n2.strokeColor = .red
+        n2.lineWidth = 2.0
+        self.addTestNode(n2)
+        
+        pos.y += 60
+        pos2 = self.convertPoint(fromView: pos)
+        
+        // 円形
+        let n3 = SKShapeNode(circleOfRadius: 30.0)
+        n3.fillColor = .white
+        n3.strokeColor = .red
+        n3.lineWidth = 2.0
+        n3.position = pos2
+        self.addTestNode(n3)
 
+        pos.y += 60
+        pos2 = self.convertPoint(fromView: pos)
+        
+        // 線
+        let p4 = pos2
+        var points2 = [CGPoint(x:p4.x, y: p4.y),
+                      CGPoint(x:p4.x + 50.0, y: p4.y)]
+        let n4 = SKShapeNode(points: &points2, count: points2.count)
+        n4.strokeColor = .red
+        n4.lineWidth = 2.0
+        self.addTestNode(n4)
+        
+        pos.y += 60
+        pos2 = self.convertPoint(fromView: pos)
+        
+        // ラベル
+        let n5 = SKLabelNode(text: "hello world")
+        n5.fontColor = SKColor.red
+        n5.position = pos2
+        n5.fontName = "HiraKakuProN-W6"
+        self.addTestNode(n5)
+        
+        // スプライト
+        pos.y += 60
+        pos2 = self.convertPoint(fromView: pos)
+        let n6 = SKSpriteNode(imageNamed:"ume")
+        n6.position = pos2
+        n6.size = CGSize(width: 100, height: 100)
+        self.addTestNode(n6)
     }
     
     // MARK: SKButtonDelegate
