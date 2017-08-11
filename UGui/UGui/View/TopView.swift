@@ -120,7 +120,8 @@ public class TopView : UIView, UButtonCallbacks{
         // タッチイベントを取得する
         let touch = touches.first
         
-        vt.touchStart(touch: touch!, view: self)
+        _ = vt.checkTouchType(e: TouchEventType.Down,
+                              touch: touch!, view: self)
         
         // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
         if UDrawManager.getInstance().touchEvent(vt) {
@@ -140,7 +141,8 @@ public class TopView : UIView, UButtonCallbacks{
         // タッチイベントを取得する
         let touch = touches.first
         
-        vt.touchMove(touch: touch!, view: self)
+        _ = vt.checkTouchType(e: TouchEventType.Move,
+                              touch: touch!, view: self)
         
         // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
         if UDrawManager.getInstance().touchEvent(vt) {
@@ -157,7 +159,10 @@ public class TopView : UIView, UButtonCallbacks{
      */
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        _ = vt.touchEnd(touch: touches.first!, view: self)
+        if let touch = touches.first {
+            _ = vt.checkTouchType(e: TouchEventType.Up,
+                                  touch: touch, view: self)
+        }
         
         // 描画オブジェクトのタッチ処理はすべてUDrawManagerにまかせる
         if UDrawManager.getInstance().touchEvent(vt) {
@@ -173,7 +178,10 @@ public class TopView : UIView, UButtonCallbacks{
      */
     override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        print("touchesCancelled")
+        if let touch = touches.first {
+            _ = vt.checkTouchType(e: TouchEventType.Cancel,
+                                  touch: touch, view: self)
+        }
     }
 
     /**

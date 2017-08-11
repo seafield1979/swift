@@ -13,24 +13,16 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     var scene1 : SceneTest1? = nil
-    var skView : SKView? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'SceneTest1'
-//            if let scene = SKScene(fileNamed: "SceneTest1") {
-            let scene = SceneTest3(size: self.view.frame.size)
-//            if scene1 != nil {
-                // Present the scene
-                view.presentScene(scene)
-                
-//                if scene is SceneTest1 {
-//                    scene1 = scene as? SceneTest1
-//                    skView = scene1!.view
-//                }
-//            }
+            let scene = SKScene(fileNamed: "SceneTest1")
+//            let scene = SceneTest3(size: self.view.frame.size)
+
+            view.presentScene(scene)
             
             view.ignoresSiblingOrder = true
             
@@ -47,27 +39,6 @@ class GameViewController: UIViewController {
         default:
             break
         }
-    }
-
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
     }
     
     // ボタンを作成

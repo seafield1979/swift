@@ -92,7 +92,7 @@ class SceneTest3: SKScene {
             print(name)
             switch name {
             case "test1":
-                test1()
+                test1_2()
                 break
             case "test2":
                 test2()
@@ -259,6 +259,30 @@ class SceneTest3: SKScene {
         })
     }
     
+    // 移動と停止を繰り返す
+    func test1_2() {
+        // 今の座標から移動
+        let move1 = SKAction.moveBy(x: 0, y:100, duration: 1.0)
+        let move2 = SKAction.moveBy(x: 100, y:0, duration: 1.0)
+        let move3 = SKAction.moveBy(x: 0, y:-100, duration: 1.0)
+        let move4 = SKAction.moveBy(x: -100, y:0, duration: 1.0)
+        let wait1 = SKAction.wait(forDuration: 0.5)
+        
+        self.shapeNode!.run( SKAction.sequence(
+            [
+                move1,
+                wait1,
+                move2,
+                wait1,
+                move3,
+                wait1,
+                move4,
+                wait1
+            ]
+        ))
+
+    }
+    
     // サイズ変更
     func test2() {
         testMode = .Test2
@@ -378,10 +402,24 @@ class SceneTest3: SKScene {
 
     }
     
-    // 大量のShapeNodeを表示
+    // 回転
     func test6() {
         testMode = .Test6
         
+        // 時計回り 360度回転
+        let action = SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1.0)
+        
+        // 反時計回り 360度回転
+        let action2 = SKAction.reversed(action)()
+        
+        self.shapeNode!.run( SKAction.sequence([
+            action,
+            action2
+            ]),
+                             completion: {() -> Void in
+            print("test6 completion")
+        }
+        )
     }
     
     // 大量のShapeNodeを表示

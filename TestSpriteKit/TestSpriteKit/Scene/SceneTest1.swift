@@ -473,7 +473,10 @@ class SceneTest1: SKScene {
         // 画面を覆うNodeを作成
         let w = self.size.width
         let h = self.size.height
-        let n = SKShapeNode(rect: CGRect(x: -w/2, y: -h/2, width : w, height: h), cornerRadius: 10.0)
+//        let n = SKShapeNode(rect: CGRect(x: -w/2, y: -h/2, width : w, height: h), cornerRadius: 10.0)
+        let n = SKShapeNode(rect: CGRect(x: 0, y: 0, width : 200, height: -50), cornerRadius: 10.0)
+        n.position = self.convertPoint(fromView: CGPoint(x:0, y:0))
+        
         self.addTestNode(n)
     }
     
@@ -501,10 +504,12 @@ class SceneTest1: SKScene {
         
         // 始点から終点までの４点を指定.
         let p2 = pos2
-        var points = [CGPoint(x:p2.x + length, y: p2.y - length / 2.0),
-                      CGPoint(x:p2.x - length, y: p2.y - length / 2.0),
-                      CGPoint(x: p2.x, y: p2.y + length),
-                      CGPoint(x: p2.x + length, y: p2.y - length / 2.0)]
+
+        let rad = CGFloat.pi / 180
+        var points = [CGPoint(x:p2.x + cos(-30 * rad) * length, y: p2.y + sin(-30 * rad) * length),
+                      CGPoint(x:p2.x + cos(90 * rad)  * length, y: p2.y + sin(90 * rad) * length),
+                      CGPoint(x: p2.x + cos(210 * rad) * length, y: p2.y + sin(210 * rad) * length),
+                      CGPoint(x: p2.x + cos(-30 * rad) * length, y: p2.y + sin(-30 * rad) * length)]
         let n2 = SKShapeNode(points: &points, count: points.count)
         n2.fillColor = .white
         n2.strokeColor = .red
