@@ -616,6 +616,27 @@ func testSequence(_ mode: Int) {
     }
 }
 
+// 日時カレンダー
+func testDatetime(_ mode : Int) {
+    let test = UNTestDate()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    case 3:
+        test.test3()
+    case 4:
+        test.test4()
+    case 5:
+        test.test5()
+    default:
+        break
+    }
+}
+
+
 func testTest1(_ mode : Int) {
     let test = UNTestTest1()
     
@@ -685,6 +706,8 @@ while !breakWhile {
             testList(command.mode)
         case "dic":
             testDictionary(command.mode)
+        case "date":
+            testDatetime(command.mode)
         case "enum":
             testEnum(command.mode)
         case "exception":

@@ -16,11 +16,15 @@ class ScrollViewController: UNViewController, UIScrollViewDelegate {
     var scrollView1 : UIScrollView?
     var label1 : UILabel?
     
-    override func loadView() {
-        // スクリーンと同じサイズのUIViewを生成して viewに設定
-        // これで画面サイズの異なるデバイスでも画面サイズとviewのサイズが一致する
-        self.view = UIView(frame: UIScreen.main.bounds)
-    }
+    @IBOutlet weak var scrollView2: UIScrollView!
+    
+//    @IBOutlet weak var contentView: UIView!
+    
+//    override func loadView() {
+//        // スクリーンと同じサイズのUIViewを生成して viewに設定
+//        // これで画面サイズの異なるデバイスでも画面サイズとviewのサイズが一致する
+//        self.view = UIView(frame: UIScreen.main.bounds)
+//    }
     
     func createScrollView() -> UIScrollView
     {
@@ -38,7 +42,7 @@ class ScrollViewController: UNViewController, UIScrollViewDelegate {
         scrollView.scrollsToTop = false;
         
         // delegateメソッドを使用できるようにする
-        scrollView.delegate = self
+//        scrollView.delegate = self
         
         // スクロール確認用にViewをたくさん追加
         for x in 0 ..< 10 {
@@ -57,19 +61,26 @@ class ScrollViewController: UNViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scrollView1 = createScrollView()
+        scrollView2.delegate = self
+//        scrollView1 = createScrollView()
         
         // ラベル作成
-        label1 = UILabel(frame: CGRect( x: 0, y: 20, width: view.frame.size.width, height: 30))
-        label1!.textColor = .white
-        view.addSubview(label1!)
+//        label1 = UILabel(frame: CGRect( x: 0, y: 20, width: view.frame.size.width, height: 30))
+//        label1!.textColor = .white
+//        view.addSubview(label1!)
+    }
+    
+    // オートレイアウトを使用する場合は viewDidLayoutSubviews でcontentSizeを設定する
+    override func viewDidLayoutSubviews() {
+        scrollView2.contentSize = CGSize(width: 1000, height: 1000)
+        scrollView2.flashScrollIndicators()
     }
     
 // MARK: UIScrollViewDelegate
     
     // スクロール中に呼ばれるメソッド
     func scrollViewDidScroll( _ scrollView: UIScrollView) {
-        //print("\(scrollView.contentOffset.x) :  \(scrollView.contentOffset.y)")
-        label1!.text = String( format:"%.2f %.2f", scrollView.contentOffset.x, scrollView.contentOffset.y)
+        print("\(scrollView.contentOffset.x) :  \(scrollView.contentOffset.y)")
+//        label1!.text = String( format:"%.2f %.2f", scrollView.contentOffset.x, scrollView.contentOffset.y)
     }
 }
