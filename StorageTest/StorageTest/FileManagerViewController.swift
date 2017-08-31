@@ -14,6 +14,8 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
     enum TestMode : Int {
         case write
         case read
+        case write_binary
+        case read_binary
         case createDir
         case deleteFile
         case copyFile
@@ -22,14 +24,45 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
         case createDataFile
     }
     
+    // アプリからアクセスできるディレクトリ
+    enum DirectoryType : String{
+        case Document = "/Documents"        // ユーザーデータ用
+        case Library = "/Library"           // ユーザーデータ以外
+        case CachesDirectory = "/Library/Caches"   // キャッシュ
+        
+        // ディレクトリのパスを取得する
+        public func toString() -> String {
+            var searchDir : FileManager.SearchPathDirectory? = nil
+            
+            switch self {
+            case .Document:
+                searchDir = FileManager.SearchPathDirectory.documentDirectory
+                break
+            case .Library:
+                searchDir = FileManager.SearchPathDirectory.documentDirectory
+                break
+            case .CachesDirectory:
+                searchDir = FileManager.SearchPathDirectory.documentDirectory
+                break
+            }
+            
+            if searchDir == nil {
+                return ""
+            }
+            return (NSSearchPathForDirectoriesInDomains( searchDir!, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?)!
+        }
+    }
+    
     @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var textView1: UITextView!
     
     var testMode : TestMode = .write
     
     fileprivate let pickerData : [String] = [
-        "ファイル書き込み",
-        "ファイル読み込み",
+        "ファイル書き込み(テキスト)",
+        "ファイル読み込み(テキスト)",
+        "ファイル書き込み(バイナリ)",
+        "ファイル読み込み(バイナリ)",
         "フォルダ作成",
         "ファイル削除",
         "ファイルコピー",
@@ -54,18 +87,17 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
         textView1.resignFirstResponder()
     }
     
+    
     // ファイルを作成
     func createFile(_ fileName : String) {
         // Documentsフォルダを読み込む
-        if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        {
-
-            let writeData = "hogehoge".data(using: String.Encoding.utf8)
-            let filePath = dir + "/" + fileName
-            FileManager.default.createFile( atPath: filePath, contents: writeData, attributes: nil)
-            
-            textView1.text = "create binary file \(fileName)"
-        }
+        let dir = DirectoryType.Document.toString()
+        
+        let writeData = "hogehoge".data(using: String.Encoding.utf8)
+        let filePath = dir + "/" + fileName
+        FileManager.default.createFile( atPath: filePath, contents: writeData, attributes: nil)
+        
+        textView1.text = "create binary file \(fileName)"
     }
     
     // Documents以下のファイルにテキストを書き込む
@@ -74,19 +106,40 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
         let text = writeText //保存する内容
         
         // Documentsフォルダを読み込む
-        if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        {
-            print(dir + "/" + filePath)
-            let filePath = dir + "/" + file_name
+        let dir = DirectoryType.Document.toString()
+        
+        print(dir + "/" + filePath)
+        
+        let filePath = dir + "/" + file_name
+        
+        do {
+            // ファイルに書き込む
+            try text.write( toFile: filePath, atomically: false, encoding: String.Encoding.utf8 )
             
-            do {
-                // ファイルに書き込む
-                try text.write( toFile: filePath, atomically: false, encoding: String.Encoding.utf8 )
-                
-            } catch {
-                //エラー処理
-            }
+        } catch {
+            //エラー処理
         }
+    }
+    
+    // バイナリファイルにデータを書き込む
+    func writeToBinFile(file filePath : String, data : Data) {
+//        let file_name = filePath
+//        let text = writeText //保存する内容
+//        
+//        // Documentsフォルダを読み込む
+//        let dir = DirectoryType.Document.toString()
+//        
+//        print(dir + "/" + filePath)
+//        
+//        let filePath = dir + "/" + file_name
+//        
+//        do {
+//            // ファイルに書き込む
+//            try text.write( toFile: filePath, atomically: false, encoding: String.Encoding.utf8 )
+//            
+//        } catch {
+//            //エラー処理
+//        }
     }
     
     // Documents以下の指定のファイルを読み込む
@@ -94,57 +147,54 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
         let file_name = filePath
         
         // Documentsフォルダを読み込む
-        if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        {
-            let path_file_name = dir + "/" + file_name
+        let dir = DirectoryType.Document.toString()
+        
+        let path_file_name = dir + "/" + file_name
+        
+        do {
             
-            do {
-                
-                let text = try NSString( contentsOfFile: path_file_name, encoding: String.Encoding.utf8.rawValue )
-                return String(text)
-            } catch {
-                //エラー処理
-            }
+            let text = try NSString( contentsOfFile: path_file_name, encoding: String.Encoding.utf8.rawValue )
+            return String(text)
+        } catch {
+            //エラー処理
         }
+    
         return nil
     }
     
     // Documents以下にフォルダを作成する
     func createDirByName(_ dirName : String)
     {
-        if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        {
-            let createPath = dir + "/" + dirName    // 作成するディレクトリ名を含んだフルパス
-            
-            do {
-                // フォルダがすでにあるかどうかをチェック
-                var isDir : ObjCBool = false
-                if FileManager.default.fileExists(atPath: createPath,
-                                                  isDirectory: &isDir) == false
-                {
-                    try FileManager.default.createDirectory(atPath: createPath, withIntermediateDirectories: true, attributes: nil)
-                }
-            } catch {
-                // Failed to wite folder
+        let dir = DirectoryType.Document.toString()
+        let createPath = dir + "/" + dirName    // 作成するディレクトリ名を含んだフルパス
+        
+        do {
+            // フォルダがすでにあるかどうかをチェック
+            var isDir : ObjCBool = false
+            if FileManager.default.fileExists(atPath: createPath,
+                                              isDirectory: &isDir) == false
+            {
+                try FileManager.default.createDirectory(atPath: createPath, withIntermediateDirectories: true, attributes: nil)
             }
-            textView1.text = "create dir \(createPath)"
+        } catch {
+            // Failed to wite folder
         }
+        textView1.text = "create dir \(createPath)"
     }
     
     // ファイル削除
     func deleteFile(_ fileName : String) {
-        if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        {
-            let filePath = dir + "/" + fileName
-            do {
-                try FileManager.default.removeItem(atPath: filePath)
-            }
-            catch {
-                // Failed
-                textView1.text = "failed to delete file"
-            }
-            textView1.text = "delete \(filePath)"
+        let dir = DirectoryType.Document.toString()
+        
+        let filePath = dir + "/" + fileName
+        do {
+            try FileManager.default.removeItem(atPath: filePath)
         }
+        catch {
+            // Failed
+            textView1.text = "failed to delete file"
+        }
+        textView1.text = "delete \(filePath)"
     }
     
     // ファイル移動 src -> dst
@@ -165,43 +215,42 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
     
     // ファイルコピー
     func copyFile(_ srcFile : String, dstFile : String) {
-        if let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        {
-            let srcPath = dir + "/" + srcFile
-            let dstPath = dir + "/" + dstFile
-            do {
-                try FileManager.default.copyItem(atPath: srcPath, toPath: dstPath)
-            }
-            catch {
-                // Failed
-                textView1.text = "failed to delete file"
-            }
+        
+        let dir = DirectoryType.Document.toString()
+        
+        let srcPath = dir + "/" + srcFile
+        let dstPath = dir + "/" + dstFile
+        do {
+            try FileManager.default.copyItem(atPath: srcPath, toPath: dstPath)
+        }
+        catch {
+            // Failed
+            textView1.text = "failed to delete file"
         }
     }
     
     // Documentsディレクトリ内のファイルを一覧表示
     func showFileList() {
-        
-        let dir = NSSearchPathForDirectoriesInDomains( FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?
-        do{
-            let files = try FileManager.default.contentsOfDirectory(atPath: dir!)
+        let dir = DirectoryType.Document.toString()
+
+        do {
+            let files = try FileManager.default.contentsOfDirectory(atPath: dir)
             var text = ""
             for path in files {
                 var isDir : ObjCBool = false
-                FileManager.default.fileExists(atPath: dir! + "/" + path, isDirectory: &isDir)
+                FileManager.default.fileExists(atPath: dir + "/" + path, isDirectory: &isDir)
                 // フォルダ
                 if isDir.boolValue {
                     text += "[\(path)]\n"
                 } else {
                     text += path + "\n"
                 }
-                let result = FileManager.default.fileExists(atPath: dir! + "/" + path)
-                print(result)
+                let result = FileManager.default.fileExists(atPath: dir + "/" + path)
+                print(text)
             }
             textView1.text = text
         }
         catch {
-            
         }
     }
     
@@ -268,6 +317,11 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
             if let _text = text {
                 textView1.text = _text
             }
+        case .write_binary:
+//            writeToBinFile(file: "hoge.bin", writeData: data)
+            break
+        case .read_binary:
+            break
         case .createDir:
             createDirByName("mydir")
         case .deleteFile:
@@ -280,8 +334,6 @@ class FileManagerViewController: UNViewController, UITableViewDelegate, UITableV
             showFileList()
         case .createDataFile:
             createFile("hoge.dat")
-        default:
-            break
         }
     }
 }

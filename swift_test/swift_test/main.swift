@@ -652,6 +652,18 @@ func testTest1(_ mode : Int) {
     }
 }
 
+func testByteBuffer(_ mode : Int) {
+    let test = UNTestByteBuffer()
+    
+    switch mode {
+    case 1:
+        test.test1()
+    case 2:
+        test.test2()
+    default:
+        break
+    }
+}
 
 /*
  * コンソールでユーザーの入力を取得する
@@ -688,6 +700,8 @@ while !breakWhile {
     switch command.name {
         case "basis":
             testBasis(command.mode)
+        case "bb":
+            testByteBuffer(command.mode)
         case "cast":
             testClassCast(command.mode)
         case "class":

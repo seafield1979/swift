@@ -22,7 +22,20 @@ class UNTestTest1 {
     }
     
     func test2() {
+        // 変数のオーバーフローテスト
+        // Swiftでは変数の範囲に収まらない値を入れようとした時に、自動で値の切り捨てを行わず
+        // 例が発生する
+//        let i : Int8 = 128        Int8 の範囲は -128~127なのでコンパイルエラー
         
+//        var i1 : Int8 = 127
+//        i1 += 1      // これもコンパイルエラー
+        
+//        let i1 : UInt8 = 100
+//        let i2 : Int8 = i1       UInt8の値を Int8の変数に代入不可
+        
+//        let i1 : Int = UInt8(0xff) << 8     これもだめ。UInt8を左シフトすると UInt8の範囲外になる
+        
+//        print( String(format: "%d", i1))
     }
     
     func test3() {

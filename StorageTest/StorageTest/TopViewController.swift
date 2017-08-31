@@ -9,7 +9,19 @@
 import UIKit
 
 class TopViewController: UNViewController {
-    let titles : [String] = ["userDefault", "fileManager", "CoreData", "AppResource"]
+    let titles : [String] = [
+        "userDefault",
+        "fileManager",
+        "fileManager2",
+        "CoreData",
+        "AppResource"]
+    
+    // button id
+    private let buttonIdUserDefault = 1
+    private let buttonIdFileManager = 2
+    private let buttonIdFileManager2 = 3
+    private let buttonIdCoreData = 4
+    private let buttonIdAppResource = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,33 +32,39 @@ class TopViewController: UNViewController {
             y : 0, count : titles.count,
             lineCount: 1, texts: titles, tagId: 1,
             selector: #selector(self.tappedButton(_:)))
-        
     }
     
 
     // ボタンが押された時の処理
     func tappedButton(_ sender: AnyObject) {
+        
+        var viewController : UIViewController?
         switch sender.tag {
-        case 1:
-            let viewController = UserDefaultViewController(nibName: "UserDefaultViewController", bundle: nil)
-            self.navigationController?.pushViewController(viewController, animated: true)
-
-        case 2:
-            let viewController = FileManagerViewController(nibName:"FileManagerViewController", bundle: nil)
-            self.navigationController?.pushViewController(viewController, animated: true)
-
-        case 3:
-            let viewController = MemoStoreViewController(nibName:"MemoStoreViewController", bundle: nil)
-            self.navigationController?.pushViewController(viewController, animated: true)
-
-        case 4:
-            let viewController = ViewControllerResource(nibName:"ViewControllerResource", bundle: nil)
-            self.navigationController?.pushViewController(viewController, animated: true)
+        case buttonIdUserDefault:
+            viewController = UserDefaultViewController(nibName: "UserDefaultViewController", bundle: nil)
+            
+        case buttonIdFileManager:
+            viewController = FileManagerViewController(nibName:"FileManagerViewController", bundle: nil
+            )
+            
+            
+        case buttonIdFileManager2:
+            viewController = FileManager2ViewController(nibName:"FileManager2ViewController", bundle: nil)
+            
+        case buttonIdCoreData:
+            viewController = MemoStoreViewController(nibName:"MemoStoreViewController", bundle: nil)
+        case buttonIdAppResource:
+            viewController = ViewControllerResource(nibName:"ViewControllerResource", bundle: nil)
             
         default:
             print("other fruit")
             break
         }
+        
+        if let vc = viewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
 
 }

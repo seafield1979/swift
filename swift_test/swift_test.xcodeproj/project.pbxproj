@@ -35,6 +35,8 @@
 		8A0D6F971F3099C2002A1949 /* fish.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F961F307D59002A1949 /* fish.csv */; };
 		8A0D6F9C1F30A361002A1949 /* text1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F9B1F30A17C002A1949 /* text1.txt */; };
 		8A0D6F9F1F30A488002A1949 /* text1.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A0D6F9B1F30A17C002A1949 /* text1.txt */; };
+		8A159EB61F57CDCD0066FEB5 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A159EB51F57CDCD0066FEB5 /* ByteBuffer.swift */; };
+		8A159EB81F57CDFF0066FEB5 /* test_bytebuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A159EB71F57CDFF0066FEB5 /* test_bytebuffer.swift */; };
 		8A1C16741D7803A0004824CB /* test_tuple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C16731D7803A0004824CB /* test_tuple.swift */; };
 		8A1C2B311F0FC40A005483ED /* test_timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B301F0FC40A005483ED /* test_timer.swift */; };
 		8A1C2B841F13220D005483ED /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1C2B831F13220D005483ED /* List.swift */; };
@@ -115,6 +117,8 @@
 		8A0D6F931F307536002A1949 /* test_test1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_test1.swift; sourceTree = "<group>"; };
 		8A0D6F961F307D59002A1949 /* fish.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = fish.csv; path = swift_test/resource/fish.csv; sourceTree = "<group>"; };
 		8A0D6F9B1F30A17C002A1949 /* text1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = text1.txt; path = swift_test/resource/text1.txt; sourceTree = "<group>"; };
+		8A159EB51F57CDCD0066FEB5 /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ByteBuffer.swift; path = swift_test/Util/ByteBuffer.swift; sourceTree = "<group>"; };
+		8A159EB71F57CDFF0066FEB5 /* test_bytebuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_bytebuffer.swift; sourceTree = "<group>"; };
 		8A1C16731D7803A0004824CB /* test_tuple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_tuple.swift; sourceTree = "<group>"; };
 		8A1C2B301F0FC40A005483ED /* test_timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = test_timer.swift; sourceTree = "<group>"; };
 		8A1C2B831F13220D005483ED /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 				7947EC401A7D18220038B8BD /* test_array.swift */,
 				5872284D1AAF0F9400F2C430 /* test_dictionary.swift */,
 				7947EC441A7D1DBB0038B8BD /* test_basis.swift */,
+				8A159EB71F57CDFF0066FEB5 /* test_bytebuffer.swift */,
 				8A3D36391D754137003528A0 /* test_cgvalue.swift */,
 				793762571A7A626400196768 /* test_class.swift */,
 				580F88621AA882CA0047FDFA /* test_class_advance.swift */,
@@ -248,6 +253,7 @@
 			children = (
 				8A1C2B831F13220D005483ED /* List.swift */,
 				8A05FE661F152550008C33EC /* EnumEnumerable.swift */,
+				8A159EB51F57CDCD0066FEB5 /* ByteBuffer.swift */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -366,8 +372,10 @@
 				8A63EE6E1D7EF25C006266C5 /* test_exception.swift in Sources */,
 				8A6D49241F2E171400E72D1E /* test_class_advance2.swift in Sources */,
 				7947EC3F1A7D0CD10038B8BD /* test_function.swift in Sources */,
+				8A159EB61F57CDCD0066FEB5 /* ByteBuffer.swift in Sources */,
 				589388A81AE63040009E0A2A /* test_overload_operator.swift in Sources */,
 				582802591A9DFA8B00246C41 /* Array+Display.swift in Sources */,
+				8A159EB81F57CDFF0066FEB5 /* test_bytebuffer.swift in Sources */,
 				7947EC411A7D18220038B8BD /* test_array.swift in Sources */,
 				58AF37041AE0EBD300F6F687 /* test_protocol.swift in Sources */,
 			);

@@ -18,6 +18,9 @@
 		8A0D6F8C1F302BD9002A1949 /* ViewControllerResource.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F8A1F302BD9002A1949 /* ViewControllerResource.xib */; };
 		8A0D6F8E1F3035A1002A1949 /* data1.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8A0D6F8D1F3035A1002A1949 /* data1.bin */; };
 		8A0D6F921F306A5E002A1949 /* CsvParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0D6F911F306A5E002A1949 /* CsvParser.swift */; };
+		8A159EB11F57A2B80066FEB5 /* FileManager2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A159EAF1F57A2B80066FEB5 /* FileManager2ViewController.swift */; };
+		8A159EB21F57A2B80066FEB5 /* FileManager2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A159EB01F57A2B80066FEB5 /* FileManager2ViewController.xib */; };
+		8A159EB41F57B8190066FEB5 /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A159EB31F57B8190066FEB5 /* ByteBuffer.swift */; };
 		8A54CCB11D7E4A13009BBB38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CCB01D7E4A13009BBB38 /* AppDelegate.swift */; };
 		8A54CCB91D7E4A13009BBB38 /* StorageTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8A54CCB71D7E4A13009BBB38 /* StorageTest.xcdatamodeld */; };
 		8A54CCBB1D7E4A13009BBB38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A54CCBA1D7E4A13009BBB38 /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 		8A0D6F8A1F302BD9002A1949 /* ViewControllerResource.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewControllerResource.xib; sourceTree = "<group>"; };
 		8A0D6F8D1F3035A1002A1949 /* data1.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = data1.bin; path = StorageTest/Resouce/data1.bin; sourceTree = "<group>"; };
 		8A0D6F911F306A5E002A1949 /* CsvParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CsvParser.swift; sourceTree = "<group>"; };
+		8A159EAF1F57A2B80066FEB5 /* FileManager2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager2ViewController.swift; sourceTree = "<group>"; };
+		8A159EB01F57A2B80066FEB5 /* FileManager2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileManager2ViewController.xib; sourceTree = "<group>"; };
+		8A159EB31F57B8190066FEB5 /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ByteBuffer.swift; path = StorageTest/Util/ByteBuffer.swift; sourceTree = "<group>"; };
 		8A54CCAD1D7E4A13009BBB38 /* StorageTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StorageTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A54CCB01D7E4A13009BBB38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A54CCB81D7E4A13009BBB38 /* StorageTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StorageTest.xcdatamodel; sourceTree = "<group>"; };
@@ -77,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				8A0D6F7E1F3019D5002A1949 /* UIViewUtil.swift */,
+				8A159EB31F57B8190066FEB5 /* ByteBuffer.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -160,6 +167,8 @@
 			children = (
 				8A54CCCC1D7E5DC2009BBB38 /* FileManagerViewController.swift */,
 				8A54CCCD1D7E5DC2009BBB38 /* FileManagerViewController.xib */,
+				8A159EAF1F57A2B80066FEB5 /* FileManager2ViewController.swift */,
+				8A159EB01F57A2B80066FEB5 /* FileManager2ViewController.xib */,
 			);
 			name = FileManager;
 			sourceTree = "<group>";
@@ -251,6 +260,7 @@
 				8A0D6F8C1F302BD9002A1949 /* ViewControllerResource.xib in Resources */,
 				8A54CCCF1D7E5DC2009BBB38 /* FileManagerViewController.xib in Resources */,
 				8A54CCCB1D7E4F96009BBB38 /* UserDefaultViewController.xib in Resources */,
+				8A159EB21F57A2B80066FEB5 /* FileManager2ViewController.xib in Resources */,
 				8A0D6F8E1F3035A1002A1949 /* data1.bin in Resources */,
 				8A0D6F851F302A5B002A1949 /* text1.txt in Resources */,
 				8A0D6F871F302A5B002A1949 /* text3.txt in Resources */,
@@ -269,9 +279,11 @@
 				8A0D6F791F30195F002A1949 /* TopViewController.swift in Sources */,
 				8A54CCCA1D7E4F96009BBB38 /* UserDefaultViewController.swift in Sources */,
 				8A63EE711D7F8F50006266C5 /* MemoStoreViewController.swift in Sources */,
+				8A159EB11F57A2B80066FEB5 /* FileManager2ViewController.swift in Sources */,
 				8A63EE931D7FD24F006266C5 /* PersonStore.swift in Sources */,
 				8A0D6F7F1F3019D5002A1949 /* UIViewUtil.swift in Sources */,
 				8A54CCB11D7E4A13009BBB38 /* AppDelegate.swift in Sources */,
+				8A159EB41F57B8190066FEB5 /* ByteBuffer.swift in Sources */,
 				8A63EE921D7FD24F006266C5 /* PersonStore+CoreDataProperties.swift in Sources */,
 				8A63EE8F1D7FB12B006266C5 /* MemoStore.swift in Sources */,
 				8A63EE8E1D7FB12B006266C5 /* MemoStore+CoreDataProperties.swift in Sources */,

@@ -71,7 +71,19 @@ public class UNTestDate {
         
     }
 
+    // Dateから年月日等の各要素を取得する
     public func test3() {
+        let date = Date()
+        
+        let cal : Calendar = Calendar(identifier: .gregorian)       // グレゴリアン歴のカレンダー
+        let year = cal.component(.year, from: date)
+        let month = cal.component(.month, from: date)
+        let day = cal.component(.day, from: date)
+        let hour = cal.component(.hour, from: date)
+        let min = cal.component(.minute, from: date)
+        let sec = cal.component(.second, from: date)
+        
+        print( String(format: "%d/%d/%d %d:%d:%d", year, month, day, hour, min, sec))
         
     }
 
