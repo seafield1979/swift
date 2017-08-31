@@ -10,10 +10,47 @@ import Foundation
 
 typealias Byte = UInt8
 
+extension UInt {
+    func toInt() -> Int {
+        return Int(bitPattern: self)
+    }
+}
+
+extension UInt16 {
+    func toInt16() -> Int16 {
+        return Int16(bitPattern: self)
+    }
+    
+}
+extension UInt8 {
+    func toInt8() -> Int8 {
+        return Int8(bitPattern: self)
+    }
+}
+
+extension Int {
+    func toUInt() -> UInt {
+        return UInt(bitPattern: self)
+    }
+}
+
+extension Int16 {
+    func toUInt16() -> UInt16 {
+        return UInt16(bitPattern: self)
+    }
+}
+
+extension Int8 {
+    func toUInt8() -> UInt8 {
+        return UInt8(bitPattern: self)
+    }
+}
+
 
 class ByteBuffer {
     // MARK: Constants
     private let BUF_SIZE = 1024
+    private let DATE_SIZE = 7
     
     // MARK: Properties
     private var data : [Byte]
@@ -95,9 +132,9 @@ class ByteBuffer {
         // big endian
         data[pos] = Byte(i >> 24)
         pos += 1
-        data[pos] = Byte(i >> 16)
+        data[pos] = Byte((i >> 16) & 0xff)
         pos += 1
-        data[pos] = Byte(i >> 8)
+        data[pos] = Byte((i >> 8) & 0xff)
         pos += 1
         data[pos] = Byte(i & 0xff)
         pos += 1
@@ -140,7 +177,7 @@ class ByteBuffer {
         }
     }
     
-    public func writeDate(date : Date?) {
+    public func putDate(date : Date?) {
         if let _date = date {
             let cal : Calendar = Calendar(identifier: .gregorian)
             putShort( Int16(cal.component(.year, from: _date)))
@@ -151,55 +188,145 @@ class ByteBuffer {
             putByte( Byte(cal.component(.second, from: _date)))
         } else {
             // 全て0で書き込み
-            write(repeating: 0, count: 7)
+            write(repeating: 0, count: DATE_SIZE)
         }
     }
     
     // write string
-    public func writeString(str : String) {
-        let data = toByteArray(str)
+    public func putString(str : String) {
+        let data = [UInt8](str.utf8)
         write(data)
+        putByte(0)      // last nil(=0)
     }
     
     // write string count (4byte) and string
-    public func writeStringWithSize(str : String) {
-        let data = toByteArray(str)
+    public func putStringWithSize(str : String) {
+        let data = [UInt8](str.utf8)
         putInt(data.count)
         write(data)
     }
     
     // MARK: get
-    // get signed 8bit data
+    // get Byte (= UInt8)
     public func getByte() -> Byte {
-        let ret = data[pos]
+        return getUInt8()
+    }
+    
+    // get UInt8
+    public func getUInt8() -> UInt8 {
+        let ret : Byte = data[pos]
         pos += 1
         return ret
     }
     
-    // get signed 16bit data
+    // get Int8
+    public func getInt8() -> Int8 {
+        let ret : UInt8 = data[pos]
+        pos += 1
+        return ret.toInt8()
+    }
+    
+    // get Short( = Int16)
     public func getShort() -> Int16 {
-        let ret = Int16((Int(data[pos]) << 8) | Int(data[pos + 1]))
+        return getInt16()
+    }
+    
+    // get Int16
+    public func getInt16() -> Int16 {
+        let ret = UInt16((Int(data[pos]) << 8) | Int(data[pos + 1]))
+        pos += 2
+        return ret.toInt16()
+    }
+    
+    // get UInt16
+    public func getUInt16() -> UInt16 {
+        let ret = UInt16((Int(data[pos]) << 8) | Int(data[pos + 1]))
         pos += 2
         return ret
     }
     
-    // get signed 32bit data
+    // get Int (signed 32bit)
     public func getInt() -> Int {
-        let ret = UInt32( (UInt32(data[pos]) << 24) |
-            (UInt32(data[pos + 1]) << 16) |
-            (UInt32(data[pos + 2]) << 8) |
-            (UInt32(data[pos + 3])))
-        pos += 4
-        return Int(ret)
+        return getUInt().toInt()
     }
     
-    // get float data
+    // get UInt (unsigned 32bit)
+    public func getUInt() -> UInt {
+        let ret = UInt( (UInt(data[pos]) << 24) |
+            (UInt(data[pos + 1]) << 16) |
+            (UInt(data[pos + 2]) << 8) |
+            (UInt(data[pos + 3])))
+        pos += 4
+        return ret
+    }
+    
+    // get Float
     public func getFloat() -> Float {
         let _data = Array(data[pos..<pos+4])
         let ret : Float = fromByteArray(_data,  Float.self)
         pos += 4
         return ret
     }
+    
+    // get String (end of String is nil)
+    public func getStringWithNil() -> String {
+        var buf : [Byte] = []
+        
+        while data[pos] != 0 {
+            buf.append( data[pos] )
+            pos += 1
+        }
+        pos += 1    // add nil
+        
+        if let string = String(data: Data(buf), encoding: .utf8) {
+            return string
+        }
+        return ""
+    }
+    
+    // get String (first 4byte is string size)
+    public func getStringWithSize() -> String {
+        let size = getInt()
+        
+        let buf = data[pos ..< pos+size]
+        pos += size
+        
+        if let string = String(data: Data(buf), encoding: .utf8) {
+            return string
+        }
+        return ""
+    }
+    
+    // get Date
+    public func getDate() -> Date {
+        let year = Int(getShort())
+        let month = Int(getByte())
+        let day = Int(getByte())
+        let hour = Int(getByte())
+        let min = Int(getByte())
+        let sec = Int(getByte())
+        
+        let calendar : Calendar = Calendar(identifier: .gregorian)
+        let date : Date = (calendar.date(from: DateComponents(
+            year: year, month: month, day: day, hour: hour, minute: min, second: sec)))!
+        
+        return date
+    }
+    //    public func putDate(date : Date?) {
+    //        if let _date = date {
+    //            let cal : Calendar = Calendar(identifier: .gregorian)
+    //            putShort( Int16(cal.component(.year, from: _date)))
+    //            putByte( Byte(cal.component(.month, from: _date)))
+    //            putByte( Byte(cal.component(.day, from: _date)))
+    //            putByte( Byte(cal.component(.hour, from: _date)))
+    //            putByte( Byte(cal.component(.minute, from: _date)))
+    //            putByte( Byte(cal.component(.second, from: _date)))
+    //        } else {
+    //            // 全て0で書き込み
+    //            write(repeating: 0, count: 7)
+    //        }
+    //    }
+    
     
     public var description : String {
         get {
