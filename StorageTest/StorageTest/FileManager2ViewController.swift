@@ -20,7 +20,7 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         case read4
     }
     
-    private static let fileName = "hoge.bin"
+    private let fileName = "hoge.bin"
     
     // アプリからアクセスできるディレクトリ
     enum DirectoryType : String{
@@ -104,16 +104,16 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
     /*
      セクションのタイトルを返す.
      */
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "section"
-    }
+//    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "section"
+//    }
     
     /**
      セクションセルの高さを返す
      */
-    var sectionHeaderHeight: CGFloat {
-        return 30
-    }
+//    var sectionHeaderHeight: CGFloat {
+//        return 30
+//    }
     
     // 指定のセクション(section:)のセルの数を返す
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -160,23 +160,42 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
             readData2()
             break
         case .read3:
+            readData3()
             break
         case .read4:
+            readData4()
             break
         }
     }
     
+    func writeToFile(id: Int, data : Data) -> String{
+        // ファイルに書き込む
+        let dir = DirectoryType.Document.toString()
+        let filePath = dir + "/" + "hoge\(id).bin"
+        FileManager.default.createFile( atPath: filePath, contents: data, attributes: nil)
+        
+        return filePath
+    }
+    
+    func readFromFile(id: Int) -> Data? {
+        let dir : String = DirectoryType.Document.toString()
+        let dataURL = URL(fileURLWithPath: dir + "/hoge\(id).bin")
+        var binaryData : Data? = nil
+        do {
+            binaryData = try Data(contentsOf: dataURL, options: [])
+        } catch {
+            print("error file read")
+        }
+        return binaryData
+    }
+    
     // テキストファイルをバイナリで保存
     func writeData1() {
-        // Documentsフォルダを読み込む
-        let dir : String = DirectoryType.Document.toString()
-        
         let writeData = "hogehoge".data(using: String.Encoding.utf8)
-        let filePath = dir + "/" + FileManager2ViewController.fileName
-        FileManager.default.createFile( atPath: filePath, contents: writeData, attributes: nil)
         
-        textView1.text = "create binary file \(FileManager2ViewController.fileName)"
+        let path = writeToFile(id: 1, data: writeData!)
         
+        textView1.text = "create binary file \(path)"
     }
     
     // いろいろなサイズのバイナリデータを書き込む
@@ -188,69 +207,116 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         buf.putUInt32(3333333)
         buf.putFloat(4.0)
         
-        let dir = DirectoryType.Document.toString()
-        let filePath = dir + "/" + FileManager2ViewController.fileName
-        FileManager.default.createFile( atPath: filePath, contents: Data(buf.array()), attributes: nil)
+        let path = writeToFile(id: 2, data: Data(buf.array()))
         
-        textView1.text = "write to \(FileManager2ViewController.fileName)"
+        textView1.text = "write to \(path) size:\(buf.array().count)"
     }
+    
+    // DateとStringを書き込み
     func writeData3() {
+        let buf : ByteBuffer = ByteBuffer()
+
+        // 書き込みデータを生成
+        buf.putDate(date: Date())
+        buf.putString(str: "hogehoge")
+        buf.putStringWithSize(str: "hogehoge2")
+
+        // ファイルに書き込む
+        let path = writeToFile(id: 3, data: Data(buf.array()))
         
+        textView1.text = "write to \(path) size:\(buf.array().count)"
     }
+    
+    // 大量のデータを書き込み
     func writeData4() {
+        let buf: ByteBuffer = ByteBuffer()
         
+        // データ書き込み
+        for i in 0..<1000 {
+            buf.putInt(i+1)
+        }
+        
+        let path = writeToFile(id: 4, data: Data(buf.array()))
+        textView1.text = "write to \(path) size:\(buf.array().count)"
     }
     
     // バイナリファイル(fileName)を読み込み16進数で表示する
     func readData1() {
-        
-        do {
-            let dir : String = DirectoryType.Document.toString()
-            
-            let dataURL = URL(fileURLWithPath: dir + "/" + FileManager2ViewController.fileName)
-            
-            // ファイル読み込み
-            let binaryData = try Data(contentsOf: dataURL, options: [])
-            
-            // 先頭から32バイトを抽出。
-            let kbData : Data
-            if binaryData.count < 32 {
-                kbData = binaryData
-            } else {
-                kbData = binaryData.subdata(in: 0..<1024)
-            }
-            
-            // 各バイトを16進数の文字列に変換。
-            let stringArray = kbData.map{String(format: "%02X", $0)}
-            
-            // ハイフォンで16進数を結合する。
-            let binaryString = stringArray.joined(separator: "-")
-            print(binaryString)
-        } catch let error as NSError {
-            print("Failed to read the file." + error.localizedDescription)
+        // ファイル読み込み
+        let binaryData = readFromFile(id: 1)
+        if binaryData == nil {
+            return
         }
+        
+        // 先頭から32バイトを抽出。
+        let kbData : Data
+        if binaryData!.count < 32 {
+            kbData = binaryData!
+        } else {
+            kbData = binaryData!.subdata(in: 0..<1024)
+        }
+        
+        // 各バイトを16進数の文字列に変換。
+        let stringArray = kbData.map{String(format: "%02X", $0)}
+        
+        // ハイフォンで16進数を結合する。
+        let binaryString = stringArray.joined(separator: "-")
+        print(binaryString)
+        
+        textView1.text = binaryString
     }
     
     func readData2() {
-        do {
-            let dir : String = DirectoryType.Document.toString()
-            
-            let dataURL = URL(fileURLWithPath: dir + "/" + FileManager2ViewController.fileName)
-            
-            // ファイル読み込み
-            let binaryData : Data = try Data(contentsOf: dataURL, options: [])
-            let buf = ByteBuffer(buf: [Byte](binaryData))
-            
-            // 取り出す
-            let b : Int8 = buf.getInt8()
-            let s : Int16 = buf.getShort()
-            let i : Int = buf.getInt()
-            let f : Float = buf.getFloat()
-            print( String(format: "%d %d %d %f", b, s, i, f))
-            
-        } catch let error as NSError {
-            print("Failed to read the file." + error.localizedDescription)
+        let binaryData = readFromFile(id: 2)
+        if binaryData == nil {
+            return
         }
+
+        let buf = ByteBuffer(buf: [Byte](binaryData!))
+        
+        // 取り出す
+        let b : Int8 = buf.getInt8()
+        let s : Int16 = buf.getShort()
+        let i : Int = buf.getInt()
+        let f : Float = buf.getFloat()
+        
+        textView1.text = String(format: "%d %d %d %f", b, s, i, f)
+    }
+    
+    func readData3() {
+        let binaryData = readFromFile(id: 3)
+        if binaryData == nil {
+            return
+        }
+
+        // ByteBufferに渡す
+        let buf = ByteBuffer(buf: [Byte](binaryData!))
+        
+        // データを取り出す
+        let date = buf.getDate()
+        let str1 = buf.getStringWithNil()
+        let str2 = buf.getStringWithSize()
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        textView1.text = String(format: "%@ %@ %@", df.string(from: date), str1, str2)
     }
 
+    func readData4() {
+        let binaryData = readFromFile(id: 4)
+        if binaryData == nil {
+            return
+        }
+
+        // ByteBufferに渡す
+        let buf = ByteBuffer(buf: [Byte](binaryData!))
+        
+        // データを取り出す
+        var str : String = ""
+        for i in 0..<1000 {
+            str.append("\(i) : \(buf.getInt()) ")
+        }
+        textView1.text = str
+    }
 }

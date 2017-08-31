@@ -5,7 +5,6 @@
 //  Created by Shusuke Unno on 2017/08/31.
 //  Copyright © 2017年 Shusuke Unno. All rights reserved.
 //
-
 import Foundation
 
 typealias Byte = UInt8
@@ -53,7 +52,7 @@ class ByteBuffer {
     private let DATE_SIZE = 7
     
     // MARK: Properties
-    private var data : [Byte]
+    private var data : [Byte] = []
     private var pos : Int = 0
     private var maxSize : Int = 0
     
@@ -64,7 +63,7 @@ class ByteBuffer {
     
     // get byte array
     public func array() -> [Byte] {
-        return Array(data.prefix(pos))
+        return data
     }
     
     // set current read/write position
@@ -78,18 +77,17 @@ class ByteBuffer {
     
     // MARK: Initializer
     public init() {
-        data = Array(repeating: 0, count: BUF_SIZE)
-        maxSize = data.count
+        data = []
     }
     
     public init(buf : [Byte]) {
         self.data = buf
-        maxSize = data.count
+        pos = 0
     }
     
     public init(data : Data) {
         self.data = [Byte](data)
-        maxSize = data.count
+        pos = 0
     }
     
     // MARK: Public Methods
@@ -97,19 +95,16 @@ class ByteBuffer {
     // MARK: put
     // put Byte (unsigned 8bit) data
     public func put(_ b : Byte) {
-        data[pos] = b
-        pos += 1
+        data.append(b)
     }
     
     public func putByte(_ b: Byte) {
-        data[pos] = b
-        pos += 1
+        data.append(b)
     }
     
     // put signed 8bit data
     public func put(_ b : Int8) {
-        data[pos] = Byte(b)
-        pos += 1
+        data.append(Byte(b))
     }
     
     // put Short(signed 16bit) data
@@ -125,10 +120,8 @@ class ByteBuffer {
     // put unsigned 16bit data
     public func putUInt16(_ s : UInt16) {
         // big endian
-        data[pos] = Byte(s >> 8)
-        pos += 1
-        data[pos] = Byte(s & 0xff)
-        pos += 1
+        data.append(Byte(s >> 8))
+        data.append(Byte(s & 0xff))
     }
     
     // put Int (signed 32bit) data
@@ -144,14 +137,10 @@ class ByteBuffer {
     // put unsigned 32bit data
     public func putUInt32(_ i : UInt32) {
         // big endian
-        data[pos] = Byte(i >> 24)
-        pos += 1
-        data[pos] = Byte((i >> 16) & 0xff)
-        pos += 1
-        data[pos] = Byte((i >> 8) & 0xff)
-        pos += 1
-        data[pos] = Byte(i & 0xff)
-        pos += 1
+        data.append(Byte(i >> 24))
+        data.append(Byte((i >> 16) & 0xff))
+        data.append(Byte((i >> 8) & 0xff))
+        data.append(Byte(i & 0xff))
     }
     
     public func put<T>( _ data : T) {
@@ -170,8 +159,7 @@ class ByteBuffer {
     // write Byte array data
     public func write( _ array : [Byte]) {
         for b in array {
-            data[pos] = b
-            pos += 1
+            data.append(b)
         }
     }
     
@@ -179,15 +167,13 @@ class ByteBuffer {
     //   with offset and length
     public func write(array : [Byte], off : Int, len : Int) {
         for i in 0 ..< len {
-            data[pos] = array[off + i]
-            pos += 1
+            data.append(array[off + i])
         }
     }
     
     public func write(repeating b: Byte, count : Int) {
         for _ in 0 ..< count {
-            data[pos] = b
-            pos += 1
+            data.append(b)
         }
     }
     
@@ -290,7 +276,7 @@ class ByteBuffer {
             buf.append( data[pos] )
             pos += 1
         }
-        pos += 1    // add nil
+        pos += 1    // add last nil
         
         if let string = String(data: Data(buf), encoding: .utf8) {
             return string
@@ -298,7 +284,7 @@ class ByteBuffer {
         return ""
     }
     
-    // get String (first 4byte is string size)
+    // get String (top 4byte is string size)
     public func getStringWithSize() -> String {
         let size = getInt()
         
@@ -326,21 +312,6 @@ class ByteBuffer {
         
         return date
     }
-    //    public func putDate(date : Date?) {
-    //        if let _date = date {
-    //            let cal : Calendar = Calendar(identifier: .gregorian)
-    //            putShort( Int16(cal.component(.year, from: _date)))
-    //            putByte( Byte(cal.component(.month, from: _date)))
-    //            putByte( Byte(cal.component(.day, from: _date)))
-    //            putByte( Byte(cal.component(.hour, from: _date)))
-    //            putByte( Byte(cal.component(.minute, from: _date)))
-    //            putByte( Byte(cal.component(.second, from: _date)))
-    //        } else {
-    //            // 全て0で書き込み
-    //            write(repeating: 0, count: 7)
-    //        }
-    //    }
-    
     
     public var description : String {
         get {
@@ -357,6 +328,7 @@ class ByteBuffer {
     }
     
     // MARK: Private Methods
+    
     private func toByteArray<T>(_ value: T) -> [UInt8] {
         var value = value
         return withUnsafePointer(to: &value) {

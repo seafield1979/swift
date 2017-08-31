@@ -660,6 +660,8 @@ func testByteBuffer(_ mode : Int) {
         test.test1()
     case 2:
         test.test2()
+    case 3:
+        test.test3()
     default:
         break
     }

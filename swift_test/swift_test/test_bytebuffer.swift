@@ -1,376 +1,70 @@
 //
-//  ByteBuffer.swift
-//  StorageTest
-//    Java ByteBuffer for Swift
+//  test_bytebuffer.swift
+//  swift_test
+//
 //  Created by Shusuke Unno on 2017/08/31.
-//  Copyright © 2017年 Shusuke Unno. All rights reserved.
+//  Copyright © 2017年 sunsunsoft. All rights reserved.
 //
 
 import Foundation
 
-typealias Byte = UInt8
-
-extension UInt {
-    func toInt() -> Int {
-        return Int(bitPattern: self)
-    }
-}
-
-extension UInt16 {
-    func toInt16() -> Int16 {
-        return Int16(bitPattern: self)
-    }
-    
-}
-extension UInt8 {
-    func toInt8() -> Int8 {
-        return Int8(bitPattern: self)
-    }
-}
-
-extension Int {
-    func toUInt() -> UInt {
-        return UInt(bitPattern: self)
-    }
-}
-
-extension Int16 {
-    func toUInt16() -> UInt16 {
-        return UInt16(bitPattern: self)
-    }
-}
-
-extension Int8 {
-    func toUInt8() -> UInt8 {
-        return UInt8(bitPattern: self)
-    }
-}
-
-
-class ByteBuffer {
-    // MARK: Constants
-    private let BUF_SIZE = 1024
-    private let DATE_SIZE = 7
-    
-    // MARK: Properties
-    private var data : [Byte]
-    private var pos : Int = 0
-    private var maxSize : Int = 0
-    
-    // MARK: Accessor
-    public func position() -> Int {
-        return pos
-    }
-    
-    // get byte array
-    public func array() -> [Byte] {
-        return Array(data.prefix(pos))
-    }
-    
-    // set current read/write position
-    public func setPosition(_ pos : Int) {
-        if pos >= data.count {
-            self.pos = 0
-        } else {
-            self.pos = pos
-        }
-    }
-    
-    // MARK: Initializer
-    public init() {
-        data = Array(repeating: 0, count: BUF_SIZE)
-        maxSize = data.count
-    }
-    
-    public init(buf : [Byte]) {
-        self.data = buf
-        maxSize = data.count
-    }
-    
-    public init(data : Data) {
-        self.data = [Byte](data)
-        maxSize = data.count
-    }
-    
-    // MARK: Public Methods
-    
-    // MARK: put
-    // put Byte (unsigned 8bit) data
-    public func put(_ b : Byte) {
-        data[pos] = b
-        pos += 1
-    }
-    
-    public func putByte(_ b: Byte) {
-        data[pos] = b
-        pos += 1
-    }
-    
-    // put signed 8bit data
-    public func put(_ b : Int8) {
-        data[pos] = Byte(b)
-        pos += 1
-    }
-    
-    // put Short(signed 16bit) data
-    public func putShort(_ s: Int16) {
-        putUInt16(UInt16(s))
-    }
-    
-    // put signed 16bit data
-    public func putInt16(_ s : Int16) {
-        putUInt16(UInt16(s))
-    }
-    
-    // put unsigned 16bit data
-    public func putUInt16(_ s : UInt16) {
-        // big endian
-        data[pos] = Byte(s >> 8)
-        pos += 1
-        data[pos] = Byte(s & 0xff)
-        pos += 1
-    }
-    
-    // put Int (signed 32bit) data
-    public func putInt(_ i : Int) {
-        putUInt32( UInt32(i) )
-    }
-    
-    // put signed 32bit data
-    public func putInt32(_ i : Int32) {
-        putUInt32( UInt32(i) )
-    }
-    
-    // put unsigned 32bit data
-    public func putUInt32(_ i : UInt32) {
-        // big endian
-        data[pos] = Byte(i >> 24)
-        pos += 1
-        data[pos] = Byte((i >> 16) & 0xff)
-        pos += 1
-        data[pos] = Byte((i >> 8) & 0xff)
-        pos += 1
-        data[pos] = Byte(i & 0xff)
-        pos += 1
-    }
-    
-    public func put<T>( _ data : T) {
-        let data = toByteArray(data)
-        write(data)
-    }
-    
-    public func putFloat( _ f : Float) {
-        put(f)
-    }
-    
-    public func putDouble( _ d : Double) {
-        put(d)
-    }
-    
-    // write Byte array data
-    public func write( _ array : [Byte]) {
-        for b in array {
-            data[pos] = b
-            pos += 1
-        }
-    }
-    
-    // write Byte array data
-    //   with offset and length
-    public func write(array : [Byte], off : Int, len : Int) {
-        for i in 0 ..< len {
-            data[pos] = array[off + i]
-            pos += 1
-        }
-    }
-    
-    public func write(repeating b: Byte, count : Int) {
-        for _ in 0 ..< count {
-            data[pos] = b
-            pos += 1
-        }
-    }
-    
-    public func putDate(date : Date?) {
-        if let _date = date {
-            let cal : Calendar = Calendar(identifier: .gregorian)
-            putShort( Int16(cal.component(.year, from: _date)))
-            putByte( Byte(cal.component(.month, from: _date)))
-            putByte( Byte(cal.component(.day, from: _date)))
-            putByte( Byte(cal.component(.hour, from: _date)))
-            putByte( Byte(cal.component(.minute, from: _date)))
-            putByte( Byte(cal.component(.second, from: _date)))
-        } else {
-            // 全て0で書き込み
-            write(repeating: 0, count: DATE_SIZE)
-        }
-    }
-    
-    // write string
-    public func putString(str : String) {
-        let data = [UInt8](str.utf8)
-        write(data)
-        putByte(0)      // last nil(=0)
-    }
-    
-    // write string count (4byte) and string
-    public func putStringWithSize(str : String) {
-        let data = [UInt8](str.utf8)
-        putInt(data.count)
-        write(data)
-    }
-    
-    // MARK: get
-    // get Byte (= UInt8)
-    public func getByte() -> Byte {
-        return getUInt8()
-    }
-    
-    // get UInt8
-    public func getUInt8() -> UInt8 {
-        let ret : Byte = data[pos]
-        pos += 1
-        return ret
-    }
-    
-    // get Int8
-    public func getInt8() -> Int8 {
-        let ret : UInt8 = data[pos]
-        pos += 1
-        return ret.toInt8()
-    }
-    
-    // get Short( = Int16)
-    public func getShort() -> Int16 {
-        return getInt16()
-    }
-    
-    // get Int16
-    public func getInt16() -> Int16 {
-        let ret = UInt16((Int(data[pos]) << 8) | Int(data[pos + 1]))
-        pos += 2
-        return ret.toInt16()
-    }
-    
-    // get UInt16
-    public func getUInt16() -> UInt16 {
-        let ret = UInt16((Int(data[pos]) << 8) | Int(data[pos + 1]))
-        pos += 2
-        return ret
-    }
-    
-    // get Int (signed 32bit)
-    public func getInt() -> Int {
-        return getUInt().toInt()
-    }
-    
-    // get UInt (unsigned 32bit)
-    public func getUInt() -> UInt {
-        let ret = UInt( (UInt(data[pos]) << 24) |
-            (UInt(data[pos + 1]) << 16) |
-            (UInt(data[pos + 2]) << 8) |
-            (UInt(data[pos + 3])))
-        pos += 4
-        return ret
-    }
-    
-    // get Float
-    public func getFloat() -> Float {
-        let _data = Array(data[pos..<pos+4])
-        let ret : Float = fromByteArray(_data,  Float.self)
-        pos += 4
-        return ret
-    }
-    
-    // get String (end of String is nil)
-    public func getStringWithNil() -> String {
-        var buf : [Byte] = []
+class UNTestByteBuffer {
+    public func test1() {
+        let buf : ByteBuffer = ByteBuffer()
         
-        while data[pos] != 0 {
-            buf.append( data[pos] )
-            pos += 1
-        }
-        pos += 1    // add nil
+        buf.putByte(0xff)
+        buf.putUInt16(0xffff)
+        buf.putUInt32(0xffffffff)
+        buf.putFloat(4.0)
         
-        if let string = String(data: Data(buf), encoding: .utf8) {
-            return string
-        }
-        return ""
+        print(buf.description)
+        
+        // 取り出す
+        let b : Int8 = buf.getInt8()
+        let s : Int16 = buf.getShort()
+        let i : Int = buf.getInt()
+        let f : Float = buf.getFloat()
+        print( String(format: "%d %d %d %f", b, s, i, f))
+        
+        // 取り出す
+        buf.setPosition(0)
+        let ub : UInt8 = buf.getUInt8()
+        let us : UInt16 = buf.getUInt16()
+        let ui : UInt = buf.getUInt()
+        
+        print( String(format: "0x%x 0x%x 0x%x", ub, us, ui))
     }
     
-    // get String (first 4byte is string size)
-    public func getStringWithSize() -> String {
-        let size = getInt()
+    // Date,Stringの書き込み、読み込み
+    public func test2() {
+        let buf : ByteBuffer = ByteBuffer()
         
-        let buf = data[pos ..< pos+size]
-        pos += size
+        buf.putDate(date: Date())
+        buf.putString(str: "hogehoge")
+        buf.putStringWithSize(str: "hogehoge2")
         
-        if let string = String(data: Data(buf), encoding: .utf8) {
-            return string
+        print(buf.description)
+        
+        let date = buf.getDate()
+        let str1 = buf.getStringWithNil()
+        let str2 = buf.getStringWithSize()
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        
+        print( String(format: "%@ %@ %@", df.string(from: date), str1, str2))
+    }
+    
+    // 大量のデータを書き込み
+    public func test3() {
+        let buf = ByteBuffer()
+        
+        for i in 0..<1000 {
+            buf.putInt(i+1)
         }
-        return ""
-    }
-    
-    // get Date
-    public func getDate() -> Date {
-        let year = Int(getShort())
-        let month = Int(getByte())
-        let day = Int(getByte())
-        let hour = Int(getByte())
-        let min = Int(getByte())
-        let sec = Int(getByte())
         
-        let calendar : Calendar = Calendar(identifier: .gregorian)
-        let date : Date = (calendar.date(from: DateComponents(
-            year: year, month: month, day: day, hour: hour, minute: min, second: sec)))!
-        
-        return date
-    }
-    //    public func putDate(date : Date?) {
-    //        if let _date = date {
-    //            let cal : Calendar = Calendar(identifier: .gregorian)
-    //            putShort( Int16(cal.component(.year, from: _date)))
-    //            putByte( Byte(cal.component(.month, from: _date)))
-    //            putByte( Byte(cal.component(.day, from: _date)))
-    //            putByte( Byte(cal.component(.hour, from: _date)))
-    //            putByte( Byte(cal.component(.minute, from: _date)))
-    //            putByte( Byte(cal.component(.second, from: _date)))
-    //        } else {
-    //            // 全て0で書き込み
-    //            write(repeating: 0, count: 7)
-    //        }
-    //    }
-    
-    
-    public var description : String {
-        get {
-            let _data = data.prefix(pos)
-            
-            // convert 1byte data to string
-            let stringArray = _data.map{String(format: "%02X", $0)}
-            
-            // joind with "-"
-            let binaryString = stringArray.joined(separator: "-")
-            
-            return binaryString
-        }
-    }
-    
-    // MARK: Private Methods
-    private func toByteArray<T>(_ value: T) -> [UInt8] {
-        var value = value
-        return withUnsafePointer(to: &value) {
-            $0.withMemoryRebound(to: UInt8.self, capacity: MemoryLayout<T>.size) {
-                Array(UnsafeBufferPointer(start: $0, count: MemoryLayout<T>.size))
-            }
-        }
-    }
-    
-    private func fromByteArray<T>(_ value: [UInt8], _: T.Type) -> T {
-        return value.withUnsafeBufferPointer {
-            $0.baseAddress!.withMemoryRebound(to: T.self, capacity: 1) {
-                $0.pointee
-            }
+        for i in 0..<1000 {
+            print("\(i) : \(buf.getInt())")
         }
     }
 }
