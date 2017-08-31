@@ -14,7 +14,10 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         case write2
         case write3
         case write4
-        case read
+        case read1
+        case read2
+        case read3
+        case read4
     }
     
     private static let fileName = "hoge.bin"
@@ -58,7 +61,10 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         "書き込み2",
         "書き込み3",
         "書き込み4",
-        "読み込み"
+        "読み込み1",
+        "読み込み2",
+        "読み込み3",
+        "読み込み4"
         ]
     
     
@@ -126,7 +132,7 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
     // セルの高さを返す
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 70
+        return 40
     }
     
     // セルをタップされた時に呼び出される
@@ -147,8 +153,15 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         case .write4:
             writeData4()
             break
-        case .read:
+        case .read1:
             readData1()
+            break
+        case .read2:
+            readData2()
+            break
+        case .read3:
+            break
+        case .read4:
             break
         }
     }
@@ -168,10 +181,18 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
     
     // いろいろなサイズのバイナリデータを書き込む
     func writeData2() {
-        var data = Data()
+        let buf : ByteBuffer = ByteBuffer()
         
+        buf.putByte(11)
+        buf.putUInt16(22222)
+        buf.putUInt32(3333333)
+        buf.putFloat(4.0)
         
-//        data.append(contentsOf: <#T##[UInt8]#>)
+        let dir = DirectoryType.Document.toString()
+        let filePath = dir + "/" + FileManager2ViewController.fileName
+        FileManager.default.createFile( atPath: filePath, contents: Data(buf.array()), attributes: nil)
+        
+        textView1.text = "write to \(FileManager2ViewController.fileName)"
     }
     func writeData3() {
         
@@ -209,4 +230,27 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
             print("Failed to read the file." + error.localizedDescription)
         }
     }
+    
+    func readData2() {
+        do {
+            let dir : String = DirectoryType.Document.toString()
+            
+            let dataURL = URL(fileURLWithPath: dir + "/" + FileManager2ViewController.fileName)
+            
+            // ファイル読み込み
+            let binaryData : Data = try Data(contentsOf: dataURL, options: [])
+            let buf = ByteBuffer(buf: [Byte](binaryData))
+            
+            // 取り出す
+            let b : Int8 = buf.getInt8()
+            let s : Int16 = buf.getShort()
+            let i : Int = buf.getInt()
+            let f : Float = buf.getFloat()
+            print( String(format: "%d %d %d %f", b, s, i, f))
+            
+        } catch let error as NSError {
+            print("Failed to read the file." + error.localizedDescription)
+        }
+    }
+
 }

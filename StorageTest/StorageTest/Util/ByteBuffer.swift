@@ -55,16 +55,19 @@ class ByteBuffer {
     // MARK: Properties
     private var data : [Byte]
     private var pos : Int = 0
+    private var maxSize : Int = 0
     
     // MARK: Accessor
     public func position() -> Int {
         return pos
     }
     
+    // get byte array
     public func array() -> [Byte] {
-        return Array(data.suffix(pos))
+        return Array(data.prefix(pos))
     }
     
+    // set current read/write position
     public func setPosition(_ pos : Int) {
         if pos >= data.count {
             self.pos = 0
@@ -76,6 +79,17 @@ class ByteBuffer {
     // MARK: Initializer
     public init() {
         data = Array(repeating: 0, count: BUF_SIZE)
+        maxSize = data.count
+    }
+    
+    public init(buf : [Byte]) {
+        self.data = buf
+        maxSize = data.count
+    }
+    
+    public init(data : Data) {
+        self.data = [Byte](data)
+        maxSize = data.count
     }
     
     // MARK: Public Methods
