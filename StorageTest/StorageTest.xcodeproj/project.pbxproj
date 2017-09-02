@@ -34,6 +34,7 @@
 		8A63EE8F1D7FB12B006266C5 /* MemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A63EE8D1D7FB12B006266C5 /* MemoStore.swift */; };
 		8A63EE921D7FD24F006266C5 /* PersonStore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A63EE901D7FD24F006266C5 /* PersonStore+CoreDataProperties.swift */; };
 		8A63EE931D7FD24F006266C5 /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A63EE911D7FD24F006266C5 /* PersonStore.swift */; };
+		8A7779221F5A6D6A00574394 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7779211F5A6D6A00574394 /* FileUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		8A63EE8D1D7FB12B006266C5 /* MemoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
 		8A63EE901D7FD24F006266C5 /* PersonStore+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PersonStore+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A63EE911D7FD24F006266C5 /* PersonStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonStore.swift; sourceTree = "<group>"; };
+		8A7779211F5A6D6A00574394 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtil.swift; path = StorageTest/Util/FileUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				8A0D6F7E1F3019D5002A1949 /* UIViewUtil.swift */,
 				8A159EB31F57B8190066FEB5 /* ByteBuffer.swift */,
+				8A7779211F5A6D6A00574394 /* FileUtil.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7779221F5A6D6A00574394 /* FileUtil.swift in Sources */,
 				8A54CCCE1D7E5DC2009BBB38 /* FileManagerViewController.swift in Sources */,
 				8A54CCB91D7E4A13009BBB38 /* StorageTest.xcdatamodeld in Sources */,
 				8A0D6F791F30195F002A1949 /* TopViewController.swift in Sources */,

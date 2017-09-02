@@ -14,6 +14,7 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         case write2
         case write3
         case write4
+        case append
         case read1
         case read2
         case read3
@@ -21,35 +22,6 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     private let fileName = "hoge.bin"
-    
-    // アプリからアクセスできるディレクトリ
-    enum DirectoryType : String{
-        case Document = "/Documents"        // ユーザーデータ用
-        case Library = "/Library"           // ユーザーデータ以外
-        case CachesDirectory = "/Library/Caches"   // キャッシュ
-        
-        // ディレクトリのパスを取得する
-        public func toString() -> String {
-            var searchDir : FileManager.SearchPathDirectory? = nil
-        
-            switch self {
-            case .Document:
-                searchDir = FileManager.SearchPathDirectory.documentDirectory
-                break
-            case .Library:
-                searchDir = FileManager.SearchPathDirectory.documentDirectory
-                break
-            case .CachesDirectory:
-                searchDir = FileManager.SearchPathDirectory.documentDirectory
-                break
-            }
-
-            if searchDir == nil {
-                return ""
-            }
-            return (NSSearchPathForDirectoriesInDomains( searchDir!, FileManager.SearchPathDomainMask.allDomainsMask, true ).first as String?)!
-        }
-    }
     
     @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var textView1: UITextView!
@@ -61,6 +33,7 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         "書き込み2",
         "書き込み3",
         "書き込み4",
+        "追加書き込み",
         "読み込み1",
         "読み込み2",
         "読み込み3",
@@ -153,6 +126,8 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         case .write4:
             writeData4()
             break
+        case .append:
+            appendData()
         case .read1:
             readData1()
             break
@@ -176,6 +151,37 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         
         return filePath
     }
+    
+
+    /**
+     * ファイルに追加書き込み
+     * @param id:  ファイルのスロット番号
+     * @param data:  書き込みデータ
+     */
+    func appendToFile(id: Int, data : Data) -> String {
+        
+        let dir = DirectoryType.Document.toString()
+        let filePath = dir + "/" + "hoge\(id).bin"
+        let url = URL(fileURLWithPath: filePath)
+        
+        // 追加書き込みができる OutputStream を開く
+        if let output = OutputStream(url: url, append: true) {
+            output.open()
+            
+            // テキストを [UInt8] に変換
+            let writeData : [UInt8]? = [UInt8](data)
+            
+            if writeData != nil {
+                // writeメソッドは [UInt8]を受け付けてくれないため、[UInt8] -> UnsafePointer<UInt8>
+                let bytes = UnsafePointer<UInt8>(writeData)
+                output.write(bytes!, maxLength: writeData!.count)
+            }
+            output.close()
+        }
+        
+        return filePath
+    }
+
     
     func readFromFile(id: Int) -> Data? {
         let dir : String = DirectoryType.Document.toString()
@@ -240,6 +246,17 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
         textView1.text = "write to \(path) size:\(buf.array().count)"
     }
     
+    // 追加書き込み
+    func appendData() {
+        let buf : ByteBuffer = ByteBuffer()
+        
+        buf.putByte(11)
+        
+        let path = appendToFile(id: 1, data: Data(buf.array()))
+        textView1.text = "write to \(path) size:\(buf.array().count)"
+    }
+
+    
     // バイナリファイル(fileName)を読み込み16進数で表示する
     func readData1() {
         // ファイル読み込み
@@ -248,12 +265,13 @@ class FileManager2ViewController: UIViewController, UITableViewDelegate, UITable
             return
         }
         
-        // 先頭から32バイトを抽出。
+        // 先頭からxバイトを抽出。
         let kbData : Data
-        if binaryData!.count < 32 {
+        let len = 200
+        if binaryData!.count < len {
             kbData = binaryData!
         } else {
-            kbData = binaryData!.subdata(in: 0..<1024)
+            kbData = binaryData!.subdata(in: 0..<len)
         }
         
         // 各バイトを16進数の文字列に変換。

@@ -37,13 +37,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StorageTest/FileManagerViewController.swift"
-            timestampString = "525847970.979073"
+            filePath = "StorageTest/Util/FileUtil.swift"
+            timestampString = "526022771.821933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "readFromFile(_:)"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
+            landmarkName = "testConvert()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
